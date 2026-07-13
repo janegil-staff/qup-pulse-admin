@@ -5,6 +5,7 @@
 // launch. The "Objectionable content" section is required for Apple App Store
 // approval of user-generated-content apps (Guideline 1.2) — keep it.
 //
+// Colors tuned for a DARK site background.
 // Fill the [PLACEHOLDER] values before publishing:
 //   [CONTACT_EMAIL]   — support contact address
 //   [LAST_UPDATED]    — date these terms last changed
@@ -16,22 +17,26 @@ export const metadata = {
 
 const styles = {
   main: {
-    maxWidth: 720,
+    maxWidth: 680,
     margin: '0 auto',
     padding: '64px 24px 96px',
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    color: '#1a2332',
-    lineHeight: 1.65,
+    color: '#e8ecf2',
+    lineHeight: 1.7,
   },
-  h1: { fontSize: 32, fontWeight: 700, marginBottom: 8, letterSpacing: '-0.02em' },
-  updated: { color: '#6b7688', fontSize: 14, marginBottom: 40 },
-  h2: { fontSize: 20, fontWeight: 700, marginTop: 40, marginBottom: 12 },
-  p: { marginBottom: 16 },
-  ul: { marginBottom: 16, paddingLeft: 22 },
-  li: { marginBottom: 6 },
-  a: { color: '#3a6ea5', textDecoration: 'underline' },
-  footer: { marginTop: 56, paddingTop: 24, borderTop: '1px solid #e4e8ee', color: '#6b7688', fontSize: 14 },
+  h1: { fontSize: 34, fontWeight: 700, marginBottom: 8, letterSpacing: '-0.02em', color: '#ffffff' },
+  updated: { color: '#8792a4', fontSize: 14, marginBottom: 40 },
+  h2: { fontSize: 20, fontWeight: 700, marginTop: 44, marginBottom: 14, color: '#ffffff' },
+  p: { marginBottom: 18, color: '#c7cfdb', fontSize: 17 },
+  a: { color: '#6ea8e8', textDecoration: 'none', fontWeight: 600 },
+  footer: {
+    marginTop: 56,
+    paddingTop: 24,
+    borderTop: '1px solid rgba(255,255,255,0.12)',
+    color: '#8792a4',
+    fontSize: 14,
+  },
 };
 
 export default function TermsPage() {
