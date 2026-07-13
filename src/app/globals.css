@@ -1,14 +1,10 @@
-/* localpulse-admin/app/globals.css */
 @import "tailwindcss";
- 
+
 :root {
   color-scheme: dark;
 }
- 
-/* Data face for IDs, timestamps, and counts — makes scanning a report queue
-   faster because monospace aligns and reads unambiguously. */
+
 .font-data {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   font-variant-numeric: tabular-nums;
 }
- 
