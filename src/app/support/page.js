@@ -53,7 +53,7 @@ export default function SupportPage() {
         you as soon as we can.
       </p>
       <p style={styles.emailLine}>
-        <a style={styles.a} href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a>
+        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a>
       </p>
 
       <h2 style={styles.h2}>Common questions</h2>
@@ -90,7 +90,7 @@ export default function SupportPage() {
       <h2 style={styles.h2}>Contact</h2>
       <p style={styles.p}>
         For anything not covered above, email{' '}
-        <a style={styles.a} href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a> and we&apos;ll
+        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a> and we&apos;ll
         help.
       </p>
 
