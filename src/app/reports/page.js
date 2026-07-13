@@ -4,6 +4,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { adminApi, clearToken, getToken, AuthError } from '../../lib/api.js';
+import AdminShell from '../AdminShell.js';
 
 const FILTERS = [
   { key: 'open', label: 'Open' },
@@ -36,6 +37,10 @@ export default function ReportsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [busyId, setBusyId] = useState(null);
+  // Track ban state for reported users so the button can toggle Ban/Unban.
+  // Keyed by user id; seeded lazily as we act on them, since listReports'
+  // toPublic() projection doesn't include `banned`.
+  const [bannedMap, setBannedMap] = useState({});
 
   const bounce = useCallback(() => {
     clearToken();
@@ -65,7 +70,6 @@ export default function ReportsPage() {
     setBusyId(id);
     try {
       await adminApi.resolveReport(id, status);
-      // Reflect immediately: drop it from a filtered view, or update in place.
       setReports((prev) =>
         filter && filter !== status
           ? prev.filter((r) => r.id !== id)
@@ -79,16 +83,18 @@ export default function ReportsPage() {
     }
   }
 
-  async function ban(userId) {
+  async function toggleBan(userId, currentlyBanned) {
     if (!userId) return;
-    if (!window.confirm('Ban this user? They will be blocked from the app.')) return;
+    const next = !currentlyBanned;
+    if (next && !window.confirm('Ban this user? They will be signed out and blocked from the app.')) return;
     setBusyId(userId);
     try {
-      await adminApi.banUser(userId, true);
+      await adminApi.banUser(userId, next);
+      setBannedMap((m) => ({ ...m, [userId]: next }));
       setError('');
     } catch (err) {
       if (err instanceof AuthError) return bounce();
-      setError(err.message || 'Could not ban user.');
+      setError(err.message || 'Could not update user.');
     } finally {
       setBusyId(null);
     }
@@ -112,41 +118,27 @@ export default function ReportsPage() {
   const openCount = reports.filter((r) => r.status === 'open').length;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8">
-      {/* Header */}
-      <header className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-          <h1 className="text-lg font-semibold tracking-tight">Reports</h1>
-          {filter === 'open' && !loading ? (
-            <span className="font-data ml-1 rounded-full bg-amber-400/15 px-2 py-0.5 text-xs text-amber-300">
-              {openCount}
-            </span>
-          ) : null}
+    <AdminShell>
+      {/* Filter tabs + open count */}
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex flex-1 gap-1 rounded-lg border border-slate-800 bg-slate-900/50 p-1">
+          {FILTERS.map((f) => (
+            <button
+              key={f.key || 'all'}
+              onClick={() => setFilter(f.key)}
+              className={`flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                filter === f.key ? 'bg-slate-800 text-slate-100' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
         </div>
-        <button
-          onClick={bounce}
-          className="text-xs text-slate-400 transition hover:text-slate-200"
-        >
-          Sign out
-        </button>
-      </header>
-
-      {/* Filter tabs */}
-      <div className="mb-5 flex gap-1 rounded-lg border border-slate-800 bg-slate-900/50 p-1">
-        {FILTERS.map((f) => (
-          <button
-            key={f.key || 'all'}
-            onClick={() => setFilter(f.key)}
-            className={`flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition ${
-              filter === f.key
-                ? 'bg-slate-800 text-slate-100'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
+        {filter === 'open' && !loading ? (
+          <span className="font-data ml-3 rounded-full bg-amber-400/15 px-2 py-0.5 text-xs text-amber-300">
+            {openCount}
+          </span>
+        ) : null}
       </div>
 
       {error ? (
@@ -155,7 +147,6 @@ export default function ReportsPage() {
         </p>
       ) : null}
 
-      {/* List */}
       {loading ? (
         <p className="py-16 text-center text-sm text-slate-500">Loading reports…</p>
       ) : reports.length === 0 ? (
@@ -172,6 +163,7 @@ export default function ReportsPage() {
               ? { kind: 'post', name: 'post', id: r.post.id }
               : { kind: 'unknown', name: '(deleted)', id: null };
             const busy = busyId === r.id || busyId === target.id;
+            const isBanned = target.id ? Boolean(bannedMap[target.id]) : false;
 
             return (
               <li
@@ -192,7 +184,9 @@ export default function ReportsPage() {
                 {/* Target + reporter */}
                 <div className="mb-1 text-sm text-slate-300">
                   {target.kind === 'user' ? (
-                    <>Reported user <span className="font-medium text-slate-100">@{target.name}</span></>
+                    <>Reported user <span className="font-medium text-slate-100">@{target.name}</span>
+                      {isBanned ? <span className="ml-2 rounded-full bg-red-400/15 px-2 py-0.5 text-xs text-red-300">banned</span> : null}
+                    </>
                   ) : target.kind === 'post' ? (
                     <>Reported post <span className="font-data text-xs text-slate-500">{target.id}</span></>
                   ) : (
@@ -243,10 +237,14 @@ export default function ReportsPage() {
                   {target.kind === 'user' && target.id ? (
                     <button
                       disabled={busy}
-                      onClick={() => ban(target.id)}
-                      className="rounded-md border border-red-900/60 px-3 py-1.5 text-xs font-medium text-red-300 transition hover:bg-red-950/50 disabled:opacity-50"
+                      onClick={() => toggleBan(target.id, isBanned)}
+                      className={`rounded-md px-3 py-1.5 text-xs font-medium transition disabled:opacity-50 ${
+                        isBanned
+                          ? 'bg-emerald-500/90 text-slate-950 hover:bg-emerald-400'
+                          : 'border border-red-900/60 text-red-300 hover:bg-red-950/50'
+                      }`}
                     >
-                      Ban user
+                      {isBanned ? 'Unban user' : 'Ban user'}
                     </button>
                   ) : null}
                   {target.kind === 'post' && target.id ? (
@@ -264,6 +262,6 @@ export default function ReportsPage() {
           })}
         </ul>
       )}
-    </div>
+    </AdminShell>
   );
 }

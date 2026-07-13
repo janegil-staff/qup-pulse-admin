@@ -80,8 +80,16 @@ export const adminApi = {
   resolveReport: (id, status) =>
     request(`/admin/reports/${id}`, { method: 'PATCH', body: { status } }),
 
-  // Moderation actions reachable from a report.
+  // Users. q filters by username/email (server-side regex). Returns users with
+  // email, role, banned, createdAt — banned is what the Users page toggles on.
+  listUsers: (q) =>
+    request(`/admin/users${q ? `?q=${encodeURIComponent(q)}` : ''}`),
+
+  // Moderation actions reachable from a report or the users list.
   banUser: (id, banned) =>
     request(`/admin/users/${id}/ban`, { method: 'PATCH', body: { banned } }),
   deletePost: (id) => request(`/admin/posts/${id}`, { method: 'DELETE' }),
+
+  // Dashboard counters (not yet surfaced in the UI, but available).
+  stats: () => request('/admin/stats'),
 };
