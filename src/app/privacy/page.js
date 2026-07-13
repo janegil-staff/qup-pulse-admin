@@ -44,7 +44,7 @@ export default function PrivacyPage() {
   return (
     <main style={styles.main}>
       <h1 style={styles.h1}>Privacy Policy</h1>
-      <p style={styles.updated}>Last updated: [LAST_UPDATED]</p>
+      <p style={styles.updated}>Last updated: 13/07/2026</p>
 
       <p style={styles.p}>
         This Privacy Policy explains how Qup DA (&quot;we&quot;, &quot;us&quot;) collects, uses, and
@@ -99,7 +99,7 @@ export default function PrivacyPage() {
       <h2 style={styles.h2}>Contact</h2>
       <p style={styles.p}>
         For any privacy questions or to exercise your rights, contact us at{' '}
-        <a style={styles.a} href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a>.
+        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a>.
       </p>
 
       <div style={styles.footer}>Qup DA · Oslo, Norway · org. nr. 998185599</div>

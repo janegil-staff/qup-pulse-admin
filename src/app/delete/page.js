@@ -75,7 +75,7 @@ export default function DeletePage() {
       <h2 style={styles.h2}>Need help?</h2>
       <p style={styles.p}>
         If you can&apos;t access the app to delete your account, contact us at{' '}
-        <a style={styles.a} href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a> and we&apos;ll
+        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a> and we&apos;ll
         help you.
       </p>
 
