@@ -64,9 +64,15 @@ async function request(path, { method = 'GET', body, auth = true } = {}) {
 }
 
 export const adminApi = {
-  // Auth — same login the mobile app uses. Returns { token, user }.
+  // Auth. The server's /auth/login reads { emailOrUsername, password } and
+  // accepts the PIN via the password field (checkPassword OR checkPin). We send
+  // the email as emailOrUsername and the PIN as password.
   login: (email, pin) =>
-    request('/auth/login', { method: 'POST', body: { email, pin }, auth: false }),
+    request('/auth/login', {
+      method: 'POST',
+      body: { emailOrUsername: email, password: pin },
+      auth: false,
+    }),
 
   // Reports. status is one of 'open' | 'reviewed' | 'dismissed', or omitted for all.
   listReports: (status) =>
