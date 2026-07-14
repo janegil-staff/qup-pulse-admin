@@ -105,7 +105,7 @@ export default function ChildSafetyPage() {
             <h2 style={styles.h2}>Contact</h2>
             <p style={styles.p}>
                 Our designated child-safety contact can be reached at{' '}
-                <a style={styles.a} href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a>.
+                <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a>.
             </p>
 
             <div style={styles.footer}>Qup DA · Oslo, Norway · org. nr. 998185599</div>
