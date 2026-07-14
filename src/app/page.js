@@ -218,22 +218,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="mt-16 border-t border-slate-200 py-8 text-sm text-slate-500 dark:border-slate-800 dark:text-slate-400">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6">
-            <div className="flex items-center gap-2.5 text-base font-bold">
-              <span className="qp-dot h-2.5 w-2.5 rounded-full bg-emerald-400" /> Qup Pulse
-            </div>
-            <div className="flex flex-wrap gap-5">
-              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="transition hover:text-emerald-500">{t.footer.privacy}</a>
-              <a href="/terms" target="_blank" rel="noopener noreferrer" className="transition hover:text-emerald-500">{t.footer.terms}</a>
-              <a href="/child-safety" target="_blank" rel="noopener noreferrer" className="transition hover:text-emerald-500">{t.footer.childSafety}</a>
-              <a href="/delete" target="_blank" rel="noopener noreferrer" className="transition hover:text-emerald-500">{t.footer.delete}</a>
-            </div>
-            <div>© 2026 Qup DA</div>
-          </div>
-        </footer>
       </div>
     </div>
   );
