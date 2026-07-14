@@ -51,5 +51,13 @@
     "invalid": "Gib deine E-Mail und die 4-stellige PIN ein.",
     "notAdmin": "Dieses Konto ist kein Administrator.",
     "failed": "Anmeldung fehlgeschlagen."
+  },
+  "consent": {
+    "termsPre": "Ich akzeptiere die",
+    "termsLink": "Nutzungsbedingungen",
+    "termsPost": "einschließlich der Datenschutzerklärung.",
+    "privacyPre": "Ich willige in die Speicherung und Nutzung meiner Daten gemäß der",
+    "privacyLink": "Datenschutzerklärung",
+    "privacyPost": "ein."
   }
 }

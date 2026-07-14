@@ -130,5 +130,13 @@
     "respondBody": "Rapporter som gjelder barnesikkerhet gjennomgås med prioritet. Når vi bekrefter et brudd, fjerner vi innholdet, iverksetter tiltak mot kontoen (inkludert permanent utestengelse), sikrer relevant bevis og rapporterer til rette myndigheter. Avhengig av jurisdiksjon inkluderer dette National Center for Missing and Exploited Children (NCMEC) og norsk politi (Kripos). Vi samarbeider med rettmessige forespørsler fra rettshåndhevende myndigheter i henhold til gjeldende lov.",
     "contactTitle": "Kontakt",
     "contactBody": "Spørsmål om disse standardene kan sendes til"
+  },
+  "consent": {
+    "termsPre": "Jeg godtar",
+    "termsLink": "vilkårene og betingelsene",
+    "termsPost": "inkludert personvernerklæringen.",
+    "privacyPre": "Jeg samtykker til lagring og bruk av mine data i samsvar med",
+    "privacyLink": "personvernerklæringen",
+    "privacyPost": "."
   }
 }

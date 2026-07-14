@@ -130,5 +130,13 @@
     "respondBody": "Zgłoszenia dotyczące bezpieczeństwa dzieci są rozpatrywane priorytetowo. Po potwierdzeniu naruszenia usuwamy treść, podejmujemy działania wobec konta (w tym trwałą blokadę), zabezpieczamy odpowiednie dowody i zgłaszamy sprawę właściwym organom. W zależności od jurysdykcji obejmuje to National Center for Missing and Exploited Children (NCMEC) oraz norweską policję (Kripos). Współpracujemy z żądaniami organów ścigania, które są ważne na mocy obowiązującego prawa.",
     "contactTitle": "Kontakt",
     "contactBody": "Pytania dotyczące tych standardów można przesyłać na adres"
+  },
+  "consent": {
+    "termsPre": "Akceptuję",
+    "termsLink": "warunki korzystania z usługi",
+    "termsPost": "w tym politykę prywatności.",
+    "privacyPre": "Wyrażam zgodę na przechowywanie i wykorzystywanie moich danych zgodnie z",
+    "privacyLink": "polityką prywatności",
+    "privacyPost": "."
   }
 }

@@ -188,7 +188,12 @@ export default function LandingPage() {
               >
                 {loading ? t.login.signingIn : t.login.signIn}
               </button>
-              <p className="mt-3 text-center text-[13px] text-slate-500 dark:text-slate-400">{t.login.note}</p>
+              <p className="mt-4 text-center text-[13px] text-slate-500 dark:text-slate-400">
+                New here?{' '}
+                <a href="/register" className="font-semibold text-emerald-600 no-underline hover:underline dark:text-emerald-400">
+                  Create an account
+                </a>
+              </p>
             </form>
           </div>
         </header>

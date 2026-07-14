@@ -51,5 +51,13 @@
     "invalid": "Introduz o teu e-mail e PIN de 4 dígitos.",
     "notAdmin": "Esta conta não é administradora.",
     "failed": "Não foi possível entrar."
+  },
+  "consent": {
+    "termsPre": "Aceito os",
+    "termsLink": "termos e condições",
+    "termsPost": "incluindo a política de privacidade.",
+    "privacyPre": "Consinto no armazenamento e na utilização dos meus dados de acordo com a",
+    "privacyLink": "Política de Privacidade",
+    "privacyPost": "."
   }
 }

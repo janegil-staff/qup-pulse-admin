@@ -51,5 +51,13 @@
     "invalid": "Introduce tu correo y PIN de 4 dígitos.",
     "notAdmin": "Esta cuenta no es administradora.",
     "failed": "No se pudo iniciar sesión."
+  },
+  "consent": {
+    "termsPre": "Acepto los",
+    "termsLink": "términos y condiciones",
+    "termsPost": "incluida la política de privacidad.",
+    "privacyPre": "Consiento el almacenamiento y uso de mis datos de acuerdo con la",
+    "privacyLink": "Política de privacidad",
+    "privacyPost": "."
   }
 }

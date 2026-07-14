@@ -51,5 +51,13 @@
     "invalid": "Skriv inn e-post og 4-sifret PIN.",
     "notAdmin": "Denne kontoen er ikke administrator.",
     "failed": "Kunne ikke logge inn."
+  },
+  "consent": {
+    "termsPre": "Jeg godtar",
+    "termsLink": "vilkårene og betingelsene",
+    "termsPost": "inkludert personvernerklæringen.",
+    "privacyPre": "Jeg samtykker til lagring og bruk av mine data i samsvar med",
+    "privacyLink": "personvernerklæringen",
+    "privacyPost": "."
   }
 }

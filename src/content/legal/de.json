@@ -130,5 +130,13 @@
     "respondBody": "Meldungen zum Kinderschutz werden vorrangig geprüft. Wenn wir einen Verstoß bestätigen, entfernen wir den Inhalt, ergreifen Maßnahmen gegen das Konto (einschließlich dauerhafter Sperrung), sichern relevante Beweise und melden dies den zuständigen Behörden. Je nach Rechtsordnung umfasst dies das National Center for Missing and Exploited Children (NCMEC) und die norwegische Polizei (Kripos). Wir kooperieren mit Anfragen von Strafverfolgungsbehörden, die nach geltendem Recht gültig sind.",
     "contactTitle": "Kontakt",
     "contactBody": "Fragen zu diesen Standards können gesendet werden an"
+  },
+  "consent": {
+    "termsPre": "Ich akzeptiere die",
+    "termsLink": "Nutzungsbedingungen",
+    "termsPost": "einschließlich der Datenschutzerklärung.",
+    "privacyPre": "Ich willige in die Speicherung und Nutzung meiner Daten gemäß der",
+    "privacyLink": "Datenschutzerklärung",
+    "privacyPost": "ein."
   }
 }

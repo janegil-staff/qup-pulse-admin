@@ -51,5 +51,13 @@
     "invalid": "Saisissez votre e-mail et votre PIN à 4 chiffres.",
     "notAdmin": "Ce compte n’est pas administrateur.",
     "failed": "Connexion impossible."
+  },
+  "consent": {
+    "termsPre": "J'accepte les",
+    "termsLink": "conditions générales",
+    "termsPost": "y compris la politique de confidentialité.",
+    "privacyPre": "Je consens au stockage et à l'utilisation de mes données conformément à la",
+    "privacyLink": "politique de confidentialité",
+    "privacyPost": "."
   }
 }

@@ -51,5 +51,13 @@
     "invalid": "Anna sähköposti ja 4-numeroinen PIN.",
     "notAdmin": "Tämä tili ei ole ylläpitäjä.",
     "failed": "Kirjautuminen epäonnistui."
+  },
+  "consent": {
+    "termsPre": "Hyväksyn",
+    "termsLink": "käyttöehdot",
+    "termsPost": "mukaan lukien tietosuojakäytännön.",
+    "privacyPre": "Suostun tietojeni tallentamiseen ja käyttöön",
+    "privacyLink": "tietosuojakäytännön",
+    "privacyPost": "mukaisesti."
   }
 }

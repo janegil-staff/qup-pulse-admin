@@ -130,5 +130,13 @@
     "respondBody": "Lasten turvallisuutta koskevat ilmoitukset tarkistetaan etusijalla. Kun vahvistamme rikkomuksen, poistamme sisällön, ryhdymme toimiin tiliä kohtaan (mukaan lukien pysyvä esto), säilytämme olennaisen todistusaineiston ja ilmoitamme asianomaisille viranomaisille. Lainkäyttöalueesta riippuen tähän kuuluu National Center for Missing and Exploited Children (NCMEC) ja Norjan poliisi (Kripos). Teemme yhteistyötä lainvalvontaviranomaisten pyyntöjen kanssa, jotka ovat päteviä sovellettavan lain nojalla.",
     "contactTitle": "Yhteystiedot",
     "contactBody": "Näitä standardeja koskevat kysymykset voi lähettää osoitteeseen"
+  },
+  "consent": {
+    "termsPre": "Hyväksyn",
+    "termsLink": "käyttöehdot",
+    "termsPost": "mukaan lukien tietosuojakäytännön.",
+    "privacyPre": "Suostun tietojeni tallentamiseen ja käyttöön",
+    "privacyLink": "tietosuojakäytännön",
+    "privacyPost": "mukaisesti."
   }
 }

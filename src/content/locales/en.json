@@ -51,5 +51,13 @@
     "invalid": "Enter your email and 4-digit PIN.",
     "notAdmin": "That account is not an administrator.",
     "failed": "Could not log in."
+  },
+  "consent": {
+    "termsPre": "I accept the",
+    "termsLink": "Terms and conditions",
+    "termsPost": "including the privacy policy.",
+    "privacyPre": "I consent to the storage and use of my data in accordance with the",
+    "privacyLink": "Privacy Policy",
+    "privacyPost": "."
   }
 }

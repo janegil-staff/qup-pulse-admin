@@ -130,5 +130,13 @@
     "respondBody": "Reports involving child safety are reviewed with priority. When we confirm a violation, we remove the content, take action on the account (including permanent ban), preserve relevant evidence, and report to the appropriate authorities. Depending on jurisdiction, this includes the National Center for Missing and Exploited Children (NCMEC) and the Norwegian police (Kripos). We cooperate with law enforcement requests that are valid under applicable law.",
     "contactTitle": "Contact",
     "contactBody": "Questions about these standards can be sent to"
+  },
+  "consent": {
+    "termsPre": "I accept the",
+    "termsLink": "Terms and conditions",
+    "termsPost": "including the privacy policy.",
+    "privacyPre": "I consent to the storage and use of my data in accordance with the",
+    "privacyLink": "Privacy Policy",
+    "privacyPost": "."
   }
 }

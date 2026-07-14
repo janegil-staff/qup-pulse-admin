@@ -130,5 +130,13 @@
     "respondBody": "Les signalements relatifs à la sécurité des enfants sont examinés en priorité. Lorsque nous confirmons une violation, nous supprimons le contenu, prenons des mesures à l'encontre du compte (y compris le bannissement définitif), conservons les preuves pertinentes et signalons aux autorités compétentes. Selon la juridiction, cela inclut le National Center for Missing and Exploited Children (NCMEC) et la police norvégienne (Kripos). Nous coopérons avec les demandes des forces de l'ordre valides en vertu du droit applicable.",
     "contactTitle": "Contact",
     "contactBody": "Les questions concernant ces normes peuvent être envoyées à"
+  },
+  "consent": {
+    "termsPre": "J'accepte les",
+    "termsLink": "conditions générales",
+    "termsPost": "y compris la politique de confidentialité.",
+    "privacyPre": "Je consens au stockage et à l'utilisation de mes données conformément à la",
+    "privacyLink": "politique de confidentialité",
+    "privacyPost": "."
   }
 }

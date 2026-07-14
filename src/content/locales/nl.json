@@ -51,5 +51,13 @@
     "invalid": "Voer je e-mail en 4-cijferige PIN in.",
     "notAdmin": "Dit account is geen beheerder.",
     "failed": "Inloggen mislukt."
+  },
+  "consent": {
+    "termsPre": "Ik accepteer de",
+    "termsLink": "algemene voorwaarden",
+    "termsPost": "inclusief het privacybeleid.",
+    "privacyPre": "Ik stem in met de opslag en het gebruik van mijn gegevens in overeenstemming met het",
+    "privacyLink": "privacybeleid",
+    "privacyPost": "."
   }
 }

@@ -130,5 +130,13 @@
     "respondBody": "Las denuncias relacionadas con la seguridad infantil se revisan con prioridad. Cuando confirmamos una infracción, eliminamos el contenido, tomamos medidas sobre la cuenta (incluida la expulsión permanente), conservamos las pruebas pertinentes y lo denunciamos a las autoridades competentes. Según la jurisdicción, esto incluye el National Center for Missing and Exploited Children (NCMEC) y la policía noruega (Kripos). Cooperamos con las solicitudes de las fuerzas del orden que sean válidas conforme a la legislación aplicable.",
     "contactTitle": "Contacto",
     "contactBody": "Las preguntas sobre estas normas pueden enviarse a"
+  },
+  "consent": {
+    "termsPre": "Acepto los",
+    "termsLink": "términos y condiciones",
+    "termsPost": "incluida la política de privacidad.",
+    "privacyPre": "Consiento el almacenamiento y uso de mis datos de acuerdo con la",
+    "privacyLink": "Política de privacidad",
+    "privacyPost": "."
   }
 }

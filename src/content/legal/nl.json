@@ -130,5 +130,13 @@
     "respondBody": "Meldingen over kinderveiligheid worden met voorrang beoordeeld. Wanneer we een schending bevestigen, verwijderen we de content, ondernemen we actie tegen het account (waaronder een permanente verbanning), stellen we relevant bewijs veilig en melden we dit aan de bevoegde autoriteiten. Afhankelijk van de jurisdictie omvat dit het National Center for Missing and Exploited Children (NCMEC) en de Noorse politie (Kripos). We werken mee aan verzoeken van rechtshandhavingsinstanties die geldig zijn onder het toepasselijke recht.",
     "contactTitle": "Contact",
     "contactBody": "Vragen over deze normen kunnen worden gestuurd naar"
+  },
+  "consent": {
+    "termsPre": "Ik accepteer de",
+    "termsLink": "algemene voorwaarden",
+    "termsPost": "inclusief het privacybeleid.",
+    "privacyPre": "Ik stem in met de opslag en het gebruik van mijn gegevens in overeenstemming met het",
+    "privacyLink": "privacybeleid",
+    "privacyPost": "."
   }
 }

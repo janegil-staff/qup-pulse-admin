@@ -130,5 +130,13 @@
     "respondBody": "Le segnalazioni relative alla sicurezza dei minori sono esaminate con priorità. Quando confermiamo una violazione, rimuoviamo il contenuto, adottiamo provvedimenti sull'account (inclusa la sospensione permanente), conserviamo le prove pertinenti e segnaliamo alle autorità competenti. A seconda della giurisdizione, ciò include il National Center for Missing and Exploited Children (NCMEC) e la polizia norvegese (Kripos). Collaboriamo con le richieste delle autorità di contrasto valide ai sensi della legge applicabile.",
     "contactTitle": "Contatti",
     "contactBody": "Le domande su questi standard possono essere inviate a"
+  },
+  "consent": {
+    "termsPre": "Accetto i",
+    "termsLink": "termini e le condizioni",
+    "termsPost": "inclusa l’informativa sulla privacy.",
+    "privacyPre": "Acconsento alla conservazione e all’uso dei miei dati in conformità con l’",
+    "privacyLink": "informativa sulla privacy",
+    "privacyPost": "."
   }
 }
