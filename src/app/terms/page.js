@@ -1,116 +1,78 @@
-// quppulse/app/terms/page.js
-//
-// Terms of Service / EULA for Qup Pulse.
-// Review-ready English draft — NOT legal advice. Have a lawyer review before
-// launch. The "Objectionable content" section is required for Apple App Store
-// approval of user-generated-content apps (Guideline 1.2) — keep it.
-//
-// Colors tuned for a DARK site background.
-// Fill the [PLACEHOLDER] values before publishing:
-//   [CONTACT_EMAIL]   — support contact address
-//   [LAST_UPDATED]    — date these terms last changed
+// qup-pulse-admin/src/app/terms/page.js
+'use client';
 
-export const metadata = {
-  title: 'Terms of Service — Qup Pulse',
-  description: 'The terms that govern your use of Qup Pulse.',
-};
+// Terms of Service — reads translated strings via useLang() + getLegal(lang).
+// English governs legally. Theme-aware (dark/emerald with light/dark toggle).
+// Keeps the Apple-required "Objectionable content" section.
 
-const styles = {
-  main: {
-    maxWidth: 680,
-    margin: '0 auto',
-    padding: '64px 24px 96px',
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    color: '#e8ecf2',
-    lineHeight: 1.7,
-  },
-  h1: { fontSize: 34, fontWeight: 700, marginBottom: 8, letterSpacing: '-0.02em', color: '#ffffff' },
-  updated: { color: '#8792a4', fontSize: 14, marginBottom: 40 },
-  h2: { fontSize: 20, fontWeight: 700, marginTop: 44, marginBottom: 14, color: '#ffffff' },
-  p: { marginBottom: 18, color: '#c7cfdb', fontSize: 17 },
-  a: { color: '#6ea8e8', textDecoration: 'none', fontWeight: 600 },
-  footer: {
-    marginTop: 56,
-    paddingTop: 24,
-    borderTop: '1px solid rgba(255,255,255,0.12)',
-    color: '#8792a4',
-    fontSize: 14,
-  },
-};
+import { useLang } from '../../context/LandingLang';
+import { getLegal } from '../../content/legalContent';
+import LegalHeader from '../../components/LegalHeader';
+
+const EMAIL = 'jan.egil.staff@qupda.com';
 
 export default function TermsPage() {
+  const { lang } = useLang();
+  const L = getLegal(lang);
+  const t = L.terms;
+
   return (
-    <main style={styles.main}>
-      <h1 style={styles.h1}>Terms of Service</h1>
-      <p style={styles.updated}>Last updated: 13/07/2026</p>
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-200">
+      <LegalHeader />
+      <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 text-[17px] leading-[1.7]">
+        <h1 className="mb-2 text-[34px] font-bold tracking-tight text-slate-900 dark:text-white">{t.title}</h1>
+        <p className="mb-8 text-sm text-slate-500 dark:text-slate-400">{L.updated}</p>
 
-      <p style={styles.p}>
-        These Terms govern your use of the Qup Pulse app, provided by Qup DA (&quot;we&quot;,
-        &quot;us&quot;), registered in Oslo, Norway (org. nr. 998185599). By creating an account or
-        using the app, you agree to these Terms.
-      </p>
+        <P>{t.intro}</P>
 
-      <h2 style={styles.h2}>Eligibility</h2>
-      <p style={styles.p}>
-        You must be at least 18 years old to use Qup Pulse. By using the app you confirm
-        that you meet this requirement.
-      </p>
+        <H2>{t.eligibilityTitle}</H2>
+        <P>{t.eligibilityBody}</P>
 
-      <h2 style={styles.h2}>Your account</h2>
-      <p style={styles.p}>
-        You are responsible for keeping your login details secure and for the activity that
-        happens under your account. Let us know right away if you believe your account has
-        been compromised.
-      </p>
+        <H2>{t.accountTitle}</H2>
+        <P>{t.accountBody}</P>
 
-      <h2 style={styles.h2}>Content you share</h2>
-      <p style={styles.p}>
-        You own the content you post, but you grant us the license needed to host and show
-        it within the app. You are responsible for the content you share, and you agree not
-        to post anything unlawful or that infringes others&apos; rights.
-      </p>
+        <H2>{t.contentTitle}</H2>
+        <P>{t.contentBody}</P>
 
-      <h2 style={styles.h2}>Objectionable content and conduct</h2>
-      <p style={styles.p}>
-        There is no tolerance for objectionable content or abusive behavior on Qup Pulse.
-        You agree not to post content that is harassing, threatening, hateful, sexually
-        explicit, or otherwise objectionable, and not to harass or abuse other users.
-      </p>
-      <p style={styles.p}>
-        You can report content or users directly in the app, and you can block users so you
-        no longer see their content or receive messages from them. We review reports and may
-        remove content or remove users who violate these Terms. We aim to act on reports of
-        objectionable content promptly.
-      </p>
+        <H2>{t.objectionableTitle}</H2>
+        <P>{t.objectionableBody1}</P>
+        <P>{t.objectionableBody2}</P>
 
-      <h2 style={styles.h2}>Deleting your account</h2>
-      <p style={styles.p}>
-        You can delete your account at any time from within the app. See our{' '}
-        <a style={styles.a} href="/delete">account deletion page</a> for steps.
-      </p>
+        <H2>{t.deleteTitle}</H2>
+        <P>{t.deleteBody}</P>
 
-      <h2 style={styles.h2}>Disclaimers and liability</h2>
-      <p style={styles.p}>
-        The app is provided &quot;as is&quot; without warranties of any kind. To the extent
-        permitted by law, we are not liable for indirect or consequential damages arising
-        from your use of the app.
-      </p>
+        <H2>{t.disclaimerTitle}</H2>
+        <P>{t.disclaimerBody}</P>
 
-      <h2 style={styles.h2}>Changes to these Terms</h2>
-      <p style={styles.p}>
-        We may update these Terms from time to time. If we make significant changes, we will
-        take reasonable steps to let you know. Continued use of the app means you accept the
-        updated Terms.
-      </p>
+        <H2>{t.changesTitle}</H2>
+        <P>{t.changesBody}</P>
 
-      <h2 style={styles.h2}>Contact</h2>
-      <p style={styles.p}>
-        Questions about these Terms? Contact us at{' '}
-        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a>.
-      </p>
+        <H2>{t.contactTitle}</H2>
+        <p className="mb-[18px] text-slate-700 dark:text-slate-300">
+          {t.contactBody}{' '}
+          <A href={`mailto:${EMAIL}`}>{EMAIL}</A>.
+        </p>
 
-      <div style={styles.footer}>Qup DA · Oslo, Norway · org. nr. 998185599</div>
+        <Governing text={L.governing} org={L.org} />
+      </div>
     </main>
+  );
+}
+
+function H2({ children }) {
+  return <h2 className="mb-3.5 mt-11 text-xl font-bold text-slate-900 dark:text-white">{children}</h2>;
+}
+function P({ children }) {
+  return <p className="mb-[18px] text-slate-700 dark:text-slate-300">{children}</p>;
+}
+function A({ href, children }) {
+  return <a href={href} className="font-semibold text-emerald-600 no-underline dark:text-emerald-400">{children}</a>;
+}
+function Governing({ text, org }) {
+  return (
+    <>
+      <p className="mt-10 text-[15px] text-slate-500 dark:text-slate-400">{text}</p>
+      <div className="mt-6 border-t border-slate-200 pt-6 text-sm text-slate-500 dark:border-white/12 dark:text-slate-400">{org}</div>
+    </>
   );
 }

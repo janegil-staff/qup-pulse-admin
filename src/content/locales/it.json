@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — cosa succede proprio intorno a te",
+    "description": "Qup Pulse è il battito locale del tuo quartiere. Pubblica per le persone vicine, guarda cosa succede ora. Presto su iOS e Android."
+  },
+  "nav": {
+    "toggleTheme": "Alterna chiaro e scuro",
+    "login": "Accedi"
+  },
+  "hero": {
+    "badge": "Presto su iOS e Android",
+    "titleLead": "Cosa succede",
+    "titleHighlight": "proprio intorno a te",
+    "subhead": "Qup Pulse è il battito locale del tuo quartiere. Pubblica per le persone davvero vicine, guarda cosa succede in questo momento e lascia perdere il flusso infinito di sconosciuti dall’altra parte del mondo."
+  },
+  "features": {
+    "local": {
+      "title": "Locale per impostazione predefinita",
+      "body": "Il tuo feed è la zona intorno a te, non una timeline globale. Quello che vedi è davvero vicino."
+    },
+    "now": {
+      "title": "Proprio ora",
+      "body": "I post parlano del momento presente. Guarda cosa accade mentre accade, da chi condivide il tuo spazio."
+    },
+    "safety": {
+      "title": "Costruito per la sicurezza",
+      "body": "Segnala e blocca con un tocco, con una vera moderazione dietro, e la tua posizione esatta non viene mai mostrata agli altri."
+    }
+  },
+  "download": {
+    "title": "In arrivo su entrambi gli store",
+    "body": "Qup Pulse è in fase di revisione. Iscriviti alla lista d’attesa e ti invieremo il link il giorno del lancio.",
+    "soon": "Presto",
+    "appStoreSmall": "In arrivo su",
+    "appStoreBig": "App Store",
+    "playSmall": "In arrivo su",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Termini",
+    "childSafety": "Sicurezza dei minori",
+    "delete": "Elimina account"
+  },
+  "login": {
+    "email": "Email",
+    "emailPlaceholder": "tu@esempio.it",
+    "pin": "PIN",
+    "signIn": "Accedi",
+    "signingIn": "Accesso in corso…",
+    "invalid": "Inserisci email e PIN a 4 cifre.",
+    "notAdmin": "Questo account non è amministratore.",
+    "failed": "Impossibile accedere."
+  }
+}

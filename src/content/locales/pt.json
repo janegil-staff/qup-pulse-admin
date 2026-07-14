@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — o que está a acontecer mesmo à tua volta",
+    "description": "Qup Pulse é o pulso local do teu bairro. Publica para as pessoas por perto, vê o que está a acontecer agora. Em breve para iOS e Android."
+  },
+  "nav": {
+    "toggleTheme": "Alternar claro e escuro",
+    "login": "Entrar"
+  },
+  "hero": {
+    "badge": "Em breve para iOS e Android",
+    "titleLead": "O que está a acontecer",
+    "titleHighlight": "mesmo à tua volta",
+    "subhead": "Qup Pulse é o pulso local do teu bairro. Publica para as pessoas que estão mesmo por perto, vê o que se passa neste momento e esquece o feed interminável de estranhos do outro lado do mundo."
+  },
+  "features": {
+    "local": {
+      "title": "Local por predefinição",
+      "body": "O teu feed é a área à tua volta, não uma linha do tempo global. O que vês está mesmo por perto."
+    },
+    "now": {
+      "title": "Agora mesmo",
+      "body": "As publicações são sobre o momento presente. Vê o que acontece enquanto acontece, de quem partilha o teu espaço."
+    },
+    "safety": {
+      "title": "Feito para a segurança",
+      "body": "Denuncia e bloqueia com um toque, com moderação real por trás, e a tua localização exata nunca é mostrada a outros."
+    }
+  },
+  "download": {
+    "title": "Em breve nas duas lojas",
+    "body": "O Qup Pulse está em análise. Entra na lista de espera e enviamos-te o link no dia do lançamento.",
+    "soon": "Em breve",
+    "appStoreSmall": "Em breve na",
+    "appStoreBig": "App Store",
+    "playSmall": "Em breve no",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "childSafety": "Segurança infantil",
+    "delete": "Eliminar conta"
+  },
+  "login": {
+    "email": "E-mail",
+    "emailPlaceholder": "tu@exemplo.pt",
+    "pin": "PIN",
+    "signIn": "Entrar",
+    "signingIn": "A entrar…",
+    "invalid": "Introduz o teu e-mail e PIN de 4 dígitos.",
+    "notAdmin": "Esta conta não é administradora.",
+    "failed": "Não foi possível entrar."
+  }
+}

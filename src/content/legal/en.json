@@ -1,0 +1,134 @@
+{
+  "org": "Qup DA · Oslo, Norway · org. nr. 998185599",
+  "governing": "This English version is the authoritative version. In case of any discrepancy between translations, the English version prevails. It is provided for general information and is not legal advice.",
+  "updated": "Last updated: 13/07/2026",
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "This Privacy Policy explains how Qup DA (\"we\", \"us\") collects, uses, and protects your personal data when you use the Qup Pulse app. Qup DA is the data controller. We are registered in Oslo, Norway (org. nr. 998185599).",
+    "ageNote": "Qup Pulse is intended only for users aged 18 and over.",
+    "collectTitle": "Information we collect",
+    "collect": [
+      "Account information: your email address and PIN.",
+      "Profile information: your username, display name, and profile photo.",
+      "Content you create: posts, comments, messages, and images you share.",
+      "Approximate location, used to show you nearby posts. You can control this through your device settings."
+    ],
+    "useTitle": "How we use your information",
+    "use": [
+      "To provide and operate the app, including your feed, messages, and profile.",
+      "To show you relevant nearby content.",
+      "To keep the service safe, including handling reports and moderation.",
+      "To send you service-related emails, such as verification and password reset."
+    ],
+    "providersTitle": "Service providers",
+    "providersIntro": "We share limited data with trusted providers who process it on our behalf:",
+    "providers": [
+      "Cloudinary — image storage and delivery.",
+      "Resend — sending service emails.",
+      "Expo — app infrastructure and delivery."
+    ],
+    "providersNote": "These providers only process data as needed to provide their services and are bound by their own data-protection obligations.",
+    "rightsTitle": "Your rights",
+    "rightsBody": "Under the GDPR you have the right to access, correct, or delete your personal data, and to object to or restrict its processing. You can delete your account and associated data at any time from within the app — see our account deletion page for steps.",
+    "retentionTitle": "Data retention",
+    "retentionBody": "We keep your personal data for as long as your account is active. When you delete your account, we delete your personal data, except where we are required to retain certain information to comply with legal obligations.",
+    "contactTitle": "Contact",
+    "contactBody": "For any privacy questions or to exercise your rights, contact us at"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "intro": "These Terms govern your use of the Qup Pulse app, provided by Qup DA (\"we\", \"us\"), registered in Oslo, Norway (org. nr. 998185599). By creating an account or using the app, you agree to these Terms.",
+    "eligibilityTitle": "Eligibility",
+    "eligibilityBody": "You must be at least 18 years old to use Qup Pulse. By using the app you confirm that you meet this requirement.",
+    "accountTitle": "Your account",
+    "accountBody": "You are responsible for keeping your login details secure and for the activity that happens under your account. Let us know right away if you believe your account has been compromised.",
+    "contentTitle": "Content you share",
+    "contentBody": "You own the content you post, but you grant us the license needed to host and show it within the app. You are responsible for the content you share, and you agree not to post anything unlawful or that infringes others' rights.",
+    "objectionableTitle": "Objectionable content and conduct",
+    "objectionableBody1": "There is no tolerance for objectionable content or abusive behavior on Qup Pulse. You agree not to post content that is harassing, threatening, hateful, sexually explicit, or otherwise objectionable, and not to harass or abuse other users.",
+    "objectionableBody2": "You can report content or users directly in the app, and you can block users so you no longer see their content or receive messages from them. We review reports and may remove content or remove users who violate these Terms. We aim to act on reports of objectionable content promptly.",
+    "deleteTitle": "Deleting your account",
+    "deleteBody": "You can delete your account at any time from within the app. See our account deletion page for steps.",
+    "disclaimerTitle": "Disclaimers and liability",
+    "disclaimerBody": "The app is provided \"as is\" without warranties of any kind. To the extent permitted by law, we are not liable for indirect or consequential damages arising from your use of the app.",
+    "changesTitle": "Changes to these Terms",
+    "changesBody": "We may update these Terms from time to time. If we make significant changes, we will take reasonable steps to let you know. Continued use of the app means you accept the updated Terms.",
+    "contactTitle": "Contact",
+    "contactBody": "Questions about these Terms? Contact us at"
+  },
+  "del": {
+    "title": "Delete your account",
+    "intro": "You can delete your Qup Pulse account at any time, directly in the app. Deleting your account is permanent and cannot be undone.",
+    "stepsTitle": "Steps",
+    "steps": [
+      "Open Qup Pulse and go to {b}Settings{/b}.",
+      "Tap {b}Personal Settings{/b}.",
+      "Tap {b}Delete Account{/b}.",
+      "Confirm when prompted. Your account and data will be deleted."
+    ],
+    "deletedTitle": "What gets deleted",
+    "deleted": [
+      "Your account and profile (username, display name, photo).",
+      "Your posts, comments, messages, and images.",
+      "Your email address and login details."
+    ],
+    "retentionNote": "We may retain limited information where required to comply with legal obligations. For more detail, see our Privacy Policy.",
+    "helpTitle": "Need help?",
+    "helpBody": "If you can't access the app to delete your account, contact us at",
+    "helpBodyEnd": "and we'll help you."
+  },
+  "support": {
+    "title": "Support",
+    "intro": "Need help with Qup Pulse? We're here for you. Email us and we'll get back to you as soon as we can.",
+    "faqTitle": "Common questions",
+    "q1": "How do I report a post or user?",
+    "a1": "Open the post or profile, tap the menu, and choose Report. You can also block users so you no longer see their content or receive messages from them.",
+    "q2": "How do I delete my account?",
+    "a2pre": "See our",
+    "a2link": "account deletion page",
+    "a2post": "for steps.",
+    "q3": "How is my data handled?",
+    "a3pre": "Read our",
+    "a3link": "Privacy Policy",
+    "a3post": ".",
+    "q4": "What are the rules?",
+    "a4pre": "See our",
+    "a4link": "Terms of Service",
+    "a4post": ".",
+    "contactTitle": "Contact",
+    "contactPre": "For anything not covered above, email",
+    "contactPost": "and we'll help."
+  },
+  "child": {
+    "title": "Child Safety Standards",
+    "banner": "Qup Pulse has zero tolerance for child sexual abuse and exploitation (CSAE). Content that sexualises, endangers, or exploits minors is strictly prohibited, is removed, and is reported to the relevant authorities.",
+    "intro": "Qup Pulse is operated by Qup DA (org. nr. 998185599), Trondheimsveien 102 C, 0565 Oslo, Norway. This page describes the standards and measures we apply to keep children safe on our service, in line with Google Play's CSAE policy and Apple's App Store safety requirements.",
+    "ageTitle": "Minimum age",
+    "ageBody": "Qup Pulse is intended for adults. Users must be at least 18 years old to create an account. Accounts we identify as belonging to anyone under 18 are removed.",
+    "prohibitedTitle": "Prohibited content and conduct",
+    "prohibitedIntro": "The following are never permitted on Qup Pulse:",
+    "prohibited": [
+      "Child sexual abuse material (CSAM) in any form, including images, video, drawings, and text.",
+      "Sexualisation of minors, including sexualised commentary or requests.",
+      "Grooming, solicitation, or any attempt to establish sexual contact with a minor.",
+      "Trafficking, endangerment, or the promotion or facilitation of harm to children.",
+      "Sharing, requesting, or directing others to CSAE material on or off the platform."
+    ],
+    "preventTitle": "How we prevent and detect abuse",
+    "prevent": [
+      "An 18+ age requirement enforced at account creation.",
+      "In-app reporting on user profiles and on individual posts, so any user can flag content or accounts for review.",
+      "A moderation process that reviews reports, with child-safety reports prioritised above all other categories.",
+      "Enforcement tools that let us remove content and suspend or ban accounts that violate this standard."
+    ],
+    "reportTitle": "How to report",
+    "reportBody1": "In the app, use the report control on any post or profile (open the item's menu and choose Report). Select the child-safety reason so the report is prioritised for review.",
+    "reportBody2pre": "You can also contact our child-safety team directly at",
+    "reportBody2post": "Reports are treated confidentially.",
+    "reportBody3": "If a child is in immediate danger, contact your local emergency services first. In Norway, call the police on 112.",
+    "respondTitle": "How we respond",
+    "respondBody": "Reports involving child safety are reviewed with priority. When we confirm a violation, we remove the content, take action on the account (including permanent ban), preserve relevant evidence, and report to the appropriate authorities. Depending on jurisdiction, this includes the National Center for Missing and Exploited Children (NCMEC) and the Norwegian police (Kripos). We cooperate with law enforcement requests that are valid under applicable law.",
+    "contactTitle": "Contact",
+    "contactBody": "Questions about these standards can be sent to"
+  }
+}

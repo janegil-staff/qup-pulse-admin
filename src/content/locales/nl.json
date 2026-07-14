@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — wat er vlak bij je gebeurt",
+    "description": "Qup Pulse is de lokale pols van je buurt. Deel met mensen in de buurt, zie wat er nu gebeurt. Binnenkort voor iOS en Android."
+  },
+  "nav": {
+    "toggleTheme": "Wissel tussen licht en donker",
+    "login": "Inloggen"
+  },
+  "hero": {
+    "badge": "Binnenkort voor iOS & Android",
+    "titleLead": "Wat er gebeurt",
+    "titleHighlight": "vlak bij je",
+    "subhead": "Qup Pulse is de lokale pols van je buurt. Plaats berichten voor mensen die echt in de buurt zijn, zie wat er nu gebeurt en sla de eindeloze stroom van vreemden aan de andere kant van de wereld over."
+  },
+  "features": {
+    "local": {
+      "title": "Lokaal als standaard",
+      "body": "Je feed is het gebied om je heen, geen wereldwijde tijdlijn. Wat je ziet, is echt dichtbij."
+    },
+    "now": {
+      "title": "Nu meteen",
+      "body": "Berichten gaan over het huidige moment. Zie wat er gebeurt terwijl het gebeurt, van mensen die jouw plek delen."
+    },
+    "safety": {
+      "title": "Gebouwd op veiligheid",
+      "body": "Rapporteer en blokkeer met één tik, met echte moderatie erachter, en je exacte locatie wordt nooit aan anderen getoond."
+    }
+  },
+  "download": {
+    "title": "Binnenkort in beide stores",
+    "body": "Qup Pulse wordt nu beoordeeld. Meld je aan voor de wachtlijst en we sturen je de link zodra hij live is.",
+    "soon": "Binnenkort",
+    "appStoreSmall": "Binnenkort in de",
+    "appStoreBig": "App Store",
+    "playSmall": "Binnenkort op",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Voorwaarden",
+    "childSafety": "Kinderveiligheid",
+    "delete": "Account verwijderen"
+  },
+  "login": {
+    "email": "E-mail",
+    "emailPlaceholder": "jij@voorbeeld.nl",
+    "pin": "PIN",
+    "signIn": "Inloggen",
+    "signingIn": "Bezig met inloggen…",
+    "invalid": "Voer je e-mail en 4-cijferige PIN in.",
+    "notAdmin": "Dit account is geen beheerder.",
+    "failed": "Inloggen mislukt."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — ce qui se passe juste autour de vous",
+    "description": "Qup Pulse est le pouls local de votre quartier. Publiez pour les gens à proximité, voyez ce qui se passe maintenant. Bientôt sur iOS et Android."
+  },
+  "nav": {
+    "toggleTheme": "Basculer clair et sombre",
+    "login": "Connexion"
+  },
+  "hero": {
+    "badge": "Bientôt sur iOS et Android",
+    "titleLead": "Ce qui se passe",
+    "titleHighlight": "juste autour de vous",
+    "subhead": "Qup Pulse est le pouls local de votre quartier. Publiez pour les gens réellement à proximité, voyez ce qui se passe en ce moment et oubliez le flux sans fin d’inconnus à l’autre bout du monde."
+  },
+  "features": {
+    "local": {
+      "title": "Local par défaut",
+      "body": "Votre fil, c’est la zone autour de vous, pas une chronologie mondiale. Ce que vous voyez est vraiment à proximité."
+    },
+    "now": {
+      "title": "En ce moment",
+      "body": "Les publications parlent de l’instant présent. Voyez ce qui se passe en direct, par les gens qui partagent votre espace."
+    },
+    "safety": {
+      "title": "Conçu pour la sécurité",
+      "body": "Signalez et bloquez d’un geste, avec une vraie modération derrière, et votre position exacte n’est jamais montrée aux autres."
+    }
+  },
+  "download": {
+    "title": "Bientôt sur les deux stores",
+    "body": "Qup Pulse est en cours d’examen. Rejoignez la liste d’attente et nous vous enverrons le lien dès sa mise en ligne.",
+    "soon": "Bientôt",
+    "appStoreSmall": "Bientôt sur l’",
+    "appStoreBig": "App Store",
+    "playSmall": "Bientôt sur",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "childSafety": "Sécurité des enfants",
+    "delete": "Supprimer le compte"
+  },
+  "login": {
+    "email": "E-mail",
+    "emailPlaceholder": "vous@exemple.fr",
+    "pin": "PIN",
+    "signIn": "Se connecter",
+    "signingIn": "Connexion…",
+    "invalid": "Saisissez votre e-mail et votre PIN à 4 chiffres.",
+    "notAdmin": "Ce compte n’est pas administrateur.",
+    "failed": "Connexion impossible."
+  }
+}

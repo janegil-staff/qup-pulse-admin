@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — what's happening right around you",
+    "description": "Qup Pulse is the local pulse of your neighbourhood. Post to the people near you, see what's happening right now. Coming soon to iOS and Android."
+  },
+  "nav": {
+    "toggleTheme": "Toggle dark and light mode",
+    "login": "Log in"
+  },
+  "hero": {
+    "badge": "Coming soon to iOS & Android",
+    "titleLead": "What's happening",
+    "titleHighlight": "right around you",
+    "subhead": "Qup Pulse is the local pulse of your neighbourhood. Post to the people actually near you, see what's going on right now, and skip the endless feed of strangers on the other side of the world."
+  },
+  "features": {
+    "local": {
+      "title": "Local by default",
+      "body": "Your feed is the area around you, not a global timeline. What you see is what's actually nearby."
+    },
+    "now": {
+      "title": "Right now",
+      "body": "Posts are about the present moment. See what happens as it happens, from the people sharing your space."
+    },
+    "safety": {
+      "title": "Built for safety",
+      "body": "Report and block in a tap, real moderation behind it, and your exact location is never shown to others."
+    }
+  },
+  "download": {
+    "title": "Launching soon on both stores",
+    "body": "Qup Pulse is in review now. Join the waitlist and we'll send you the link the day it's live.",
+    "soon": "Soon",
+    "appStoreSmall": "Coming to the",
+    "appStoreBig": "App Store",
+    "playSmall": "Coming to",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "childSafety": "Child safety",
+    "delete": "Delete account"
+  },
+  "login": {
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "pin": "PIN",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "invalid": "Enter your email and 4-digit PIN.",
+    "notAdmin": "That account is not an administrator.",
+    "failed": "Could not log in."
+  }
+}

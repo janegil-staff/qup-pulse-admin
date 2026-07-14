@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — lo que pasa justo a tu alrededor",
+    "description": "Qup Pulse es el pulso local de tu barrio. Publica para las personas cercanas, mira qué pasa ahora mismo. Pronto en iOS y Android."
+  },
+  "nav": {
+    "toggleTheme": "Cambiar entre claro y oscuro",
+    "login": "Iniciar sesión"
+  },
+  "hero": {
+    "badge": "Pronto en iOS y Android",
+    "titleLead": "Lo que pasa",
+    "titleHighlight": "justo a tu alrededor",
+    "subhead": "Qup Pulse es el pulso local de tu barrio. Publica para las personas que están realmente cerca, mira qué pasa en este momento y olvídate del flujo interminable de desconocidos al otro lado del mundo."
+  },
+  "features": {
+    "local": {
+      "title": "Local por defecto",
+      "body": "Tu feed es la zona a tu alrededor, no una línea de tiempo global. Lo que ves está de verdad cerca."
+    },
+    "now": {
+      "title": "Ahora mismo",
+      "body": "Las publicaciones tratan del momento presente. Mira lo que ocurre mientras ocurre, de la gente que comparte tu espacio."
+    },
+    "safety": {
+      "title": "Creado para la seguridad",
+      "body": "Reporta y bloquea con un toque, con moderación real detrás, y tu ubicación exacta nunca se muestra a los demás."
+    }
+  },
+  "download": {
+    "title": "Muy pronto en ambas tiendas",
+    "body": "Qup Pulse está en revisión ahora. Únete a la lista de espera y te enviaremos el enlace el día del lanzamiento.",
+    "soon": "Pronto",
+    "appStoreSmall": "Pronto en la",
+    "appStoreBig": "App Store",
+    "playSmall": "Pronto en",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "childSafety": "Seguridad infantil",
+    "delete": "Eliminar cuenta"
+  },
+  "login": {
+    "email": "Correo",
+    "emailPlaceholder": "tu@ejemplo.es",
+    "pin": "PIN",
+    "signIn": "Iniciar sesión",
+    "signingIn": "Iniciando sesión…",
+    "invalid": "Introduce tu correo y PIN de 4 dígitos.",
+    "notAdmin": "Esta cuenta no es administradora.",
+    "failed": "No se pudo iniciar sesión."
+  }
+}

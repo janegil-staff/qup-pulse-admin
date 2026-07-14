@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — det som händer precis runt dig",
+    "description": "Qup Pulse är ditt grannskaps lokala puls. Dela med folk i närheten, se vad som händer just nu. Snart på iOS och Android."
+  },
+  "nav": {
+    "toggleTheme": "Växla ljust och mörkt",
+    "login": "Logga in"
+  },
+  "hero": {
+    "badge": "Snart på iOS och Android",
+    "titleLead": "Det som händer",
+    "titleHighlight": "precis runt dig",
+    "subhead": "Qup Pulse är ditt grannskaps lokala puls. Publicera till folk som faktiskt är i närheten, se vad som händer just nu och slipp det oändliga flödet av främlingar på andra sidan jorden."
+  },
+  "features": {
+    "local": {
+      "title": "Lokalt som standard",
+      "body": "Ditt flöde är området runt dig, inte en global tidslinje. Det du ser finns faktiskt i närheten."
+    },
+    "now": {
+      "title": "Just nu",
+      "body": "Inläggen handlar om stunden. Se vad som händer medan det händer, från folk som delar din plats."
+    },
+    "safety": {
+      "title": "Byggt för trygghet",
+      "body": "Rapportera och blockera med ett tryck, med riktig moderering bakom, och din exakta position visas aldrig för andra."
+    }
+  },
+  "download": {
+    "title": "Lanseras snart i båda butikerna",
+    "body": "Qup Pulse granskas just nu. Gå med i väntelistan så skickar vi länken den dag den är live.",
+    "soon": "Snart",
+    "appStoreSmall": "Kommer till",
+    "appStoreBig": "App Store",
+    "playSmall": "Kommer till",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Integritet",
+    "terms": "Villkor",
+    "childSafety": "Barnsäkerhet",
+    "delete": "Radera konto"
+  },
+  "login": {
+    "email": "E-post",
+    "emailPlaceholder": "du@exempel.se",
+    "pin": "PIN",
+    "signIn": "Logga in",
+    "signingIn": "Loggar in…",
+    "invalid": "Ange din e-post och 4-siffriga PIN.",
+    "notAdmin": "Det här kontot är inte administratör.",
+    "failed": "Kunde inte logga in."
+  }
+}

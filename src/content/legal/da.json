@@ -1,0 +1,134 @@
+{
+  "org": "Qup DA · Oslo, Norge · CVR/org.nr. 998185599",
+  "governing": "Den engelske version er den autoritative version. I tilfælde af uoverensstemmelser mellem oversættelser er det den engelske version, der er gældende. Den leveres som generel information og udgør ikke juridisk rådgivning.",
+  "updated": "Senest opdateret: 13.07.2026",
+  "privacy": {
+    "title": "Privatlivspolitik",
+    "intro": "Denne privatlivspolitik forklarer, hvordan Qup DA (\"vi\", \"os\") indsamler, bruger og beskytter dine personoplysninger, når du bruger Qup Pulse-appen. Qup DA er dataansvarlig. Vi er registreret i Oslo, Norge (org.nr. 998185599).",
+    "ageNote": "Qup Pulse er kun beregnet til brugere på 18 år og derover.",
+    "collectTitle": "Oplysninger vi indsamler",
+    "collect": [
+      "Kontooplysninger: din e-mailadresse og PIN-kode.",
+      "Profiloplysninger: dit brugernavn, visningsnavn og profilbillede.",
+      "Indhold, du opretter: opslag, kommentarer, beskeder og billeder, du deler.",
+      "Omtrentlig placering, der bruges til at vise dig opslag i nærheden. Du kan styre dette via dine enhedsindstillinger."
+    ],
+    "useTitle": "Sådan bruger vi dine oplysninger",
+    "use": [
+      "Til at levere og drive appen, herunder dit feed, dine beskeder og din profil.",
+      "Til at vise dig relevant indhold i nærheden.",
+      "Til at holde tjenesten sikker, herunder håndtering af anmeldelser og moderering.",
+      "Til at sende dig tjenesterelaterede e-mails, såsom bekræftelse og nulstilling af adgangskode."
+    ],
+    "providersTitle": "Tjenesteudbydere",
+    "providersIntro": "Vi deler begrænsede data med betroede udbydere, der behandler dem på vores vegne:",
+    "providers": [
+      "Cloudinary — billedlagring og -levering.",
+      "Resend — afsendelse af tjeneste-e-mails.",
+      "Expo — appinfrastruktur og -levering."
+    ],
+    "providersNote": "Disse udbydere behandler kun data i det omfang, det er nødvendigt for at levere deres tjenester, og er bundet af deres egne databeskyttelsesforpligtelser.",
+    "rightsTitle": "Dine rettigheder",
+    "rightsBody": "I henhold til GDPR har du ret til at få indsigt i, rette eller slette dine personoplysninger og til at gøre indsigelse mod eller begrænse behandlingen af dem. Du kan slette din konto og tilknyttede data når som helst i appen — se vores side om kontosletning for fremgangsmåde.",
+    "retentionTitle": "Opbevaring af data",
+    "retentionBody": "Vi opbevarer dine personoplysninger, så længe din konto er aktiv. Når du sletter din konto, sletter vi dine personoplysninger, undtagen hvor vi er forpligtet til at opbevare visse oplysninger for at overholde retlige forpligtelser.",
+    "contactTitle": "Kontakt",
+    "contactBody": "For spørgsmål om privatliv eller for at udøve dine rettigheder, kontakt os på"
+  },
+  "terms": {
+    "title": "Vilkår for brug",
+    "intro": "Disse vilkår regulerer din brug af Qup Pulse-appen, leveret af Qup DA (\"vi\", \"os\"), registreret i Oslo, Norge (org.nr. 998185599). Ved at oprette en konto eller bruge appen accepterer du disse vilkår.",
+    "eligibilityTitle": "Berettigelse",
+    "eligibilityBody": "Du skal være mindst 18 år for at bruge Qup Pulse. Ved at bruge appen bekræfter du, at du opfylder dette krav.",
+    "accountTitle": "Din konto",
+    "accountBody": "Du er ansvarlig for at holde dine loginoplysninger sikre og for den aktivitet, der sker under din konto. Giv os besked med det samme, hvis du mener, at din konto er blevet kompromitteret.",
+    "contentTitle": "Indhold du deler",
+    "contentBody": "Du ejer det indhold, du poster, men du giver os den licens, der er nødvendig for at være vært for og vise det i appen. Du er ansvarlig for det indhold, du deler, og du accepterer ikke at poste noget ulovligt eller noget, der krænker andres rettigheder.",
+    "objectionableTitle": "Anstødeligt indhold og adfærd",
+    "objectionableBody1": "Der er nultolerance over for anstødeligt indhold eller krænkende adfærd på Qup Pulse. Du accepterer ikke at poste indhold, der er chikanerende, truende, hadefuldt, seksuelt eksplicit eller på anden måde anstødeligt, og ikke at chikanere eller misbruge andre brugere.",
+    "objectionableBody2": "Du kan anmelde indhold eller brugere direkte i appen, og du kan blokere brugere, så du ikke længere ser deres indhold eller modtager beskeder fra dem. Vi gennemgår anmeldelser og kan fjerne indhold eller fjerne brugere, der overtræder disse vilkår. Vi tilstræber at handle hurtigt på anmeldelser om anstødeligt indhold.",
+    "deleteTitle": "Sletning af din konto",
+    "deleteBody": "Du kan slette din konto når som helst i appen. Se vores side om kontosletning for fremgangsmåde.",
+    "disclaimerTitle": "Ansvarsfraskrivelser og ansvar",
+    "disclaimerBody": "Appen leveres \"som den er\" uden nogen form for garantier. I det omfang loven tillader det, er vi ikke ansvarlige for indirekte skader eller følgeskader, der opstår som følge af din brug af appen.",
+    "changesTitle": "Ændringer af disse vilkår",
+    "changesBody": "Vi kan opdatere disse vilkår fra tid til anden. Hvis vi foretager væsentlige ændringer, tager vi rimelige skridt til at give dig besked. Fortsat brug af appen betyder, at du accepterer de opdaterede vilkår.",
+    "contactTitle": "Kontakt",
+    "contactBody": "Spørgsmål om disse vilkår? Kontakt os på"
+  },
+  "del": {
+    "title": "Slet din konto",
+    "intro": "Du kan slette din Qup Pulse-konto når som helst, direkte i appen. Sletning af kontoen er permanent og kan ikke fortrydes.",
+    "stepsTitle": "Trin",
+    "steps": [
+      "Åbn Qup Pulse og gå til {b}Indstillinger{/b}.",
+      "Tryk på {b}Personlige indstillinger{/b}.",
+      "Tryk på {b}Slet konto{/b}.",
+      "Bekræft, når du bliver bedt om det. Din konto og dine data slettes."
+    ],
+    "deletedTitle": "Hvad der bliver slettet",
+    "deleted": [
+      "Din konto og profil (brugernavn, visningsnavn, billede).",
+      "Dine opslag, kommentarer, beskeder og billeder.",
+      "Din e-mailadresse og dine loginoplysninger."
+    ],
+    "retentionNote": "Vi kan opbevare begrænsede oplysninger, hvor det er nødvendigt for at overholde retlige forpligtelser. For flere detaljer, se vores privatlivspolitik.",
+    "helpTitle": "Brug for hjælp?",
+    "helpBody": "Hvis du ikke kan få adgang til appen for at slette din konto, kontakt os på",
+    "helpBodyEnd": "så hjælper vi dig."
+  },
+  "support": {
+    "title": "Support",
+    "intro": "Brug for hjælp med Qup Pulse? Vi er her for dig. Send os en e-mail, så vender vi tilbage, så hurtigt vi kan.",
+    "faqTitle": "Ofte stillede spørgsmål",
+    "q1": "Hvordan anmelder jeg et opslag eller en bruger?",
+    "a1": "Åbn opslaget eller profilen, tryk på menuen, og vælg Anmeld. Du kan også blokere brugere, så du ikke længere ser deres indhold eller modtager beskeder fra dem.",
+    "q2": "Hvordan sletter jeg min konto?",
+    "a2pre": "Se vores",
+    "a2link": "side om kontosletning",
+    "a2post": "for fremgangsmåde.",
+    "q3": "Hvordan håndteres mine data?",
+    "a3pre": "Læs vores",
+    "a3link": "privatlivspolitik",
+    "a3post": ".",
+    "q4": "Hvad er reglerne?",
+    "a4pre": "Se vores",
+    "a4link": "vilkår for brug",
+    "a4post": ".",
+    "contactTitle": "Kontakt",
+    "contactPre": "For alt, der ikke er dækket ovenfor, send en e-mail til",
+    "contactPost": "så hjælper vi."
+  },
+  "child": {
+    "title": "Standarder for børns sikkerhed",
+    "banner": "Qup Pulse har nultolerance over for seksuelt misbrug og udnyttelse af børn (CSAE). Indhold, der seksualiserer, bringer i fare eller udnytter mindreårige, er strengt forbudt, bliver fjernet og anmeldt til de relevante myndigheder.",
+    "intro": "Qup Pulse drives af Qup DA (org.nr. 998185599), Trondheimsveien 102 C, 0565 Oslo, Norge. Denne side beskriver de standarder og foranstaltninger, vi anvender for at holde børn sikre i vores tjeneste, i overensstemmelse med Google Plays CSAE-politik og Apples sikkerhedskrav til App Store.",
+    "ageTitle": "Aldersgrænse",
+    "ageBody": "Qup Pulse er beregnet til voksne. Brugere skal være mindst 18 år for at oprette en konto. Konti, vi identificerer som tilhørende nogen under 18 år, bliver fjernet.",
+    "prohibitedTitle": "Forbudt indhold og adfærd",
+    "prohibitedIntro": "Følgende er aldrig tilladt på Qup Pulse:",
+    "prohibited": [
+      "Materiale med seksuelt misbrug af børn (CSAM) i enhver form, herunder billeder, video, tegninger og tekst.",
+      "Seksualisering af mindreårige, herunder seksualiserede kommentarer eller anmodninger.",
+      "Grooming, tilnærmelser eller ethvert forsøg på at etablere seksuel kontakt med en mindreårig.",
+      "Menneskehandel, fareudsættelse eller fremme eller facilitering af skade på børn.",
+      "Deling, anmodning om eller henvisning af andre til CSAE-materiale på eller uden for platformen."
+    ],
+    "preventTitle": "Sådan forebygger og opdager vi misbrug",
+    "prevent": [
+      "Et 18-års-krav, der håndhæves ved oprettelse af konto.",
+      "Anmeldelse i appen på brugerprofiler og enkelte opslag, så enhver bruger kan markere indhold eller konti til gennemgang.",
+      "En modereringsproces, der gennemgår anmeldelser, hvor anmeldelser om børns sikkerhed prioriteres over alle andre kategorier.",
+      "Håndhævelsesværktøjer, der giver os mulighed for at fjerne indhold og suspendere eller udelukke konti, der overtræder denne standard."
+    ],
+    "reportTitle": "Sådan anmelder du",
+    "reportBody1": "I appen bruger du anmeldelsesfunktionen på ethvert opslag eller enhver profil (åbn elementets menu, og vælg Anmeld). Vælg årsagen vedrørende børns sikkerhed, så anmeldelsen prioriteres til gennemgang.",
+    "reportBody2pre": "Du kan også kontakte vores team for børns sikkerhed direkte på",
+    "reportBody2post": "Anmeldelser behandles fortroligt.",
+    "reportBody3": "Hvis et barn er i umiddelbar fare, kontakt først de lokale nødtjenester. I Norge ringer du til politiet på 112.",
+    "respondTitle": "Sådan reagerer vi",
+    "respondBody": "Anmeldelser vedrørende børns sikkerhed gennemgås med prioritet. Når vi bekræfter en overtrædelse, fjerner vi indholdet, træffer foranstaltninger mod kontoen (herunder permanent udelukkelse), sikrer relevant bevismateriale og anmelder til de relevante myndigheder. Afhængigt af jurisdiktion omfatter dette National Center for Missing and Exploited Children (NCMEC) og norsk politi (Kripos). Vi samarbejder med retshåndhævende myndigheders anmodninger, der er gyldige i henhold til gældende lov.",
+    "contactTitle": "Kontakt",
+    "contactBody": "Spørgsmål om disse standarder kan sendes til"
+  }
+}

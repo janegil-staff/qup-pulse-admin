@@ -1,100 +1,79 @@
-// quppulse/app/support/page.js
-//
-// Support page for Qup Pulse — this is the URL you give Apple as your
-// "Support URL". It appears publicly on your App Store product page, so it must
-// resolve and offer a real way to get help.
-//
-// Colors are tuned for a DARK site background: light text, transparent page
-// background so it sits on your existing theme.
-//
-// Fill the [PLACEHOLDER] value before publishing:
-//   [CONTACT_EMAIL]   — the address users write to for help
-// Use the same address in privacy/page.js, terms/page.js, and delete/page.js.
+// qup-pulse-admin/src/app/support/page.js
+'use client';
 
-export const metadata = {
-  title: 'Support — Qup Pulse',
-  description: 'Get help with Qup Pulse.',
-};
+// Support — reads translated strings via useLang() + getLegal(lang).
+// English governs legally. Theme-aware. This is the Apple "Support URL" page.
 
-const styles = {
-  main: {
-    maxWidth: 680,
-    margin: '0 auto',
-    padding: '64px 24px 96px',
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    color: '#e8ecf2',
-    lineHeight: 1.7,
-  },
-  h1: { fontSize: 34, fontWeight: 700, marginBottom: 24, letterSpacing: '-0.02em', color: '#ffffff' },
-  h2: { fontSize: 20, fontWeight: 700, marginTop: 44, marginBottom: 16, color: '#ffffff' },
-  p: { marginBottom: 18, color: '#c7cfdb', fontSize: 17 },
-  emailLine: { marginBottom: 18, fontSize: 18 },
-  qa: { marginBottom: 20 },
-  q: { color: '#ffffff', fontWeight: 600, display: 'block', marginBottom: 4 },
-  aText: { color: '#c7cfdb', fontSize: 16 },
-  a: { color: '#6ea8e8', textDecoration: 'none', fontWeight: 600 },
-  footer: {
-    marginTop: 56,
-    paddingTop: 24,
-    borderTop: '1px solid rgba(255,255,255,0.12)',
-    color: '#8792a4',
-    fontSize: 14,
-  },
-};
+import { useLang } from '../../context/LandingLang';
+import { getLegal } from '../../content/legalContent';
+import LegalHeader from '../../components/LegalHeader';
+
+const EMAIL = 'jan.egil.staff@qupda.com';
 
 export default function SupportPage() {
+  const { lang } = useLang();
+  const L = getLegal(lang);
+  const t = L.support;
+
   return (
-    <main style={styles.main}>
-      <h1 style={styles.h1}>Support</h1>
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-200">
+      <LegalHeader />
+      <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 text-[17px] leading-[1.7]">
+        <h1 className="mb-6 text-[34px] font-bold tracking-tight text-slate-900 dark:text-white">{t.title}</h1>
 
-      <p style={styles.p}>
-        Need help with Qup Pulse? We&apos;re here for you. Email us and we&apos;ll get back to
-        you as soon as we can.
-      </p>
-      <p style={styles.emailLine}>
-        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a>
-      </p>
+        <P>{t.intro}</P>
+        <p className="mb-[18px] text-lg">
+          <A href={`mailto:${EMAIL}`}>{EMAIL}</A>
+        </p>
 
-      <h2 style={styles.h2}>Common questions</h2>
+        <H2>{t.faqTitle}</H2>
 
-      <div style={styles.qa}>
-        <span style={styles.q}>How do I report a post or user?</span>
-        <span style={styles.aText}>
-          Open the post or profile, tap the menu, and choose Report. You can also block users
-          so you no longer see their content or receive messages from them.
-        </span>
+        <QA q={t.q1}>{t.a1}</QA>
+        <QA q={t.q2}>
+          {t.a2pre} <A href="/delete">{t.a2link}</A> {t.a2post}
+        </QA>
+        <QA q={t.q3}>
+          {t.a3pre} <A href="/privacy">{t.a3link}</A>{t.a3post}
+        </QA>
+        <QA q={t.q4}>
+          {t.a4pre} <A href="/terms">{t.a4link}</A>{t.a4post}
+        </QA>
+
+        <H2>{t.contactTitle}</H2>
+        <p className="mb-[18px] text-slate-700 dark:text-slate-300">
+          {t.contactPre}{' '}
+          <A href={`mailto:${EMAIL}`}>{EMAIL}</A>{' '}
+          {t.contactPost}
+        </p>
+
+        <Governing text={L.governing} org={L.org} />
       </div>
-
-      <div style={styles.qa}>
-        <span style={styles.q}>How do I delete my account?</span>
-        <span style={styles.aText}>
-          See our <a style={styles.a} href="/delete">account deletion page</a> for steps.
-        </span>
-      </div>
-
-      <div style={styles.qa}>
-        <span style={styles.q}>How is my data handled?</span>
-        <span style={styles.aText}>
-          Read our <a style={styles.a} href="/privacy">Privacy Policy</a>.
-        </span>
-      </div>
-
-      <div style={styles.qa}>
-        <span style={styles.q}>What are the rules?</span>
-        <span style={styles.aText}>
-          See our <a style={styles.a} href="/terms">Terms of Service</a>.
-        </span>
-      </div>
-
-      <h2 style={styles.h2}>Contact</h2>
-      <p style={styles.p}>
-        For anything not covered above, email{' '}
-        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a> and we&apos;ll
-        help.
-      </p>
-
-      <div style={styles.footer}>Qup DA · Oslo, Norway · org. nr. 998185599</div>
     </main>
+  );
+}
+
+function H2({ children }) {
+  return <h2 className="mb-3.5 mt-11 text-xl font-bold text-slate-900 dark:text-white">{children}</h2>;
+}
+function P({ children }) {
+  return <p className="mb-[18px] text-slate-700 dark:text-slate-300">{children}</p>;
+}
+function A({ href, children }) {
+  return <a href={href} className="font-semibold text-emerald-600 no-underline dark:text-emerald-400">{children}</a>;
+}
+function QA({ q, children }) {
+  return (
+    <div className="mb-5">
+      <span className="mb-1 block font-semibold text-slate-900 dark:text-white">{q}</span>
+      <span className="text-base text-slate-700 dark:text-slate-300">{children}</span>
+    </div>
+  );
+}
+function Governing({ text, org }) {
+  return (
+    <>
+      <p className="mt-10 text-[15px] text-slate-500 dark:text-slate-400">{text}</p>
+      <div className="mt-6 border-t border-slate-200 pt-6 text-sm text-slate-500 dark:border-white/12 dark:text-slate-400">{org}</div>
+    </>
   );
 }

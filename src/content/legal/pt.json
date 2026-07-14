@@ -1,0 +1,134 @@
+{
+  "org": "Qup DA · Oslo, Noruega · n.º de org. 998185599",
+  "governing": "A versão em inglês é a versão autoritativa. Em caso de divergência entre traduções, prevalece a versão em inglês. É fornecida a título de informação geral e não constitui aconselhamento jurídico.",
+  "updated": "Última atualização: 13/07/2026",
+  "privacy": {
+    "title": "Política de Privacidade",
+    "intro": "Esta Política de Privacidade explica como a Qup DA («nós») recolhe, utiliza e protege os teus dados pessoais quando utilizas a aplicação Qup Pulse. A Qup DA é a responsável pelo tratamento dos dados. Estamos registados em Oslo, na Noruega (n.º de org. 998185599).",
+    "ageNote": "A Qup Pulse destina-se apenas a utilizadores com 18 anos ou mais.",
+    "collectTitle": "Informações que recolhemos",
+    "collect": [
+      "Informações da conta: o teu endereço de e-mail e PIN.",
+      "Informações do perfil: o teu nome de utilizador, nome de apresentação e foto de perfil.",
+      "Conteúdo que crias: publicações, comentários, mensagens e imagens que partilhas.",
+      "Localização aproximada, usada para te mostrar publicações próximas. Podes controlá-la nas definições do teu dispositivo."
+    ],
+    "useTitle": "Como utilizamos as tuas informações",
+    "use": [
+      "Para fornecer e operar a aplicação, incluindo o teu feed, mensagens e perfil.",
+      "Para te mostrar conteúdo relevante nas proximidades.",
+      "Para manter o serviço seguro, incluindo o tratamento de denúncias e a moderação.",
+      "Para te enviar e-mails relacionados com o serviço, como verificação e reposição de palavra-passe."
+    ],
+    "providersTitle": "Prestadores de serviços",
+    "providersIntro": "Partilhamos dados limitados com fornecedores de confiança que os tratam em nosso nome:",
+    "providers": [
+      "Cloudinary — armazenamento e entrega de imagens.",
+      "Resend — envio de e-mails do serviço.",
+      "Expo — infraestrutura e distribuição da aplicação."
+    ],
+    "providersNote": "Estes fornecedores tratam os dados apenas na medida necessária para prestar os seus serviços e estão vinculados às suas próprias obrigações de proteção de dados.",
+    "rightsTitle": "Os teus direitos",
+    "rightsBody": "Ao abrigo do RGPD, tens o direito de aceder aos teus dados pessoais, retificá-los ou apagá-los, bem como de te opores ao seu tratamento ou de o limitares. Podes eliminar a tua conta e os dados associados a qualquer momento na aplicação — consulta a nossa página de eliminação de conta para ver os passos.",
+    "retentionTitle": "Conservação de dados",
+    "retentionBody": "Conservamos os teus dados pessoais enquanto a tua conta estiver ativa. Quando eliminas a tua conta, apagamos os teus dados pessoais, exceto quando somos obrigados a conservar determinada informação para cumprir obrigações legais.",
+    "contactTitle": "Contacto",
+    "contactBody": "Para questões de privacidade ou para exercer os teus direitos, contacta-nos em"
+  },
+  "terms": {
+    "title": "Termos de Serviço",
+    "intro": "Estes Termos regem a tua utilização da aplicação Qup Pulse, fornecida pela Qup DA («nós»), registada em Oslo, na Noruega (n.º de org. 998185599). Ao criares uma conta ou utilizares a aplicação, aceitas estes Termos.",
+    "eligibilityTitle": "Elegibilidade",
+    "eligibilityBody": "Tens de ter pelo menos 18 anos para utilizar a Qup Pulse. Ao utilizares a aplicação, confirmas que cumpres este requisito.",
+    "accountTitle": "A tua conta",
+    "accountBody": "És responsável por manter as tuas credenciais de acesso seguras e pela atividade que ocorre na tua conta. Avisa-nos imediatamente se achares que a tua conta foi comprometida.",
+    "contentTitle": "Conteúdo que partilhas",
+    "contentBody": "És o proprietário do conteúdo que publicas, mas concedes-nos a licença necessária para o alojar e mostrar dentro da aplicação. És responsável pelo conteúdo que partilhas e concordas em não publicar nada ilegal ou que viole os direitos de terceiros.",
+    "objectionableTitle": "Conteúdo e conduta questionáveis",
+    "objectionableBody1": "Não há tolerância para conteúdo questionável ou comportamento abusivo na Qup Pulse. Concordas em não publicar conteúdo que seja assediador, ameaçador, de ódio, sexualmente explícito ou de outra forma questionável, e em não assediar ou abusar de outros utilizadores.",
+    "objectionableBody2": "Podes denunciar conteúdo ou utilizadores diretamente na aplicação e podes bloquear utilizadores para deixares de ver o conteúdo deles ou receber mensagens deles. Analisamos as denúncias e podemos remover conteúdo ou remover utilizadores que violem estes Termos. Procuramos agir prontamente sobre denúncias de conteúdo questionável.",
+    "deleteTitle": "Eliminar a tua conta",
+    "deleteBody": "Podes eliminar a tua conta a qualquer momento na aplicação. Consulta a nossa página de eliminação de conta para ver os passos.",
+    "disclaimerTitle": "Isenções de responsabilidade",
+    "disclaimerBody": "A aplicação é fornecida «tal como está», sem garantias de qualquer tipo. Na medida do permitido por lei, não somos responsáveis por danos indiretos ou consequentes decorrentes da tua utilização da aplicação.",
+    "changesTitle": "Alterações a estes Termos",
+    "changesBody": "Podemos atualizar estes Termos de tempos a tempos. Se fizermos alterações significativas, tomaremos medidas razoáveis para te informar. A utilização continuada da aplicação significa que aceitas os Termos atualizados.",
+    "contactTitle": "Contacto",
+    "contactBody": "Questões sobre estes Termos? Contacta-nos em"
+  },
+  "del": {
+    "title": "Eliminar a tua conta",
+    "intro": "Podes eliminar a tua conta Qup Pulse a qualquer momento, diretamente na aplicação. A eliminação da tua conta é permanente e não pode ser anulada.",
+    "stepsTitle": "Passos",
+    "steps": [
+      "Abre a Qup Pulse e vai a {b}Definições{/b}.",
+      "Toca em {b}Definições pessoais{/b}.",
+      "Toca em {b}Eliminar conta{/b}.",
+      "Confirma quando for solicitado. A tua conta e os teus dados serão eliminados."
+    ],
+    "deletedTitle": "O que é eliminado",
+    "deleted": [
+      "A tua conta e perfil (nome de utilizador, nome de apresentação, foto).",
+      "As tuas publicações, comentários, mensagens e imagens.",
+      "O teu endereço de e-mail e credenciais de acesso."
+    ],
+    "retentionNote": "Podemos conservar informação limitada quando tal for exigido para cumprir obrigações legais. Para mais detalhes, consulta a nossa Política de Privacidade.",
+    "helpTitle": "Precisas de ajuda?",
+    "helpBody": "Se não conseguires aceder à aplicação para eliminar a tua conta, contacta-nos em",
+    "helpBodyEnd": "e ajudamos-te."
+  },
+  "support": {
+    "title": "Apoio",
+    "intro": "Precisas de ajuda com a Qup Pulse? Estamos aqui para ti. Envia-nos um e-mail e responderemos assim que possível.",
+    "faqTitle": "Perguntas frequentes",
+    "q1": "Como denuncio uma publicação ou um utilizador?",
+    "a1": "Abre a publicação ou o perfil, toca no menu e escolhe Denunciar. Também podes bloquear utilizadores para deixares de ver o conteúdo deles ou receber mensagens deles.",
+    "q2": "Como elimino a minha conta?",
+    "a2pre": "Consulta a nossa",
+    "a2link": "página de eliminação de conta",
+    "a2post": "para ver os passos.",
+    "q3": "Como são tratados os meus dados?",
+    "a3pre": "Lê a nossa",
+    "a3link": "Política de Privacidade",
+    "a3post": ".",
+    "q4": "Quais são as regras?",
+    "a4pre": "Consulta os nossos",
+    "a4link": "Termos de Serviço",
+    "a4post": ".",
+    "contactTitle": "Contacto",
+    "contactPre": "Para tudo o que não esteja abrangido acima, envia um e-mail para",
+    "contactPost": "e ajudamos-te."
+  },
+  "child": {
+    "title": "Normas de Segurança Infantil",
+    "banner": "A Qup Pulse tem tolerância zero para o abuso e a exploração sexual de crianças (CSAE). O conteúdo que sexualiza, coloca em perigo ou explora menores é estritamente proibido, é removido e é denunciado às autoridades competentes.",
+    "intro": "A Qup Pulse é operada pela Qup DA (n.º de org. 998185599), Trondheimsveien 102 C, 0565 Oslo, Noruega. Esta página descreve as normas e medidas que aplicamos para manter as crianças seguras no nosso serviço, em conformidade com a política CSAE da Google Play e os requisitos de segurança da App Store da Apple.",
+    "ageTitle": "Idade mínima",
+    "ageBody": "A Qup Pulse destina-se a adultos. Os utilizadores têm de ter pelo menos 18 anos para criar uma conta. As contas que identificamos como pertencentes a alguém com menos de 18 anos são removidas.",
+    "prohibitedTitle": "Conteúdo e conduta proibidos",
+    "prohibitedIntro": "O seguinte nunca é permitido na Qup Pulse:",
+    "prohibited": [
+      "Material de abuso sexual de crianças (CSAM) sob qualquer forma, incluindo imagens, vídeo, desenhos e texto.",
+      "Sexualização de menores, incluindo comentários ou pedidos de teor sexual.",
+      "Aliciamento (grooming), solicitação ou qualquer tentativa de estabelecer contacto sexual com um menor.",
+      "Tráfico, colocação em perigo, ou a promoção ou facilitação de danos a crianças.",
+      "Partilha, pedido ou encaminhamento de outros para material CSAE dentro ou fora da plataforma."
+    ],
+    "preventTitle": "Como prevenimos e detetamos abusos",
+    "prevent": [
+      "Um requisito de idade de 18+ aplicado na criação da conta.",
+      "Denúncia na aplicação em perfis de utilizadores e em publicações individuais, para que qualquer utilizador possa sinalizar conteúdo ou contas para análise.",
+      "Um processo de moderação que analisa as denúncias, no qual as denúncias de segurança infantil têm prioridade sobre todas as outras categorias.",
+      "Ferramentas de aplicação que nos permitem remover conteúdo e suspender ou banir contas que violem esta norma."
+    ],
+    "reportTitle": "Como denunciar",
+    "reportBody1": "Na aplicação, utiliza o controlo de denúncia em qualquer publicação ou perfil (abre o menu do item e escolhe Denunciar). Seleciona o motivo de segurança infantil para que a denúncia seja priorizada para análise.",
+    "reportBody2pre": "Também podes contactar diretamente a nossa equipa de segurança infantil em",
+    "reportBody2post": "As denúncias são tratadas de forma confidencial.",
+    "reportBody3": "Se uma criança estiver em perigo imediato, contacta primeiro os serviços de emergência locais. Na Noruega, liga para a polícia através do 112.",
+    "respondTitle": "Como respondemos",
+    "respondBody": "As denúncias relacionadas com a segurança infantil são analisadas com prioridade. Quando confirmamos uma violação, removemos o conteúdo, tomamos medidas sobre a conta (incluindo banimento permanente), preservamos as provas relevantes e denunciamos às autoridades competentes. Consoante a jurisdição, isto inclui o National Center for Missing and Exploited Children (NCMEC) e a polícia norueguesa (Kripos). Cooperamos com pedidos das autoridades policiais que sejam válidos ao abrigo da lei aplicável.",
+    "contactTitle": "Contacto",
+    "contactBody": "As questões sobre estas normas podem ser enviadas para"
+  }
+}

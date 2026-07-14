@@ -1,0 +1,134 @@
+{
+  "org": "Qup DA · Oslo, Noorwegen · org.nr. 998185599",
+  "governing": "De Engelse versie is de gezaghebbende versie. Bij eventuele verschillen tussen vertalingen prevaleert de Engelse versie. Deze wordt verstrekt ter algemene informatie en vormt geen juridisch advies.",
+  "updated": "Laatst bijgewerkt: 13-07-2026",
+  "privacy": {
+    "title": "Privacybeleid",
+    "intro": "Dit privacybeleid legt uit hoe Qup DA (\"wij\", \"ons\") uw persoonsgegevens verzamelt, gebruikt en beschermt wanneer u de Qup Pulse-app gebruikt. Qup DA is de verwerkingsverantwoordelijke. Wij zijn geregistreerd in Oslo, Noorwegen (org.nr. 998185599).",
+    "ageNote": "Qup Pulse is uitsluitend bedoeld voor gebruikers van 18 jaar en ouder.",
+    "collectTitle": "Informatie die we verzamelen",
+    "collect": [
+      "Accountgegevens: uw e-mailadres en pincode.",
+      "Profielgegevens: uw gebruikersnaam, weergavenaam en profielfoto.",
+      "Content die u maakt: berichten, reacties, chatberichten en afbeeldingen die u deelt.",
+      "Bij benadering locatie, gebruikt om u berichten in de buurt te tonen. U kunt dit beheren via uw apparaatinstellingen."
+    ],
+    "useTitle": "Hoe we uw informatie gebruiken",
+    "use": [
+      "Om de app te leveren en te laten werken, waaronder uw feed, berichten en profiel.",
+      "Om u relevante content in de buurt te tonen.",
+      "Om de dienst veilig te houden, waaronder het afhandelen van meldingen en moderatie.",
+      "Om u dienstgerelateerde e-mails te sturen, zoals verificatie en wachtwoordherstel."
+    ],
+    "providersTitle": "Dienstverleners",
+    "providersIntro": "We delen beperkte gegevens met vertrouwde aanbieders die deze namens ons verwerken:",
+    "providers": [
+      "Cloudinary — opslag en levering van afbeeldingen.",
+      "Resend — versturen van dienst-e-mails.",
+      "Expo — app-infrastructuur en -levering."
+    ],
+    "providersNote": "Deze aanbieders verwerken gegevens alleen voor zover nodig om hun diensten te leveren en zijn gebonden aan hun eigen verplichtingen inzake gegevensbescherming.",
+    "rightsTitle": "Uw rechten",
+    "rightsBody": "Onder de AVG heeft u het recht op inzage, correctie of verwijdering van uw persoonsgegevens, en om bezwaar te maken tegen of de verwerking ervan te beperken. U kunt uw account en bijbehorende gegevens op elk moment in de app verwijderen — zie onze pagina over accountverwijdering voor de stappen.",
+    "retentionTitle": "Bewaartermijn",
+    "retentionBody": "We bewaren uw persoonsgegevens zolang uw account actief is. Wanneer u uw account verwijdert, verwijderen we uw persoonsgegevens, behalve waar we bepaalde informatie moeten bewaren om aan wettelijke verplichtingen te voldoen.",
+    "contactTitle": "Contact",
+    "contactBody": "Voor vragen over privacy of om uw rechten uit te oefenen, neem contact met ons op via"
+  },
+  "terms": {
+    "title": "Gebruiksvoorwaarden",
+    "intro": "Deze voorwaarden zijn van toepassing op uw gebruik van de Qup Pulse-app, geleverd door Qup DA (\"wij\", \"ons\"), geregistreerd in Oslo, Noorwegen (org.nr. 998185599). Door een account aan te maken of de app te gebruiken, gaat u akkoord met deze voorwaarden.",
+    "eligibilityTitle": "Geschiktheid",
+    "eligibilityBody": "U moet minstens 18 jaar oud zijn om Qup Pulse te gebruiken. Door de app te gebruiken, bevestigt u dat u aan deze eis voldoet.",
+    "accountTitle": "Uw account",
+    "accountBody": "U bent verantwoordelijk voor het veilig houden van uw inloggegevens en voor de activiteit die onder uw account plaatsvindt. Laat het ons meteen weten als u denkt dat uw account is gecompromitteerd.",
+    "contentTitle": "Content die u deelt",
+    "contentBody": "U bent eigenaar van de content die u plaatst, maar u verleent ons de licentie die nodig is om deze binnen de app te hosten en te tonen. U bent verantwoordelijk voor de content die u deelt en gaat ermee akkoord niets te plaatsen dat onwettig is of de rechten van anderen schendt.",
+    "objectionableTitle": "Aanstootgevende content en gedrag",
+    "objectionableBody1": "Er is geen tolerantie voor aanstootgevende content of beledigend gedrag op Qup Pulse. U gaat ermee akkoord geen content te plaatsen die intimiderend, bedreigend, haatdragend, seksueel expliciet of anderszins aanstootgevend is, en andere gebruikers niet te intimideren of te misbruiken.",
+    "objectionableBody2": "U kunt content of gebruikers rechtstreeks in de app melden, en u kunt gebruikers blokkeren zodat u hun content niet meer ziet of berichten van hen ontvangt. We beoordelen meldingen en kunnen content verwijderen of gebruikers verwijderen die deze voorwaarden schenden. We streven ernaar snel te handelen bij meldingen van aanstootgevende content.",
+    "deleteTitle": "Uw account verwijderen",
+    "deleteBody": "U kunt uw account op elk moment in de app verwijderen. Zie onze pagina over accountverwijdering voor de stappen.",
+    "disclaimerTitle": "Disclaimers en aansprakelijkheid",
+    "disclaimerBody": "De app wordt geleverd \"zoals deze is\" zonder enige garantie. Voor zover wettelijk toegestaan, zijn wij niet aansprakelijk voor indirecte of gevolgschade die voortvloeit uit uw gebruik van de app.",
+    "changesTitle": "Wijzigingen in deze voorwaarden",
+    "changesBody": "We kunnen deze voorwaarden van tijd tot tijd bijwerken. Als we belangrijke wijzigingen aanbrengen, nemen we redelijke stappen om u te informeren. Voortgezet gebruik van de app betekent dat u de bijgewerkte voorwaarden accepteert.",
+    "contactTitle": "Contact",
+    "contactBody": "Vragen over deze voorwaarden? Neem contact met ons op via"
+  },
+  "del": {
+    "title": "Uw account verwijderen",
+    "intro": "U kunt uw Qup Pulse-account op elk moment verwijderen, rechtstreeks in de app. Het verwijderen van uw account is permanent en kan niet ongedaan worden gemaakt.",
+    "stepsTitle": "Stappen",
+    "steps": [
+      "Open Qup Pulse en ga naar {b}Instellingen{/b}.",
+      "Tik op {b}Persoonlijke instellingen{/b}.",
+      "Tik op {b}Account verwijderen{/b}.",
+      "Bevestig wanneer daarom wordt gevraagd. Uw account en gegevens worden verwijderd."
+    ],
+    "deletedTitle": "Wat er wordt verwijderd",
+    "deleted": [
+      "Uw account en profiel (gebruikersnaam, weergavenaam, foto).",
+      "Uw berichten, reacties, chatberichten en afbeeldingen.",
+      "Uw e-mailadres en inloggegevens."
+    ],
+    "retentionNote": "We kunnen beperkte informatie bewaren waar dit vereist is om aan wettelijke verplichtingen te voldoen. Zie voor meer details ons privacybeleid.",
+    "helpTitle": "Hulp nodig?",
+    "helpBody": "Als u geen toegang tot de app hebt om uw account te verwijderen, neem contact met ons op via",
+    "helpBodyEnd": "en we helpen u."
+  },
+  "support": {
+    "title": "Ondersteuning",
+    "intro": "Hulp nodig met Qup Pulse? We staan voor u klaar. Mail ons en we reageren zo snel mogelijk.",
+    "faqTitle": "Veelgestelde vragen",
+    "q1": "Hoe meld ik een bericht of gebruiker?",
+    "a1": "Open het bericht of profiel, tik op het menu en kies Melden. U kunt gebruikers ook blokkeren zodat u hun content niet meer ziet of berichten van hen ontvangt.",
+    "q2": "Hoe verwijder ik mijn account?",
+    "a2pre": "Zie onze",
+    "a2link": "pagina over accountverwijdering",
+    "a2post": "voor de stappen.",
+    "q3": "Hoe worden mijn gegevens verwerkt?",
+    "a3pre": "Lees ons",
+    "a3link": "privacybeleid",
+    "a3post": ".",
+    "q4": "Wat zijn de regels?",
+    "a4pre": "Zie onze",
+    "a4link": "gebruiksvoorwaarden",
+    "a4post": ".",
+    "contactTitle": "Contact",
+    "contactPre": "Voor alles wat hierboven niet wordt behandeld, mail naar",
+    "contactPost": "en we helpen u."
+  },
+  "child": {
+    "title": "Normen voor kinderveiligheid",
+    "banner": "Qup Pulse hanteert nultolerantie voor seksueel misbruik en uitbuiting van kinderen (CSAE). Content die minderjarigen seksualiseert, in gevaar brengt of uitbuit, is streng verboden, wordt verwijderd en gemeld aan de relevante autoriteiten.",
+    "intro": "Qup Pulse wordt beheerd door Qup DA (org.nr. 998185599), Trondheimsveien 102 C, 0565 Oslo, Noorwegen. Deze pagina beschrijft de normen en maatregelen die we toepassen om kinderen veilig te houden binnen onze dienst, in overeenstemming met het CSAE-beleid van Google Play en de veiligheidsvereisten van de Apple App Store.",
+    "ageTitle": "Minimumleeftijd",
+    "ageBody": "Qup Pulse is bedoeld voor volwassenen. Gebruikers moeten minstens 18 jaar oud zijn om een account aan te maken. Accounts waarvan we vaststellen dat ze toebehoren aan iemand jonger dan 18, worden verwijderd.",
+    "prohibitedTitle": "Verboden content en gedrag",
+    "prohibitedIntro": "Het volgende is nooit toegestaan op Qup Pulse:",
+    "prohibited": [
+      "Materiaal van seksueel misbruik van kinderen (CSAM) in welke vorm dan ook, waaronder afbeeldingen, video, tekeningen en tekst.",
+      "Seksualisering van minderjarigen, waaronder geseksualiseerde opmerkingen of verzoeken.",
+      "Grooming, benadering of elke poging om seksueel contact met een minderjarige tot stand te brengen.",
+      "Mensenhandel, in gevaar brengen, of het bevorderen of faciliteren van schade aan kinderen.",
+      "Het delen, opvragen of doorverwijzen van anderen naar CSAE-materiaal op of buiten het platform."
+    ],
+    "preventTitle": "Hoe we misbruik voorkomen en opsporen",
+    "prevent": [
+      "Een leeftijdsvereiste van 18+ die wordt afgedwongen bij het aanmaken van een account.",
+      "Melden in de app op gebruikersprofielen en afzonderlijke berichten, zodat elke gebruiker content of accounts kan markeren voor beoordeling.",
+      "Een moderatieproces dat meldingen beoordeelt, waarbij meldingen over kinderveiligheid voorrang krijgen op alle andere categorieën.",
+      "Handhavingstools waarmee we content kunnen verwijderen en accounts kunnen schorsen of verbannen die deze norm schenden."
+    ],
+    "reportTitle": "Hoe u meldt",
+    "reportBody1": "Gebruik in de app de meldfunctie op elk bericht of profiel (open het menu van het item en kies Melden). Selecteer de reden voor kinderveiligheid zodat de melding voorrang krijgt bij de beoordeling.",
+    "reportBody2pre": "U kunt ook rechtstreeks contact opnemen met ons kinderveiligheidsteam via",
+    "reportBody2post": "Meldingen worden vertrouwelijk behandeld.",
+    "reportBody3": "Als een kind in direct gevaar is, neem dan eerst contact op met de lokale hulpdiensten. Bel in Noorwegen de politie op 112.",
+    "respondTitle": "Hoe we reageren",
+    "respondBody": "Meldingen over kinderveiligheid worden met voorrang beoordeeld. Wanneer we een schending bevestigen, verwijderen we de content, ondernemen we actie tegen het account (waaronder een permanente verbanning), stellen we relevant bewijs veilig en melden we dit aan de bevoegde autoriteiten. Afhankelijk van de jurisdictie omvat dit het National Center for Missing and Exploited Children (NCMEC) en de Noorse politie (Kripos). We werken mee aan verzoeken van rechtshandhavingsinstanties die geldig zijn onder het toepasselijke recht.",
+    "contactTitle": "Contact",
+    "contactBody": "Vragen over deze normen kunnen worden gestuurd naar"
+  }
+}

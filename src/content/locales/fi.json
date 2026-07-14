@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — mitä ympärilläsi juuri nyt tapahtuu",
+    "description": "Qup Pulse on naapurustosi paikallinen syke. Julkaise lähellä oleville, näe mitä juuri nyt tapahtuu. Pian iOS:lle ja Androidille."
+  },
+  "nav": {
+    "toggleTheme": "Vaihda vaalean ja tumman välillä",
+    "login": "Kirjaudu"
+  },
+  "hero": {
+    "badge": "Pian iOS:lle ja Androidille",
+    "titleLead": "Mitä tapahtuu",
+    "titleHighlight": "juuri ympärilläsi",
+    "subhead": "Qup Pulse on naapurustosi paikallinen syke. Julkaise oikeasti lähellä oleville, näe mitä juuri nyt tapahtuu ja unohda loputon virta vieraita ihmisiä maapallon toiselta puolelta."
+  },
+  "features": {
+    "local": {
+      "title": "Paikallinen oletuksena",
+      "body": "Syötteesi on ympärilläsi oleva alue, ei maailmanlaajuinen aikajana. Näkemäsi on oikeasti lähellä."
+    },
+    "now": {
+      "title": "Juuri nyt",
+      "body": "Julkaisut kertovat nykyhetkestä. Näe mitä tapahtuu sen tapahtuessa, tilaasi jakavilta ihmisiltä."
+    },
+    "safety": {
+      "title": "Rakennettu turvalliseksi",
+      "body": "Ilmoita ja estä yhdellä napautuksella, takana aito moderointi, eikä tarkkaa sijaintiasi näytetä koskaan muille."
+    }
+  },
+  "download": {
+    "title": "Julkaistaan pian molemmissa kaupoissa",
+    "body": "Qup Pulse on nyt arvioitavana. Liity jonotuslistalle, niin lähetämme linkin julkaisupäivänä.",
+    "soon": "Pian",
+    "appStoreSmall": "Tulossa kauppaan",
+    "appStoreBig": "App Store",
+    "playSmall": "Tulossa kauppaan",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Tietosuoja",
+    "terms": "Ehdot",
+    "childSafety": "Lasten turvallisuus",
+    "delete": "Poista tili"
+  },
+  "login": {
+    "email": "Sähköposti",
+    "emailPlaceholder": "sinä@esimerkki.fi",
+    "pin": "PIN",
+    "signIn": "Kirjaudu sisään",
+    "signingIn": "Kirjaudutaan…",
+    "invalid": "Anna sähköposti ja 4-numeroinen PIN.",
+    "notAdmin": "Tämä tili ei ole ylläpitäjä.",
+    "failed": "Kirjautuminen epäonnistui."
+  }
+}

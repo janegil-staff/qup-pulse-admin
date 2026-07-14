@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   color-scheme: dark;
@@ -8,3 +9,26 @@
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   font-variant-numeric: tabular-nums;
 }
+
+/* Light only — blue brand theme matching the mobile app. No dark mode. */
+:root {
+  color-scheme: light;
+}
+ 
+/* Optional shared tokens if you prefer var(--blue) over hex literals in JSX.
+   Tailwind v4 @theme exposes these as utility colors too (e.g. bg-blue-brand). */
+@theme {
+  --color-blue-brand: #4a7ab5;
+  --color-blue-strong: #2d4a6e;
+  --color-blue-soft: #e8f0f9;
+  --color-ink: #1a2530;
+  --color-ink-dim: #5b6b7a;
+  --color-page: #f0f4f8;
+  --color-hair: #dbe4ee;
+}
+ 
+body {
+  background: #f0f4f8;
+  color: #1a2530;
+}
+ 

@@ -1,85 +1,79 @@
-// quppulse/app/delete/page.js
-//
-// Account deletion instructions for Qup Pulse.
-// This is the informational page Apple expects: it explains how to delete an
-// account from inside the app (deletion itself happens in-app).
-// Review-ready English draft — NOT legal advice.
-//
-// Colors tuned for a DARK site background.
-// Fill the [PLACEHOLDER] values before publishing:
-//   [CONTACT_EMAIL]   — support contact address
-// Confirm the numbered steps below match the app's actual menu labels.
+// qup-pulse-admin/src/app/delete/page.js
+'use client';
 
-export const metadata = {
-  title: 'Delete Your Account — Qup Pulse',
-  description: 'How to delete your Qup Pulse account and what data is removed.',
-};
+// Delete Account — reads translated strings via useLang() + getLegal(lang).
+// English governs legally. Theme-aware. The numbered steps use {b}...{/b}
+// bold markers in the translations, rendered here via parseBold().
 
-const styles = {
-  main: {
-    maxWidth: 680,
-    margin: '0 auto',
-    padding: '64px 24px 96px',
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    color: '#e8ecf2',
-    lineHeight: 1.7,
-  },
-  h1: { fontSize: 34, fontWeight: 700, marginBottom: 24, letterSpacing: '-0.02em', color: '#ffffff' },
-  h2: { fontSize: 20, fontWeight: 700, marginTop: 44, marginBottom: 14, color: '#ffffff' },
-  p: { marginBottom: 18, color: '#c7cfdb', fontSize: 17 },
-  ol: { marginBottom: 18, paddingLeft: 22, color: '#c7cfdb', fontSize: 16 },
-  ul: { marginBottom: 18, paddingLeft: 22, color: '#c7cfdb', fontSize: 16 },
-  li: { marginBottom: 10 },
-  strong: { color: '#ffffff' },
-  a: { color: '#6ea8e8', textDecoration: 'none', fontWeight: 600 },
-  footer: {
-    marginTop: 56,
-    paddingTop: 24,
-    borderTop: '1px solid rgba(255,255,255,0.12)',
-    color: '#8792a4',
-    fontSize: 14,
-  },
-};
+import { useLang } from '../../context/LandingLang';
+import { getLegal, parseBold } from '../../content/legalContent';
+import LegalHeader from '../../components/LegalHeader';
+
+const EMAIL = 'jan.egil.staff@qupda.com';
 
 export default function DeletePage() {
+  const { lang } = useLang();
+  const L = getLegal(lang);
+  const t = L.del;
+
   return (
-    <main style={styles.main}>
-      <h1 style={styles.h1}>Delete your account</h1>
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-200">
+      <LegalHeader />
+      <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 text-[17px] leading-[1.7]">
+        <h1 className="mb-6 text-[34px] font-bold tracking-tight text-slate-900 dark:text-white">{t.title}</h1>
 
-      <p style={styles.p}>
-        You can delete your Qup Pulse account at any time, directly in the app. Deleting your
-        account is permanent and cannot be undone.
-      </p>
+        <P>{t.intro}</P>
 
-      <h2 style={styles.h2}>Steps</h2>
-      <ol style={styles.ol}>
-        {/* CONFIRM these labels match the app's actual UI before publishing. */}
-        <li style={styles.li}>Open Qup Pulse and go to <strong style={styles.strong}>Settings</strong>.</li>
-        <li style={styles.li}>Tap <strong style={styles.strong}>Personal Settings</strong>.</li>
-        <li style={styles.li}>Tap <strong style={styles.strong}>Delete Account</strong>.</li>
-        <li style={styles.li}>Confirm when prompted. Your account and data will be deleted.</li>
-      </ol>
+        <H2>{t.stepsTitle}</H2>
+        <ol className="mb-[18px] list-decimal pl-[22px] text-base text-slate-700 dark:text-slate-300">
+          {t.steps.map((step, i) => (
+            <li key={i} className="mb-2.5">{renderBold(step)}</li>
+          ))}
+        </ol>
 
-      <h2 style={styles.h2}>What gets deleted</h2>
-      <ul style={styles.ul}>
-        <li style={styles.li}>Your account and profile (username, display name, photo).</li>
-        <li style={styles.li}>Your posts, comments, messages, and images.</li>
-        <li style={styles.li}>Your email address and login details.</li>
-      </ul>
-      <p style={styles.p}>
-        We may retain limited information where required to comply with legal obligations.
-        For more detail, see our <a style={styles.a} href="/privacy">Privacy Policy</a>.
-      </p>
+        <H2>{t.deletedTitle}</H2>
+        <ul className="mb-[18px] list-disc pl-[22px] text-base text-slate-700 dark:text-slate-300">
+          {t.deleted.map((d, i) => <li key={i} className="mb-2.5">{d}</li>)}
+        </ul>
 
-      <h2 style={styles.h2}>Need help?</h2>
-      <p style={styles.p}>
-        If you can&apos;t access the app to delete your account, contact us at{' '}
-        <a style={styles.a} href="mailto:jan.egil.staff@qupda.com">jan.egil.staff@qupda.com</a> and we&apos;ll
-        help you.
-      </p>
+        <P>{t.retentionNote}</P>
 
-      <div style={styles.footer}>Qup DA · Oslo, Norway · org. nr. 998185599</div>
+        <H2>{t.helpTitle}</H2>
+        <p className="mb-[18px] text-slate-700 dark:text-slate-300">
+          {t.helpBody}{' '}
+          <A href={`mailto:${EMAIL}`}>{EMAIL}</A>{' '}
+          {t.helpBodyEnd}
+        </p>
+
+        <Governing text={L.governing} org={L.org} />
+      </div>
     </main>
+  );
+}
+
+// Turn a "…{b}bold{/b}…" string into React nodes.
+function renderBold(str) {
+  return parseBold(str).map((part, i) =>
+    typeof part === 'string'
+      ? <span key={i}>{part}</span>
+      : <strong key={i} className="text-slate-900 dark:text-white">{part.bold}</strong>
+  );
+}
+
+function H2({ children }) {
+  return <h2 className="mb-3.5 mt-11 text-xl font-bold text-slate-900 dark:text-white">{children}</h2>;
+}
+function P({ children }) {
+  return <p className="mb-[18px] text-slate-700 dark:text-slate-300">{children}</p>;
+}
+function A({ href, children }) {
+  return <a href={href} className="font-semibold text-emerald-600 no-underline dark:text-emerald-400">{children}</a>;
+}
+function Governing({ text, org }) {
+  return (
+    <>
+      <p className="mt-10 text-[15px] text-slate-500 dark:text-slate-400">{text}</p>
+      <div className="mt-6 border-t border-slate-200 pt-6 text-sm text-slate-500 dark:border-white/12 dark:text-slate-400">{org}</div>
+    </>
   );
 }

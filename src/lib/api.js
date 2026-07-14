@@ -1,25 +1,15 @@
 // qup-pulse-admin/src/lib/api.js
 'use client';
 
-// Thin client over the Qup Pulse admin API. Every admin route is gated by
-// requireAuth + requireAdmin on the backend, so we send the JWT as a Bearer
-// token on every request.
-//
-// URL strategy: with the Next.js rewrite proxy (next.config.mjs), the dashboard
-// calls its OWN origin under /api, and Next forwards to the real API
-// server-side. So we build same-origin paths from a single base — no CORS.
-// Set NEXT_PUBLIC_API_URL=/api (the default) to route through the proxy.
-// The client URL must never contain the DigitalOcean host, or requests go
-// cross-origin again and CORS returns.
+// Thin client over the Qup Pulse API. Sends the JWT as a Bearer token.
+// With the Next.js rewrite proxy (next.config.mjs), the dashboard calls its own
+// origin under /api and Next forwards server-side — no CORS.
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const TOKEN_KEY = 'qup_pulse_admin_jwt';
+const ROLE_KEY = 'qup_pulse_role';
 
-// Thrown on 401 (missing/expired token) and 403 (not an admin). Pages catch
-// this with `instanceof AuthError` and redirect to /login themselves, rather
-// than the client doing a hard window.location redirect. This keeps navigation
-// in the component/router layer where it belongs.
 export class AuthError extends Error {
   constructor(message, status) {
     super(message);
@@ -45,6 +35,27 @@ export function setToken(token) {
 export function clearToken() {
   if (typeof window === 'undefined') return;
   window.localStorage.removeItem(TOKEN_KEY);
+  window.localStorage.removeItem(ROLE_KEY);
+}
+
+// Role is stored client-side purely to show/hide admin UI. It is NOT a security
+// boundary — every /admin/* route re-checks role server-side via requireAdmin.
+export function getRole() {
+  if (typeof window === 'undefined') return null;
+  return window.localStorage.getItem(ROLE_KEY);
+}
+
+export function setRole(role) {
+  if (typeof window === 'undefined') return;
+  if (!role) {
+    window.localStorage.removeItem(ROLE_KEY);
+    return;
+  }
+  window.localStorage.setItem(ROLE_KEY, role);
+}
+
+export function isAdmin() {
+  return getRole() === 'admin';
 }
 
 function url(path) {
@@ -78,9 +89,8 @@ async function request(path, { method = 'GET', body } = {}) {
 }
 
 // --- Auth ---
-// The app's login endpoint expects { emailOrUsername, password } and returns
-// { token, user }. The PIN is sent as the `password` field. These field names
-// come straight from the API's login validator.
+// /auth/login expects { emailOrUsername, password } and returns { token, user }.
+// The PIN is sent as `password`. `user.role` is included (see User.toPublic()).
 export async function login(email, pin) {
   const res = await fetch(url('/auth/login'), {
     method: 'POST',
@@ -89,32 +99,26 @@ export async function login(email, pin) {
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || 'Login failed');
-  return data; // { token, user }
+  return data; // { token, user: { ..., role } }
 }
 
 // --- Admin endpoints (match adminController routes) ---
 export const adminApi = {
-  // Exposed here so call sites can use adminApi.login(...) consistently with
-  // the other adminApi.* calls. The standalone `login` export also works.
   login,
 
   stats: () => request('/admin/stats'),
 
   listUsers: () => request('/admin/users'),
-  // Named banUser to match the reports/users pages. setBanned alias kept below.
   banUser: (id, banned) =>
     request(`/admin/users/${id}/ban`, { method: 'PATCH', body: { banned } }),
 
   listPosts: () => request('/admin/posts'),
   deletePost: (id) => request(`/admin/posts/${id}`, { method: 'DELETE' }),
 
-  // Optional status filter ('open' | 'reviewed' | 'dismissed' | ''). Empty
-  // returns all. Sent as a query param the backend can ignore if unsupported.
   listReports: (status = '') =>
     request(`/admin/reports${status ? `?status=${encodeURIComponent(status)}` : ''}`),
   resolveReport: (id, status) =>
     request(`/admin/reports/${id}`, { method: 'PATCH', body: { status } }),
 };
 
-// Backwards-compatible alias: earlier pages imported setBanned.
 adminApi.setBanned = adminApi.banUser;

@@ -1,0 +1,134 @@
+{
+  "org": "Qup DA · Oslo, Norja · y-tunnus 998185599",
+  "governing": "Englanninkielinen versio on virallinen versio. Jos käännösten välillä on ristiriitoja, englanninkielinen versio on määräävä. Se on tarkoitettu yleiseksi tiedoksi eikä ole oikeudellista neuvontaa.",
+  "updated": "Viimeksi päivitetty: 13.7.2026",
+  "privacy": {
+    "title": "Tietosuojakäytäntö",
+    "intro": "Tässä tietosuojakäytännössä selitetään, miten Qup DA (\"me\") kerää, käyttää ja suojaa henkilötietojasi, kun käytät Qup Pulse -sovellusta. Qup DA on rekisterinpitäjä. Olemme rekisteröityneet Osloon, Norjaan (y-tunnus 998185599).",
+    "ageNote": "Qup Pulse on tarkoitettu vain vähintään 18-vuotiaille käyttäjille.",
+    "collectTitle": "Keräämämme tiedot",
+    "collect": [
+      "Tilitiedot: sähköpostiosoitteesi ja PIN-koodi.",
+      "Profiilitiedot: käyttäjänimesi, näyttönimesi ja profiilikuvasi.",
+      "Luomasi sisältö: julkaisut, kommentit, viestit ja jakamasi kuvat.",
+      "Likimääräinen sijainti, jota käytetään lähelläsi olevien julkaisujen näyttämiseen. Voit hallita tätä laitteesi asetuksista."
+    ],
+    "useTitle": "Miten käytämme tietojasi",
+    "use": [
+      "Sovelluksen tarjoamiseen ja toimintaan, mukaan lukien syötteesi, viestisi ja profiilisi.",
+      "Sinulle olennaisen, lähellä olevan sisällön näyttämiseen.",
+      "Palvelun pitämiseen turvallisena, mukaan lukien ilmoitusten käsittely ja moderointi.",
+      "Palveluun liittyvien sähköpostien lähettämiseen, kuten vahvistus ja salasanan palautus."
+    ],
+    "providersTitle": "Palveluntarjoajat",
+    "providersIntro": "Jaamme rajallisesti tietoja luotettujen palveluntarjoajien kanssa, jotka käsittelevät niitä puolestamme:",
+    "providers": [
+      "Cloudinary — kuvien tallennus ja jakelu.",
+      "Resend — palvelusähköpostien lähetys.",
+      "Expo — sovelluksen infrastruktuuri ja jakelu."
+    ],
+    "providersNote": "Nämä palveluntarjoajat käsittelevät tietoja vain siinä määrin kuin on tarpeen palveluidensa tarjoamiseksi, ja niitä sitovat omat tietosuojavelvoitteensa.",
+    "rightsTitle": "Oikeutesi",
+    "rightsBody": "GDPR:n nojalla sinulla on oikeus saada pääsy henkilötietoihisi, oikaista tai poistaa ne sekä vastustaa niiden käsittelyä tai rajoittaa sitä. Voit poistaa tilisi ja siihen liittyvät tiedot milloin tahansa sovelluksessa — katso ohjeet tilin poistamissivultamme.",
+    "retentionTitle": "Tietojen säilyttäminen",
+    "retentionBody": "Säilytämme henkilötietojasi niin kauan kuin tilisi on aktiivinen. Kun poistat tilisi, poistamme henkilötietosi, paitsi silloin kun meidän on säilytettävä tiettyjä tietoja lakisääteisten velvoitteiden noudattamiseksi.",
+    "contactTitle": "Yhteystiedot",
+    "contactBody": "Jos sinulla on tietosuojaan liittyviä kysymyksiä tai haluat käyttää oikeuksiasi, ota yhteyttä osoitteeseen"
+  },
+  "terms": {
+    "title": "Käyttöehdot",
+    "intro": "Nämä ehdot koskevat Qup Pulse -sovelluksen käyttöäsi. Sovelluksen tarjoaa Qup DA (\"me\"), joka on rekisteröity Osloon, Norjaan (y-tunnus 998185599). Luomalla tilin tai käyttämällä sovellusta hyväksyt nämä ehdot.",
+    "eligibilityTitle": "Kelpoisuus",
+    "eligibilityBody": "Sinun on oltava vähintään 18-vuotias käyttääksesi Qup Pulsea. Käyttämällä sovellusta vahvistat täyttäväsi tämän vaatimuksen.",
+    "accountTitle": "Tilisi",
+    "accountBody": "Olet vastuussa kirjautumistietojesi turvassa pitämisestä ja tililläsi tapahtuvasta toiminnasta. Ilmoita meille heti, jos epäilet tilisi vaarantuneen.",
+    "contentTitle": "Jakamasi sisältö",
+    "contentBody": "Omistat julkaisemasi sisällön, mutta myönnät meille tarvittavan lisenssin sen isännöimiseen ja näyttämiseen sovelluksessa. Olet vastuussa jakamastasi sisällöstä ja sitoudut olemaan julkaisematta mitään laitonta tai muiden oikeuksia loukkaavaa.",
+    "objectionableTitle": "Loukkaava sisältö ja käytös",
+    "objectionableBody1": "Qup Pulsessa ei sallita lainkaan loukkaavaa sisältöä tai loukkaavaa käytöstä. Sitoudut olemaan julkaisematta sisältöä, joka on häiritsevää, uhkaavaa, vihamielistä, seksuaalisesti eksplisiittistä tai muutoin loukkaavaa, sekä olemaan häiritsemättä tai kohtelematta kaltoin muita käyttäjiä.",
+    "objectionableBody2": "Voit ilmoittaa sisällöstä tai käyttäjistä suoraan sovelluksessa, ja voit estää käyttäjiä, jotta et enää näe heidän sisältöään tai saa heiltä viestejä. Käsittelemme ilmoitukset ja voimme poistaa sisältöä tai poistaa käyttäjiä, jotka rikkovat näitä ehtoja. Pyrimme toimimaan ripeästi loukkaavaa sisältöä koskevien ilmoitusten johdosta.",
+    "deleteTitle": "Tilisi poistaminen",
+    "deleteBody": "Voit poistaa tilisi milloin tahansa sovelluksessa. Katso ohjeet tilin poistamissivultamme.",
+    "disclaimerTitle": "Vastuuvapauslausekkeet ja vastuu",
+    "disclaimerBody": "Sovellus tarjotaan \"sellaisena kuin se on\" ilman minkäänlaisia takuita. Lain sallimissa rajoissa emme ole vastuussa epäsuorista tai välillisistä vahingoista, jotka johtuvat sovelluksen käytöstäsi.",
+    "changesTitle": "Muutokset näihin ehtoihin",
+    "changesBody": "Voimme päivittää näitä ehtoja ajoittain. Jos teemme merkittäviä muutoksia, ryhdymme kohtuullisiin toimiin ilmoittaaksemme sinulle. Sovelluksen jatkuva käyttö tarkoittaa, että hyväksyt päivitetyt ehdot.",
+    "contactTitle": "Yhteystiedot",
+    "contactBody": "Kysymyksiä näistä ehdoista? Ota yhteyttä osoitteeseen"
+  },
+  "del": {
+    "title": "Poista tilisi",
+    "intro": "Voit poistaa Qup Pulse -tilisi milloin tahansa suoraan sovelluksessa. Tilin poistaminen on pysyvää eikä sitä voi peruuttaa.",
+    "stepsTitle": "Vaiheet",
+    "steps": [
+      "Avaa Qup Pulse ja siirry kohtaan {b}Asetukset{/b}.",
+      "Napauta {b}Henkilökohtaiset asetukset{/b}.",
+      "Napauta {b}Poista tili{/b}.",
+      "Vahvista pyydettäessä. Tilisi ja tietosi poistetaan."
+    ],
+    "deletedTitle": "Mitä poistetaan",
+    "deleted": [
+      "Tilisi ja profiilisi (käyttäjänimi, näyttönimi, kuva).",
+      "Julkaisusi, kommenttisi, viestisi ja kuvasi.",
+      "Sähköpostiosoitteesi ja kirjautumistietosi."
+    ],
+    "retentionNote": "Voimme säilyttää rajallisesti tietoja silloin, kun se on tarpeen lakisääteisten velvoitteiden noudattamiseksi. Lisätietoja on tietosuojakäytännössämme.",
+    "helpTitle": "Tarvitsetko apua?",
+    "helpBody": "Jos et pääse sovellukseen poistaaksesi tilisi, ota yhteyttä osoitteeseen",
+    "helpBodyEnd": "niin autamme sinua."
+  },
+  "support": {
+    "title": "Tuki",
+    "intro": "Tarvitsetko apua Qup Pulsen kanssa? Olemme täällä sinua varten. Lähetä meille sähköpostia, niin vastaamme mahdollisimman pian.",
+    "faqTitle": "Yleisiä kysymyksiä",
+    "q1": "Miten ilmoitan julkaisusta tai käyttäjästä?",
+    "a1": "Avaa julkaisu tai profiili, napauta valikkoa ja valitse Ilmoita. Voit myös estää käyttäjiä, jotta et enää näe heidän sisältöään tai saa heiltä viestejä.",
+    "q2": "Miten poistan tilini?",
+    "a2pre": "Katso",
+    "a2link": "tilin poistamissivumme",
+    "a2post": "ohjeita varten.",
+    "q3": "Miten tietojani käsitellään?",
+    "a3pre": "Lue",
+    "a3link": "tietosuojakäytäntömme",
+    "a3post": ".",
+    "q4": "Mitkä ovat säännöt?",
+    "a4pre": "Katso",
+    "a4link": "käyttöehtomme",
+    "a4post": ".",
+    "contactTitle": "Yhteystiedot",
+    "contactPre": "Kaikessa muussa, mitä ei käsitellä yllä, lähetä sähköpostia osoitteeseen",
+    "contactPost": "niin autamme."
+  },
+  "child": {
+    "title": "Lasten turvallisuuden standardit",
+    "banner": "Qup Pulsella on nollatoleranssi lasten seksuaalista hyväksikäyttöä ja riistoa (CSAE) kohtaan. Sisältö, joka seksualisoi, vaarantaa tai käyttää hyväksi alaikäisiä, on ehdottomasti kielletty, se poistetaan ja siitä ilmoitetaan asianomaisille viranomaisille.",
+    "intro": "Qup Pulsea ylläpitää Qup DA (y-tunnus 998185599), Trondheimsveien 102 C, 0565 Oslo, Norja. Tällä sivulla kuvataan standardit ja toimenpiteet, joita sovellamme lasten turvallisuuden varmistamiseksi palvelussamme, Google Playn CSAE-käytännön ja Applen App Storen turvallisuusvaatimusten mukaisesti.",
+    "ageTitle": "Ikäraja",
+    "ageBody": "Qup Pulse on tarkoitettu aikuisille. Käyttäjien on oltava vähintään 18-vuotiaita luodakseen tilin. Tilit, joiden tunnistamme kuuluvan alle 18-vuotiaalle, poistetaan.",
+    "prohibitedTitle": "Kielletty sisältö ja käytös",
+    "prohibitedIntro": "Seuraavat eivät ole koskaan sallittuja Qup Pulsessa:",
+    "prohibited": [
+      "Lasten seksuaalista hyväksikäyttöä esittävä materiaali (CSAM) missä tahansa muodossa, mukaan lukien kuvat, video, piirrokset ja teksti.",
+      "Alaikäisten seksualisointi, mukaan lukien seksualisoidut kommentit tai pyynnöt.",
+      "Groomaus, houkuttelu tai mikä tahansa yritys luoda seksuaalinen kontakti alaikäiseen.",
+      "Ihmiskauppa, vaarantaminen tai lapsiin kohdistuvan haitan edistäminen tai helpottaminen.",
+      "CSAE-materiaalin jakaminen, pyytäminen tai muiden ohjaaminen sen luo alustalla tai sen ulkopuolella."
+    ],
+    "preventTitle": "Miten ehkäisemme ja havaitsemme hyväksikäytön",
+    "prevent": [
+      "18 vuoden ikävaatimus, joka pannaan täytäntöön tiliä luotaessa.",
+      "Sovelluksen sisäinen ilmoittaminen käyttäjäprofiileista ja yksittäisistä julkaisuista, jotta kuka tahansa käyttäjä voi merkitä sisältöä tai tilejä tarkistettavaksi.",
+      "Moderointiprosessi, joka tarkistaa ilmoitukset ja jossa lasten turvallisuutta koskevat ilmoitukset asetetaan etusijalle kaikkiin muihin luokkiin nähden.",
+      "Täytäntöönpanotyökalut, joiden avulla voimme poistaa sisältöä sekä jäädyttää tai estää tilit, jotka rikkovat tätä standardia."
+    ],
+    "reportTitle": "Miten ilmoitat",
+    "reportBody1": "Käytä sovelluksessa ilmoitustoimintoa missä tahansa julkaisussa tai profiilissa (avaa kohteen valikko ja valitse Ilmoita). Valitse lasten turvallisuutta koskeva syy, jotta ilmoitus asetetaan etusijalle tarkistuksessa.",
+    "reportBody2pre": "Voit myös ottaa yhteyttä suoraan lasten turvallisuustiimiimme osoitteeseen",
+    "reportBody2post": "Ilmoitukset käsitellään luottamuksellisesti.",
+    "reportBody3": "Jos lapsi on välittömässä vaarassa, ota ensin yhteyttä paikallisiin hätäpalveluihin. Norjassa soita poliisille numeroon 112.",
+    "respondTitle": "Miten reagoimme",
+    "respondBody": "Lasten turvallisuutta koskevat ilmoitukset tarkistetaan etusijalla. Kun vahvistamme rikkomuksen, poistamme sisällön, ryhdymme toimiin tiliä kohtaan (mukaan lukien pysyvä esto), säilytämme olennaisen todistusaineiston ja ilmoitamme asianomaisille viranomaisille. Lainkäyttöalueesta riippuen tähän kuuluu National Center for Missing and Exploited Children (NCMEC) ja Norjan poliisi (Kripos). Teemme yhteistyötä lainvalvontaviranomaisten pyyntöjen kanssa, jotka ovat päteviä sovellettavan lain nojalla.",
+    "contactTitle": "Yhteystiedot",
+    "contactBody": "Näitä standardeja koskevat kysymykset voi lähettää osoitteeseen"
+  }
+}

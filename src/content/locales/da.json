@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — det der sker lige omkring dig",
+    "description": "Qup Pulse er dit nabolags lokale puls. Del med folk i nærheden, se hvad der sker lige nu. Snart til iOS og Android."
+  },
+  "nav": {
+    "toggleTheme": "Skift mellem lyst og mørkt",
+    "login": "Log ind"
+  },
+  "hero": {
+    "badge": "Snart til iOS og Android",
+    "titleLead": "Det der sker",
+    "titleHighlight": "lige omkring dig",
+    "subhead": "Qup Pulse er dit nabolags lokale puls. Del med folk, der faktisk er i nærheden, se hvad der sker lige nu, og drop det uendelige feed af fremmede på den anden side af kloden."
+  },
+  "features": {
+    "local": {
+      "title": "Lokalt som standard",
+      "body": "Dit feed er området omkring dig, ikke en global tidslinje. Det, du ser, er faktisk i nærheden."
+    },
+    "now": {
+      "title": "Lige nu",
+      "body": "Opslag handler om nuet. Se, hvad der sker, mens det sker, fra folk der deler dit sted."
+    },
+    "safety": {
+      "title": "Bygget til tryghed",
+      "body": "Rapportér og blokér med ét tryk, med rigtig moderation bag, og din nøjagtige placering vises aldrig til andre."
+    }
+  },
+  "download": {
+    "title": "Lanceres snart i begge butikker",
+    "body": "Qup Pulse er under vurdering nu. Tilmeld dig ventelisten, så sender vi linket den dag, den er live.",
+    "soon": "Snart",
+    "appStoreSmall": "Kommer til",
+    "appStoreBig": "App Store",
+    "playSmall": "Kommer til",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Privatliv",
+    "terms": "Vilkår",
+    "childSafety": "Børnesikkerhed",
+    "delete": "Slet konto"
+  },
+  "login": {
+    "email": "E-mail",
+    "emailPlaceholder": "dig@eksempel.dk",
+    "pin": "PIN",
+    "signIn": "Log ind",
+    "signingIn": "Logger ind…",
+    "invalid": "Indtast din e-mail og 4-cifrede PIN.",
+    "notAdmin": "Denne konto er ikke administrator.",
+    "failed": "Kunne ikke logge ind."
+  }
+}

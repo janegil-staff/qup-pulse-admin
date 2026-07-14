@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — was direkt um dich herum passiert",
+    "description": "Qup Pulse ist der lokale Puls deiner Nachbarschaft. Poste an Leute in der Nähe, sieh, was gerade passiert. Bald für iOS und Android."
+  },
+  "nav": {
+    "toggleTheme": "Hell und dunkel umschalten",
+    "login": "Anmelden"
+  },
+  "hero": {
+    "badge": "Bald für iOS & Android",
+    "titleLead": "Was passiert",
+    "titleHighlight": "direkt um dich herum",
+    "subhead": "Qup Pulse ist der lokale Puls deiner Nachbarschaft. Poste an Leute, die wirklich in der Nähe sind, sieh, was gerade los ist, und überspringe den endlosen Feed von Fremden am anderen Ende der Welt."
+  },
+  "features": {
+    "local": {
+      "title": "Lokal von Haus aus",
+      "body": "Dein Feed ist die Umgebung um dich herum, keine globale Timeline. Was du siehst, ist wirklich in der Nähe."
+    },
+    "now": {
+      "title": "Genau jetzt",
+      "body": "Beiträge drehen sich um den Moment. Sieh, was passiert, während es passiert — von Leuten, die deinen Ort teilen."
+    },
+    "safety": {
+      "title": "Auf Sicherheit gebaut",
+      "body": "Melde und blockiere mit einem Tippen, mit echter Moderation dahinter, und dein genauer Standort wird anderen nie gezeigt."
+    }
+  },
+  "download": {
+    "title": "Bald in beiden Stores",
+    "body": "Qup Pulse wird gerade geprüft. Trag dich in die Warteliste ein, und wir schicken dir den Link am Tag des Starts.",
+    "soon": "Bald",
+    "appStoreSmall": "Bald im",
+    "appStoreBig": "App Store",
+    "playSmall": "Bald bei",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "childSafety": "Kinderschutz",
+    "delete": "Konto löschen"
+  },
+  "login": {
+    "email": "E-Mail",
+    "emailPlaceholder": "du@beispiel.de",
+    "pin": "PIN",
+    "signIn": "Anmelden",
+    "signingIn": "Anmeldung…",
+    "invalid": "Gib deine E-Mail und die 4-stellige PIN ein.",
+    "notAdmin": "Dieses Konto ist kein Administrator.",
+    "failed": "Anmeldung fehlgeschlagen."
+  }
+}

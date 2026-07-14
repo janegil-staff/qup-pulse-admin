@@ -1,162 +1,88 @@
-// quppulse/app/child-safety/page.js
-//
-// Child Safety Standards for Qup Pulse.
-// Public, unauthenticated page. Required for the Google Play CSAE
-// (Child Sexual Abuse and Exploitation) policy declaration, and supports
-// Apple App Review Guideline 1.2 for user-generated-content apps.
-//
-// Review-ready English draft — NOT legal advice. Have counsel confirm the
-// reporting-obligation wording for your jurisdictions (NCMEC in the US,
-// Kripos/the Norwegian police and any EU obligations) before publishing.
-//
-// Plain ASCII only (no special characters) to avoid build encoding failures.
-//
-// Dark theme — colors chosen to sit on the site's dark navy background.
-//
-// Fill / confirm before publishing:
-//   [CONTACT_EMAIL]     - child-safety contact address (e.g. jan.egil@qupda.com)
-//   [LAST_UPDATED]      - date this standard last changed
-// Confirm the in-app reporting steps match the app's actual menu labels.
+// qup-pulse-admin/src/app/child-safety/page.js
+'use client';
 
-export const metadata = {
-  title: 'Child Safety Standards - Qup Pulse',
-  description:
-    'Qup Pulse has zero tolerance for child sexual abuse and exploitation. How we prevent, detect, and report it.',
-};
+// Child Safety Standards — reads translated strings via useLang() + getLegal(lang).
+// English governs legally. Theme-aware. Required for Google Play CSAE declaration.
 
-const wrap = {
-  maxWidth: 760,
-  margin: '0 auto',
-  padding: '48px 24px 80px',
-  fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
-  color: '#dbe4ee',
-  lineHeight: 1.6,
-};
-const h1 = { fontSize: 30, fontWeight: 700, marginBottom: 6, color: '#f1f5fa' };
-const sub = { color: '#8ea0b2', fontSize: 15, marginBottom: 32 };
-const h2 = { fontSize: 20, fontWeight: 700, margin: '32px 0 10px', color: '#f1f5fa' };
-const p = { margin: '0 0 14px' };
-const link = { color: '#6db3ff' };
-const listStyle = { margin: '0 0 14px', paddingLeft: 22 };
-const callout = {
-  background: 'rgba(214, 69, 69, 0.12)',
-  border: '1px solid rgba(214, 69, 69, 0.4)',
-  borderLeft: '4px solid #e05555',
-  borderRadius: 8,
-  padding: '16px 18px',
-  margin: '0 0 28px',
-};
+import { useLang } from '../../context/LandingLang';
+import { getLegal } from '../../content/legalContent';
+import LegalHeader from '../../components/LegalHeader';
+
+const EMAIL = 'jan.egil.staff@qupda.com';
 
 export default function ChildSafetyPage() {
+  const { lang } = useLang();
+  const L = getLegal(lang);
+  const t = L.child;
+
   return (
-    <main style={wrap}>
-      <h1 style={h1}>Child Safety Standards</h1>
-      <p style={sub}>Last updated: 14/07/1926</p>
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-200">
+      <LegalHeader />
+      <div className="mx-auto max-w-[760px] px-6 pb-20 pt-12 leading-relaxed">
+        <h1 className="mb-1.5 text-3xl font-bold text-slate-900 dark:text-white">{t.title}</h1>
+        <p className="mb-8 text-[15px] text-slate-500 dark:text-slate-400">{L.updated}</p>
 
-      <div style={callout}>
-        <p style={{ ...p, margin: 0, fontWeight: 600, color: '#f1f5fa' }}>
-          Qup Pulse has zero tolerance for child sexual abuse and exploitation
-          (CSAE). Content that sexualises, endangers, or exploits minors is
-          strictly prohibited, is removed, and is reported to the relevant
-          authorities.
+        <div className="mb-7 rounded-xl border border-red-300 border-l-4 border-l-red-500 bg-red-50 p-4 dark:border-red-500/40 dark:border-l-red-500 dark:bg-red-500/10">
+          <p className="font-semibold text-slate-900 dark:text-white">{t.banner}</p>
+        </div>
+
+        <P>{t.intro}</P>
+
+        <H2>{t.ageTitle}</H2>
+        <P>{t.ageBody}</P>
+
+        <H2>{t.prohibitedTitle}</H2>
+        <P>{t.prohibitedIntro}</P>
+        <Ul items={t.prohibited} />
+
+        <H2>{t.preventTitle}</H2>
+        <Ul items={t.prevent} />
+
+        <H2>{t.reportTitle}</H2>
+        <P>{t.reportBody1}</P>
+        <p className="mb-3.5 text-slate-700 dark:text-slate-300">
+          {t.reportBody2pre}{' '}
+          <A href={`mailto:${EMAIL}`}>{EMAIL}</A>.{' '}
+          {t.reportBody2post}
         </p>
+        <P>{t.reportBody3}</P>
+
+        <H2>{t.respondTitle}</H2>
+        <P>{t.respondBody}</P>
+
+        <H2>{t.contactTitle}</H2>
+        <p className="mb-3.5 text-slate-700 dark:text-slate-300">
+          {t.contactBody}{' '}
+          <A href={`mailto:${EMAIL}`}>{EMAIL}</A>.
+        </p>
+
+        <Governing text={L.governing} org={L.org} />
       </div>
-
-      <p style={p}>
-        Qup Pulse is operated by Qup DA (org. nr. 998185599), Trondheimsveien
-        102 C, 0565 Oslo, Norway. This page describes the standards and measures
-        we apply to keep children safe on our service, in line with Google Play's
-        CSAE policy and Apple's App Store safety requirements.
-      </p>
-
-      <h2 style={h2}>Minimum age</h2>
-      <p style={p}>
-        Qup Pulse is intended for adults. Users must be at least 18 years old to
-        create an account. Accounts we identify as belonging to anyone under 18
-        are removed.
-      </p>
-
-      <h2 style={h2}>Prohibited content and conduct</h2>
-      <p style={p}>The following are never permitted on Qup Pulse:</p>
-      <ul style={listStyle}>
-        <li>
-          Child sexual abuse material (CSAM) in any form, including images,
-          video, drawings, and text.
-        </li>
-        <li>Sexualisation of minors, including sexualised commentary or requests.</li>
-        <li>
-          Grooming, solicitation, or any attempt to establish sexual contact with
-          a minor.
-        </li>
-        <li>
-          Trafficking, endangerment, or the promotion or facilitation of harm to
-          children.
-        </li>
-        <li>
-          Sharing, requesting, or directing others to CSAE material on or off the
-          platform.
-        </li>
-      </ul>
-
-      <h2 style={h2}>How we prevent and detect abuse</h2>
-      <ul style={listStyle}>
-        <li>An 18+ age requirement enforced at account creation.</li>
-        <li>
-          In-app reporting on user profiles and on individual posts, so any user
-          can flag content or accounts for review.
-        </li>
-        <li>
-          A moderation process that reviews reports, with child-safety reports
-          prioritised above all other categories.
-        </li>
-        <li>
-          Enforcement tools that let us remove content and suspend or ban
-          accounts that violate this standard.
-        </li>
-      </ul>
-
-      <h2 style={h2}>How to report</h2>
-      <p style={p}>
-        In the app, use the report control on any post or profile (open the
-        item's menu and choose Report). Select the child-safety reason so the
-        report is prioritised for review.
-      </p>
-      <p style={p}>
-        You can also contact our child-safety team directly at{' '}
-        <a href="mailto:jan.egil.staff@qupda.com" style={link}>
-          jan.egil.staff@qupda.com
-        </a>
-        . Reports are treated confidentially.
-      </p>
-      <p style={p}>
-        If a child is in immediate danger, contact your local emergency services
-        first. In Norway, call the police on 112.
-      </p>
-
-      <h2 style={h2}>How we respond</h2>
-      <p style={p}>
-        Reports involving child safety are reviewed with priority. When we
-        confirm a violation, we remove the content, take action on the account
-        (including permanent ban), preserve relevant evidence, and report to the
-        appropriate authorities. Depending on jurisdiction, this includes the
-        National Center for Missing and Exploited Children (NCMEC) and the
-        Norwegian police (Kripos). We cooperate with law enforcement requests
-        that are valid under applicable law.
-      </p>
-
-      <h2 style={h2}>Contact</h2>
-      <p style={p}>
-        Questions about these standards can be sent to{' '}
-        <a href="mailto:jan.egil.staff@qupda.com" style={link}>
-          jan.egil.staff@qupda.com
-        </a>
-        .
-      </p>
-
-      <p style={{ ...sub, marginTop: 40, marginBottom: 0 }}>
-        This English version is provided for review and general information. It
-        is not legal advice.
-      </p>
     </main>
+  );
+}
+
+function H2({ children }) {
+  return <h2 className="mb-2.5 mt-8 text-xl font-bold text-slate-900 dark:text-white">{children}</h2>;
+}
+function P({ children }) {
+  return <p className="mb-3.5 text-slate-700 dark:text-slate-300">{children}</p>;
+}
+function A({ href, children }) {
+  return <a href={href} className="font-semibold text-emerald-600 no-underline dark:text-emerald-400">{children}</a>;
+}
+function Ul({ items }) {
+  return (
+    <ul className="mb-3.5 list-disc pl-6 text-slate-700 dark:text-slate-300">
+      {items.map((it, i) => <li key={i} className="mb-1">{it}</li>)}
+    </ul>
+  );
+}
+function Governing({ text, org }) {
+  return (
+    <>
+      <p className="mt-10 text-[15px] text-slate-500 dark:text-slate-400">{text}</p>
+      <div className="mt-6 border-t border-slate-200 pt-6 text-sm text-slate-500 dark:border-white/12 dark:text-slate-400">{org}</div>
+    </>
   );
 }

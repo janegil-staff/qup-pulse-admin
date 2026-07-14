@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Qup Pulse — co dzieje się tuż obok ciebie",
+    "description": "Qup Pulse to lokalny puls twojej okolicy. Publikuj dla osób w pobliżu, zobacz, co dzieje się teraz. Wkrótce na iOS i Androida."
+  },
+  "nav": {
+    "toggleTheme": "Przełącz jasny i ciemny",
+    "login": "Zaloguj się"
+  },
+  "hero": {
+    "badge": "Wkrótce na iOS i Androida",
+    "titleLead": "Co dzieje się",
+    "titleHighlight": "tuż obok ciebie",
+    "subhead": "Qup Pulse to lokalny puls twojej okolicy. Publikuj dla osób, które są naprawdę w pobliżu, zobacz, co dzieje się w tej chwili, i porzuć niekończący się strumień obcych z drugiego końca świata."
+  },
+  "features": {
+    "local": {
+      "title": "Lokalnie z założenia",
+      "body": "Twój kanał to obszar wokół ciebie, a nie globalna oś czasu. To, co widzisz, jest naprawdę w pobliżu."
+    },
+    "now": {
+      "title": "Właśnie teraz",
+      "body": "Posty dotyczą chwili obecnej. Zobacz, co się dzieje, gdy się dzieje, od osób dzielących twoją przestrzeń."
+    },
+    "safety": {
+      "title": "Stworzone dla bezpieczeństwa",
+      "body": "Zgłaszaj i blokuj jednym dotknięciem, z prawdziwą moderacją w tle, a twoja dokładna lokalizacja nigdy nie jest pokazywana innym."
+    }
+  },
+  "download": {
+    "title": "Wkrótce w obu sklepach",
+    "body": "Qup Pulse jest teraz w trakcie weryfikacji. Dołącz do listy oczekujących, a wyślemy ci link w dniu startu.",
+    "soon": "Wkrótce",
+    "appStoreSmall": "Wkrótce w",
+    "appStoreBig": "App Store",
+    "playSmall": "Wkrótce w",
+    "playBig": "Google Play"
+  },
+  "footer": {
+    "privacy": "Prywatność",
+    "terms": "Regulamin",
+    "childSafety": "Bezpieczeństwo dzieci",
+    "delete": "Usuń konto"
+  },
+  "login": {
+    "email": "E-mail",
+    "emailPlaceholder": "ty@przyklad.pl",
+    "pin": "PIN",
+    "signIn": "Zaloguj się",
+    "signingIn": "Logowanie…",
+    "invalid": "Podaj e-mail i 4-cyfrowy PIN.",
+    "notAdmin": "To konto nie jest administratorem.",
+    "failed": "Nie udało się zalogować."
+  }
+}
