@@ -151,6 +151,13 @@
       "close": "Luk",
       "done": "Færdig",
       "search": "Søg"
+    },
+    "blocked": {
+      "empty": "Du har ikke blokeret nogen.",
+      "unblock": "Ophæv blokering",
+      "unblocking": "Ophæver…",
+      "loadFailed": "Kunne ikke indlæse blokerede brugere.",
+      "unblockFailed": "Kunne ikke ophæve blokeringen af denne bruger."
     }
   },
   "auth": {

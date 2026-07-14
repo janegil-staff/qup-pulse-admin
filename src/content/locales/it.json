@@ -151,6 +151,13 @@
       "close": "Chiudi",
       "done": "Fatto",
       "search": "Cerca"
+    },
+    "blocked": {
+      "empty": "Non hai bloccato nessuno.",
+      "unblock": "Sblocca",
+      "unblocking": "Sblocco…",
+      "loadFailed": "Impossibile caricare gli utenti bloccati.",
+      "unblockFailed": "Impossibile sbloccare questo utente."
     }
   },
   "auth": {

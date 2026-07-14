@@ -151,6 +151,13 @@
       "close": "Lukk",
       "done": "Ferdig",
       "search": "Søk"
+    },
+    "blocked": {
+      "empty": "Du har ikke blokkert noen.",
+      "unblock": "Opphev blokkering",
+      "unblocking": "Opphever…",
+      "loadFailed": "Kunne ikke laste blokkerte brukere.",
+      "unblockFailed": "Kunne ikke oppheve blokkeringen av denne brukeren."
     }
   },
   "auth": {

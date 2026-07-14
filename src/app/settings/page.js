@@ -154,7 +154,7 @@ export default function SettingsPage() {
         {/* Privacy & security */}
         <SectionTitle>{s.privacySecurity}</SectionTitle>
         <Card>
-          <RowDisabled label={s.blockedUsers} soon={t.app.nav.soon} />
+          <RowLink href="/settings/blocked" label={s.blockedUsers} last />
         </Card>
 
         {/* Account actions */}
@@ -212,14 +212,6 @@ function RowLink({ href, label, external, danger, last }) {
   const inner = (<><span className={text}>{label}</span><span className="text-slate-400">›</span></>);
   if (external) return <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>;
   return <Link href={href} className={cls}>{inner}</Link>;
-}
-function RowDisabled({ label, soon }) {
-  return (
-    <div className="flex items-center justify-between gap-3 px-5 py-4 text-[15px] border-0 cursor-default">
-      <span className="text-slate-400 dark:text-slate-600">{label}</span>
-      <span className="rounded-full bg-slate-200 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-400">{soon}</span>
-    </div>
-  );
 }
 function NumInput({ value, onChange, onBlur }) {
   return (

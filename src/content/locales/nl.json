@@ -151,6 +151,13 @@
       "close": "Sluiten",
       "done": "Klaar",
       "search": "Zoeken"
+    },
+    "blocked": {
+      "empty": "Je hebt niemand geblokkeerd.",
+      "unblock": "Deblokkeren",
+      "unblocking": "Deblokkeren…",
+      "loadFailed": "Kon geblokkeerde gebruikers niet laden.",
+      "unblockFailed": "Kon deze gebruiker niet deblokkeren."
     }
   },
   "auth": {

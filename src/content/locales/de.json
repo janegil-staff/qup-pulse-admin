@@ -151,6 +151,13 @@
       "close": "Schließen",
       "done": "Fertig",
       "search": "Suchen"
+    },
+    "blocked": {
+      "empty": "Du hast niemanden blockiert.",
+      "unblock": "Blockierung aufheben",
+      "unblocking": "Wird aufgehoben…",
+      "loadFailed": "Blockierte Nutzer konnten nicht geladen werden.",
+      "unblockFailed": "Blockierung konnte nicht aufgehoben werden."
     }
   },
   "auth": {

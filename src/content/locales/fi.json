@@ -151,6 +151,13 @@
       "close": "Sulje",
       "done": "Valmis",
       "search": "Hae"
+    },
+    "blocked": {
+      "empty": "Et ole estänyt ketään.",
+      "unblock": "Poista esto",
+      "unblocking": "Poistetaan estoa…",
+      "loadFailed": "Estettyjä käyttäjiä ei voitu ladata.",
+      "unblockFailed": "Tämän käyttäjän estoa ei voitu poistaa."
     }
   },
   "auth": {

@@ -151,6 +151,13 @@
       "close": "Zamknij",
       "done": "Gotowe",
       "search": "Szukaj"
+    },
+    "blocked": {
+      "empty": "Nie zablokowałeś nikogo.",
+      "unblock": "Odblokuj",
+      "unblocking": "Odblokowywanie…",
+      "loadFailed": "Nie udało się załadować zablokowanych użytkowników.",
+      "unblockFailed": "Nie udało się odblokować tego użytkownika."
     }
   },
   "auth": {

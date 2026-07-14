@@ -69,3 +69,21 @@ export async function setLocation({ lat, lng, name, mode = 'manual' }) {
   });
   return parse(res);
 }
+
+// Additions for qup-pulse-admin/src/lib/profileSettingsApi.js
+// Append these to the existing file (they reuse headers() and parse()).
+
+// Blocked users — GET /blocks -> { blocked: [publicUser] }
+export async function getBlockedUsers() {
+  const res = await fetch(`${API_URL}/blocks`, { headers: headers(), cache: 'no-store' });
+  const data = await parse(res);
+  return data.blocked || [];
+}
+
+// Unblock — DELETE /users/:userId/block -> { blocked: false }
+export async function unblockUser(userId) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/block`, {
+    method: 'DELETE', headers: headers(),
+  });
+  return parse(res);
+}

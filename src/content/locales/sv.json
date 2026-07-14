@@ -151,6 +151,13 @@
       "close": "Stäng",
       "done": "Klar",
       "search": "Sök"
+    },
+    "blocked": {
+      "empty": "Du har inte blockerat någon.",
+      "unblock": "Avblockera",
+      "unblocking": "Avblockerar…",
+      "loadFailed": "Kunde inte ladda blockerade användare.",
+      "unblockFailed": "Kunde inte avblockera den här användaren."
     }
   },
   "auth": {

@@ -151,6 +151,13 @@
       "close": "Close",
       "done": "Done",
       "search": "Search"
+    },
+    "blocked": {
+      "empty": "You haven't blocked anyone.",
+      "unblock": "Unblock",
+      "unblocking": "Unblocking…",
+      "loadFailed": "Could not load blocked users.",
+      "unblockFailed": "Could not unblock this user."
     }
   },
   "auth": {

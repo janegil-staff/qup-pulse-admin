@@ -151,6 +151,13 @@
       "close": "Fechar",
       "done": "Concluído",
       "search": "Pesquisar"
+    },
+    "blocked": {
+      "empty": "Não bloqueaste ninguém.",
+      "unblock": "Desbloquear",
+      "unblocking": "A desbloquear…",
+      "loadFailed": "Não foi possível carregar os utilizadores bloqueados.",
+      "unblockFailed": "Não foi possível desbloquear este utilizador."
     }
   },
   "auth": {
