@@ -1,14 +1,32 @@
-// localpulse-admin/lib/api.js
-// Thin fetch wrapper for the LocalPulse admin API. Attaches the admin JWT from
-// localStorage, and normalizes errors so callers get a thrown Error with the
-// server's message. A 401/403 clears the token and signals the caller to bounce
-// to /login — the API's requireAdmin is the source of truth for authorization,
-// not any client-side role flag (user.toPublic() doesn't even include role).
+// qup-pulse-admin/src/lib/api.js
+'use client';
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || 'https://lionfish-app-ed6lo.ondigitalocean.app/api';
+// Thin client over the Qup Pulse admin API. Every admin route is gated by
+// requireAuth + requireAdmin on the backend, so we send the JWT as a Bearer
+// token on every request.
+//
+// URL strategy: with the Next.js rewrite proxy (next.config.mjs), the dashboard
+// calls its OWN origin under /api, and Next forwards to the real API
+// server-side. So we build same-origin paths from a single base — no CORS.
+// Set NEXT_PUBLIC_API_URL=/api (the default) to route through the proxy.
+// The client URL must never contain the DigitalOcean host, or requests go
+// cross-origin again and CORS returns.
 
-const TOKEN_KEY = 'lp_admin_token';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+
+const TOKEN_KEY = 'qup_pulse_admin_jwt';
+
+// Thrown on 401 (missing/expired token) and 403 (not an admin). Pages catch
+// this with `instanceof AuthError` and redirect to /login themselves, rather
+// than the client doing a hard window.location redirect. This keeps navigation
+// in the component/router layer where it belongs.
+export class AuthError extends Error {
+  constructor(message, status) {
+    super(message);
+    this.name = 'AuthError';
+    this.status = status;
+  }
+}
 
 export function getToken() {
   if (typeof window === 'undefined') return null;
@@ -17,79 +35,86 @@ export function getToken() {
 
 export function setToken(token) {
   if (typeof window === 'undefined') return;
-  if (token) window.localStorage.setItem(TOKEN_KEY, token);
-  else window.localStorage.removeItem(TOKEN_KEY);
+  if (token === null || token === undefined) {
+    window.localStorage.removeItem(TOKEN_KEY);
+    return;
+  }
+  window.localStorage.setItem(TOKEN_KEY, token);
 }
 
 export function clearToken() {
-  setToken(null);
+  if (typeof window === 'undefined') return;
+  window.localStorage.removeItem(TOKEN_KEY);
 }
 
-// Thrown for 401/403 so pages can redirect to /login specifically.
-export class AuthError extends Error {
-  constructor(message) {
-    super(message);
-    this.name = 'AuthError';
-  }
+function url(path) {
+  return `${API_URL}${path}`;
 }
 
-async function request(path, { method = 'GET', body, auth = true } = {}) {
-  const headers = { 'Content-Type': 'application/json' };
-  if (auth) {
-    const token = getToken();
-    if (token) headers.Authorization = `Bearer ${token}`;
-  }
+async function request(path, { method = 'GET', body } = {}) {
+  const token = getToken();
+  const res = await fetch(url(path), {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    ...(body ? { body: JSON.stringify(body) } : {}),
+    cache: 'no-store',
+  });
 
-  let res;
-  try {
-    res = await fetch(`${API_BASE}${path}`, {
-      method,
-      headers,
-      body: body ? JSON.stringify(body) : undefined,
-    });
-  } catch (err) {
-    throw new Error(`Can't reach the API. Check your connection. (${err.message})`);
+  if (res.status === 401) {
+    throw new AuthError('Session expired. Please sign in again.', 401);
+  }
+  if (res.status === 403) {
+    throw new AuthError('Admin access required — this account is not an admin.', 403);
   }
 
   const data = await res.json().catch(() => ({}));
-
-  if (res.status === 401 || res.status === 403) {
-    clearToken();
-    throw new AuthError(data.error || 'Not authorized');
-  }
   if (!res.ok) {
     throw new Error(data.error || `Request failed (${res.status})`);
   }
   return data;
 }
 
-export const adminApi = {
-  // Auth. The server's /auth/login reads { emailOrUsername, password } and
-  // accepts the PIN via the password field (checkPassword OR checkPin). We send
-  // the email as emailOrUsername and the PIN as password.
-  login: (email, pin) =>
-    request('/auth/login', {
-      method: 'POST',
-      body: { emailOrUsername: email, password: pin },
-      auth: false,
-    }),
+// --- Auth ---
+// The app's login endpoint expects { emailOrUsername, password } and returns
+// { token, user }. The PIN is sent as the `password` field. These field names
+// come straight from the API's login validator.
+export async function login(email, pin) {
+  const res = await fetch(url('/auth/login'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ emailOrUsername: email, password: pin }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Login failed');
+  return data; // { token, user }
+}
 
-  // Reports. status is one of 'open' | 'reviewed' | 'dismissed', or omitted for all.
-  listReports: (status) =>
+// --- Admin endpoints (match adminController routes) ---
+export const adminApi = {
+  // Exposed here so call sites can use adminApi.login(...) consistently with
+  // the other adminApi.* calls. The standalone `login` export also works.
+  login,
+
+  stats: () => request('/admin/stats'),
+
+  listUsers: () => request('/admin/users'),
+  // Named banUser to match the reports/users pages. setBanned alias kept below.
+  banUser: (id, banned) =>
+    request(`/admin/users/${id}/ban`, { method: 'PATCH', body: { banned } }),
+
+  listPosts: () => request('/admin/posts'),
+  deletePost: (id) => request(`/admin/posts/${id}`, { method: 'DELETE' }),
+
+  // Optional status filter ('open' | 'reviewed' | 'dismissed' | ''). Empty
+  // returns all. Sent as a query param the backend can ignore if unsupported.
+  listReports: (status = '') =>
     request(`/admin/reports${status ? `?status=${encodeURIComponent(status)}` : ''}`),
   resolveReport: (id, status) =>
     request(`/admin/reports/${id}`, { method: 'PATCH', body: { status } }),
-
-  // Users. q filters by username/email (server-side regex). Returns users with
-  // email, role, banned, createdAt — banned is what the Users page toggles on.
-  listUsers: (q) =>
-    request(`/admin/users${q ? `?q=${encodeURIComponent(q)}` : ''}`),
-
-  // Moderation actions reachable from a report or the users list.
-  banUser: (id, banned) =>
-    request(`/admin/users/${id}/ban`, { method: 'PATCH', body: { banned } }),
-  deletePost: (id) => request(`/admin/posts/${id}`, { method: 'DELETE' }),
-
-  // Dashboard counters (not yet surfaced in the UI, but available).
-  stats: () => request('/admin/stats'),
 };
+
+// Backwards-compatible alias: earlier pages imported setBanned.
+adminApi.setBanned = adminApi.banUser;

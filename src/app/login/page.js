@@ -47,7 +47,7 @@ export default function LoginPage() {
         <div className="mb-8">
           <div className="mb-1 flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-            <h1 className="text-lg font-semibold tracking-tight">LocalPulse</h1>
+            <h1 className="text-lg font-semibold tracking-tight">Qup Pulse</h1>
           </div>
           <p className="text-sm text-slate-400">Moderation dashboard</p>
         </div>

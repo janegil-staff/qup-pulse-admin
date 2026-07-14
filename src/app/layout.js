@@ -2,7 +2,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'LocalPulse Admin',
+  title: 'Qup Pulse Admin',
   description: 'Moderation dashboard for LocalPulse reports.',
 };
 
