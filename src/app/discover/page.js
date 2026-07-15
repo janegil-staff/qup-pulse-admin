@@ -5,11 +5,15 @@
 // LOGGED-IN ONLY: redirects to / if there's no token. Live data from /discovery.
 // Emerald/dark theme, follows the site's light/dark toggle.
 //
+// Each card links to /profile/[username]. A card without a username renders
+// unlinked rather than pointing at /profile/undefined.
+//
 // Privacy note: this shows real users' photos, ages, and approximate distances,
 // so it is deliberately behind auth. Do NOT make this route public.
 
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { getToken } from '../../lib/api';
 import AppNav from '../../components/AppNav';
 import {
@@ -126,8 +130,9 @@ export default function DiscoverPage() {
 function PersonCard({ person }) {
   const name = person.displayName || person.username || 'Someone';
   const src = avatarUrl(person);
-  return (
-    <div className="relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800">
+
+  const card = (
+    <div className="relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-slate-100 transition dark:border-slate-800 dark:bg-slate-800">
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt="" className="h-full w-full object-cover" />
@@ -157,5 +162,19 @@ function PersonCard({ person }) {
         ) : null}
       </div>
     </div>
+  );
+
+  // No username means no profile route to point at — render the card unlinked
+  // rather than sending the user to /profile/undefined.
+  if (!person.username) return card;
+
+  return (
+    <Link
+      href={`/profile/${encodeURIComponent(person.username)}`}
+      aria-label={name}
+      className="block no-underline transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 rounded-xl dark:focus-visible:ring-offset-[#0b1016]"
+    >
+      {card}
+    </Link>
   );
 }

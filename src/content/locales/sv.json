@@ -53,7 +53,9 @@
     "notAdmin": "Det här kontot är inte administratör.",
     "failed": "Kunde inte logga in.",
     "dashboard": "Modereringspanel",
-    "adminOnly": "Endast för administratörer. Logga in med ett administratörskonto."
+    "adminOnly": "Endast för administratörer. Logga in med ett administratörskonto.",
+    "newHere": "Ny här?",
+    "createAccount": "Skapa ett konto"
   },
   "consent": {
     "termsPre": "Jag godkänner",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Mörkt läge",
       "lightMode": "Ljust läge",
-      "menu": "Meny"
+      "menu": "Meny",
+      "switchToLight": "Byt till ljust läge",
+      "switchToDark": "Byt till mörkt läge"
     },
     "settings": {
       "title": "Personliga inställningar",
@@ -158,6 +162,158 @@
       "unblocking": "Avblockerar…",
       "loadFailed": "Kunde inte ladda blockerade användare.",
       "unblockFailed": "Kunde inte avblockera den här användaren."
+    },
+    "profile": {
+      "title": "Profil",
+      "edit": "Redigera profil",
+      "photos": "Bilder",
+      "addPhoto": "Lägg till bild",
+      "uploading": "Laddar upp…",
+      "removePhoto": "Ta bort bild",
+      "primary": "Primär",
+      "displayName": "Visningsnamn",
+      "bio": "Bio",
+      "noBio": "Ingen bio än.",
+      "posts": "Inlägg",
+      "noPosts": "Inga inlägg än.",
+      "followers": "Följare",
+      "following": "Följer",
+      "follow": "Följ",
+      "unfollow": "Sluta följa",
+      "online": "Online",
+      "notFound": "Profilen hittades inte.",
+      "loadFailed": "Kunde inte ladda profilen.",
+      "saveFailed": "Kunde inte spara din profil.",
+      "uploadFailed": "Bilduppladdning misslyckades.",
+      "followFailed": "Kunde inte uppdatera följning.",
+      "age": "Ålder",
+      "location": "Plats",
+      "moreActions": "Fler åtgärder",
+      "report": "Rapportera",
+      "block": "Blockera",
+      "reportIntro": "Berätta vad som är fel. Rapporter granskas av våra moderatorer.",
+      "reportNote": "Detaljer (valfritt)",
+      "reportNotePlaceholder": "Något mer vi bör veta?",
+      "sendReport": "Skicka rapport",
+      "reportSent": "Rapport skickad",
+      "reportSentBody": "Tack — våra moderatorer tittar på det.",
+      "blockBody": "De kan inte se dig eller kontakta dig, och du ser inte dem. Du kan ångra detta i Inställningar.",
+      "reasons": {
+        "spam": "Skräppost",
+        "harassment": "Trakasserier",
+        "inappropriate": "Olämpligt innehåll",
+        "misinformation": "Desinformation",
+        "other": "Något annat"
+      },
+      "err": {
+        "pickReason": "Välj en anledning först.",
+        "reportFailed": "Kunde inte skicka rapporten.",
+        "blockFailed": "Kunde inte blockera användaren."
+      }
+    },
+    "feed": {
+      "nearby": "I närheten",
+      "following": "Följer",
+      "post": "Publicera",
+      "loadMore": "Ladda mer",
+      "composePlaceholder": "Vad händer omkring dig?",
+      "postType": "Inläggstyp",
+      "placeName": "Plats (valfritt)",
+      "addImage": "Lägg till bild",
+      "uploading": "Laddar upp…",
+      "removeImage": "Ta bort bild",
+      "comments": "Kommentarer",
+      "hideComments": "Dölj kommentarer",
+      "noComments": "Inga kommentarer än.",
+      "addComment": "Skriv en kommentar…",
+      "send": "Skicka",
+      "deleteComment": "Ta bort kommentar",
+      "save": "Spara",
+      "saved": "Sparad",
+      "emptyNearby": "Inga inlägg i närheten än. Bli först.",
+      "emptyFollowing": "Inga inlägg från personer du följer än.",
+      "loadFailed": "Kunde inte ladda flödet.",
+      "postFailed": "Kunde inte skapa ditt inlägg.",
+      "uploadFailed": "Bilduppladdning misslyckades.",
+      "textRequired": "Skriv något först.",
+      "commentsFailed": "Kunde inte ladda kommentarer.",
+      "commentFailed": "Kunde inte lägga till din kommentar.",
+      "deleteFailed": "Kunde inte ta bort kommentaren.",
+      "types": {
+        "update": "Uppdatering",
+        "event": "Evenemang",
+        "recommendation": "Rekommendation",
+        "lostfound": "Borttappat & hittat",
+        "marketplace": "Marknad",
+        "question": "Fråga"
+      }
+    },
+    "reports": {
+      "title": "Rapporter",
+      "users": "Användare",
+      "loading": "Laddar rapporter…",
+      "emptyOpen": "Inga öppna rapporter — kön är tom.",
+      "emptyOther": "Inga rapporter i denna vy.",
+      "reportedUser": "Rapporterad användare",
+      "reportedPost": "Rapporterat inlägg",
+      "targetGone": "Målet finns inte längre",
+      "by": "av",
+      "unknown": "okänd",
+      "banned": "avstängd",
+      "note": "Anteckning:",
+      "markReviewed": "Markera granskad",
+      "dismiss": "Avfärda",
+      "banUser": "Stäng av användare",
+      "unbanUser": "Häv avstängning",
+      "deletePost": "Ta bort inlägg",
+      "confirmBan": "Stänga av denna användare? De loggas ut och blockeras från appen.",
+      "confirmDeletePost": "Ta bort detta inlägg? Detta kan inte ångras.",
+      "filters": {
+        "open": "Öppna",
+        "reviewed": "Granskade",
+        "dismissed": "Avfärdade",
+        "all": "Alla"
+      },
+      "statuses": {
+        "open": "Öppen",
+        "reviewed": "Granskad",
+        "dismissed": "Avfärdad"
+      },
+      "reasons": {
+        "spam": "Skräppost",
+        "harassment": "Trakasserier",
+        "inappropriate": "Olämpligt",
+        "misinformation": "Desinformation",
+        "other": "Annat"
+      },
+      "time": {
+        "seconds": "s sedan",
+        "minutes": "m sedan",
+        "hours": "h sedan",
+        "days": "d sedan"
+      },
+      "err": {
+        "load": "Kunde inte ladda rapporter.",
+        "update": "Kunde inte uppdatera rapporten.",
+        "updateUser": "Kunde inte uppdatera användaren.",
+        "deletePost": "Kunde inte ta bort inlägget."
+      }
+    },
+    "users": {
+      "title": "Användare",
+      "reports": "Rapporter",
+      "search": "Sök",
+      "searchPlaceholder": "Sök användarnamn eller e-post",
+      "loading": "Laddar användare…",
+      "empty": "Inga användare hittades.",
+      "banned": "avstängd",
+      "ban": "Stäng av",
+      "unban": "Häv avstängning",
+      "confirmBan": "Stänga av @{name}? De loggas ut och blockeras från appen.",
+      "err": {
+        "load": "Kunde inte ladda användare.",
+        "update": "Kunde inte uppdatera användaren."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Kunde inte spara din plats.",
       "uploadFailed": "Bilduppladdning misslyckades.",
       "finishProfile": "Kunde inte slutföra din profil."
+    }
+  },
+  "profile": {
+    "age": "Ålder",
+    "location": "Plats",
+    "moreActions": "Fler val",
+    "report": "Rapportera",
+    "block": "Blockera",
+    "reportIntro": "Berätta vad som är fel. Din rapport är anonym.",
+    "reportNote": "Detaljer (valfritt)",
+    "reportNotePlaceholder": "Lägg till detaljer …",
+    "sendReport": "Skicka rapport",
+    "reportSent": "Rapport skickad",
+    "reportSentBody": "Tack. Vi tittar på det så snart vi kan.",
+    "blockBody": "Ni kommer inte längre se varandra eller kunna skicka meddelanden. Du kan häva blockeringen i inställningarna.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Trakasserier",
+      "inappropriate": "Olämpligt innehåll",
+      "misinformation": "Felaktig information",
+      "other": "Annat"
+    },
+    "err": {
+      "pickReason": "Välj en anledning.",
+      "reportFailed": "Kunde inte skicka rapporten.",
+      "blockFailed": "Kunde inte blockera användaren."
     }
   }
 }

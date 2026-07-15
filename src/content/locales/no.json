@@ -53,7 +53,9 @@
     "notAdmin": "Denne kontoen er ikke administrator.",
     "failed": "Kunne ikke logge inn.",
     "dashboard": "Modereringspanel",
-    "adminOnly": "Kun for administratorer. Logg inn med en administratorkonto."
+    "adminOnly": "Kun for administratorer. Logg inn med en administratorkonto.",
+    "newHere": "Ny her?",
+    "createAccount": "Opprett en konto"
   },
   "consent": {
     "termsPre": "Jeg godtar",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Mørk modus",
       "lightMode": "Lys modus",
-      "menu": "Meny"
+      "menu": "Meny",
+      "switchToLight": "Bytt til lys modus",
+      "switchToDark": "Bytt til mørk modus"
     },
     "settings": {
       "title": "Personlige innstillinger",
@@ -158,6 +162,158 @@
       "unblocking": "Opphever…",
       "loadFailed": "Kunne ikke laste blokkerte brukere.",
       "unblockFailed": "Kunne ikke oppheve blokkeringen av denne brukeren."
+    },
+    "profile": {
+      "title": "Profil",
+      "edit": "Rediger profil",
+      "photos": "Bilder",
+      "addPhoto": "Legg til bilde",
+      "uploading": "Laster opp…",
+      "removePhoto": "Fjern bilde",
+      "primary": "Hoved",
+      "displayName": "Visningsnavn",
+      "bio": "Bio",
+      "noBio": "Ingen bio ennå.",
+      "posts": "Innlegg",
+      "noPosts": "Ingen innlegg ennå.",
+      "followers": "Følgere",
+      "following": "Følger",
+      "follow": "Følg",
+      "unfollow": "Slutt å følge",
+      "online": "Pålogget",
+      "notFound": "Fant ikke profilen.",
+      "loadFailed": "Kunne ikke laste profilen.",
+      "saveFailed": "Kunne ikke lagre profilen din.",
+      "uploadFailed": "Bildeopplasting mislyktes.",
+      "followFailed": "Kunne ikke oppdatere følging.",
+      "age": "Alder",
+      "location": "Sted",
+      "moreActions": "Flere valg",
+      "report": "Rapporter",
+      "block": "Blokker",
+      "reportIntro": "Fortell oss hva som er galt. Rapporter gjennomgås av moderatorene våre.",
+      "reportNote": "Detaljer (valgfritt)",
+      "reportNotePlaceholder": "Noe mer vi bør vite?",
+      "sendReport": "Send rapport",
+      "reportSent": "Rapport sendt",
+      "reportSentBody": "Takk — moderatorene våre ser på det.",
+      "blockBody": "De vil ikke kunne se deg eller kontakte deg, og du ser ikke dem. Du kan angre dette i Innstillinger.",
+      "reasons": {
+        "spam": "Søppelpost",
+        "harassment": "Trakassering",
+        "inappropriate": "Upassende innhold",
+        "misinformation": "Feilinformasjon",
+        "other": "Noe annet"
+      },
+      "err": {
+        "pickReason": "Velg en grunn først.",
+        "reportFailed": "Kunne ikke sende rapporten.",
+        "blockFailed": "Kunne ikke blokkere denne brukeren."
+      }
+    },
+    "feed": {
+      "nearby": "I nærheten",
+      "following": "Følger",
+      "post": "Publiser",
+      "loadMore": "Last mer",
+      "composePlaceholder": "Hva skjer rundt deg?",
+      "postType": "Innleggstype",
+      "placeName": "Sted (valgfritt)",
+      "addImage": "Legg til bilde",
+      "uploading": "Laster opp…",
+      "removeImage": "Fjern bilde",
+      "comments": "Kommentarer",
+      "hideComments": "Skjul kommentarer",
+      "noComments": "Ingen kommentarer ennå.",
+      "addComment": "Skriv en kommentar…",
+      "send": "Send",
+      "deleteComment": "Slett kommentar",
+      "save": "Lagre",
+      "saved": "Lagret",
+      "emptyNearby": "Ingen innlegg i nærheten ennå. Bli den første.",
+      "emptyFollowing": "Ingen innlegg fra folk du følger ennå.",
+      "loadFailed": "Kunne ikke laste feeden.",
+      "postFailed": "Kunne ikke opprette innlegget.",
+      "uploadFailed": "Bildeopplasting mislyktes.",
+      "textRequired": "Skriv noe først.",
+      "commentsFailed": "Kunne ikke laste kommentarer.",
+      "commentFailed": "Kunne ikke legge til kommentaren.",
+      "deleteFailed": "Kunne ikke slette kommentaren.",
+      "types": {
+        "update": "Oppdatering",
+        "event": "Arrangement",
+        "recommendation": "Anbefaling",
+        "lostfound": "Mistet og funnet",
+        "marketplace": "Torget",
+        "question": "Spørsmål"
+      }
+    },
+    "reports": {
+      "title": "Rapporter",
+      "users": "Brukere",
+      "loading": "Laster rapporter…",
+      "emptyOpen": "Ingen åpne rapporter — køen er tom.",
+      "emptyOther": "Ingen rapporter i denne visningen.",
+      "reportedUser": "Rapportert bruker",
+      "reportedPost": "Rapportert innlegg",
+      "targetGone": "Målet finnes ikke lenger",
+      "by": "av",
+      "unknown": "ukjent",
+      "banned": "utestengt",
+      "note": "Notat:",
+      "markReviewed": "Merk gjennomgått",
+      "dismiss": "Avvis",
+      "banUser": "Utesteng bruker",
+      "unbanUser": "Opphev utestengelse",
+      "deletePost": "Slett innlegg",
+      "confirmBan": "Utesteng denne brukeren? De blir logget ut og blokkert fra appen.",
+      "confirmDeletePost": "Slette dette innlegget? Dette kan ikke angres.",
+      "filters": {
+        "open": "Åpne",
+        "reviewed": "Gjennomgått",
+        "dismissed": "Avvist",
+        "all": "Alle"
+      },
+      "statuses": {
+        "open": "Åpen",
+        "reviewed": "Gjennomgått",
+        "dismissed": "Avvist"
+      },
+      "reasons": {
+        "spam": "Søppelpost",
+        "harassment": "Trakassering",
+        "inappropriate": "Upassende",
+        "misinformation": "Feilinformasjon",
+        "other": "Annet"
+      },
+      "time": {
+        "seconds": "s siden",
+        "minutes": "m siden",
+        "hours": "t siden",
+        "days": "d siden"
+      },
+      "err": {
+        "load": "Kunne ikke laste rapporter.",
+        "update": "Kunne ikke oppdatere rapporten.",
+        "updateUser": "Kunne ikke oppdatere brukeren.",
+        "deletePost": "Kunne ikke slette innlegget."
+      }
+    },
+    "users": {
+      "title": "Brukere",
+      "reports": "Rapporter",
+      "search": "Søk",
+      "searchPlaceholder": "Søk brukernavn eller e-post",
+      "loading": "Laster brukere…",
+      "empty": "Fant ingen brukere.",
+      "banned": "utestengt",
+      "ban": "Utesteng",
+      "unban": "Opphev",
+      "confirmBan": "Utesteng @{name}? De blir logget ut og blokkert fra appen.",
+      "err": {
+        "load": "Kunne ikke laste brukere.",
+        "update": "Kunne ikke oppdatere brukeren."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Kunne ikke lagre plasseringen din.",
       "uploadFailed": "Bildeopplasting mislyktes.",
       "finishProfile": "Kunne ikke fullføre profiloppsettet."
+    }
+  },
+  "profile": {
+    "age": "Alder",
+    "location": "Sted",
+    "moreActions": "Flere valg",
+    "report": "Rapporter",
+    "block": "Blokker",
+    "reportIntro": "Fortell oss hva som er galt. Rapporten er anonym.",
+    "reportNote": "Utdyp (valgfritt)",
+    "reportNotePlaceholder": "Legg til detaljer …",
+    "sendReport": "Send rapport",
+    "reportSent": "Rapport sendt",
+    "reportSentBody": "Takk. Vi ser på rapporten så snart vi kan.",
+    "blockBody": "Dere vil ikke lenger se hverandre eller kunne sende meldinger. Du kan oppheve blokkeringen i innstillingene.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Trakassering",
+      "inappropriate": "Upassende innhold",
+      "misinformation": "Feilinformasjon",
+      "other": "Annet"
+    },
+    "err": {
+      "pickReason": "Velg en grunn.",
+      "reportFailed": "Kunne ikke sende rapporten.",
+      "blockFailed": "Kunne ikke blokkere brukeren."
     }
   }
 }

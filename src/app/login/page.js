@@ -26,7 +26,7 @@ export default function LoginPage() {
       const { token } = await adminApi.login(email.trim().toLowerCase(), pin);
       setToken(token);
       await adminApi.listReports('open');
-      router.replace('/reports');
+      router.replace('/discover');
     } catch (err) {
       setToken(null);
       setError(

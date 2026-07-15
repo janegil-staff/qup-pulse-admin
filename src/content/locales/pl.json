@@ -53,7 +53,9 @@
     "notAdmin": "To konto nie jest administratorem.",
     "failed": "Nie udało się zalogować.",
     "dashboard": "Panel moderacji",
-    "adminOnly": "Dostęp tylko dla administratorów. Zaloguj się kontem administratora."
+    "adminOnly": "Dostęp tylko dla administratorów. Zaloguj się kontem administratora.",
+    "newHere": "Nowy tutaj?",
+    "createAccount": "Utwórz konto"
   },
   "consent": {
     "termsPre": "Akceptuję",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Tryb ciemny",
       "lightMode": "Tryb jasny",
-      "menu": "Menu"
+      "menu": "Menu",
+      "switchToLight": "Przełącz na tryb jasny",
+      "switchToDark": "Przełącz na tryb ciemny"
     },
     "settings": {
       "title": "Ustawienia osobiste",
@@ -158,6 +162,158 @@
       "unblocking": "Odblokowywanie…",
       "loadFailed": "Nie udało się załadować zablokowanych użytkowników.",
       "unblockFailed": "Nie udało się odblokować tego użytkownika."
+    },
+    "profile": {
+      "title": "Profil",
+      "edit": "Edytuj profil",
+      "photos": "Zdjęcia",
+      "addPhoto": "Dodaj zdjęcie",
+      "uploading": "Przesyłanie…",
+      "removePhoto": "Usuń zdjęcie",
+      "primary": "Główne",
+      "displayName": "Nazwa wyświetlana",
+      "bio": "Opis",
+      "noBio": "Brak opisu.",
+      "posts": "Posty",
+      "noPosts": "Brak postów.",
+      "followers": "Obserwujący",
+      "following": "Obserwowani",
+      "follow": "Obserwuj",
+      "unfollow": "Przestań obserwować",
+      "online": "Online",
+      "notFound": "Nie znaleziono profilu.",
+      "loadFailed": "Nie udało się załadować profilu.",
+      "saveFailed": "Nie udało się zapisać profilu.",
+      "uploadFailed": "Przesyłanie zdjęcia nie powiodło się.",
+      "followFailed": "Nie udało się zaktualizować obserwowania.",
+      "age": "Wiek",
+      "location": "Lokalizacja",
+      "moreActions": "Więcej akcji",
+      "report": "Zgłoś",
+      "block": "Zablokuj",
+      "reportIntro": "Powiedz nam, co jest nie tak. Zgłoszenia sprawdzają nasi moderatorzy.",
+      "reportNote": "Szczegóły (opcjonalnie)",
+      "reportNotePlaceholder": "Coś jeszcze, co powinniśmy wiedzieć?",
+      "sendReport": "Wyślij zgłoszenie",
+      "reportSent": "Zgłoszenie wysłane",
+      "reportSentBody": "Dziękujemy — nasi moderatorzy to sprawdzą.",
+      "blockBody": "Ta osoba nie zobaczy Cię ani się z Tobą nie skontaktuje, a Ty jej nie zobaczysz. Możesz to cofnąć w Ustawieniach.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Nękanie",
+        "inappropriate": "Nieodpowiednie treści",
+        "misinformation": "Dezinformacja",
+        "other": "Coś innego"
+      },
+      "err": {
+        "pickReason": "Najpierw wybierz powód.",
+        "reportFailed": "Nie udało się wysłać zgłoszenia.",
+        "blockFailed": "Nie udało się zablokować tego użytkownika."
+      }
+    },
+    "feed": {
+      "nearby": "W pobliżu",
+      "following": "Obserwowani",
+      "post": "Opublikuj",
+      "loadMore": "Wczytaj więcej",
+      "composePlaceholder": "Co się dzieje wokół Ciebie?",
+      "postType": "Typ posta",
+      "placeName": "Miejsce (opcjonalnie)",
+      "addImage": "Dodaj zdjęcie",
+      "uploading": "Przesyłanie…",
+      "removeImage": "Usuń zdjęcie",
+      "comments": "Komentarze",
+      "hideComments": "Ukryj komentarze",
+      "noComments": "Brak komentarzy.",
+      "addComment": "Dodaj komentarz…",
+      "send": "Wyślij",
+      "deleteComment": "Usuń komentarz",
+      "save": "Zapisz",
+      "saved": "Zapisano",
+      "emptyNearby": "Brak postów w pobliżu. Bądź pierwszy.",
+      "emptyFollowing": "Brak postów od osób, które obserwujesz.",
+      "loadFailed": "Nie udało się wczytać aktualności.",
+      "postFailed": "Nie udało się utworzyć posta.",
+      "uploadFailed": "Przesyłanie zdjęcia nie powiodło się.",
+      "textRequired": "Najpierw coś napisz.",
+      "commentsFailed": "Nie udało się wczytać komentarzy.",
+      "commentFailed": "Nie udało się dodać komentarza.",
+      "deleteFailed": "Nie udało się usunąć komentarza.",
+      "types": {
+        "update": "Aktualizacja",
+        "event": "Wydarzenie",
+        "recommendation": "Polecenie",
+        "lostfound": "Zguby i znaleziska",
+        "marketplace": "Ogłoszenia",
+        "question": "Pytanie"
+      }
+    },
+    "reports": {
+      "title": "Zgłoszenia",
+      "users": "Użytkownicy",
+      "loading": "Wczytywanie zgłoszeń…",
+      "emptyOpen": "Brak otwartych zgłoszeń — kolejka jest pusta.",
+      "emptyOther": "Brak zgłoszeń w tym widoku.",
+      "reportedUser": "Zgłoszony użytkownik",
+      "reportedPost": "Zgłoszony post",
+      "targetGone": "Cel już nie istnieje",
+      "by": "przez",
+      "unknown": "nieznany",
+      "banned": "zbanowany",
+      "note": "Notatka:",
+      "markReviewed": "Oznacz jako sprawdzone",
+      "dismiss": "Odrzuć",
+      "banUser": "Zbanuj użytkownika",
+      "unbanUser": "Cofnij bana",
+      "deletePost": "Usuń post",
+      "confirmBan": "Zbanować tego użytkownika? Zostanie wylogowany i zablokowany.",
+      "confirmDeletePost": "Usunąć ten post? Tej operacji nie można cofnąć.",
+      "filters": {
+        "open": "Otwarte",
+        "reviewed": "Sprawdzone",
+        "dismissed": "Odrzucone",
+        "all": "Wszystkie"
+      },
+      "statuses": {
+        "open": "Otwarte",
+        "reviewed": "Sprawdzone",
+        "dismissed": "Odrzucone"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Nękanie",
+        "inappropriate": "Nieodpowiednie",
+        "misinformation": "Dezinformacja",
+        "other": "Inne"
+      },
+      "time": {
+        "seconds": "s temu",
+        "minutes": "m temu",
+        "hours": "g temu",
+        "days": "d temu"
+      },
+      "err": {
+        "load": "Nie udało się wczytać zgłoszeń.",
+        "update": "Nie udało się zaktualizować zgłoszenia.",
+        "updateUser": "Nie udało się zaktualizować użytkownika.",
+        "deletePost": "Nie udało się usunąć posta."
+      }
+    },
+    "users": {
+      "title": "Użytkownicy",
+      "reports": "Zgłoszenia",
+      "search": "Szukaj",
+      "searchPlaceholder": "Szukaj nazwy użytkownika lub e-maila",
+      "loading": "Wczytywanie użytkowników…",
+      "empty": "Nie znaleziono użytkowników.",
+      "banned": "zbanowany",
+      "ban": "Zbanuj",
+      "unban": "Cofnij bana",
+      "confirmBan": "Zbanować @{name}? Zostanie wylogowany i zablokowany.",
+      "err": {
+        "load": "Nie udało się wczytać użytkowników.",
+        "update": "Nie udało się zaktualizować użytkownika."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Nie udało się zapisać lokalizacji.",
       "uploadFailed": "Przesyłanie zdjęcia nie powiodło się.",
       "finishProfile": "Nie udało się dokończyć profilu."
+    }
+  },
+  "profile": {
+    "age": "Wiek",
+    "location": "Lokalizacja",
+    "moreActions": "Więcej opcji",
+    "report": "Zgłoś",
+    "block": "Zablokuj",
+    "reportIntro": "Powiedz nam, co jest nie tak. Twoje zgłoszenie jest anonimowe.",
+    "reportNote": "Szczegóły (opcjonalnie)",
+    "reportNotePlaceholder": "Dodaj szczegóły …",
+    "sendReport": "Wyślij zgłoszenie",
+    "reportSent": "Zgłoszenie wysłane",
+    "reportSentBody": "Dziękujemy. Sprawdzimy to najszybciej, jak to możliwe.",
+    "blockBody": "Nie będziecie się już widzieć ani móc pisać. Możesz odblokować w ustawieniach.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Nękanie",
+      "inappropriate": "Nieodpowiednie treści",
+      "misinformation": "Dezinformacja",
+      "other": "Inne"
+    },
+    "err": {
+      "pickReason": "Wybierz powód.",
+      "reportFailed": "Nie udało się wysłać zgłoszenia.",
+      "blockFailed": "Nie udało się zablokować użytkownika."
     }
   }
 }

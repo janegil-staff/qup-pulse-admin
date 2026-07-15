@@ -53,7 +53,9 @@
     "notAdmin": "Denne konto er ikke administrator.",
     "failed": "Kunne ikke logge ind.",
     "dashboard": "Modereringspanel",
-    "adminOnly": "Kun for administratorer. Log ind med en administratorkonto."
+    "adminOnly": "Kun for administratorer. Log ind med en administratorkonto.",
+    "newHere": "Ny her?",
+    "createAccount": "Opret en konto"
   },
   "consent": {
     "termsPre": "Jeg accepterer",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Mørk tilstand",
       "lightMode": "Lys tilstand",
-      "menu": "Menu"
+      "menu": "Menu",
+      "switchToLight": "Skift til lys tilstand",
+      "switchToDark": "Skift til mørk tilstand"
     },
     "settings": {
       "title": "Personlige indstillinger",
@@ -158,6 +162,158 @@
       "unblocking": "Ophæver…",
       "loadFailed": "Kunne ikke indlæse blokerede brugere.",
       "unblockFailed": "Kunne ikke ophæve blokeringen af denne bruger."
+    },
+    "profile": {
+      "title": "Profil",
+      "edit": "Rediger profil",
+      "photos": "Billeder",
+      "addPhoto": "Tilføj billede",
+      "uploading": "Uploader…",
+      "removePhoto": "Fjern billede",
+      "primary": "Primær",
+      "displayName": "Visningsnavn",
+      "bio": "Bio",
+      "noBio": "Ingen bio endnu.",
+      "posts": "Opslag",
+      "noPosts": "Ingen opslag endnu.",
+      "followers": "Følgere",
+      "following": "Følger",
+      "follow": "Følg",
+      "unfollow": "Stop med at følge",
+      "online": "Online",
+      "notFound": "Profilen blev ikke fundet.",
+      "loadFailed": "Kunne ikke indlæse profilen.",
+      "saveFailed": "Kunne ikke gemme din profil.",
+      "uploadFailed": "Billedupload mislykkedes.",
+      "followFailed": "Kunne ikke opdatere følgning.",
+      "age": "Alder",
+      "location": "Sted",
+      "moreActions": "Flere handlinger",
+      "report": "Anmeld",
+      "block": "Blokér",
+      "reportIntro": "Fortæl os, hvad der er galt. Anmeldelser gennemgås af vores moderatorer.",
+      "reportNote": "Detaljer (valgfrit)",
+      "reportNotePlaceholder": "Noget andet, vi bør vide?",
+      "sendReport": "Send anmeldelse",
+      "reportSent": "Anmeldelse sendt",
+      "reportSentBody": "Tak — vores moderatorer kigger på det.",
+      "blockBody": "De kan ikke se dig eller kontakte dig, og du ser ikke dem. Du kan fortryde dette i Indstillinger.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Chikane",
+        "inappropriate": "Upassende indhold",
+        "misinformation": "Misinformation",
+        "other": "Noget andet"
+      },
+      "err": {
+        "pickReason": "Vælg en årsag først.",
+        "reportFailed": "Kunne ikke sende anmeldelsen.",
+        "blockFailed": "Kunne ikke blokere denne bruger."
+      }
+    },
+    "feed": {
+      "nearby": "I nærheden",
+      "following": "Følger",
+      "post": "Opslå",
+      "loadMore": "Indlæs mere",
+      "composePlaceholder": "Hvad sker der omkring dig?",
+      "postType": "Opslagstype",
+      "placeName": "Sted (valgfrit)",
+      "addImage": "Tilføj billede",
+      "uploading": "Uploader…",
+      "removeImage": "Fjern billede",
+      "comments": "Kommentarer",
+      "hideComments": "Skjul kommentarer",
+      "noComments": "Ingen kommentarer endnu.",
+      "addComment": "Skriv en kommentar…",
+      "send": "Send",
+      "deleteComment": "Slet kommentar",
+      "save": "Gem",
+      "saved": "Gemt",
+      "emptyNearby": "Ingen opslag i nærheden endnu. Vær den første.",
+      "emptyFollowing": "Ingen opslag fra folk, du følger, endnu.",
+      "loadFailed": "Kunne ikke indlæse feedet.",
+      "postFailed": "Kunne ikke oprette dit opslag.",
+      "uploadFailed": "Billedupload mislykkedes.",
+      "textRequired": "Skriv noget først.",
+      "commentsFailed": "Kunne ikke indlæse kommentarer.",
+      "commentFailed": "Kunne ikke tilføje din kommentar.",
+      "deleteFailed": "Kunne ikke slette kommentaren.",
+      "types": {
+        "update": "Opdatering",
+        "event": "Begivenhed",
+        "recommendation": "Anbefaling",
+        "lostfound": "Mistet & fundet",
+        "marketplace": "Markedsplads",
+        "question": "Spørgsmål"
+      }
+    },
+    "reports": {
+      "title": "Anmeldelser",
+      "users": "Brugere",
+      "loading": "Indlæser anmeldelser…",
+      "emptyOpen": "Ingen åbne anmeldelser — køen er tom.",
+      "emptyOther": "Ingen anmeldelser i denne visning.",
+      "reportedUser": "Anmeldt bruger",
+      "reportedPost": "Anmeldt opslag",
+      "targetGone": "Målet findes ikke længere",
+      "by": "af",
+      "unknown": "ukendt",
+      "banned": "udelukket",
+      "note": "Note:",
+      "markReviewed": "Markér som gennemgået",
+      "dismiss": "Afvis",
+      "banUser": "Udeluk bruger",
+      "unbanUser": "Ophæv udelukkelse",
+      "deletePost": "Slet opslag",
+      "confirmBan": "Udeluk denne bruger? De bliver logget ud og blokeret fra appen.",
+      "confirmDeletePost": "Slet dette opslag? Dette kan ikke fortrydes.",
+      "filters": {
+        "open": "Åbne",
+        "reviewed": "Gennemgået",
+        "dismissed": "Afvist",
+        "all": "Alle"
+      },
+      "statuses": {
+        "open": "Åben",
+        "reviewed": "Gennemgået",
+        "dismissed": "Afvist"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Chikane",
+        "inappropriate": "Upassende",
+        "misinformation": "Misinformation",
+        "other": "Andet"
+      },
+      "time": {
+        "seconds": "s siden",
+        "minutes": "m siden",
+        "hours": "t siden",
+        "days": "d siden"
+      },
+      "err": {
+        "load": "Kunne ikke indlæse anmeldelser.",
+        "update": "Kunne ikke opdatere anmeldelsen.",
+        "updateUser": "Kunne ikke opdatere brugeren.",
+        "deletePost": "Kunne ikke slette opslaget."
+      }
+    },
+    "users": {
+      "title": "Brugere",
+      "reports": "Anmeldelser",
+      "search": "Søg",
+      "searchPlaceholder": "Søg brugernavn eller e-mail",
+      "loading": "Indlæser brugere…",
+      "empty": "Ingen brugere fundet.",
+      "banned": "udelukket",
+      "ban": "Udeluk",
+      "unban": "Ophæv",
+      "confirmBan": "Udeluk @{name}? De bliver logget ud og blokeret fra appen.",
+      "err": {
+        "load": "Kunne ikke indlæse brugere.",
+        "update": "Kunne ikke opdatere brugeren."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Kunne ikke gemme din placering.",
       "uploadFailed": "Billedupload mislykkedes.",
       "finishProfile": "Kunne ikke færdiggøre din profil."
+    }
+  },
+  "profile": {
+    "age": "Alder",
+    "location": "Sted",
+    "moreActions": "Flere handlinger",
+    "report": "Rapportér",
+    "block": "Blokér",
+    "reportIntro": "Fortæl os, hvad der er galt. Din anmeldelse er anonym.",
+    "reportNote": "Detaljer (valgfrit)",
+    "reportNotePlaceholder": "Tilføj detaljer …",
+    "sendReport": "Send anmeldelse",
+    "reportSent": "Anmeldelse sendt",
+    "reportSentBody": "Tak. Vi kigger på det hurtigst muligt.",
+    "blockBody": "I vil ikke længere se hinanden eller kunne sende beskeder. Du kan ophæve blokeringen i indstillingerne.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Chikane",
+      "inappropriate": "Upassende indhold",
+      "misinformation": "Misinformation",
+      "other": "Andet"
+    },
+    "err": {
+      "pickReason": "Vælg en årsag.",
+      "reportFailed": "Kunne ikke sende anmeldelsen.",
+      "blockFailed": "Kunne ikke blokere brugeren."
     }
   }
 }

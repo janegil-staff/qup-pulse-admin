@@ -18,7 +18,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLang } from '../context/LandingLang';
 import { LANGUAGES, SUPPORTED_LANGS } from '../content/landingContent';
-import { adminApi, setToken, setRole } from '../lib/api';
+import { adminApi, setToken, setRole, login } from '../lib/api';
 
 export default function LandingPage() {
   const { t, lang, setLang } = useLang();
@@ -45,12 +45,10 @@ export default function LandingPage() {
     }
     setLoading(true);
     try {
-      // Everyone logs in the same way — no admin gate. Regular users log in
-      // fine; the admin link is shown later only if role === 'admin'.
-      const { token, user } = await adminApi.login(email.trim().toLowerCase(), pin);
+      const { token, user } = await login(email.trim().toLowerCase(), pin);
       setToken(token);
-      setRole(user?.role || 'user');
-      router.replace('/home');
+      setRole(user?.role);
+      router.replace('/discover');
     } catch (err) {
       setToken(null);
       setRole(null);
@@ -59,6 +57,7 @@ export default function LandingPage() {
       setLoading(false);
     }
   }
+
 
   return (
     <div className={dark ? 'dark' : ''}>
@@ -94,7 +93,7 @@ export default function LandingPage() {
               <select
                 value={lang}
                 onChange={(e) => setLang(e.target.value)}
-                aria-label="Language"
+                aria-label={t.nav.language}
                 className="rounded-lg border border-slate-300 bg-transparent px-2.5 py-2 text-[13px] text-slate-900 dark:border-slate-700 dark:text-slate-100"
               >
                 {SUPPORTED_LANGS.map((code) => (
@@ -110,12 +109,7 @@ export default function LandingPage() {
               >
                 {dark ? '🌙' : '☀️'}
               </button>
-              <button
-                onClick={() => document.getElementById('emailInput')?.focus()}
-                className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 transition hover:brightness-105"
-              >
-                {t.nav.login}
-              </button>
+     
             </div>
           </div>
         </nav>
@@ -189,9 +183,9 @@ export default function LandingPage() {
                 {loading ? t.login.signingIn : t.login.signIn}
               </button>
               <p className="mt-4 text-center text-[13px] text-slate-500 dark:text-slate-400">
-                New here?{' '}
+                {t.login.newHere}{' '}
                 <a href="/register" className="font-semibold text-emerald-600 no-underline hover:underline dark:text-emerald-400">
-                  Create an account
+                  {t.login.createAccount}
                 </a>
               </p>
             </form>

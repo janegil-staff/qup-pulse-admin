@@ -53,7 +53,9 @@
     "notAdmin": "Tämä tili ei ole ylläpitäjä.",
     "failed": "Kirjautuminen epäonnistui.",
     "dashboard": "Moderointipaneeli",
-    "adminOnly": "Vain ylläpitäjille. Kirjaudu sisään ylläpitäjätilillä."
+    "adminOnly": "Vain ylläpitäjille. Kirjaudu sisään ylläpitäjätilillä.",
+    "newHere": "Uusi täällä?",
+    "createAccount": "Luo tili"
   },
   "consent": {
     "termsPre": "Hyväksyn",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Tumma tila",
       "lightMode": "Vaalea tila",
-      "menu": "Valikko"
+      "menu": "Valikko",
+      "switchToLight": "Vaihda vaaleaan tilaan",
+      "switchToDark": "Vaihda tummaan tilaan"
     },
     "settings": {
       "title": "Henkilökohtaiset asetukset",
@@ -158,6 +162,158 @@
       "unblocking": "Poistetaan estoa…",
       "loadFailed": "Estettyjä käyttäjiä ei voitu ladata.",
       "unblockFailed": "Tämän käyttäjän estoa ei voitu poistaa."
+    },
+    "profile": {
+      "title": "Profiili",
+      "edit": "Muokkaa profiilia",
+      "photos": "Kuvat",
+      "addPhoto": "Lisää kuva",
+      "uploading": "Ladataan…",
+      "removePhoto": "Poista kuva",
+      "primary": "Ensisijainen",
+      "displayName": "Näyttönimi",
+      "bio": "Kuvaus",
+      "noBio": "Ei vielä kuvausta.",
+      "posts": "Julkaisut",
+      "noPosts": "Ei vielä julkaisuja.",
+      "followers": "Seuraajat",
+      "following": "Seuraa",
+      "follow": "Seuraa",
+      "unfollow": "Lopeta seuraaminen",
+      "online": "Paikalla",
+      "notFound": "Profiilia ei löytynyt.",
+      "loadFailed": "Profiilia ei voitu ladata.",
+      "saveFailed": "Profiiliasi ei voitu tallentaa.",
+      "uploadFailed": "Kuvan lataus epäonnistui.",
+      "followFailed": "Seuraamista ei voitu päivittää.",
+      "age": "Ikä",
+      "location": "Sijainti",
+      "moreActions": "Lisää toimintoja",
+      "report": "Ilmoita",
+      "block": "Estä",
+      "reportIntro": "Kerro mikä on vialla. Moderaattorimme käsittelevät ilmoitukset.",
+      "reportNote": "Lisätiedot (valinnainen)",
+      "reportNotePlaceholder": "Muuta mitä meidän pitäisi tietää?",
+      "sendReport": "Lähetä ilmoitus",
+      "reportSent": "Ilmoitus lähetetty",
+      "reportSentBody": "Kiitos — moderaattorimme tarkistavat sen.",
+      "blockBody": "Hän ei voi nähdä sinua tai ottaa yhteyttä, etkä sinä näe häntä. Voit perua tämän Asetuksissa.",
+      "reasons": {
+        "spam": "Roskaposti",
+        "harassment": "Häirintä",
+        "inappropriate": "Sopimaton sisältö",
+        "misinformation": "Virheellinen tieto",
+        "other": "Jokin muu"
+      },
+      "err": {
+        "pickReason": "Valitse ensin syy.",
+        "reportFailed": "Ilmoitusta ei voitu lähettää.",
+        "blockFailed": "Käyttäjää ei voitu estää."
+      }
+    },
+    "feed": {
+      "nearby": "Lähellä",
+      "following": "Seuraa",
+      "post": "Julkaise",
+      "loadMore": "Lataa lisää",
+      "composePlaceholder": "Mitä ympärilläsi tapahtuu?",
+      "postType": "Julkaisun tyyppi",
+      "placeName": "Paikka (valinnainen)",
+      "addImage": "Lisää kuva",
+      "uploading": "Ladataan…",
+      "removeImage": "Poista kuva",
+      "comments": "Kommentit",
+      "hideComments": "Piilota kommentit",
+      "noComments": "Ei vielä kommentteja.",
+      "addComment": "Kirjoita kommentti…",
+      "send": "Lähetä",
+      "deleteComment": "Poista kommentti",
+      "save": "Tallenna",
+      "saved": "Tallennettu",
+      "emptyNearby": "Ei vielä julkaisuja lähellä. Ole ensimmäinen.",
+      "emptyFollowing": "Ei vielä julkaisuja seuraamiltasi.",
+      "loadFailed": "Syötettä ei voitu ladata.",
+      "postFailed": "Julkaisua ei voitu luoda.",
+      "uploadFailed": "Kuvan lataus epäonnistui.",
+      "textRequired": "Kirjoita ensin jotain.",
+      "commentsFailed": "Kommentteja ei voitu ladata.",
+      "commentFailed": "Kommenttia ei voitu lisätä.",
+      "deleteFailed": "Kommenttia ei voitu poistaa.",
+      "types": {
+        "update": "Päivitys",
+        "event": "Tapahtuma",
+        "recommendation": "Suositus",
+        "lostfound": "Löytötavarat",
+        "marketplace": "Kauppapaikka",
+        "question": "Kysymys"
+      }
+    },
+    "reports": {
+      "title": "Ilmoitukset",
+      "users": "Käyttäjät",
+      "loading": "Ladataan ilmoituksia…",
+      "emptyOpen": "Ei avoimia ilmoituksia — jono on tyhjä.",
+      "emptyOther": "Ei ilmoituksia tässä näkymässä.",
+      "reportedUser": "Ilmoitettu käyttäjä",
+      "reportedPost": "Ilmoitettu julkaisu",
+      "targetGone": "Kohdetta ei enää ole",
+      "by": "lähettäjä",
+      "unknown": "tuntematon",
+      "banned": "estetty",
+      "note": "Huomautus:",
+      "markReviewed": "Merkitse käsitellyksi",
+      "dismiss": "Hylkää",
+      "banUser": "Estä käyttäjä",
+      "unbanUser": "Poista esto",
+      "deletePost": "Poista julkaisu",
+      "confirmBan": "Estetäänkö tämä käyttäjä? Hänet kirjataan ulos ja estetään sovelluksesta.",
+      "confirmDeletePost": "Poistetaanko tämä julkaisu? Tätä ei voi kumota.",
+      "filters": {
+        "open": "Avoimet",
+        "reviewed": "Käsitellyt",
+        "dismissed": "Hylätyt",
+        "all": "Kaikki"
+      },
+      "statuses": {
+        "open": "Avoin",
+        "reviewed": "Käsitelty",
+        "dismissed": "Hylätty"
+      },
+      "reasons": {
+        "spam": "Roskaposti",
+        "harassment": "Häirintä",
+        "inappropriate": "Sopimaton",
+        "misinformation": "Virheellinen tieto",
+        "other": "Muu"
+      },
+      "time": {
+        "seconds": "s sitten",
+        "minutes": "min sitten",
+        "hours": "t sitten",
+        "days": "pv sitten"
+      },
+      "err": {
+        "load": "Ilmoituksia ei voitu ladata.",
+        "update": "Ilmoitusta ei voitu päivittää.",
+        "updateUser": "Käyttäjää ei voitu päivittää.",
+        "deletePost": "Julkaisua ei voitu poistaa."
+      }
+    },
+    "users": {
+      "title": "Käyttäjät",
+      "reports": "Ilmoitukset",
+      "search": "Hae",
+      "searchPlaceholder": "Hae käyttäjänimeä tai sähköpostia",
+      "loading": "Ladataan käyttäjiä…",
+      "empty": "Käyttäjiä ei löytynyt.",
+      "banned": "estetty",
+      "ban": "Estä",
+      "unban": "Poista esto",
+      "confirmBan": "Estetäänkö @{name}? Hänet kirjataan ulos ja estetään sovelluksesta.",
+      "err": {
+        "load": "Käyttäjiä ei voitu ladata.",
+        "update": "Käyttäjää ei voitu päivittää."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Sijaintiasi ei voitu tallentaa.",
       "uploadFailed": "Kuvan lataus epäonnistui.",
       "finishProfile": "Profiiliasi ei voitu viimeistellä."
+    }
+  },
+  "profile": {
+    "age": "Ikä",
+    "location": "Sijainti",
+    "moreActions": "Lisää toimintoja",
+    "report": "Ilmoita",
+    "block": "Estä",
+    "reportIntro": "Kerro, mikä on vialla. Ilmoituksesi on nimetön.",
+    "reportNote": "Lisätiedot (valinnainen)",
+    "reportNotePlaceholder": "Lisää tietoja …",
+    "sendReport": "Lähetä ilmoitus",
+    "reportSent": "Ilmoitus lähetetty",
+    "reportSentBody": "Kiitos. Käsittelemme sen mahdollisimman pian.",
+    "blockBody": "Ette enää näe toisianne ettekä voi lähettää viestejä. Voit poistaa eston asetuksista.",
+    "reasons": {
+      "spam": "Roskaposti",
+      "harassment": "Häirintä",
+      "inappropriate": "Sopimaton sisältö",
+      "misinformation": "Virheellinen tieto",
+      "other": "Muu"
+    },
+    "err": {
+      "pickReason": "Valitse syy.",
+      "reportFailed": "Ilmoitusta ei voitu lähettää.",
+      "blockFailed": "Käyttäjää ei voitu estää."
     }
   }
 }

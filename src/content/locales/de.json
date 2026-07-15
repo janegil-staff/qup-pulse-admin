@@ -53,7 +53,9 @@
     "notAdmin": "Dieses Konto ist kein Administrator.",
     "failed": "Anmeldung fehlgeschlagen.",
     "dashboard": "Moderations-Dashboard",
-    "adminOnly": "Nur für Administratoren. Melde dich mit einem Administratorkonto an."
+    "adminOnly": "Nur für Administratoren. Melde dich mit einem Administratorkonto an.",
+    "newHere": "Neu hier?",
+    "createAccount": "Konto erstellen"
   },
   "consent": {
     "termsPre": "Ich akzeptiere die",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Dunkelmodus",
       "lightMode": "Hellmodus",
-      "menu": "Menü"
+      "menu": "Menü",
+      "switchToLight": "Zum Hellmodus wechseln",
+      "switchToDark": "Zum Dunkelmodus wechseln"
     },
     "settings": {
       "title": "Persönliche Einstellungen",
@@ -158,6 +162,158 @@
       "unblocking": "Wird aufgehoben…",
       "loadFailed": "Blockierte Nutzer konnten nicht geladen werden.",
       "unblockFailed": "Blockierung konnte nicht aufgehoben werden."
+    },
+    "profile": {
+      "title": "Profil",
+      "edit": "Profil bearbeiten",
+      "photos": "Fotos",
+      "addPhoto": "Foto hinzufügen",
+      "uploading": "Wird hochgeladen…",
+      "removePhoto": "Foto entfernen",
+      "primary": "Hauptbild",
+      "displayName": "Anzeigename",
+      "bio": "Bio",
+      "noBio": "Noch keine Bio.",
+      "posts": "Beiträge",
+      "noPosts": "Noch keine Beiträge.",
+      "followers": "Follower",
+      "following": "Folgt",
+      "follow": "Folgen",
+      "unfollow": "Entfolgen",
+      "online": "Online",
+      "notFound": "Profil nicht gefunden.",
+      "loadFailed": "Profil konnte nicht geladen werden.",
+      "saveFailed": "Dein Profil konnte nicht gespeichert werden.",
+      "uploadFailed": "Bild-Upload fehlgeschlagen.",
+      "followFailed": "Folgen konnte nicht aktualisiert werden.",
+      "age": "Alter",
+      "location": "Ort",
+      "moreActions": "Weitere Aktionen",
+      "report": "Melden",
+      "block": "Blockieren",
+      "reportIntro": "Sag uns, was nicht stimmt. Meldungen werden von unseren Moderatoren geprüft.",
+      "reportNote": "Details (optional)",
+      "reportNotePlaceholder": "Sonst noch etwas, das wir wissen sollten?",
+      "sendReport": "Meldung senden",
+      "reportSent": "Meldung gesendet",
+      "reportSentBody": "Danke — unsere Moderatoren schauen es sich an.",
+      "blockBody": "Diese Person kann dich nicht mehr sehen oder kontaktieren, und du siehst sie nicht. Du kannst das in den Einstellungen rückgängig machen.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Belästigung",
+        "inappropriate": "Unangemessene Inhalte",
+        "misinformation": "Falschinformation",
+        "other": "Etwas anderes"
+      },
+      "err": {
+        "pickReason": "Wähle zuerst einen Grund.",
+        "reportFailed": "Meldung konnte nicht gesendet werden.",
+        "blockFailed": "Nutzer konnte nicht blockiert werden."
+      }
+    },
+    "feed": {
+      "nearby": "In der Nähe",
+      "following": "Folgt",
+      "post": "Posten",
+      "loadMore": "Mehr laden",
+      "composePlaceholder": "Was passiert um dich herum?",
+      "postType": "Beitragstyp",
+      "placeName": "Ort (optional)",
+      "addImage": "Bild hinzufügen",
+      "uploading": "Wird hochgeladen…",
+      "removeImage": "Bild entfernen",
+      "comments": "Kommentare",
+      "hideComments": "Kommentare ausblenden",
+      "noComments": "Noch keine Kommentare.",
+      "addComment": "Kommentar schreiben…",
+      "send": "Senden",
+      "deleteComment": "Kommentar löschen",
+      "save": "Speichern",
+      "saved": "Gespeichert",
+      "emptyNearby": "Noch keine Beiträge in der Nähe. Sei der Erste.",
+      "emptyFollowing": "Noch keine Beiträge von Personen, denen du folgst.",
+      "loadFailed": "Feed konnte nicht geladen werden.",
+      "postFailed": "Beitrag konnte nicht erstellt werden.",
+      "uploadFailed": "Bild-Upload fehlgeschlagen.",
+      "textRequired": "Schreib zuerst etwas.",
+      "commentsFailed": "Kommentare konnten nicht geladen werden.",
+      "commentFailed": "Kommentar konnte nicht hinzugefügt werden.",
+      "deleteFailed": "Kommentar konnte nicht gelöscht werden.",
+      "types": {
+        "update": "Update",
+        "event": "Veranstaltung",
+        "recommendation": "Empfehlung",
+        "lostfound": "Fundsachen",
+        "marketplace": "Marktplatz",
+        "question": "Frage"
+      }
+    },
+    "reports": {
+      "title": "Meldungen",
+      "users": "Nutzer",
+      "loading": "Meldungen werden geladen…",
+      "emptyOpen": "Keine offenen Meldungen — die Warteschlange ist leer.",
+      "emptyOther": "Keine Meldungen in dieser Ansicht.",
+      "reportedUser": "Gemeldeter Nutzer",
+      "reportedPost": "Gemeldeter Beitrag",
+      "targetGone": "Ziel existiert nicht mehr",
+      "by": "von",
+      "unknown": "unbekannt",
+      "banned": "gesperrt",
+      "note": "Notiz:",
+      "markReviewed": "Als geprüft markieren",
+      "dismiss": "Verwerfen",
+      "banUser": "Nutzer sperren",
+      "unbanUser": "Sperre aufheben",
+      "deletePost": "Beitrag löschen",
+      "confirmBan": "Diesen Nutzer sperren? Er wird abgemeldet und von der App ausgeschlossen.",
+      "confirmDeletePost": "Diesen Beitrag löschen? Das kann nicht rückgängig gemacht werden.",
+      "filters": {
+        "open": "Offen",
+        "reviewed": "Geprüft",
+        "dismissed": "Verworfen",
+        "all": "Alle"
+      },
+      "statuses": {
+        "open": "Offen",
+        "reviewed": "Geprüft",
+        "dismissed": "Verworfen"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Belästigung",
+        "inappropriate": "Unangemessen",
+        "misinformation": "Falschinformation",
+        "other": "Andere"
+      },
+      "time": {
+        "seconds": "s",
+        "minutes": "min",
+        "hours": "Std.",
+        "days": "T"
+      },
+      "err": {
+        "load": "Meldungen konnten nicht geladen werden.",
+        "update": "Meldung konnte nicht aktualisiert werden.",
+        "updateUser": "Nutzer konnte nicht aktualisiert werden.",
+        "deletePost": "Beitrag konnte nicht gelöscht werden."
+      }
+    },
+    "users": {
+      "title": "Nutzer",
+      "reports": "Meldungen",
+      "search": "Suchen",
+      "searchPlaceholder": "Benutzername oder E-Mail suchen",
+      "loading": "Nutzer werden geladen…",
+      "empty": "Keine Nutzer gefunden.",
+      "banned": "gesperrt",
+      "ban": "Sperren",
+      "unban": "Entsperren",
+      "confirmBan": "@{name} sperren? Er wird abgemeldet und von der App ausgeschlossen.",
+      "err": {
+        "load": "Nutzer konnten nicht geladen werden.",
+        "update": "Nutzer konnte nicht aktualisiert werden."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Dein Standort konnte nicht gespeichert werden.",
       "uploadFailed": "Bild-Upload fehlgeschlagen.",
       "finishProfile": "Profil konnte nicht fertiggestellt werden."
+    }
+  },
+  "profile": {
+    "age": "Alter",
+    "location": "Ort",
+    "moreActions": "Weitere Aktionen",
+    "report": "Melden",
+    "block": "Blockieren",
+    "reportIntro": "Sag uns, was nicht stimmt. Deine Meldung ist anonym.",
+    "reportNote": "Details (optional)",
+    "reportNotePlaceholder": "Details hinzufügen …",
+    "sendReport": "Meldung senden",
+    "reportSent": "Meldung gesendet",
+    "reportSentBody": "Danke. Wir prüfen das so schnell wie möglich.",
+    "blockBody": "Ihr seht euch nicht mehr und könnt keine Nachrichten senden. Du kannst die Blockierung in den Einstellungen aufheben.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Belästigung",
+      "inappropriate": "Unangemessene Inhalte",
+      "misinformation": "Falschinformation",
+      "other": "Sonstiges"
+    },
+    "err": {
+      "pickReason": "Bitte wähle einen Grund.",
+      "reportFailed": "Meldung konnte nicht gesendet werden.",
+      "blockFailed": "Nutzer konnte nicht blockiert werden."
     }
   }
 }

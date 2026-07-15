@@ -87,3 +87,68 @@ export async function unblockUser(userId) {
   });
   return parse(res);
 }
+
+// Additions for qup-pulse-admin/src/lib/profileSettingsApi.js
+// Append to the existing file — reuses API_URL, headers(), parse().
+
+// Public profile — GET /users/:username (optionalAuth: JWT gives followedByMe)
+// -> { profile: {id, username, displayName, photos, avatarUrl, online,
+//               followerCount, followingCount, followedByMe}, posts: [...] }
+export async function getPublicProfile(username) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(username)}`, {
+    headers: headers(), cache: 'no-store',
+  });
+  return parse(res); // { profile, posts }
+}
+
+// Follow / unfollow — POST|DELETE /users/:id/follow -> { following: bool }
+export async function followUser(userId) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/follow`, {
+    method: 'POST', headers: headers(),
+  });
+  return parse(res);
+}
+
+export async function unfollowUser(userId) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/follow`, {
+    method: 'DELETE', headers: headers(),
+  });
+  return parse(res);
+}
+
+// Image upload — POST /upload (multipart, field name "image")
+// NOTE: no Content-Type header — the browser sets the multipart boundary.
+export async function uploadImage(file) {
+  const t = typeof window !== 'undefined' ? window.localStorage.getItem(TOKEN_KEY) : null;
+  const fd = new FormData();
+  fd.append('image', file);
+  const res = await fetch(`${API_URL}/upload`, {
+    method: 'POST',
+    headers: { ...(t ? { Authorization: `Bearer ${t}` } : {}) },
+    body: fd,
+  });
+  return parse(res); // { url, publicId }
+}
+
+
+// Report a user — POST /users/:userId/report { reason, note } -> { ok: true }
+// Takes an object to match the call site: reportUser(id, { reason, note }).
+// `reason` MUST be one of REPORT_REASONS in server/src/models/Report.js
+// ('spam','harassment','inappropriate','misinformation','other'); the server
+// rejects anything else with a 400. Note is capped at 500 by the schema.
+export async function reportUser(userId, { reason, note = '' } = {}) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/report`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ reason, note }),
+  });
+  return parse(res);
+}
+
+// Block — POST /users/:userId/block -> { blocked: true }
+export async function blockUser(userId) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/block`, {
+    method: 'POST', headers: headers(),
+  });
+  return parse(res);
+}

@@ -53,7 +53,9 @@
     "notAdmin": "Questo account non è amministratore.",
     "failed": "Impossibile accedere.",
     "dashboard": "Pannello di moderazione",
-    "adminOnly": "Accesso solo per amministratori. Accedi con un account amministratore."
+    "adminOnly": "Accesso solo per amministratori. Accedi con un account amministratore.",
+    "newHere": "Nuovo qui?",
+    "createAccount": "Crea un account"
   },
   "consent": {
     "termsPre": "Accetto i",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Modalità scura",
       "lightMode": "Modalità chiara",
-      "menu": "Menu"
+      "menu": "Menu",
+      "switchToLight": "Passa alla modalità chiara",
+      "switchToDark": "Passa alla modalità scura"
     },
     "settings": {
       "title": "Impostazioni personali",
@@ -158,6 +162,158 @@
       "unblocking": "Sblocco…",
       "loadFailed": "Impossibile caricare gli utenti bloccati.",
       "unblockFailed": "Impossibile sbloccare questo utente."
+    },
+    "profile": {
+      "title": "Profilo",
+      "edit": "Modifica profilo",
+      "photos": "Foto",
+      "addPhoto": "Aggiungi foto",
+      "uploading": "Caricamento…",
+      "removePhoto": "Rimuovi foto",
+      "primary": "Principale",
+      "displayName": "Nome visualizzato",
+      "bio": "Bio",
+      "noBio": "Ancora nessuna bio.",
+      "posts": "Post",
+      "noPosts": "Ancora nessun post.",
+      "followers": "Follower",
+      "following": "Seguiti",
+      "follow": "Segui",
+      "unfollow": "Smetti di seguire",
+      "online": "Online",
+      "notFound": "Profilo non trovato.",
+      "loadFailed": "Impossibile caricare il profilo.",
+      "saveFailed": "Impossibile salvare il tuo profilo.",
+      "uploadFailed": "Caricamento immagine non riuscito.",
+      "followFailed": "Impossibile aggiornare il seguito.",
+      "age": "Età",
+      "location": "Luogo",
+      "moreActions": "Altre azioni",
+      "report": "Segnala",
+      "block": "Blocca",
+      "reportIntro": "Dicci cosa non va. Le segnalazioni sono esaminate dai nostri moderatori.",
+      "reportNote": "Dettagli (facoltativo)",
+      "reportNotePlaceholder": "Altro che dovremmo sapere?",
+      "sendReport": "Invia segnalazione",
+      "reportSent": "Segnalazione inviata",
+      "reportSentBody": "Grazie — i nostri moderatori la esamineranno.",
+      "blockBody": "Non potrà vederti né contattarti, e tu non vedrai lui. Puoi annullare in Impostazioni.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Molestie",
+        "inappropriate": "Contenuto inappropriato",
+        "misinformation": "Disinformazione",
+        "other": "Altro"
+      },
+      "err": {
+        "pickReason": "Scegli prima un motivo.",
+        "reportFailed": "Impossibile inviare la segnalazione.",
+        "blockFailed": "Impossibile bloccare questo utente."
+      }
+    },
+    "feed": {
+      "nearby": "Nelle vicinanze",
+      "following": "Seguiti",
+      "post": "Pubblica",
+      "loadMore": "Carica altro",
+      "composePlaceholder": "Cosa succede intorno a te?",
+      "postType": "Tipo di post",
+      "placeName": "Luogo (facoltativo)",
+      "addImage": "Aggiungi immagine",
+      "uploading": "Caricamento…",
+      "removeImage": "Rimuovi immagine",
+      "comments": "Commenti",
+      "hideComments": "Nascondi commenti",
+      "noComments": "Ancora nessun commento.",
+      "addComment": "Aggiungi un commento…",
+      "send": "Invia",
+      "deleteComment": "Elimina commento",
+      "save": "Salva",
+      "saved": "Salvato",
+      "emptyNearby": "Ancora nessun post nelle vicinanze. Sii il primo.",
+      "emptyFollowing": "Ancora nessun post da chi segui.",
+      "loadFailed": "Impossibile caricare il feed.",
+      "postFailed": "Impossibile creare il tuo post.",
+      "uploadFailed": "Caricamento immagine non riuscito.",
+      "textRequired": "Scrivi qualcosa prima.",
+      "commentsFailed": "Impossibile caricare i commenti.",
+      "commentFailed": "Impossibile aggiungere il commento.",
+      "deleteFailed": "Impossibile eliminare il commento.",
+      "types": {
+        "update": "Aggiornamento",
+        "event": "Evento",
+        "recommendation": "Consiglio",
+        "lostfound": "Oggetti smarriti",
+        "marketplace": "Mercatino",
+        "question": "Domanda"
+      }
+    },
+    "reports": {
+      "title": "Segnalazioni",
+      "users": "Utenti",
+      "loading": "Caricamento segnalazioni…",
+      "emptyOpen": "Nessuna segnalazione aperta — la coda è vuota.",
+      "emptyOther": "Nessuna segnalazione in questa vista.",
+      "reportedUser": "Utente segnalato",
+      "reportedPost": "Post segnalato",
+      "targetGone": "Il bersaglio non esiste più",
+      "by": "da",
+      "unknown": "sconosciuto",
+      "banned": "bandito",
+      "note": "Nota:",
+      "markReviewed": "Segna come esaminato",
+      "dismiss": "Ignora",
+      "banUser": "Banna utente",
+      "unbanUser": "Rimuovi ban",
+      "deletePost": "Elimina post",
+      "confirmBan": "Bannare questo utente? Verrà disconnesso e bloccato dall'app.",
+      "confirmDeletePost": "Eliminare questo post? Non può essere annullato.",
+      "filters": {
+        "open": "Aperte",
+        "reviewed": "Esaminate",
+        "dismissed": "Ignorate",
+        "all": "Tutte"
+      },
+      "statuses": {
+        "open": "Aperta",
+        "reviewed": "Esaminata",
+        "dismissed": "Ignorata"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Molestie",
+        "inappropriate": "Inappropriato",
+        "misinformation": "Disinformazione",
+        "other": "Altro"
+      },
+      "time": {
+        "seconds": "s fa",
+        "minutes": "m fa",
+        "hours": "h fa",
+        "days": "g fa"
+      },
+      "err": {
+        "load": "Impossibile caricare le segnalazioni.",
+        "update": "Impossibile aggiornare la segnalazione.",
+        "updateUser": "Impossibile aggiornare l'utente.",
+        "deletePost": "Impossibile eliminare il post."
+      }
+    },
+    "users": {
+      "title": "Utenti",
+      "reports": "Segnalazioni",
+      "search": "Cerca",
+      "searchPlaceholder": "Cerca nome utente o e-mail",
+      "loading": "Caricamento utenti…",
+      "empty": "Nessun utente trovato.",
+      "banned": "bandito",
+      "ban": "Banna",
+      "unban": "Rimuovi ban",
+      "confirmBan": "Bannare @{name}? Verrà disconnesso e bloccato dall'app.",
+      "err": {
+        "load": "Impossibile caricare gli utenti.",
+        "update": "Impossibile aggiornare l'utente."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Impossibile salvare la tua posizione.",
       "uploadFailed": "Caricamento immagine non riuscito.",
       "finishProfile": "Impossibile completare il tuo profilo."
+    }
+  },
+  "profile": {
+    "age": "Età",
+    "location": "Luogo",
+    "moreActions": "Altre azioni",
+    "report": "Segnala",
+    "block": "Blocca",
+    "reportIntro": "Dicci cosa non va. La tua segnalazione è anonima.",
+    "reportNote": "Dettagli (facoltativo)",
+    "reportNotePlaceholder": "Aggiungi dettagli …",
+    "sendReport": "Invia segnalazione",
+    "reportSent": "Segnalazione inviata",
+    "reportSentBody": "Grazie. La esamineremo il prima possibile.",
+    "blockBody": "Non vi vedrete più e non potrete scrivervi. Puoi sbloccare dalle impostazioni.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Molestie",
+      "inappropriate": "Contenuto inappropriato",
+      "misinformation": "Disinformazione",
+      "other": "Altro"
+    },
+    "err": {
+      "pickReason": "Scegli un motivo.",
+      "reportFailed": "Impossibile inviare la segnalazione.",
+      "blockFailed": "Impossibile bloccare questo utente."
     }
   }
 }

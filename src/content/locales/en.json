@@ -53,7 +53,9 @@
     "notAdmin": "That account is not an administrator.",
     "failed": "Could not log in.",
     "dashboard": "Moderation dashboard",
-    "adminOnly": "Admin access only. Sign in with an administrator account."
+    "adminOnly": "Admin access only. Sign in with an administrator account.",
+    "newHere": "New here?",
+    "createAccount": "Create an account"
   },
   "consent": {
     "termsPre": "I accept the",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Dark mode",
       "lightMode": "Light mode",
-      "menu": "Menu"
+      "menu": "Menu",
+      "switchToLight": "Switch to light mode",
+      "switchToDark": "Switch to dark mode"
     },
     "settings": {
       "title": "Personal settings",
@@ -158,6 +162,158 @@
       "unblocking": "Unblocking…",
       "loadFailed": "Could not load blocked users.",
       "unblockFailed": "Could not unblock this user."
+    },
+    "profile": {
+      "title": "Profile",
+      "edit": "Edit profile",
+      "photos": "Photos",
+      "addPhoto": "Add photo",
+      "uploading": "Uploading…",
+      "removePhoto": "Remove photo",
+      "primary": "Primary",
+      "displayName": "Display name",
+      "bio": "Bio",
+      "noBio": "No bio yet.",
+      "posts": "Posts",
+      "noPosts": "No posts yet.",
+      "followers": "Followers",
+      "following": "Following",
+      "follow": "Follow",
+      "unfollow": "Unfollow",
+      "online": "Online",
+      "notFound": "Profile not found.",
+      "loadFailed": "Could not load profile.",
+      "saveFailed": "Could not save your profile.",
+      "uploadFailed": "Image upload failed.",
+      "followFailed": "Could not update follow.",
+      "age": "Age",
+      "location": "Location",
+      "moreActions": "More actions",
+      "report": "Report",
+      "block": "Block",
+      "reportIntro": "Tell us what’s wrong. Reports are reviewed by our moderators.",
+      "reportNote": "Details (optional)",
+      "reportNotePlaceholder": "Anything else we should know?",
+      "sendReport": "Send report",
+      "reportSent": "Report sent",
+      "reportSentBody": "Thanks — our moderators will take a look.",
+      "blockBody": "They won’t be able to see you or contact you, and you won’t see them. You can undo this in Settings.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Harassment",
+        "inappropriate": "Inappropriate content",
+        "misinformation": "Misinformation",
+        "other": "Something else"
+      },
+      "err": {
+        "pickReason": "Choose a reason first.",
+        "reportFailed": "Could not send your report.",
+        "blockFailed": "Could not block this user."
+      }
+    },
+    "feed": {
+      "nearby": "Nearby",
+      "following": "Following",
+      "post": "Post",
+      "loadMore": "Load more",
+      "composePlaceholder": "What's happening around you?",
+      "postType": "Post type",
+      "placeName": "Place (optional)",
+      "addImage": "Add image",
+      "uploading": "Uploading…",
+      "removeImage": "Remove image",
+      "comments": "Comments",
+      "hideComments": "Hide comments",
+      "noComments": "No comments yet.",
+      "addComment": "Add a comment…",
+      "send": "Send",
+      "deleteComment": "Delete comment",
+      "save": "Save",
+      "saved": "Saved",
+      "emptyNearby": "No posts nearby yet. Be the first to post.",
+      "emptyFollowing": "No posts from people you follow yet.",
+      "loadFailed": "Could not load the feed.",
+      "postFailed": "Could not create your post.",
+      "uploadFailed": "Image upload failed.",
+      "textRequired": "Write something first.",
+      "commentsFailed": "Could not load comments.",
+      "commentFailed": "Could not add your comment.",
+      "deleteFailed": "Could not delete the comment.",
+      "types": {
+        "update": "Update",
+        "event": "Event",
+        "recommendation": "Recommendation",
+        "lostfound": "Lost & found",
+        "marketplace": "Marketplace",
+        "question": "Question"
+      }
+    },
+    "reports": {
+      "title": "Reports",
+      "users": "Users",
+      "loading": "Loading reports…",
+      "emptyOpen": "No open reports — the queue is clear.",
+      "emptyOther": "No reports in this view.",
+      "reportedUser": "Reported user",
+      "reportedPost": "Reported post",
+      "targetGone": "Target no longer exists",
+      "by": "by",
+      "unknown": "unknown",
+      "banned": "banned",
+      "note": "Note:",
+      "markReviewed": "Mark reviewed",
+      "dismiss": "Dismiss",
+      "banUser": "Ban user",
+      "unbanUser": "Unban user",
+      "deletePost": "Delete post",
+      "confirmBan": "Ban this user? They will be signed out and blocked from the app.",
+      "confirmDeletePost": "Delete this post? This cannot be undone.",
+      "filters": {
+        "open": "Open",
+        "reviewed": "Reviewed",
+        "dismissed": "Dismissed",
+        "all": "All"
+      },
+      "statuses": {
+        "open": "Open",
+        "reviewed": "Reviewed",
+        "dismissed": "Dismissed"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Harassment",
+        "inappropriate": "Inappropriate",
+        "misinformation": "Misinformation",
+        "other": "Other"
+      },
+      "time": {
+        "seconds": "s ago",
+        "minutes": "m ago",
+        "hours": "h ago",
+        "days": "d ago"
+      },
+      "err": {
+        "load": "Could not load reports.",
+        "update": "Could not update report.",
+        "updateUser": "Could not update user.",
+        "deletePost": "Could not delete post."
+      }
+    },
+    "users": {
+      "title": "Users",
+      "reports": "Reports",
+      "search": "Search",
+      "searchPlaceholder": "Search username or email",
+      "loading": "Loading users…",
+      "empty": "No users found.",
+      "banned": "banned",
+      "ban": "Ban",
+      "unban": "Unban",
+      "confirmBan": "Ban @{name}? They will be signed out and blocked from the app.",
+      "err": {
+        "load": "Could not load users.",
+        "update": "Could not update user."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Could not save your location.",
       "uploadFailed": "Image upload failed.",
       "finishProfile": "Could not finish setting up your profile."
+    }
+  },
+  "profile": {
+    "age": "Age",
+    "location": "Location",
+    "moreActions": "More actions",
+    "report": "Report",
+    "block": "Block",
+    "reportIntro": "Tell us what’s wrong. Your report is anonymous.",
+    "reportNote": "Details (optional)",
+    "reportNotePlaceholder": "Add details …",
+    "sendReport": "Send report",
+    "reportSent": "Report sent",
+    "reportSentBody": "Thank you. We’ll review this as soon as we can.",
+    "blockBody": "You won’t see each other or be able to message. You can unblock in settings.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Harassment",
+      "inappropriate": "Inappropriate content",
+      "misinformation": "Misinformation",
+      "other": "Other"
+    },
+    "err": {
+      "pickReason": "Please pick a reason.",
+      "reportFailed": "Could not send the report.",
+      "blockFailed": "Could not block this user."
     }
   }
 }

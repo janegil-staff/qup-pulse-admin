@@ -1,33 +1,41 @@
 // qup-pulse-admin/src/components/AppNav.js
 'use client';
 
-// Top navigation for the logged-in app pages: Discover / Feed / Profile,
-// plus Reports for admins, and a dark/light toggle.
+// Top navigation for the logged-in app pages: Discover / Feed / Messages /
+// Profile / Settings, plus Reports for admins, and a dark/light toggle.
 // Desktop: inline tabs + toggle on the right. Mobile: hamburger dropdown with
 // the toggle at the bottom.
 //
-// Discover is live. Feed and Profile show "Soon" until their pages exist.
-// Reports shows only for admins (UX gate — server still enforces requireAdmin).
+// Discover, Profile and Settings are live. Feed and Messages show "Soon" until
+// their pages exist. Reports shows only for admins (UX gate — the server still
+// enforces requireAdmin).
+//
+// Fully localized via useLang() (t.app.nav.*). The wordmark stays literal — it's
+// the brand, not copy. Tabs carry a labelKey rather than a label so the array
+// can stay module-level while the text resolves per render.
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { isAdmin, clearToken } from '../lib/api';
 import { useDarkMode } from '../lib/useDarkMode';
+import { useLang } from '../context/LandingLang';
 
 const TABS = [
-  { href: '/discover', label: 'Discover', enabled: true },
-  { href: '/feed', label: 'Feed', enabled: false },
-  { href: '/messages', label: 'Messages', enabled: false },
-  { href: '/profile', label: 'Profile', enabled: false },
-  { href: '/settings', label: 'Settings', enabled: true },
+  { href: '/discover', labelKey: 'discover', enabled: true },
+  { href: '/feed', labelKey: 'feed', enabled: false },
+  { href: '/messages', labelKey: 'messages', enabled: false },
+  { href: '/profile', labelKey: 'profile', enabled: true },
+  { href: '/settings', labelKey: 'settings', enabled: true },
 ];
 
-const ADMIN_TAB = { href: '/reports', label: 'Reports', enabled: true, admin: true };
+const ADMIN_TAB = { href: '/reports', labelKey: 'reports', enabled: true, admin: true };
 
 export default function AppNav() {
   const pathname = usePathname();
   const router = useRouter();
+  const { t } = useLang();
+  const n = t.app.nav;
   const [open, setOpen] = useState(false);
   const [admin, setAdmin] = useState(false);
   const { dark, toggle } = useDarkMode();
@@ -56,15 +64,15 @@ export default function AppNav() {
 
         {/* Desktop tabs + toggle */}
         <div className="hidden items-center gap-1 sm:flex">
-          {tabs.map((t) => (
-            <TabLink key={t.href} tab={t} active={isActive(t.href)} />
+          {tabs.map((tab) => (
+            <TabLink key={tab.href} tab={tab} n={n} active={isActive(tab.href)} />
           ))}
-          <ThemeToggle dark={dark} onToggle={toggle} className="ml-2" />
+          <ThemeToggle dark={dark} onToggle={toggle} n={n} className="ml-2" />
           <button
             onClick={logOut}
             className="ml-1 rounded-lg border border-slate-300 px-3.5 py-1.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
           >
-            Log out
+            {n.logOut}
           </button>
         </div>
 
@@ -72,7 +80,7 @@ export default function AppNav() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
+          aria-label={n.menu}
           aria-expanded={open}
           className="grid h-9 w-9 place-items-center rounded-lg border border-slate-300 sm:hidden dark:border-slate-700"
         >
@@ -83,11 +91,12 @@ export default function AppNav() {
       {/* Mobile dropdown */}
       {open ? (
         <div className="border-t border-slate-200 px-4 py-2 sm:hidden dark:border-slate-800">
-          {tabs.map((t) => (
+          {tabs.map((tab) => (
             <TabLink
-              key={t.href}
-              tab={t}
-              active={isActive(t.href)}
+              key={tab.href}
+              tab={tab}
+              n={n}
+              active={isActive(tab.href)}
               block
               onNavigate={() => setOpen(false)}
             />
@@ -99,7 +108,7 @@ export default function AppNav() {
               onClick={toggle}
               className="flex w-full items-center justify-between rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
-              <span>{dark ? 'Dark mode' : 'Light mode'}</span>
+              <span>{dark ? n.darkMode : n.lightMode}</span>
               <span className="text-base">{dark ? '🌙' : '☀️'}</span>
             </button>
             <button
@@ -107,7 +116,7 @@ export default function AppNav() {
               onClick={logOut}
               className="mt-2 flex w-full items-center rounded-lg border border-red-300 px-3.5 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-50 dark:border-red-500/40 dark:text-red-400 dark:hover:bg-red-500/10"
             >
-              Log out
+              {n.logOut}
             </button>
           </div>
         </div>
@@ -116,12 +125,12 @@ export default function AppNav() {
   );
 }
 
-function ThemeToggle({ dark, onToggle, className = '' }) {
+function ThemeToggle({ dark, onToggle, n, className = '' }) {
   return (
     <button
       type="button"
       onClick={onToggle}
-      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={dark ? n.switchToLight : n.switchToDark}
       className={`grid h-9 w-9 place-items-center rounded-lg border border-slate-300 text-base transition hover:border-emerald-400 dark:border-slate-700 ${className}`}
     >
       {dark ? '🌙' : '☀️'}
@@ -129,10 +138,12 @@ function ThemeToggle({ dark, onToggle, className = '' }) {
   );
 }
 
-function TabLink({ tab, active, block, onNavigate }) {
+function TabLink({ tab, n, active, block, onNavigate }) {
   const base = block
     ? 'block w-full rounded-lg px-3.5 py-2.5 mb-1.5 text-sm font-semibold no-underline transition'
     : 'rounded-lg px-3.5 py-1.5 text-sm font-semibold no-underline transition';
+
+  const label = n[tab.labelKey];
 
   if (!tab.enabled) {
     return (
@@ -140,9 +151,9 @@ function TabLink({ tab, active, block, onNavigate }) {
         className={`${base} flex items-center justify-between gap-2 cursor-default border border-slate-200 text-slate-400 dark:border-slate-800 dark:text-slate-600`}
         aria-disabled="true"
       >
-        {tab.label}
+        {label}
         <span className="rounded-full bg-slate-200 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-          Soon
+          {n.soon}
         </span>
       </span>
     );
@@ -159,10 +170,10 @@ function TabLink({ tab, active, block, onNavigate }) {
           : 'border-slate-300 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
       }`}
     >
-      {tab.label}
+      {label}
       {tab.admin ? (
         <span className="rounded-full bg-emerald-500 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-950">
-          Admin
+          {n.admin}
         </span>
       ) : null}
     </Link>

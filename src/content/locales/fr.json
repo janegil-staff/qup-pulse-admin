@@ -53,7 +53,9 @@
     "notAdmin": "Ce compte n’est pas administrateur.",
     "failed": "Connexion impossible.",
     "dashboard": "Tableau de modération",
-    "adminOnly": "Accès administrateur uniquement. Connectez-vous avec un compte administrateur."
+    "adminOnly": "Accès administrateur uniquement. Connectez-vous avec un compte administrateur.",
+    "newHere": "Nouveau ici ?",
+    "createAccount": "Créer un compte"
   },
   "consent": {
     "termsPre": "J'accepte les",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Mode sombre",
       "lightMode": "Mode clair",
-      "menu": "Menu"
+      "menu": "Menu",
+      "switchToLight": "Passer en mode clair",
+      "switchToDark": "Passer en mode sombre"
     },
     "settings": {
       "title": "Paramètres personnels",
@@ -158,6 +162,158 @@
       "unblocking": "Déblocage…",
       "loadFailed": "Impossible de charger les utilisateurs bloqués.",
       "unblockFailed": "Impossible de débloquer cet utilisateur."
+    },
+    "profile": {
+      "title": "Profil",
+      "edit": "Modifier le profil",
+      "photos": "Photos",
+      "addPhoto": "Ajouter une photo",
+      "uploading": "Téléversement…",
+      "removePhoto": "Supprimer la photo",
+      "primary": "Principale",
+      "displayName": "Nom d'affichage",
+      "bio": "Bio",
+      "noBio": "Pas encore de bio.",
+      "posts": "Publications",
+      "noPosts": "Aucune publication.",
+      "followers": "Abonnés",
+      "following": "Abonnements",
+      "follow": "Suivre",
+      "unfollow": "Ne plus suivre",
+      "online": "En ligne",
+      "notFound": "Profil introuvable.",
+      "loadFailed": "Impossible de charger le profil.",
+      "saveFailed": "Impossible d'enregistrer votre profil.",
+      "uploadFailed": "Échec du téléversement de l'image.",
+      "followFailed": "Impossible de mettre à jour l'abonnement.",
+      "age": "Âge",
+      "location": "Lieu",
+      "moreActions": "Plus d’actions",
+      "report": "Signaler",
+      "block": "Bloquer",
+      "reportIntro": "Dites-nous ce qui ne va pas. Les signalements sont examinés par nos modérateurs.",
+      "reportNote": "Détails (facultatif)",
+      "reportNotePlaceholder": "Autre chose à nous signaler ?",
+      "sendReport": "Envoyer le signalement",
+      "reportSent": "Signalement envoyé",
+      "reportSentBody": "Merci — nos modérateurs vont l’examiner.",
+      "blockBody": "Cette personne ne pourra plus vous voir ni vous contacter, et vous ne la verrez plus. Vous pouvez annuler dans les Paramètres.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Harcèlement",
+        "inappropriate": "Contenu inapproprié",
+        "misinformation": "Désinformation",
+        "other": "Autre chose"
+      },
+      "err": {
+        "pickReason": "Choisissez d’abord un motif.",
+        "reportFailed": "Impossible d’envoyer votre signalement.",
+        "blockFailed": "Impossible de bloquer cet utilisateur."
+      }
+    },
+    "feed": {
+      "nearby": "À proximité",
+      "following": "Abonnements",
+      "post": "Publier",
+      "loadMore": "Charger plus",
+      "composePlaceholder": "Que se passe-t-il autour de vous ?",
+      "postType": "Type de publication",
+      "placeName": "Lieu (facultatif)",
+      "addImage": "Ajouter une image",
+      "uploading": "Téléversement…",
+      "removeImage": "Supprimer l'image",
+      "comments": "Commentaires",
+      "hideComments": "Masquer les commentaires",
+      "noComments": "Aucun commentaire.",
+      "addComment": "Ajouter un commentaire…",
+      "send": "Envoyer",
+      "deleteComment": "Supprimer le commentaire",
+      "save": "Enregistrer",
+      "saved": "Enregistré",
+      "emptyNearby": "Aucune publication à proximité. Soyez le premier.",
+      "emptyFollowing": "Aucune publication des personnes que vous suivez.",
+      "loadFailed": "Impossible de charger le fil.",
+      "postFailed": "Impossible de créer votre publication.",
+      "uploadFailed": "Échec du téléversement de l'image.",
+      "textRequired": "Écrivez d'abord quelque chose.",
+      "commentsFailed": "Impossible de charger les commentaires.",
+      "commentFailed": "Impossible d'ajouter votre commentaire.",
+      "deleteFailed": "Impossible de supprimer le commentaire.",
+      "types": {
+        "update": "Actualité",
+        "event": "Événement",
+        "recommendation": "Recommandation",
+        "lostfound": "Objets trouvés",
+        "marketplace": "Petites annonces",
+        "question": "Question"
+      }
+    },
+    "reports": {
+      "title": "Signalements",
+      "users": "Utilisateurs",
+      "loading": "Chargement des signalements…",
+      "emptyOpen": "Aucun signalement ouvert — la file est vide.",
+      "emptyOther": "Aucun signalement dans cette vue.",
+      "reportedUser": "Utilisateur signalé",
+      "reportedPost": "Publication signalée",
+      "targetGone": "La cible n'existe plus",
+      "by": "par",
+      "unknown": "inconnu",
+      "banned": "banni",
+      "note": "Note :",
+      "markReviewed": "Marquer comme examiné",
+      "dismiss": "Rejeter",
+      "banUser": "Bannir l'utilisateur",
+      "unbanUser": "Lever le bannissement",
+      "deletePost": "Supprimer la publication",
+      "confirmBan": "Bannir cet utilisateur ? Il sera déconnecté et bloqué de l'application.",
+      "confirmDeletePost": "Supprimer cette publication ? Cette action est irréversible.",
+      "filters": {
+        "open": "Ouverts",
+        "reviewed": "Examinés",
+        "dismissed": "Rejetés",
+        "all": "Tous"
+      },
+      "statuses": {
+        "open": "Ouvert",
+        "reviewed": "Examiné",
+        "dismissed": "Rejeté"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Harcèlement",
+        "inappropriate": "Inapproprié",
+        "misinformation": "Désinformation",
+        "other": "Autre"
+      },
+      "time": {
+        "seconds": "s",
+        "minutes": "min",
+        "hours": "h",
+        "days": "j"
+      },
+      "err": {
+        "load": "Impossible de charger les signalements.",
+        "update": "Impossible de mettre à jour le signalement.",
+        "updateUser": "Impossible de mettre à jour l'utilisateur.",
+        "deletePost": "Impossible de supprimer la publication."
+      }
+    },
+    "users": {
+      "title": "Utilisateurs",
+      "reports": "Signalements",
+      "search": "Rechercher",
+      "searchPlaceholder": "Rechercher un nom d'utilisateur ou un e-mail",
+      "loading": "Chargement des utilisateurs…",
+      "empty": "Aucun utilisateur trouvé.",
+      "banned": "banni",
+      "ban": "Bannir",
+      "unban": "Débannir",
+      "confirmBan": "Bannir @{name} ? Il sera déconnecté et bloqué de l'application.",
+      "err": {
+        "load": "Impossible de charger les utilisateurs.",
+        "update": "Impossible de mettre à jour l'utilisateur."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Impossible d’enregistrer votre position.",
       "uploadFailed": "Échec du téléversement de l’image.",
       "finishProfile": "Impossible de finaliser votre profil."
+    }
+  },
+  "profile": {
+    "age": "Âge",
+    "location": "Lieu",
+    "moreActions": "Plus d’options",
+    "report": "Signaler",
+    "block": "Bloquer",
+    "reportIntro": "Dites-nous ce qui ne va pas. Votre signalement est anonyme.",
+    "reportNote": "Détails (facultatif)",
+    "reportNotePlaceholder": "Ajouter des détails …",
+    "sendReport": "Envoyer le signalement",
+    "reportSent": "Signalement envoyé",
+    "reportSentBody": "Merci. Nous examinerons cela dès que possible.",
+    "blockBody": "Vous ne vous verrez plus et ne pourrez plus vous écrire. Vous pouvez débloquer dans les réglages.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Harcèlement",
+      "inappropriate": "Contenu inapproprié",
+      "misinformation": "Désinformation",
+      "other": "Autre"
+    },
+    "err": {
+      "pickReason": "Veuillez choisir un motif.",
+      "reportFailed": "Impossible d’envoyer le signalement.",
+      "blockFailed": "Impossible de bloquer cet utilisateur."
     }
   }
 }

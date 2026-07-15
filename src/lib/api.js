@@ -104,6 +104,7 @@ export async function login(email, pin) {
 
 // --- Admin endpoints (match adminController routes) ---
 export const adminApi = {
+  
   login,
 
   stats: () => request('/admin/stats'),

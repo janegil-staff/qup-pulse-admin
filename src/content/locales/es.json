@@ -53,7 +53,9 @@
     "notAdmin": "Esta cuenta no es administradora.",
     "failed": "No se pudo iniciar sesión.",
     "dashboard": "Panel de moderación",
-    "adminOnly": "Solo acceso de administrador. Inicia sesión con una cuenta de administrador."
+    "adminOnly": "Solo acceso de administrador. Inicia sesión con una cuenta de administrador.",
+    "newHere": "¿Nuevo aquí?",
+    "createAccount": "Crear una cuenta"
   },
   "consent": {
     "termsPre": "Acepto los",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Modo oscuro",
       "lightMode": "Modo claro",
-      "menu": "Menú"
+      "menu": "Menú",
+      "switchToLight": "Cambiar a modo claro",
+      "switchToDark": "Cambiar a modo oscuro"
     },
     "settings": {
       "title": "Ajustes personales",
@@ -158,6 +162,158 @@
       "unblocking": "Desbloqueando…",
       "loadFailed": "No se pudieron cargar los usuarios bloqueados.",
       "unblockFailed": "No se pudo desbloquear a este usuario."
+    },
+    "profile": {
+      "title": "Perfil",
+      "edit": "Editar perfil",
+      "photos": "Fotos",
+      "addPhoto": "Añadir foto",
+      "uploading": "Subiendo…",
+      "removePhoto": "Quitar foto",
+      "primary": "Principal",
+      "displayName": "Nombre visible",
+      "bio": "Bio",
+      "noBio": "Aún no hay bio.",
+      "posts": "Publicaciones",
+      "noPosts": "Aún no hay publicaciones.",
+      "followers": "Seguidores",
+      "following": "Siguiendo",
+      "follow": "Seguir",
+      "unfollow": "Dejar de seguir",
+      "online": "En línea",
+      "notFound": "Perfil no encontrado.",
+      "loadFailed": "No se pudo cargar el perfil.",
+      "saveFailed": "No se pudo guardar tu perfil.",
+      "uploadFailed": "Error al subir la imagen.",
+      "followFailed": "No se pudo actualizar el seguimiento.",
+      "age": "Edad",
+      "location": "Ubicación",
+      "moreActions": "Más acciones",
+      "report": "Denunciar",
+      "block": "Bloquear",
+      "reportIntro": "Cuéntanos qué ocurre. Nuestros moderadores revisan las denuncias.",
+      "reportNote": "Detalles (opcional)",
+      "reportNotePlaceholder": "¿Algo más que debamos saber?",
+      "sendReport": "Enviar denuncia",
+      "reportSent": "Denuncia enviada",
+      "reportSentBody": "Gracias — nuestros moderadores lo revisarán.",
+      "blockBody": "No podrá verte ni contactarte, y tú no le verás. Puedes deshacerlo en Ajustes.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Acoso",
+        "inappropriate": "Contenido inapropiado",
+        "misinformation": "Desinformación",
+        "other": "Otra cosa"
+      },
+      "err": {
+        "pickReason": "Elige un motivo primero.",
+        "reportFailed": "No se pudo enviar tu denuncia.",
+        "blockFailed": "No se pudo bloquear a este usuario."
+      }
+    },
+    "feed": {
+      "nearby": "Cerca",
+      "following": "Siguiendo",
+      "post": "Publicar",
+      "loadMore": "Cargar más",
+      "composePlaceholder": "¿Qué está pasando a tu alrededor?",
+      "postType": "Tipo de publicación",
+      "placeName": "Lugar (opcional)",
+      "addImage": "Añadir imagen",
+      "uploading": "Subiendo…",
+      "removeImage": "Quitar imagen",
+      "comments": "Comentarios",
+      "hideComments": "Ocultar comentarios",
+      "noComments": "Aún no hay comentarios.",
+      "addComment": "Añade un comentario…",
+      "send": "Enviar",
+      "deleteComment": "Eliminar comentario",
+      "save": "Guardar",
+      "saved": "Guardado",
+      "emptyNearby": "Aún no hay publicaciones cerca. Sé el primero.",
+      "emptyFollowing": "Aún no hay publicaciones de quienes sigues.",
+      "loadFailed": "No se pudo cargar el feed.",
+      "postFailed": "No se pudo crear tu publicación.",
+      "uploadFailed": "Error al subir la imagen.",
+      "textRequired": "Escribe algo primero.",
+      "commentsFailed": "No se pudieron cargar los comentarios.",
+      "commentFailed": "No se pudo añadir tu comentario.",
+      "deleteFailed": "No se pudo eliminar el comentario.",
+      "types": {
+        "update": "Actualización",
+        "event": "Evento",
+        "recommendation": "Recomendación",
+        "lostfound": "Objetos perdidos",
+        "marketplace": "Mercado",
+        "question": "Pregunta"
+      }
+    },
+    "reports": {
+      "title": "Reportes",
+      "users": "Usuarios",
+      "loading": "Cargando reportes…",
+      "emptyOpen": "No hay reportes abiertos — la cola está vacía.",
+      "emptyOther": "No hay reportes en esta vista.",
+      "reportedUser": "Usuario reportado",
+      "reportedPost": "Publicación reportada",
+      "targetGone": "El objetivo ya no existe",
+      "by": "por",
+      "unknown": "desconocido",
+      "banned": "baneado",
+      "note": "Nota:",
+      "markReviewed": "Marcar como revisado",
+      "dismiss": "Descartar",
+      "banUser": "Banear usuario",
+      "unbanUser": "Quitar baneo",
+      "deletePost": "Eliminar publicación",
+      "confirmBan": "¿Banear a este usuario? Se cerrará su sesión y quedará bloqueado.",
+      "confirmDeletePost": "¿Eliminar esta publicación? No se puede deshacer.",
+      "filters": {
+        "open": "Abiertos",
+        "reviewed": "Revisados",
+        "dismissed": "Descartados",
+        "all": "Todos"
+      },
+      "statuses": {
+        "open": "Abierto",
+        "reviewed": "Revisado",
+        "dismissed": "Descartado"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Acoso",
+        "inappropriate": "Inapropiado",
+        "misinformation": "Desinformación",
+        "other": "Otro"
+      },
+      "time": {
+        "seconds": "s",
+        "minutes": "m",
+        "hours": "h",
+        "days": "d"
+      },
+      "err": {
+        "load": "No se pudieron cargar los reportes.",
+        "update": "No se pudo actualizar el reporte.",
+        "updateUser": "No se pudo actualizar el usuario.",
+        "deletePost": "No se pudo eliminar la publicación."
+      }
+    },
+    "users": {
+      "title": "Usuarios",
+      "reports": "Reportes",
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar nombre de usuario o correo",
+      "loading": "Cargando usuarios…",
+      "empty": "No se encontraron usuarios.",
+      "banned": "baneado",
+      "ban": "Banear",
+      "unban": "Quitar baneo",
+      "confirmBan": "¿Banear a @{name}? Se cerrará su sesión y quedará bloqueado.",
+      "err": {
+        "load": "No se pudieron cargar los usuarios.",
+        "update": "No se pudo actualizar el usuario."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "No se pudo guardar tu ubicación.",
       "uploadFailed": "Error al subir la imagen.",
       "finishProfile": "No se pudo completar tu perfil."
+    }
+  },
+  "profile": {
+    "age": "Edad",
+    "location": "Ubicación",
+    "moreActions": "Más acciones",
+    "report": "Denunciar",
+    "block": "Bloquear",
+    "reportIntro": "Cuéntanos qué ocurre. Tu denuncia es anónima.",
+    "reportNote": "Detalles (opcional)",
+    "reportNotePlaceholder": "Añadir detalles …",
+    "sendReport": "Enviar denuncia",
+    "reportSent": "Denuncia enviada",
+    "reportSentBody": "Gracias. La revisaremos lo antes posible.",
+    "blockBody": "Ya no os veréis ni podréis enviaros mensajes. Puedes desbloquear en los ajustes.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Acoso",
+      "inappropriate": "Contenido inapropiado",
+      "misinformation": "Desinformación",
+      "other": "Otro"
+    },
+    "err": {
+      "pickReason": "Elige un motivo.",
+      "reportFailed": "No se pudo enviar la denuncia.",
+      "blockFailed": "No se pudo bloquear a este usuario."
     }
   }
 }

@@ -176,7 +176,7 @@ export default function RegisterPage() {
       if (bio.trim()) fields.bio = bio.trim().slice(0, 300);
       if (photo) fields.photos = [photo];
       if (Object.keys(fields).length) await patchProfile(fields);
-      router.replace('/home');
+      router.replace('/discover');
     } catch (err) {
       setError(err.message || a.err.finishProfile);
     } finally {

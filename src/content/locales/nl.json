@@ -53,7 +53,9 @@
     "notAdmin": "Dit account is geen beheerder.",
     "failed": "Inloggen mislukt.",
     "dashboard": "Moderatiedashboard",
-    "adminOnly": "Alleen voor beheerders. Log in met een beheerdersaccount."
+    "adminOnly": "Alleen voor beheerders. Log in met een beheerdersaccount.",
+    "newHere": "Nieuw hier?",
+    "createAccount": "Maak een account"
   },
   "consent": {
     "termsPre": "Ik accepteer de",
@@ -76,7 +78,9 @@
       "admin": "Admin",
       "darkMode": "Donkere modus",
       "lightMode": "Lichte modus",
-      "menu": "Menu"
+      "menu": "Menu",
+      "switchToLight": "Schakel naar lichte modus",
+      "switchToDark": "Schakel naar donkere modus"
     },
     "settings": {
       "title": "Persoonlijke instellingen",
@@ -158,6 +162,158 @@
       "unblocking": "Deblokkeren…",
       "loadFailed": "Kon geblokkeerde gebruikers niet laden.",
       "unblockFailed": "Kon deze gebruiker niet deblokkeren."
+    },
+    "profile": {
+      "title": "Profiel",
+      "edit": "Profiel bewerken",
+      "photos": "Foto's",
+      "addPhoto": "Foto toevoegen",
+      "uploading": "Uploaden…",
+      "removePhoto": "Foto verwijderen",
+      "primary": "Primair",
+      "displayName": "Weergavenaam",
+      "bio": "Bio",
+      "noBio": "Nog geen bio.",
+      "posts": "Berichten",
+      "noPosts": "Nog geen berichten.",
+      "followers": "Volgers",
+      "following": "Volgend",
+      "follow": "Volgen",
+      "unfollow": "Ontvolgen",
+      "online": "Online",
+      "notFound": "Profiel niet gevonden.",
+      "loadFailed": "Kon profiel niet laden.",
+      "saveFailed": "Kon je profiel niet opslaan.",
+      "uploadFailed": "Uploaden van afbeelding mislukt.",
+      "followFailed": "Kon volgen niet bijwerken.",
+      "age": "Leeftijd",
+      "location": "Locatie",
+      "moreActions": "Meer acties",
+      "report": "Rapporteren",
+      "block": "Blokkeren",
+      "reportIntro": "Vertel ons wat er mis is. Meldingen worden beoordeeld door onze moderators.",
+      "reportNote": "Details (optioneel)",
+      "reportNotePlaceholder": "Iets anders dat we moeten weten?",
+      "sendReport": "Melding versturen",
+      "reportSent": "Melding verstuurd",
+      "reportSentBody": "Bedankt — onze moderators kijken ernaar.",
+      "blockBody": "Ze kunnen jou niet meer zien of contact opnemen, en jij ziet hen niet. Je kunt dit ongedaan maken in Instellingen.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Intimidatie",
+        "inappropriate": "Ongepaste inhoud",
+        "misinformation": "Desinformatie",
+        "other": "Iets anders"
+      },
+      "err": {
+        "pickReason": "Kies eerst een reden.",
+        "reportFailed": "Kon je melding niet versturen.",
+        "blockFailed": "Kon deze gebruiker niet blokkeren."
+      }
+    },
+    "feed": {
+      "nearby": "Dichtbij",
+      "following": "Volgend",
+      "post": "Plaatsen",
+      "loadMore": "Meer laden",
+      "composePlaceholder": "Wat gebeurt er om je heen?",
+      "postType": "Berichttype",
+      "placeName": "Plaats (optioneel)",
+      "addImage": "Afbeelding toevoegen",
+      "uploading": "Uploaden…",
+      "removeImage": "Afbeelding verwijderen",
+      "comments": "Reacties",
+      "hideComments": "Reacties verbergen",
+      "noComments": "Nog geen reacties.",
+      "addComment": "Schrijf een reactie…",
+      "send": "Verstuur",
+      "deleteComment": "Reactie verwijderen",
+      "save": "Opslaan",
+      "saved": "Opgeslagen",
+      "emptyNearby": "Nog geen berichten in de buurt. Wees de eerste.",
+      "emptyFollowing": "Nog geen berichten van mensen die je volgt.",
+      "loadFailed": "Kon de feed niet laden.",
+      "postFailed": "Kon je bericht niet plaatsen.",
+      "uploadFailed": "Uploaden van afbeelding mislukt.",
+      "textRequired": "Schrijf eerst iets.",
+      "commentsFailed": "Kon reacties niet laden.",
+      "commentFailed": "Kon je reactie niet toevoegen.",
+      "deleteFailed": "Kon de reactie niet verwijderen.",
+      "types": {
+        "update": "Update",
+        "event": "Evenement",
+        "recommendation": "Aanbeveling",
+        "lostfound": "Verloren & gevonden",
+        "marketplace": "Marktplaats",
+        "question": "Vraag"
+      }
+    },
+    "reports": {
+      "title": "Meldingen",
+      "users": "Gebruikers",
+      "loading": "Meldingen laden…",
+      "emptyOpen": "Geen open meldingen — de wachtrij is leeg.",
+      "emptyOther": "Geen meldingen in deze weergave.",
+      "reportedUser": "Gemelde gebruiker",
+      "reportedPost": "Gemeld bericht",
+      "targetGone": "Doel bestaat niet meer",
+      "by": "door",
+      "unknown": "onbekend",
+      "banned": "geblokkeerd",
+      "note": "Notitie:",
+      "markReviewed": "Markeer als beoordeeld",
+      "dismiss": "Afwijzen",
+      "banUser": "Gebruiker verbannen",
+      "unbanUser": "Verbanning opheffen",
+      "deletePost": "Bericht verwijderen",
+      "confirmBan": "Deze gebruiker verbannen? Ze worden uitgelogd en geblokkeerd.",
+      "confirmDeletePost": "Dit bericht verwijderen? Dit kan niet ongedaan worden gemaakt.",
+      "filters": {
+        "open": "Open",
+        "reviewed": "Beoordeeld",
+        "dismissed": "Afgewezen",
+        "all": "Alle"
+      },
+      "statuses": {
+        "open": "Open",
+        "reviewed": "Beoordeeld",
+        "dismissed": "Afgewezen"
+      },
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Intimidatie",
+        "inappropriate": "Ongepast",
+        "misinformation": "Desinformatie",
+        "other": "Anders"
+      },
+      "time": {
+        "seconds": "s geleden",
+        "minutes": "m geleden",
+        "hours": "u geleden",
+        "days": "d geleden"
+      },
+      "err": {
+        "load": "Kon meldingen niet laden.",
+        "update": "Kon melding niet bijwerken.",
+        "updateUser": "Kon gebruiker niet bijwerken.",
+        "deletePost": "Kon bericht niet verwijderen."
+      }
+    },
+    "users": {
+      "title": "Gebruikers",
+      "reports": "Meldingen",
+      "search": "Zoeken",
+      "searchPlaceholder": "Zoek gebruikersnaam of e-mail",
+      "loading": "Gebruikers laden…",
+      "empty": "Geen gebruikers gevonden.",
+      "banned": "geblokkeerd",
+      "ban": "Verbannen",
+      "unban": "Deblokkeren",
+      "confirmBan": "@{name} verbannen? Ze worden uitgelogd en geblokkeerd.",
+      "err": {
+        "load": "Kon gebruikers niet laden.",
+        "update": "Kon gebruiker niet bijwerken."
+      }
     }
   },
   "auth": {
@@ -225,6 +381,32 @@
       "saveLoc": "Kon je locatie niet opslaan.",
       "uploadFailed": "Uploaden van afbeelding mislukt.",
       "finishProfile": "Kon je profiel niet voltooien."
+    }
+  },
+  "profile": {
+    "age": "Leeftijd",
+    "location": "Locatie",
+    "moreActions": "Meer acties",
+    "report": "Rapporteren",
+    "block": "Blokkeren",
+    "reportIntro": "Vertel ons wat er mis is. Je melding is anoniem.",
+    "reportNote": "Details (optioneel)",
+    "reportNotePlaceholder": "Details toevoegen …",
+    "sendReport": "Melding versturen",
+    "reportSent": "Melding verstuurd",
+    "reportSentBody": "Bedankt. We bekijken dit zo snel mogelijk.",
+    "blockBody": "Jullie zien elkaar niet meer en kunnen geen berichten sturen. Je kunt dit ongedaan maken in de instellingen.",
+    "reasons": {
+      "spam": "Spam",
+      "harassment": "Intimidatie",
+      "inappropriate": "Ongepaste inhoud",
+      "misinformation": "Desinformatie",
+      "other": "Anders"
+    },
+    "err": {
+      "pickReason": "Kies een reden.",
+      "reportFailed": "Kon de melding niet versturen.",
+      "blockFailed": "Kon deze gebruiker niet blokkeren."
     }
   }
 }
