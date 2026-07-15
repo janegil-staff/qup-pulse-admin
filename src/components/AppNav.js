@@ -20,7 +20,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import { isAdmin, clearToken } from '../lib/api';
 import { useDarkMode } from '../lib/useDarkMode';
 import { useLang } from '../context/LandingLang';
-
+import { getToken } from '../lib/api';
+import { getSocket } from '../lib/socket';
+import { getUnreadCount } from '../lib/chatApi';
 
 const TABS = [
     { href: '/discover', labelKey: 'discover', enabled: true },
@@ -38,6 +40,36 @@ export default function AppNav() {
     const [open, setOpen] = useState(false);
     const [admin, setAdmin] = useState(false);
     const { dark, toggle } = useDarkMode();
+    // Unread badge on the Meldinger tab. Fed by chat:notify, which deliver()
+    // emits to `user:${id}` for every participant who isn't the sender — so it
+    // fires regardless of which tab you're on, unlike chat:message, which only
+    // reaches sockets that have joined a convo: room.
+    //
+    // The notify payload carries `pending`, so a pending thread the RECIPIENT
+    // hasn't accepted routes to the Requests count instead. The initiator's own
+    // sends never reach them (deliver filters the sender out), so their outgoing
+    // request can't inflate their own badge.
+    const [unread, setUnread] = useState(0);
+
+    useEffect(() => {
+        if (!getToken()) return;
+        let cancelled = false;
+
+        const refresh = () => {
+            getUnreadCount()
+                .then((n) => { if (!cancelled) setUnread(n); })
+                .catch(() => { });
+        };
+
+        refresh();
+
+        const socket = getSocket();
+        socket?.on('chat:notify', refresh);
+        return () => {
+            cancelled = true;
+            socket?.off('chat:notify', refresh);
+        };
+    }, []);
 
     useEffect(() => {
         setAdmin(isAdmin());
@@ -166,8 +198,8 @@ function TabLink({ tab, n, active, block, onNavigate }) {
             onClick={onNavigate}
             aria-current={active ? 'page' : undefined}
             className={`${base} flex items-center gap-2 border ${active
-                    ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
-                    : 'border-slate-300 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
+                ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
+                : 'border-slate-300 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
                 }`}
         >
             {label}

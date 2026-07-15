@@ -70,3 +70,9 @@ export async function markRead(id) {
   });
   return parse(res);
 }
+
+// qup-pulse-admin/src/lib/chatApi.js
+export async function getUnreadCount() {
+  const { count } = await apiGet('/chat/unread-count');
+  return count || 0;
+}
