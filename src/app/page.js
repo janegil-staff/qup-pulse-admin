@@ -1,40 +1,41 @@
-// quppulse/src/app/page.js
+// qup-pulse-admin/src/app/page.js
 'use client';
 
-// Qup Pulse landing page (root route of quppulse.com).
+// Qup Pulse landing page (root route).
 // Tailwind CSS — matches the admin dashboard's slate + emerald palette.
-// Dark/light via the `dark` class on the root container (Tailwind darkMode:'class').
 // i18n via useLang() — `t` is a plain object (t.hero.title). Defaults to English;
 // language switcher in the nav.
 //
-// Requires darkMode: 'class' in tailwind.config (Tailwind's default-off setting).
+// Dark mode comes from useDarkMode(), which drives the `dark` class on <html>.
+// This page previously toggled a class on its own wrapper div instead: the root
+// layout's Footer is a SIBLING of that wrapper, not a descendant, so it stayed
+// light while everything above it went dark. The hook also persists the choice,
+// which the local version didn't.
+//
+// Requires Tailwind class-based dark mode:
+//   Tailwind v4: `@custom-variant dark (&:where(.dark, .dark *));` in globals.css
+//   Tailwind v3: `darkMode: 'class'` in tailwind.config
+//
 // The one custom bit — the pulse ripple animation — uses an inline <style> tag
 // scoped to this page, so no tailwind.config keyframes are needed.
-//
-// The waitlist form POSTs to /api/waitlist — wire that route to your API or a
-// Resend audience. Until then it validates and shows the success state.
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLang } from '../context/LandingLang';
 import { LANGUAGES, SUPPORTED_LANGS } from '../content/landingContent';
-import { adminApi, setToken, setRole, setUsername, login } from '../lib/api';
+import { setToken, setRole, setUsername, login } from '../lib/api';
+import { useDarkMode } from '../lib/useDarkMode';
 
 export default function LandingPage() {
   const { t, lang, setLang } = useLang();
   const router = useRouter();
-  const [dark, setDark] = useState(true);
+
   const [email, setEmail] = useState('');
   const [pin, setPin] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const prefersLight =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-color-scheme: light)').matches;
-    setDark(!prefersLight);
-  }, []);
+  const { dark, toggle } = useDarkMode();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -48,8 +49,8 @@ export default function LandingPage() {
       const { token, user } = await login(email.trim().toLowerCase(), pin);
       setToken(token);
       setRole(user?.role);
-      // Label the nav with whoever just logged in. displayName first — it's what the
-      // rest of the app shows — falling back to username.
+      // Label the nav with whoever just logged in. displayName first — it's what
+      // the rest of the app shows — falling back to username.
       setUsername(user?.displayName || user?.username);
       router.replace('/discover');
     } catch (err) {
@@ -62,9 +63,8 @@ export default function LandingPage() {
     }
   }
 
-
   return (
-    <div className={dark ? 'dark' : ''}>
+    <>
       <style>{`
         @keyframes qp-ripple {
           0% { width: 120px; height: 120px; opacity: 0.9; }
@@ -107,13 +107,12 @@ export default function LandingPage() {
                 ))}
               </select>
               <button
-                onClick={() => setDark((d) => !d)}
+                onClick={toggle}
                 aria-label={t.nav.toggleTheme}
                 className="grid h-[38px] w-[38px] place-items-center rounded-lg border border-slate-300 text-base transition hover:border-emerald-400 dark:border-slate-700"
               >
                 {dark ? '🌙' : '☀️'}
               </button>
-
             </div>
           </div>
         </nav>
@@ -217,7 +216,7 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
-    </div>
+    </>
   );
 }
 
