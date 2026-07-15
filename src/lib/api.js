@@ -4,11 +4,14 @@
 // Thin client over the Qup Pulse API. Sends the JWT as a Bearer token.
 // With the Next.js rewrite proxy (next.config.mjs), the dashboard calls its own
 // origin under /api and Next forwards server-side — no CORS.
+
 import { closeSocket } from './socket';
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const TOKEN_KEY = 'qup_pulse_admin_jwt';
 const ROLE_KEY = 'qup_pulse_role';
+const USERNAME_KEY = 'qup_pulse_username';
 
 export class AuthError extends Error {
   constructor(message, status) {
@@ -36,6 +39,7 @@ export function clearToken() {
   if (typeof window === 'undefined') return;
   window.localStorage.removeItem(TOKEN_KEY);
   window.localStorage.removeItem(ROLE_KEY);
+  window.localStorage.removeItem(USERNAME_KEY);
   // Tear the socket down with the token. authSocket() reads the JWT once at
   // connect, so a surviving socket stays authenticated as the user who just
   // logged out — still in their convo: rooms, still receiving their messages.
@@ -62,6 +66,27 @@ export function setRole(role) {
 
 export function isAdmin() {
   return getRole() === 'admin';
+}
+
+// Stored at login purely to label the nav — same category as the role: a UI
+// convenience, never read for authorization. Saves a /me round-trip on every
+// page load, since login() already returns the user.
+//
+// Accounts logged in before this shipped have no stored name, so the label is
+// blank until their next login. Deliberate: a /me fallback would cost a request
+// on every mount to cover a one-time gap.
+export function getUsername() {
+  if (typeof window === 'undefined') return null;
+  return window.localStorage.getItem(USERNAME_KEY);
+}
+
+export function setUsername(name) {
+  if (typeof window === 'undefined') return;
+  if (!name) {
+    window.localStorage.removeItem(USERNAME_KEY);
+    return;
+  }
+  window.localStorage.setItem(USERNAME_KEY, name);
 }
 
 function url(path) {
@@ -110,7 +135,6 @@ export async function login(email, pin) {
 
 // --- Admin endpoints (match adminController routes) ---
 export const adminApi = {
-  
   login,
 
   stats: () => request('/admin/stats'),

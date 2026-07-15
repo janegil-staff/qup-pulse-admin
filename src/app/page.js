@@ -18,7 +18,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLang } from '../context/LandingLang';
 import { LANGUAGES, SUPPORTED_LANGS } from '../content/landingContent';
-import { adminApi, setToken, setRole, login } from '../lib/api';
+import { adminApi, setToken, setRole, setUsername, login } from '../lib/api';
 
 export default function LandingPage() {
   const { t, lang, setLang } = useLang();
@@ -48,10 +48,14 @@ export default function LandingPage() {
       const { token, user } = await login(email.trim().toLowerCase(), pin);
       setToken(token);
       setRole(user?.role);
+      // Label the nav with whoever just logged in. displayName first — it's what the
+      // rest of the app shows — falling back to username.
+      setUsername(user?.displayName || user?.username);
       router.replace('/discover');
     } catch (err) {
       setToken(null);
       setRole(null);
+      setUsername(null);
       setError(err.message || t.login.failed);
     } finally {
       setLoading(false);
@@ -109,7 +113,7 @@ export default function LandingPage() {
               >
                 {dark ? '🌙' : '☀️'}
               </button>
-     
+
             </div>
           </div>
         </nav>
