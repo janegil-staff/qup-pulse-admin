@@ -94,25 +94,29 @@ export default function LandingPage() {
               <span className="qp-dot h-2.5 w-2.5 rounded-full bg-emerald-400" /> Qup Pulse
             </div>
             <div className="flex items-center gap-2">
-              <select
-                value={lang}
-                onChange={(e) => setLang(e.target.value)}
-                aria-label={t.nav.language}
-                className="rounded-lg border border-slate-300 bg-transparent px-2.5 py-2 text-[13px] text-slate-900 dark:border-slate-700 dark:text-slate-100"
-              >
-                {SUPPORTED_LANGS.map((code) => (
-                  <option key={code} value={code} className="text-slate-900">
-                    {LANGUAGES[code]}
-                  </option>
-                ))}
-              </select>
-              <button
-                onClick={toggle}
-                aria-label={t.nav.toggleTheme}
-                className="grid h-[38px] w-[38px] place-items-center rounded-lg border border-slate-300 text-base transition hover:border-emerald-400 dark:border-slate-700"
-              >
-                {dark ? '🌙' : '☀️'}
-              </button>
+              <div className="flex items-center gap-2">
+
+                {/* Explicit height rather than padding: a select's intrinsic height varies by
+      platform, so py-* lands it a few px short of the button next to it. */}
+                <select
+                  aria-label={t.nav.language}
+                  value={lang}
+                  onChange={(e) => setLang(e.target.value)}
+                  className="h-[34px] rounded-lg border border-slate-300 bg-white px-2 text-sm dark:border-slate-700 dark:bg-slate-800"
+                >
+                  {SUPPORTED_LANGS.map((c) => <option key={c} value={c}>{LANGUAGES[c]}</option>)}
+                </select>
+
+                <button
+                  type="button"
+                  onClick={toggle}
+                  aria-label={dark ? t.nav.switchToLight : t.nav.switchToDark}
+                  className="grid h-[34px] w-[34px] place-items-center rounded-lg border border-slate-300 text-base transition hover:border-emerald-400 dark:border-slate-700"
+                >
+                  {dark ? '🌙' : '☀️'}
+                </button>
+              </div>
+
             </div>
           </div>
         </nav>
