@@ -94,6 +94,15 @@ export default function ProfilePage() {
                                 {p.edit}
                             </button>
 
+                            {/* Saved posts. Own profile only — there's no public equivalent,
+                  and the server scopes /posts/saved to the caller. */}
+                            <Link
+                                href="/saved"
+                                className="w-full rounded-lg border border-slate-300 px-3.5 py-1.5 text-center text-sm font-semibold text-slate-600 no-underline transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+                            >
+                                {p.savedPosts}
+                            </Link>
+
                             {isAdmin() ? (
                                 <Link
                                     href="/reports"

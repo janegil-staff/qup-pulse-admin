@@ -12,7 +12,7 @@
     "badge": "Snart på iOS och Android",
     "titleLead": "Det som händer",
     "titleHighlight": "precis runt dig",
-    "subhead": "Qup Pulse är ditt grannskaps lokala puls. Publicera till folk som faktiskt är i närheten, se vad som händer just nu och slipp det oändliga flödet av främlingar på andra sidan jorden."
+    "subhead": "Qup Pulse är kvarterets puls — vilket kvarter du än befinner dig i. Dela med folk som faktiskt är i närheten och se vad som händer just nu, i Bergen, Berlin eller Bangkok."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Du kan inte skicka meddelanden till den här användaren"
       },
       "distance": "Avstånd",
-      "message": "Meddelande"
+      "message": "Meddelande",
+      "savedPosts": "Sparade inlägg"
     },
     "feed": {
       "nearby": "I närheten",
@@ -250,7 +251,9 @@
         "lostfound": "Borttappat & hittat",
         "marketplace": "Marknad",
         "question": "Fråga"
-      }
+      },
+      "remove": "Ta bort",
+      "unsave": "Ta bort sparad"
     },
     "reports": {
       "title": "Rapporter",
@@ -353,6 +356,11 @@
       "emailConfirmed": "E-post bekräftad",
       "empty": "Ingen i närheten ännu. Uppdatera, eller öka avståndet i appens inställningar.",
       "loadFailed": "Kunde inte ladda personer i närheten"
+    },
+    "saved": {
+      "title": "Sparade inlägg",
+      "empty": "Du har inte sparat några inlägg ännu.",
+      "loadFailed": "Kunde inte ladda sparade inlägg"
     }
   },
   "auth": {

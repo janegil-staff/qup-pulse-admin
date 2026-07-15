@@ -132,3 +132,13 @@ export async function uploadImage(file) {
   });
   return parse(res); // { url, publicId }
 }
+
+// qup-pulse-admin/src/lib/feedApi.js
+
+// Saved posts — the viewer's bookmarks. Server scopes this to the caller, so
+// there's no userId param. savedByMe is implicitly true for everything here.
+export async function listSaved() {
+  const res = await fetch(`${API_URL}/posts/saved`, { headers: headers(), cache: 'no-store' });
+  const data = await parse(res);
+  return data.posts || data.saved || [];
+}

@@ -12,7 +12,7 @@
     "badge": "Kommer snart til iOS og Android",
     "titleLead": "Det som skjer",
     "titleHighlight": "rett rundt deg",
-    "subhead": "Qup Pulse er nabolagets puls. Del med folk som faktisk er i nærheten, se hva som skjer akkurat nå, og slipp den endeløse strømmen av fremmede på den andre siden av kloden."
+    "subhead": "Qup Pulse er nabolagets puls — uansett hvilket nabolag du er i. Del med folk som faktisk er i nærheten, og se hva som skjer akkurat nå, i Bergen, Berlin eller Bangkok."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Du kan ikke sende melding til denne brukeren"
       },
       "distance": "Avstand",
-      "message": "Melding"
+      "message": "Melding",
+      "savedPosts": "Lagrede innlegg"
     },
     "feed": {
       "nearby": "I nærheten",
@@ -250,7 +251,9 @@
         "lostfound": "Mistet og funnet",
         "marketplace": "Torget",
         "question": "Spørsmål"
-      }
+      },
+      "remove": "Fjern",
+      "unsave": "Fjern lagring"
     },
     "reports": {
       "title": "Rapporter",
@@ -353,6 +356,11 @@
       "emailConfirmed": "E-post bekreftet",
       "empty": "Ingen i nærheten ennå. Oppdater, eller øk avstanden i innstillingene i appen.",
       "loadFailed": "Kunne ikke laste folk i nærheten"
+    },
+    "saved": {
+      "title": "Lagrede innlegg",
+      "empty": "Du har ikke lagret noen innlegg ennå.",
+      "loadFailed": "Kunne ikke laste lagrede innlegg"
     }
   },
   "auth": {

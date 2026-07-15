@@ -12,7 +12,7 @@
     "badge": "Bald für iOS & Android",
     "titleLead": "Was passiert",
     "titleHighlight": "direkt um dich herum",
-    "subhead": "Qup Pulse ist der lokale Puls deiner Nachbarschaft. Poste an Leute, die wirklich in der Nähe sind, sieh, was gerade los ist, und überspringe den endlosen Feed von Fremden am anderen Ende der Welt."
+    "subhead": "Qup Pulse ist der Puls deiner Nachbarschaft — in welcher Nachbarschaft du auch bist. Teile mit Leuten, die wirklich in der Nähe sind, und sieh, was gerade passiert, in Bergen, Berlin oder Bangkok."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Du kannst diesem Benutzer keine Nachricht senden"
       },
       "distance": "Entfernung",
-      "message": "Nachricht"
+      "message": "Nachricht",
+      "savedPosts": "Gespeicherte Beiträge"
     },
     "feed": {
       "nearby": "In der Nähe",
@@ -250,7 +251,9 @@
         "lostfound": "Fundsachen",
         "marketplace": "Marktplatz",
         "question": "Frage"
-      }
+      },
+      "remove": "Entfernen",
+      "unsave": "Nicht mehr speichern"
     },
     "reports": {
       "title": "Meldungen",
@@ -353,6 +356,11 @@
       "emailConfirmed": "E-Mail bestätigt",
       "empty": "Noch niemand in der Nähe. Aktualisiere, oder erhöhe die Entfernung in den App-Einstellungen.",
       "loadFailed": "Leute in der Nähe konnten nicht geladen werden"
+    },
+    "saved": {
+      "title": "Gespeicherte Beiträge",
+      "empty": "Du hast noch keine Beiträge gespeichert.",
+      "loadFailed": "Gespeicherte Beiträge konnten nicht geladen werden"
     }
   },
   "auth": {

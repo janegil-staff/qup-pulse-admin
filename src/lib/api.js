@@ -4,7 +4,7 @@
 // Thin client over the Qup Pulse API. Sends the JWT as a Bearer token.
 // With the Next.js rewrite proxy (next.config.mjs), the dashboard calls its own
 // origin under /api and Next forwards server-side — no CORS.
-
+import { closeSocket } from './socket';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const TOKEN_KEY = 'qup_pulse_admin_jwt';
@@ -36,6 +36,12 @@ export function clearToken() {
   if (typeof window === 'undefined') return;
   window.localStorage.removeItem(TOKEN_KEY);
   window.localStorage.removeItem(ROLE_KEY);
+  // Tear the socket down with the token. authSocket() reads the JWT once at
+  // connect, so a surviving socket stays authenticated as the user who just
+  // logged out — still in their convo: rooms, still receiving their messages.
+  // getSocket() also rebuilds on token change, but that's a backstop; this is
+  // the moment we actually know.
+  closeSocket();
 }
 
 // Role is stored client-side purely to show/hide admin UI. It is NOT a security

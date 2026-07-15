@@ -12,7 +12,7 @@
     "badge": "Coming soon to iOS & Android",
     "titleLead": "What's happening",
     "titleHighlight": "right around you",
-    "subhead": "Qup Pulse is the local pulse of your neighbourhood. Post to the people actually near you, see what's going on right now, and skip the endless feed of strangers on the other side of the world."
+    "subhead": "Qup Pulse is your neighbourhood’s pulse — whichever neighbourhood you’re in. Post to the people actually near you, and see what’s happening right now, in Bergen, Berlin or Bangkok."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "You cannot message this user"
       },
       "distance": "Distance",
-      "message": "Message"
+      "message": "Message",
+      "savedPosts": "Saved posts"
     },
     "feed": {
       "nearby": "Nearby",
@@ -250,7 +251,9 @@
         "lostfound": "Lost & found",
         "marketplace": "Marketplace",
         "question": "Question"
-      }
+      },
+      "remove": "Remove",
+      "unsave": "Unsave"
     },
     "reports": {
       "title": "Reports",
@@ -353,6 +356,11 @@
       "emailConfirmed": "Email confirmed",
       "empty": "No one nearby yet. Refresh, or widen your distance in the app settings.",
       "loadFailed": "Could not load people nearby"
+    },
+    "saved": {
+      "title": "Saved posts",
+      "empty": "You haven’t saved any posts yet.",
+      "loadFailed": "Could not load saved posts"
     }
   },
   "auth": {

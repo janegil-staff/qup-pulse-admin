@@ -12,7 +12,7 @@
     "badge": "Bientôt sur iOS et Android",
     "titleLead": "Ce qui se passe",
     "titleHighlight": "juste autour de vous",
-    "subhead": "Qup Pulse est le pouls local de votre quartier. Publiez pour les gens réellement à proximité, voyez ce qui se passe en ce moment et oubliez le flux sans fin d’inconnus à l’autre bout du monde."
+    "subhead": "Qup Pulse, c’est le pouls de votre quartier — quel que soit le quartier. Publiez pour les gens vraiment près de vous et voyez ce qui se passe maintenant, à Bergen, Berlin ou Bangkok."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Vous ne pouvez pas envoyer de message à cet utilisateur"
       },
       "distance": "Distance",
-      "message": "Message"
+      "message": "Message",
+      "savedPosts": "Publications enregistrées"
     },
     "feed": {
       "nearby": "À proximité",
@@ -250,7 +251,9 @@
         "lostfound": "Objets trouvés",
         "marketplace": "Petites annonces",
         "question": "Question"
-      }
+      },
+      "remove": "Retirer",
+      "unsave": "Ne plus enregistrer"
     },
     "reports": {
       "title": "Signalements",
@@ -353,6 +356,11 @@
       "emailConfirmed": "E-mail confirmé",
       "empty": "Personne à proximité pour le moment. Actualisez, ou augmentez la distance dans les réglages de l’application.",
       "loadFailed": "Impossible de charger les personnes à proximité"
+    },
+    "saved": {
+      "title": "Publications enregistrées",
+      "empty": "Vous n’avez encore enregistré aucune publication.",
+      "loadFailed": "Impossible de charger les publications enregistrées"
     }
   },
   "auth": {

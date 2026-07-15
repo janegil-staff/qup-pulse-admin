@@ -9,13 +9,14 @@
 //         POST /upload (multipart, field "image")       -> { url, publicId }
 //
 // Socket: chat:join {conversationId}  -> ack { ok } | { error }   REQUIRED
-//         chat:send {conversationId, text}      -> ack { ok, message }
+//         chat:send {conversationId, text}          -> ack { ok, message }
 //         chat:sendImage {conversationId, imageUrl} -> ack { ok, message }
-//         chat:typing {conversationId}          (fire and forget)
+//         chat:typing {conversationId}              (fire and forget)
 //         chat:leave {conversationId}
-//         chat:message <- Message.toClient(), for EVERY message in the room
-//                         including our own echo
-//         chat:typing  <- { userId }
+//         chat:message  <- Message.toClient(), for EVERY message in the room
+//                          including our own echo
+//         chat:typing   <- { userId }
+//         chat:accepted <- { conversationId, status }  (see below)
 //
 // Message shape: { id, conversationId, sender: toPublic(), text, imageUrl?,
 //                  createdAt }. imageUrl is OMITTED on text messages, not null.
@@ -27,13 +28,17 @@
 // PENDING RULES (mirrored from chat:send in server/src/socket/chat.js):
 //   - The INITIATOR gets exactly one message on a pending thread — the opener,
 //     so the recipient has something to judge the request on. After that the
-//     composer locks until accept. The server enforces this with a
-//     countDocuments check and returns PENDING_LIMIT; the disable here is
-//     cosmetic, to avoid a send that visibly fails.
+//     composer locks until accept. The server enforces it with a countDocuments
+//     check and returns PENDING_LIMIT; the disable here is cosmetic, to avoid a
+//     send that visibly fails.
 //   - The RECIPIENT is unrestricted: replying to a request is implicit consent.
 //   - Images are accepted-only for BOTH parties, regardless of message count.
-// The two gates are separate on purpose: canSendText can be true while
-// canSendImage is false (the opener), and vice versa never happens.
+//
+// chat:accepted exists because acceptConversation is a REST handler — nothing
+// else would tell the initiator's open page that their request went through, so
+// the composer stayed locked until they happened to reload. Requires the server
+// to emit it to `user:${initiator}`; without that emit this listener is inert
+// and the old reload-to-unlock behaviour returns.
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -87,8 +92,8 @@ export default function ThreadPage() {
 
                 setConvo([...convos, ...reqs].find((x) => String(x.id) === id) || null);
                 setMessages(msgs);
-                // Tell AppNav to refresh its badge; the receipt just cleared this thread's
-                // unread and nothing else would tell it.
+                // Best-effort; a failed receipt isn't banner-worthy. The event tells
+                // AppNav to refresh its unread badge — it has no handle on this page.
                 markRead(id)
                     .then(() => window.dispatchEvent(new Event('chat:read')))
                     .catch(() => { });
@@ -120,18 +125,28 @@ export default function ThreadPage() {
             if (String(msg.conversationId) !== id) return;
             setMessages((prev) => (prev.some((x) => String(x.id) === String(msg.id)) ? prev : [...prev, msg]));
         };
+
         const onTyping = () => {
             setTheyreTyping(true);
             clearTimeout(typingTimer.current);
             typingTimer.current = setTimeout(() => setTheyreTyping(false), 3000);
         };
 
+        // The other party accepted. Flip our local status so the composer unlocks
+        // and the image button enables, without a reload.
+        const onAccepted = ({ conversationId, status }) => {
+            if (String(conversationId) !== id) return;
+            setConvo((prev) => (prev ? { ...prev, status: status || 'accepted' } : prev));
+        };
+
         socket.on('chat:message', onMessage);
         socket.on('chat:typing', onTyping);
+        socket.on('chat:accepted', onAccepted);
 
         return () => {
             socket.off('chat:message', onMessage);
             socket.off('chat:typing', onTyping);
+            socket.off('chat:accepted', onAccepted);
             socket.emit('chat:leave', { conversationId: id });
             clearTimeout(typingTimer.current);
         };
@@ -144,8 +159,8 @@ export default function ThreadPage() {
     // dependency on that endpoint's envelope shape.
     function myIdFromToken() {
         try {
-            const t = getToken();
-            return String(JSON.parse(atob(t.split('.')[1])).sub);
+            const tok = getToken();
+            return String(JSON.parse(atob(tok.split('.')[1])).sub);
         } catch {
             return null;
         }
@@ -213,9 +228,9 @@ export default function ThreadPage() {
     // offer them a button that always fails.
     const showAccept = convo?.status === 'pending' && !convo?.isInitiator;
     const canSendImage = convo?.status === 'accepted';
-    // The initiator's one-message allowance, spent. `messages.length` is the
-    // whole thread, which is the same count the server takes — on a pending
-    // thread only the initiator can have written, so there's nothing to filter.
+    // The initiator's one-message allowance, spent. `messages.length` is the whole
+    // thread, which is the same count the server takes — on a pending thread only
+    // the initiator can have written, so there's nothing to filter.
     const pendingLocked =
         convo?.status === 'pending' && convo?.isInitiator && messages.length >= 1;
     const canSendText = !pendingLocked;
@@ -306,14 +321,14 @@ export default function ThreadPage() {
                 </div>
 
                 <div className="mt-3 flex items-center gap-2">
-                    {/* Image upload. chat:sendImage requires an ACCEPTED conversation — an
-    unsolicited image in a location-based app is a known abuse vector, so the
-    recipient opts in first. Disabled rather than left to fail with the
-    server's untranslated error string.
+                    {/* Image upload. chat:sendImage requires an ACCEPTED conversation —
+              an unsolicited image in a location-based app is a known abuse
+              vector, so the recipient opts in first. Disabled rather than left
+              to fail with the server's untranslated error string.
 
-    The tooltip is CSS, not the native `title` attribute: a `title` on a label
-    wrapping a disabled input fires unreliably in Chrome, and never fires on
-    touch at all. `group` + `group-hover` renders it ourselves. */}
+              The tooltip is CSS, not the native `title` attribute: a `title` on
+              a label wrapping a disabled input fires unreliably in Chrome, and
+              never fires on touch at all. */}
                     <div className="group relative shrink-0">
                         <label
                             className={`grid h-12 w-12 place-items-center rounded-xl border border-slate-300 text-xl font-semibold transition dark:border-slate-700 ${canSendImage
@@ -344,10 +359,10 @@ export default function ThreadPage() {
                             </span>
                         ) : null}
                     </div>
+
                     <input
                         value={text}
                         disabled={!canSendText}
-                        title={canSendText ? undefined : m.textPending}
                         onChange={(e) => {
                             setText(e.target.value.slice(0, 2000)); // Message schema maxlength
                             getSocket()?.emit('chat:typing', { conversationId: id });
@@ -361,7 +376,6 @@ export default function ThreadPage() {
                         type="button"
                         onClick={send}
                         disabled={sending || !text.trim() || !canSendText}
-                        title={canSendText ? undefined : m.textPending}
                         className="shrink-0 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-emerald-950 transition hover:brightness-105 disabled:opacity-50"
                     >
                         {sending ? '…' : m.send}

@@ -12,7 +12,7 @@
     "badge": "Presto su iOS e Android",
     "titleLead": "Cosa succede",
     "titleHighlight": "proprio intorno a te",
-    "subhead": "Qup Pulse è il battito locale del tuo quartiere. Pubblica per le persone davvero vicine, guarda cosa succede in questo momento e lascia perdere il flusso infinito di sconosciuti dall’altra parte del mondo."
+    "subhead": "Qup Pulse è il battito del tuo quartiere — qualunque sia il quartiere. Pubblica per le persone davvero vicine e scopri cosa succede adesso, a Bergen, Berlino o Bangkok."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Non puoi inviare messaggi a questo utente"
       },
       "distance": "Distanza",
-      "message": "Messaggio"
+      "message": "Messaggio",
+      "savedPosts": "Post salvati"
     },
     "feed": {
       "nearby": "Nelle vicinanze",
@@ -250,7 +251,9 @@
         "lostfound": "Oggetti smarriti",
         "marketplace": "Mercatino",
         "question": "Domanda"
-      }
+      },
+      "remove": "Rimuovi",
+      "unsave": "Rimuovi dai salvati"
     },
     "reports": {
       "title": "Segnalazioni",
@@ -353,6 +356,11 @@
       "emailConfirmed": "E-mail confermata",
       "empty": "Ancora nessuno nelle vicinanze. Aggiorna, o aumenta la distanza nelle impostazioni dell’app.",
       "loadFailed": "Impossibile caricare le persone nelle vicinanze"
+    },
+    "saved": {
+      "title": "Post salvati",
+      "empty": "Non hai ancora salvato nessun post.",
+      "loadFailed": "Impossibile caricare i post salvati"
     }
   },
   "auth": {

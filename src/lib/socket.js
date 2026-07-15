@@ -1,30 +1,19 @@
 // qup-pulse-admin/src/lib/socket.js
 'use client';
 
-// Socket.IO client for chat, matching server/src/socket/chat.js.
-//
-// Auth: JWT in the handshake `auth.token` — NOT a header or query param.
-// The server's authSocket() reads socket.handshake.auth.token and rejects
-// the connection outright without it.
-//
-// Origin: NEXT_PUBLIC_SOCKET_URL, an absolute URL. It cannot reuse
-// NEXT_PUBLIC_API_URL=/api because next.config.mjs's rewrite is server-side
-// and does not proxy WebSocket upgrades — the socket must hit the API directly.
-//
-// Transports: left at the default ['polling', 'websocket']. Forcing
-// ['websocket'] skips the HTTP handshake and times out against DigitalOcean's
-// proxy, even though the server advertises upgrades:["websocket"].
-//
-// Events out: chat:join {conversationId} (ack), chat:leave {conversationId},
-//   chat:send {conversationId, text} (ack), chat:sendImage {conversationId,
-//   imageUrl} (ack), chat:typing {conversationId}, presence:ping
-// Events in: chat:message (Message.toClient()), chat:typing {userId},
-//   chat:notify {conversationId, preview, status, pending}
-//
-// Acks resolve to { ok: true, message } or { error: '...' } — never both.
+// ...existing header comment unchanged...
 
 import { io } from 'socket.io-client';
+
 let socket = null;
+// The token the live socket authenticated with. authSocket() reads
+// handshake.auth.token ONCE, at connect — so a cached socket keeps whoever was
+// logged in when it was created, while REST reads localStorage per call. After
+// a logout/login in the same tab that split the app in two: getMessages 200'd
+// for the new user while chat:join rejected them as a non-participant. Compare
+// on every get and rebuild when it changes.
+let socketToken = null;
+
 const TOKEN_KEY = 'qup_pulse_admin_jwt';
 
 function socketOrigin() {
@@ -40,6 +29,7 @@ function socketOrigin() {
     return undefined;
   }
 }
+
 // Presence heartbeat. The server marks a user online only if lastSeenAt is
 // within 2 minutes (ONLINE_MS in models/User.js), and touchLastSeen fires on
 // connect and on this ping — nothing else. Without an interval the user goes
@@ -47,16 +37,29 @@ function socketOrigin() {
 let heartbeat = null;
 
 export function getSocket() {
+  const token = typeof window !== 'undefined' ? window.localStorage.getItem(TOKEN_KEY) : null;
+
+  // Token gone (logged out) — tear down rather than leave a live socket
+  // authenticated as the previous user.
+  if (!token) {
+    if (socket) closeSocket();
+    return null;
+  }
+
+  // Token changed (different user, or refreshed) — the existing socket is
+  // authenticated as the old one and cannot be re-authenticated in place.
+  if (socket && socketToken !== token) {
+    closeSocket();
+  }
+
   if (socket) return socket;
 
-  const token = typeof window !== 'undefined' ? window.localStorage.getItem(TOKEN_KEY) : null;
-  if (!token) return null;
-
   socket = io(socketOrigin(), { auth: { token }, autoConnect: true });
+  socketToken = token;
 
   socket.on('connect', () => {
     clearInterval(heartbeat);
-    heartbeat = setInterval(() => socket.emit('presence:ping'), 60_000);
+    heartbeat = setInterval(() => socket?.emit('presence:ping'), 60_000);
   });
   socket.on('disconnect', () => clearInterval(heartbeat));
   socket.on('connect_error', (e) => console.error('[socket] connect_error', e.message));
@@ -68,6 +71,7 @@ export function closeSocket() {
   clearInterval(heartbeat);
   socket?.disconnect();
   socket = null;
+  socketToken = null;
 }
 
 // Promise wrapper around an ack'd emit. Rejects on { error }, resolves on ok.

@@ -12,7 +12,7 @@
     "badge": "Binnenkort voor iOS & Android",
     "titleLead": "Wat er gebeurt",
     "titleHighlight": "vlak bij je",
-    "subhead": "Qup Pulse is de lokale pols van je buurt. Plaats berichten voor mensen die echt in de buurt zijn, zie wat er nu gebeurt en sla de eindeloze stroom van vreemden aan de andere kant van de wereld over."
+    "subhead": "Qup Pulse is de pols van je buurt — in welke buurt je ook bent. Deel met mensen die echt in de buurt zijn en zie wat er nu gebeurt, in Bergen, Berlijn of Bangkok."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Je kunt deze gebruiker geen bericht sturen"
       },
       "distance": "Afstand",
-      "message": "Bericht"
+      "message": "Bericht",
+      "savedPosts": "Opgeslagen berichten"
     },
     "feed": {
       "nearby": "Dichtbij",
@@ -250,7 +251,9 @@
         "lostfound": "Verloren & gevonden",
         "marketplace": "Marktplaats",
         "question": "Vraag"
-      }
+      },
+      "remove": "Verwijderen",
+      "unsave": "Niet meer opslaan"
     },
     "reports": {
       "title": "Meldingen",
@@ -353,6 +356,11 @@
       "emailConfirmed": "E-mail bevestigd",
       "empty": "Nog niemand in de buurt. Vernieuw, of vergroot je afstand in de app-instellingen.",
       "loadFailed": "Kon mensen in de buurt niet laden"
+    },
+    "saved": {
+      "title": "Opgeslagen berichten",
+      "empty": "Je hebt nog geen berichten opgeslagen.",
+      "loadFailed": "Kon opgeslagen berichten niet laden"
     }
   },
   "auth": {

@@ -12,7 +12,7 @@
     "badge": "Em breve para iOS e Android",
     "titleLead": "O que está a acontecer",
     "titleHighlight": "mesmo à tua volta",
-    "subhead": "Qup Pulse é o pulso local do teu bairro. Publica para as pessoas que estão mesmo por perto, vê o que se passa neste momento e esquece o feed interminável de estranhos do outro lado do mundo."
+    "subhead": "O Qup Pulse é o pulso do teu bairro — seja qual for o bairro. Publica para as pessoas que estão mesmo perto e vê o que está a acontecer agora, em Bergen, Berlim ou Banguecoque."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Não podes enviar mensagens a este utilizador"
       },
       "distance": "Distância",
-      "message": "Mensagem"
+      "message": "Mensagem",
+      "savedPosts": "Publicações guardadas"
     },
     "feed": {
       "nearby": "Por perto",
@@ -250,7 +251,9 @@
         "lostfound": "Perdidos e achados",
         "marketplace": "Mercado",
         "question": "Pergunta"
-      }
+      },
+      "remove": "Remover",
+      "unsave": "Remover dos guardados"
     },
     "reports": {
       "title": "Denúncias",
@@ -353,6 +356,11 @@
       "emailConfirmed": "E-mail confirmado",
       "empty": "Ainda não há ninguém por perto. Atualiza, ou aumenta a distância nas definições da aplicação.",
       "loadFailed": "Não foi possível carregar pessoas por perto"
+    },
+    "saved": {
+      "title": "Publicações guardadas",
+      "empty": "Ainda não guardaste nenhuma publicação.",
+      "loadFailed": "Não foi possível carregar as publicações guardadas"
     }
   },
   "auth": {

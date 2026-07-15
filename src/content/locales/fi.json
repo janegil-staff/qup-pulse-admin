@@ -12,7 +12,7 @@
     "badge": "Pian iOS:lle ja Androidille",
     "titleLead": "Mitä tapahtuu",
     "titleHighlight": "juuri ympärilläsi",
-    "subhead": "Qup Pulse on naapurustosi paikallinen syke. Julkaise oikeasti lähellä oleville, näe mitä juuri nyt tapahtuu ja unohda loputon virta vieraita ihmisiä maapallon toiselta puolelta."
+    "subhead": "Qup Pulse on naapurustosi syke — olitpa missä naapurustossa tahansa. Jaa niille, jotka ovat oikeasti lähellä, ja näe mitä juuri nyt tapahtuu, Bergenissä, Berliinissä tai Bangkokissa."
   },
   "features": {
     "local": {
@@ -213,7 +213,8 @@
         "blocked": "Et voi lähettää viestejä tälle käyttäjälle"
       },
       "distance": "Etäisyys",
-      "message": "Viesti"
+      "message": "Viesti",
+      "savedPosts": "Tallennetut julkaisut"
     },
     "feed": {
       "nearby": "Lähellä",
@@ -250,7 +251,9 @@
         "lostfound": "Löytötavarat",
         "marketplace": "Kauppapaikka",
         "question": "Kysymys"
-      }
+      },
+      "remove": "Poista",
+      "unsave": "Poista tallennus"
     },
     "reports": {
       "title": "Ilmoitukset",
@@ -353,6 +356,11 @@
       "emailConfirmed": "Sähköposti vahvistettu",
       "empty": "Ketään ei ole vielä lähellä. Päivitä, tai kasvata etäisyyttä sovelluksen asetuksissa.",
       "loadFailed": "Lähellä olevia ihmisiä ei voitu ladata"
+    },
+    "saved": {
+      "title": "Tallennetut julkaisut",
+      "empty": "Et ole vielä tallentanut yhtään julkaisua.",
+      "loadFailed": "Tallennettuja julkaisuja ei voitu ladata"
     }
   },
   "auth": {
