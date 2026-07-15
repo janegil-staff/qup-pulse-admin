@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Velg en grunn først.",
         "reportFailed": "Kunne ikke sende rapporten.",
-        "blockFailed": "Kunne ikke blokkere denne brukeren."
-      }
+        "blockFailed": "Kunne ikke blokkere denne brukeren.",
+        "messageFailed": "Kunne ikke åpne samtalen",
+        "blocked": "Du kan ikke sende melding til denne brukeren"
+      },
+      "distance": "Avstand",
+      "message": "Melding"
     },
     "feed": {
       "nearby": "I nærheten",
@@ -314,6 +318,27 @@
         "load": "Kunne ikke laste brukere.",
         "update": "Kunne ikke oppdatere brukeren."
       }
+    },
+    "messages": {
+      "title": "Meldinger",
+      "inbox": "Innboks",
+      "requests": "Forespørsler",
+      "accept": "Godta",
+      "noConversations": "Ingen samtaler ennå",
+      "noRequests": "Ingen forespørsler",
+      "noMessagesYet": "Ingen meldinger ennå",
+      "unknownUser": "Ukjent bruker",
+      "loadFailed": "Kunne ikke laste meldinger",
+      "acceptFailed": "Kunne ikke godta forespørselen",
+      "send": "Send",
+      "placeholder": "Skriv en melding…",
+      "typing": "skriver…",
+      "pendingBody": "Denne personen vil sende deg meldinger.",
+      "sendPhoto": "Send bilde",
+      "photoPending": "Du kan sende bilder når forespørselen er godtatt",
+      "photoMessage": "Bilde",
+      "sendFailed": "Kunne ikke sende meldingen",
+      "joinFailed": "Kunne ikke koble til samtalen"
     }
   },
   "auth": {

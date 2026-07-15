@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Choose a reason first.",
         "reportFailed": "Could not send your report.",
-        "blockFailed": "Could not block this user."
-      }
+        "blockFailed": "Could not block this user.",
+        "messageFailed": "Could not open the conversation",
+        "blocked": "You cannot message this user"
+      },
+      "distance": "Distance",
+      "message": "Message"
     },
     "feed": {
       "nearby": "Nearby",
@@ -314,6 +318,27 @@
         "load": "Could not load users.",
         "update": "Could not update user."
       }
+    },
+    "messages": {
+      "title": "Messages",
+      "inbox": "Inbox",
+      "requests": "Requests",
+      "accept": "Accept",
+      "noConversations": "No conversations yet",
+      "noRequests": "No requests",
+      "noMessagesYet": "No messages yet",
+      "unknownUser": "Unknown user",
+      "loadFailed": "Could not load messages",
+      "acceptFailed": "Could not accept the request",
+      "send": "Send",
+      "placeholder": "Write a message…",
+      "typing": "typing…",
+      "pendingBody": "This person wants to message you.",
+      "sendPhoto": "Send photo",
+      "photoPending": "You can send photos once the request is accepted",
+      "photoMessage": "Photo",
+      "sendFailed": "Could not send the message",
+      "joinFailed": "Could not connect to the conversation"
     }
   },
   "auth": {

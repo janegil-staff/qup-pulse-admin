@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Scegli prima un motivo.",
         "reportFailed": "Impossibile inviare la segnalazione.",
-        "blockFailed": "Impossibile bloccare questo utente."
-      }
+        "blockFailed": "Impossibile bloccare questo utente.",
+        "messageFailed": "Impossibile aprire la conversazione",
+        "blocked": "Non puoi inviare messaggi a questo utente"
+      },
+      "distance": "Distanza",
+      "message": "Messaggio"
     },
     "feed": {
       "nearby": "Nelle vicinanze",
@@ -314,6 +318,27 @@
         "load": "Impossibile caricare gli utenti.",
         "update": "Impossibile aggiornare l'utente."
       }
+    },
+    "messages": {
+      "title": "Messaggi",
+      "inbox": "Posta in arrivo",
+      "requests": "Richieste",
+      "accept": "Accetta",
+      "noConversations": "Nessuna conversazione",
+      "noRequests": "Nessuna richiesta",
+      "noMessagesYet": "Nessun messaggio",
+      "unknownUser": "Utente sconosciuto",
+      "loadFailed": "Impossibile caricare i messaggi",
+      "acceptFailed": "Impossibile accettare la richiesta",
+      "send": "Invia",
+      "placeholder": "Scrivi un messaggio…",
+      "typing": "sta scrivendo…",
+      "pendingBody": "Questa persona vuole scriverti.",
+      "sendPhoto": "Invia foto",
+      "photoPending": "Puoi inviare foto una volta accettata la richiesta",
+      "photoMessage": "Foto",
+      "sendFailed": "Impossibile inviare il messaggio",
+      "joinFailed": "Impossibile connettersi alla conversazione"
     }
   },
   "auth": {

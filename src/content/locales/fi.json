@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Valitse ensin syy.",
         "reportFailed": "Ilmoitusta ei voitu lähettää.",
-        "blockFailed": "Käyttäjää ei voitu estää."
-      }
+        "blockFailed": "Käyttäjää ei voitu estää.",
+        "messageFailed": "Keskustelua ei voitu avata",
+        "blocked": "Et voi lähettää viestejä tälle käyttäjälle"
+      },
+      "distance": "Etäisyys",
+      "message": "Viesti"
     },
     "feed": {
       "nearby": "Lähellä",
@@ -314,6 +318,27 @@
         "load": "Käyttäjiä ei voitu ladata.",
         "update": "Käyttäjää ei voitu päivittää."
       }
+    },
+    "messages": {
+      "title": "Viestit",
+      "inbox": "Saapuneet",
+      "requests": "Pyynnöt",
+      "accept": "Hyväksy",
+      "noConversations": "Ei vielä keskusteluja",
+      "noRequests": "Ei pyyntöjä",
+      "noMessagesYet": "Ei vielä viestejä",
+      "unknownUser": "Tuntematon käyttäjä",
+      "loadFailed": "Viestejä ei voitu ladata",
+      "acceptFailed": "Pyyntöä ei voitu hyväksyä",
+      "send": "Lähetä",
+      "placeholder": "Kirjoita viesti…",
+      "typing": "kirjoittaa…",
+      "pendingBody": "Tämä henkilö haluaa lähettää sinulle viestejä.",
+      "sendPhoto": "Lähetä kuva",
+      "photoPending": "Voit lähettää kuvia, kun pyyntö on hyväksytty",
+      "photoMessage": "Kuva",
+      "sendFailed": "Viestiä ei voitu lähettää",
+      "joinFailed": "Keskusteluun ei voitu yhdistää"
     }
   },
   "auth": {

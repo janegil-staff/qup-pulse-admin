@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Välj en anledning först.",
         "reportFailed": "Kunde inte skicka rapporten.",
-        "blockFailed": "Kunde inte blockera användaren."
-      }
+        "blockFailed": "Kunde inte blockera användaren.",
+        "messageFailed": "Det gick inte att öppna konversationen",
+        "blocked": "Du kan inte skicka meddelanden till den här användaren"
+      },
+      "distance": "Avstånd",
+      "message": "Meddelande"
     },
     "feed": {
       "nearby": "I närheten",
@@ -314,6 +318,27 @@
         "load": "Kunde inte ladda användare.",
         "update": "Kunde inte uppdatera användaren."
       }
+    },
+    "messages": {
+      "title": "Meddelanden",
+      "inbox": "Inkorg",
+      "requests": "Förfrågningar",
+      "accept": "Acceptera",
+      "noConversations": "Inga konversationer ännu",
+      "noRequests": "Inga förfrågningar",
+      "noMessagesYet": "Inga meddelanden ännu",
+      "unknownUser": "Okänd användare",
+      "loadFailed": "Det gick inte att ladda meddelanden",
+      "acceptFailed": "Det gick inte att acceptera förfrågan",
+      "send": "Skicka",
+      "placeholder": "Skriv ett meddelande…",
+      "typing": "skriver…",
+      "pendingBody": "Den här personen vill skicka meddelanden till dig.",
+      "sendPhoto": "Skicka bild",
+      "photoPending": "Du kan skicka bilder när förfrågan har accepterats",
+      "photoMessage": "Bild",
+      "sendFailed": "Det gick inte att skicka meddelandet",
+      "joinFailed": "Det gick inte att ansluta till konversationen"
     }
   },
   "auth": {

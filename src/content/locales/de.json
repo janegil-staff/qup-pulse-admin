@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Wähle zuerst einen Grund.",
         "reportFailed": "Meldung konnte nicht gesendet werden.",
-        "blockFailed": "Nutzer konnte nicht blockiert werden."
-      }
+        "blockFailed": "Nutzer konnte nicht blockiert werden.",
+        "messageFailed": "Unterhaltung konnte nicht geöffnet werden",
+        "blocked": "Du kannst diesem Benutzer keine Nachricht senden"
+      },
+      "distance": "Entfernung",
+      "message": "Nachricht"
     },
     "feed": {
       "nearby": "In der Nähe",
@@ -314,6 +318,27 @@
         "load": "Nutzer konnten nicht geladen werden.",
         "update": "Nutzer konnte nicht aktualisiert werden."
       }
+    },
+    "messages": {
+      "title": "Nachrichten",
+      "inbox": "Posteingang",
+      "requests": "Anfragen",
+      "accept": "Annehmen",
+      "noConversations": "Noch keine Unterhaltungen",
+      "noRequests": "Keine Anfragen",
+      "noMessagesYet": "Noch keine Nachrichten",
+      "unknownUser": "Unbekannter Benutzer",
+      "loadFailed": "Nachrichten konnten nicht geladen werden",
+      "acceptFailed": "Anfrage konnte nicht angenommen werden",
+      "send": "Senden",
+      "placeholder": "Nachricht schreiben…",
+      "typing": "schreibt…",
+      "pendingBody": "Diese Person möchte dir schreiben.",
+      "sendPhoto": "Foto senden",
+      "photoPending": "Fotos kannst du senden, sobald die Anfrage angenommen wurde",
+      "photoMessage": "Foto",
+      "sendFailed": "Nachricht konnte nicht gesendet werden",
+      "joinFailed": "Verbindung zur Unterhaltung fehlgeschlagen"
     }
   },
   "auth": {

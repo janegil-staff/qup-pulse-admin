@@ -152,3 +152,12 @@ export async function blockUser(userId) {
   });
   return parse(res);
 }
+// Open a chat — POST /chat/conversations/:userId -> { conversationId, status }
+// Find-or-create: returns the existing thread if one exists, else creates a
+// 'pending' one with the caller as initiator. 403 if either party is blocked.
+export async function openConversation(userId) {
+  const res = await fetch(`${API_URL}/chat/conversations/${encodeURIComponent(userId)}`, {
+    method: 'POST', headers: headers(),
+  });
+  return parse(res); // { conversationId, status }
+}

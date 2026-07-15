@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Vælg en årsag først.",
         "reportFailed": "Kunne ikke sende anmeldelsen.",
-        "blockFailed": "Kunne ikke blokere denne bruger."
-      }
+        "blockFailed": "Kunne ikke blokere denne bruger.",
+        "messageFailed": "Kunne ikke åbne samtalen",
+        "blocked": "Du kan ikke sende beskeder til denne bruger"
+      },
+      "distance": "Afstand",
+      "message": "Besked"
     },
     "feed": {
       "nearby": "I nærheden",
@@ -314,6 +318,27 @@
         "load": "Kunne ikke indlæse brugere.",
         "update": "Kunne ikke opdatere brugeren."
       }
+    },
+    "messages": {
+      "title": "Beskeder",
+      "inbox": "Indbakke",
+      "requests": "Anmodninger",
+      "accept": "Acceptér",
+      "noConversations": "Ingen samtaler endnu",
+      "noRequests": "Ingen anmodninger",
+      "noMessagesYet": "Ingen beskeder endnu",
+      "unknownUser": "Ukendt bruger",
+      "loadFailed": "Kunne ikke indlæse beskeder",
+      "acceptFailed": "Kunne ikke acceptere anmodningen",
+      "send": "Send",
+      "placeholder": "Skriv en besked…",
+      "typing": "skriver…",
+      "pendingBody": "Denne person vil sende dig beskeder.",
+      "sendPhoto": "Send billede",
+      "photoPending": "Du kan sende billeder, når anmodningen er accepteret",
+      "photoMessage": "Billede",
+      "sendFailed": "Kunne ikke sende beskeden",
+      "joinFailed": "Kunne ikke oprette forbindelse til samtalen"
     }
   },
   "auth": {

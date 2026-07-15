@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Kies eerst een reden.",
         "reportFailed": "Kon je melding niet versturen.",
-        "blockFailed": "Kon deze gebruiker niet blokkeren."
-      }
+        "blockFailed": "Kon deze gebruiker niet blokkeren.",
+        "messageFailed": "Kan het gesprek niet openen",
+        "blocked": "Je kunt deze gebruiker geen bericht sturen"
+      },
+      "distance": "Afstand",
+      "message": "Bericht"
     },
     "feed": {
       "nearby": "Dichtbij",
@@ -314,6 +318,27 @@
         "load": "Kon gebruikers niet laden.",
         "update": "Kon gebruiker niet bijwerken."
       }
+    },
+    "messages": {
+      "title": "Berichten",
+      "inbox": "Inbox",
+      "requests": "Verzoeken",
+      "accept": "Accepteren",
+      "noConversations": "Nog geen gesprekken",
+      "noRequests": "Geen verzoeken",
+      "noMessagesYet": "Nog geen berichten",
+      "unknownUser": "Onbekende gebruiker",
+      "loadFailed": "Kan berichten niet laden",
+      "acceptFailed": "Kan het verzoek niet accepteren",
+      "send": "Verstuur",
+      "placeholder": "Schrijf een bericht…",
+      "typing": "aan het typen…",
+      "pendingBody": "Deze persoon wil je een bericht sturen.",
+      "sendPhoto": "Foto sturen",
+      "photoPending": "Je kunt foto’s sturen zodra het verzoek is geaccepteerd",
+      "photoMessage": "Foto",
+      "sendFailed": "Kan het bericht niet versturen",
+      "joinFailed": "Kan geen verbinding maken met het gesprek"
     }
   },
   "auth": {

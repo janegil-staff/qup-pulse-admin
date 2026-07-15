@@ -208,8 +208,12 @@
       "err": {
         "pickReason": "Najpierw wybierz powód.",
         "reportFailed": "Nie udało się wysłać zgłoszenia.",
-        "blockFailed": "Nie udało się zablokować tego użytkownika."
-      }
+        "blockFailed": "Nie udało się zablokować tego użytkownika.",
+        "messageFailed": "Nie można otworzyć rozmowy",
+        "blocked": "Nie możesz wysłać wiadomości do tego użytkownika"
+      },
+      "distance": "Odległość",
+      "message": "Wiadomość"
     },
     "feed": {
       "nearby": "W pobliżu",
@@ -314,6 +318,27 @@
         "load": "Nie udało się wczytać użytkowników.",
         "update": "Nie udało się zaktualizować użytkownika."
       }
+    },
+    "messages": {
+      "title": "Wiadomości",
+      "inbox": "Odebrane",
+      "requests": "Prośby",
+      "accept": "Akceptuj",
+      "noConversations": "Brak rozmów",
+      "noRequests": "Brak próśb",
+      "noMessagesYet": "Brak wiadomości",
+      "unknownUser": "Nieznany użytkownik",
+      "loadFailed": "Nie można załadować wiadomości",
+      "acceptFailed": "Nie można zaakceptować prośby",
+      "send": "Wyślij",
+      "placeholder": "Napisz wiadomość…",
+      "typing": "pisze…",
+      "pendingBody": "Ta osoba chce wysyłać Ci wiadomości.",
+      "sendPhoto": "Wyślij zdjęcie",
+      "photoPending": "Zdjęcia możesz wysyłać po zaakceptowaniu prośby",
+      "photoMessage": "Zdjęcie",
+      "sendFailed": "Nie można wysłać wiadomości",
+      "joinFailed": "Nie można połączyć się z rozmową"
     }
   },
   "auth": {
