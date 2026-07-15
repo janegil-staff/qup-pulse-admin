@@ -40,30 +40,32 @@ function socketOrigin() {
     return undefined;
   }
 }
+// Presence heartbeat. The server marks a user online only if lastSeenAt is
+// within 2 minutes (ONLINE_MS in models/User.js), and touchLastSeen fires on
+// connect and on this ping — nothing else. Without an interval the user goes
+// dark after two minutes with the tab wide open.
+let heartbeat = null;
 
 export function getSocket() {
-  // `socket.connecting` is not a real property on socket.io-client's Socket —
-  // it reads undefined, so the old guard fell through and every call during
-  // startup built a NEW Manager, orphaning handlers bound to the previous one.
-  // chat:join could land on one instance while chat:message listened on another.
-  // A non-null socket is enough: the client queues emits while disconnected.
   if (socket) return socket;
 
   const token = typeof window !== 'undefined' ? window.localStorage.getItem(TOKEN_KEY) : null;
   if (!token) return null;
 
-  socket = io(socketOrigin(), {
-    auth: { token },
-    autoConnect: true,
-  });
+  socket = io(socketOrigin(), { auth: { token }, autoConnect: true });
 
-  socket.on('connect', () => console.log('[socket] connected', socket.id));
+  socket.on('connect', () => {
+    clearInterval(heartbeat);
+    heartbeat = setInterval(() => socket.emit('presence:ping'), 60_000);
+  });
+  socket.on('disconnect', () => clearInterval(heartbeat));
   socket.on('connect_error', (e) => console.error('[socket] connect_error', e.message));
 
   return socket;
 }
 
 export function closeSocket() {
+  clearInterval(heartbeat);
   socket?.disconnect();
   socket = null;
 }
