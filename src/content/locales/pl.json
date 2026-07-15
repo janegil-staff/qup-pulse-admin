@@ -258,7 +258,27 @@
         "question": "Pytanie"
       },
       "remove": "Usuń",
-      "unsave": "Nie zapisuj"
+      "unsave": "Nie zapisuj",
+      "postOptions": "Opcje posta",
+      "reportPost": "Zgłoś post",
+      "blockUser": "Zablokuj użytkownika",
+      "reportWhy": "Dlaczego to zgłaszasz?",
+      "reportNotePlaceholder": "Dodaj szczegóły (opcjonalnie)",
+      "reportSubmit": "Wyślij zgłoszenie",
+      "reportFailed": "Nie udało się wysłać zgłoszenia. Spróbuj ponownie.",
+      "reportThanksTitle": "Dziękujemy",
+      "reportThanksBody": "Twoje zgłoszenie zostało wysłane. Sprawdzimy je najszybciej, jak to możliwe.",
+      "blockTitle": "Zablokować {name}?",
+      "blockBody": "Nie będziesz widzieć ich postów, a oni nie będą mogli wysyłać Ci wiadomości.",
+      "blockConfirm": "Zablokuj",
+      "blockFailed": "Nie udało się zablokować użytkownika. Spróbuj ponownie.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Nękanie",
+        "inappropriate": "Nieodpowiednie treści",
+        "misinformation": "Dezinformacja",
+        "other": "Inne"
+      }
     },
     "reports": {
       "title": "Zgłoszenia",

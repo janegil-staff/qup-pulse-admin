@@ -14,6 +14,9 @@
 //   addComment     POST /posts/:postId/comments   { text } -> { comment }
 //   deleteComment  DELETE /comments/:id           -> { ok }
 //   uploadImage    POST /upload (multipart "image") -> { url, publicId }
+//   reportPost     POST /posts/:postId/report  { reason, note } -> { ok }
+//   blockUser      POST /users/:userId/block   -> { blocked: true }
+//   unblockUser    DELETE /users/:userId/block -> { blocked: false }
 //
 // Post shape (Post.toClient): { id, type, text, imageUrl, placeName, location,
 //   author: {id,username,displayName,photos,avatarUrl,online},
@@ -43,6 +46,11 @@ async function parse(res) {
 }
 
 export const POST_TYPES = ['update', 'event', 'recommendation', 'lostfound', 'marketplace', 'question'];
+
+// MODERATION_REASONS_V1 — must match REPORT_REASONS in server/src/models/Report.js.
+// The server 400s on anything outside this list, so these keys are a contract,
+// not a display concern. Labels are localized separately (t.app.feed.reasons.*).
+export const REPORT_REASONS = ['spam', 'harassment', 'inappropriate', 'misinformation', 'other'];
 
 export async function getFeed({ lng, lat, radius, before, limit = 20 } = {}) {
   const qs = new URLSearchParams();
@@ -133,12 +141,49 @@ export async function uploadImage(file) {
   return parse(res); // { url, publicId }
 }
 
-// qup-pulse-admin/src/lib/feedApi.js
-
 // Saved posts — the viewer's bookmarks. Server scopes this to the caller, so
 // there's no userId param. savedByMe is implicitly true for everything here.
 export async function listSaved() {
   const res = await fetch(`${API_URL}/posts/saved`, { headers: headers(), cache: 'no-store' });
   const data = await parse(res);
   return data.posts || data.saved || [];
+}
+
+/* ---------- moderation ---------- */
+// These hit the same deployed endpoints the mobile app uses. `note` is optional
+// and capped at 500 chars server-side (Report.note maxlength).
+
+export async function reportPost(postId, reason, note = '') {
+  const res = await fetch(`${API_URL}/posts/${encodeURIComponent(postId)}/report`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ reason, ...(note ? { note } : {}) }),
+  });
+  return parse(res); // { ok: true }
+}
+
+export async function reportUser(userId, reason, note = '') {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/report`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ reason, ...(note ? { note } : {}) }),
+  });
+  return parse(res); // { ok: true }
+}
+
+// Blocking is bidirectional in effect: /posts/feed excludes posts where the
+// viewer is either blocker OR blocked, so the next load drops them regardless
+// of who blocked whom. The caller still prunes locally for an instant response.
+export async function blockUser(userId) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/block`, {
+    method: 'POST', headers: headers(false),
+  });
+  return parse(res); // { blocked: true }
+}
+
+export async function unblockUser(userId) {
+  const res = await fetch(`${API_URL}/users/${encodeURIComponent(userId)}/block`, {
+    method: 'DELETE', headers: headers(false),
+  });
+  return parse(res); // { blocked: false }
 }

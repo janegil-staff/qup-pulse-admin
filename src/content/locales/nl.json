@@ -258,7 +258,27 @@
         "question": "Vraag"
       },
       "remove": "Verwijderen",
-      "unsave": "Niet meer opslaan"
+      "unsave": "Niet meer opslaan",
+      "postOptions": "Berichtopties",
+      "reportPost": "Bericht rapporteren",
+      "blockUser": "Gebruiker blokkeren",
+      "reportWhy": "Waarom rapporteer je dit?",
+      "reportNotePlaceholder": "Details toevoegen (optioneel)",
+      "reportSubmit": "Rapport versturen",
+      "reportFailed": "Rapport kon niet worden verzonden. Probeer het opnieuw.",
+      "reportThanksTitle": "Bedankt",
+      "reportThanksBody": "Je rapport is verzonden. We bekijken het zo snel mogelijk.",
+      "blockTitle": "{name} blokkeren?",
+      "blockBody": "Je ziet hun berichten niet meer en ze kunnen je niet berichten.",
+      "blockConfirm": "Blokkeren",
+      "blockFailed": "Gebruiker kon niet worden geblokkeerd. Probeer het opnieuw.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Intimidatie",
+        "inappropriate": "Ongepaste inhoud",
+        "misinformation": "Misinformatie",
+        "other": "Anders"
+      }
     },
     "reports": {
       "title": "Meldingen",

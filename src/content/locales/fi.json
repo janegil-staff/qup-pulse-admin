@@ -258,7 +258,27 @@
         "question": "Kysymys"
       },
       "remove": "Poista",
-      "unsave": "Poista tallennus"
+      "unsave": "Poista tallennus",
+      "postOptions": "Julkaisun asetukset",
+      "reportPost": "Ilmoita julkaisusta",
+      "blockUser": "Estä käyttäjä",
+      "reportWhy": "Miksi ilmoitat tästä?",
+      "reportNotePlaceholder": "Lisää tietoja (valinnainen)",
+      "reportSubmit": "Lähetä ilmoitus",
+      "reportFailed": "Ilmoitusta ei voitu lähettää. Yritä uudelleen.",
+      "reportThanksTitle": "Kiitos",
+      "reportThanksBody": "Ilmoituksesi on lähetetty. Käsittelemme sen mahdollisimman pian.",
+      "blockTitle": "Estetäänkö {name}?",
+      "blockBody": "Et näe heidän julkaisujaan, eivätkä he voi lähettää sinulle viestejä.",
+      "blockConfirm": "Estä",
+      "blockFailed": "Käyttäjän estäminen ei onnistunut. Yritä uudelleen.",
+      "reasons": {
+        "spam": "Roskaposti",
+        "harassment": "Häirintä",
+        "inappropriate": "Sopimaton sisältö",
+        "misinformation": "Virheellinen tieto",
+        "other": "Muu"
+      }
     },
     "reports": {
       "title": "Ilmoitukset",

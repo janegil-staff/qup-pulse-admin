@@ -258,7 +258,27 @@
         "question": "Domanda"
       },
       "remove": "Rimuovi",
-      "unsave": "Rimuovi dai salvati"
+      "unsave": "Rimuovi dai salvati",
+      "postOptions": "Opzioni del post",
+      "reportPost": "Segnala post",
+      "blockUser": "Blocca utente",
+      "reportWhy": "Perché lo stai segnalando?",
+      "reportNotePlaceholder": "Aggiungi dettagli (facoltativo)",
+      "reportSubmit": "Invia segnalazione",
+      "reportFailed": "Impossibile inviare la segnalazione. Riprova.",
+      "reportThanksTitle": "Grazie",
+      "reportThanksBody": "La tua segnalazione è stata inviata. La esamineremo al più presto.",
+      "blockTitle": "Bloccare {name}?",
+      "blockBody": "Non vedrai i suoi post e non potrà inviarti messaggi.",
+      "blockConfirm": "Blocca",
+      "blockFailed": "Impossibile bloccare questo utente. Riprova.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Molestie",
+        "inappropriate": "Contenuto inappropriato",
+        "misinformation": "Disinformazione",
+        "other": "Altro"
+      }
     },
     "reports": {
       "title": "Segnalazioni",

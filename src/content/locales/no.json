@@ -258,7 +258,27 @@
         "question": "Spørsmål"
       },
       "remove": "Fjern",
-      "unsave": "Fjern lagring"
+      "unsave": "Fjern lagring",
+      "postOptions": "Innleggsvalg",
+      "reportPost": "Rapporter innlegg",
+      "blockUser": "Blokker bruker",
+      "reportWhy": "Hvorfor rapporterer du dette?",
+      "reportNotePlaceholder": "Legg til detaljer (valgfritt)",
+      "reportSubmit": "Send rapport",
+      "reportFailed": "Kunne ikke sende rapporten. Prøv igjen.",
+      "reportThanksTitle": "Takk",
+      "reportThanksBody": "Rapporten din er sendt. Vi ser på den så snart som mulig.",
+      "blockTitle": "Blokkere {name}?",
+      "blockBody": "Du vil ikke se innleggene deres, og de kan ikke sende deg meldinger.",
+      "blockConfirm": "Blokker",
+      "blockFailed": "Kunne ikke blokkere brukeren. Prøv igjen.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Trakassering",
+        "inappropriate": "Upassende innhold",
+        "misinformation": "Feilinformasjon",
+        "other": "Annet"
+      }
     },
     "reports": {
       "title": "Rapporter",

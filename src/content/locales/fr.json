@@ -258,7 +258,27 @@
         "question": "Question"
       },
       "remove": "Retirer",
-      "unsave": "Ne plus enregistrer"
+      "unsave": "Ne plus enregistrer",
+      "postOptions": "Options de la publication",
+      "reportPost": "Signaler la publication",
+      "blockUser": "Bloquer l'utilisateur",
+      "reportWhy": "Pourquoi signalez-vous ceci ?",
+      "reportNotePlaceholder": "Ajouter des détails (facultatif)",
+      "reportSubmit": "Envoyer le signalement",
+      "reportFailed": "Impossible d'envoyer le signalement. Veuillez réessayer.",
+      "reportThanksTitle": "Merci",
+      "reportThanksBody": "Votre signalement a été envoyé. Nous l’examinerons dès que possible.",
+      "blockTitle": "Bloquer {name} ?",
+      "blockBody": "Vous ne verrez plus ses publications et il ne pourra pas vous écrire.",
+      "blockConfirm": "Bloquer",
+      "blockFailed": "Impossible de bloquer cet utilisateur. Veuillez réessayer.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Harcèlement",
+        "inappropriate": "Contenu inapproprié",
+        "misinformation": "Désinformation",
+        "other": "Autre"
+      }
     },
     "reports": {
       "title": "Signalements",

@@ -258,7 +258,27 @@
         "question": "Question"
       },
       "remove": "Remove",
-      "unsave": "Unsave"
+      "unsave": "Unsave",
+      "postOptions": "Post options",
+      "reportPost": "Report post",
+      "blockUser": "Block user",
+      "reportWhy": "Why are you reporting this?",
+      "reportNotePlaceholder": "Add details (optional)",
+      "reportSubmit": "Submit report",
+      "reportFailed": "Couldn't send the report. Please try again.",
+      "reportThanksTitle": "Thanks",
+      "reportThanksBody": "Your report has been submitted. We'll review it as soon as we can.",
+      "blockTitle": "Block {name}?",
+      "blockBody": "You won't see their posts, and they can't message you.",
+      "blockConfirm": "Block",
+      "blockFailed": "Couldn't block this user. Please try again.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Harassment",
+        "inappropriate": "Inappropriate content",
+        "misinformation": "Misinformation",
+        "other": "Other"
+      }
     },
     "reports": {
       "title": "Reports",

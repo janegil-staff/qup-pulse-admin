@@ -258,7 +258,27 @@
         "question": "Spørgsmål"
       },
       "remove": "Fjern",
-      "unsave": "Fjern fra gemte"
+      "unsave": "Fjern fra gemte",
+      "postOptions": "Indlægsindstillinger",
+      "reportPost": "Rapportér indlæg",
+      "blockUser": "Blokér bruger",
+      "reportWhy": "Hvorfor rapporterer du dette?",
+      "reportNotePlaceholder": "Tilføj detaljer (valgfrit)",
+      "reportSubmit": "Send rapport",
+      "reportFailed": "Rapporten kunne ikke sendes. Prøv igen.",
+      "reportThanksTitle": "Tak",
+      "reportThanksBody": "Din rapport er sendt. Vi kigger på den hurtigst muligt.",
+      "blockTitle": "Blokér {name}?",
+      "blockBody": "Du vil ikke se deres indlæg, og de kan ikke sende dig beskeder.",
+      "blockConfirm": "Blokér",
+      "blockFailed": "Brugeren kunne ikke blokeres. Prøv igen.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Chikane",
+        "inappropriate": "Upassende indhold",
+        "misinformation": "Misinformation",
+        "other": "Andet"
+      }
     },
     "reports": {
       "title": "Anmeldelser",

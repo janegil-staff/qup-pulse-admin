@@ -258,7 +258,27 @@
         "question": "Frage"
       },
       "remove": "Entfernen",
-      "unsave": "Nicht mehr speichern"
+      "unsave": "Nicht mehr speichern",
+      "postOptions": "Beitragsoptionen",
+      "reportPost": "Beitrag melden",
+      "blockUser": "Nutzer blockieren",
+      "reportWhy": "Warum meldest du das?",
+      "reportNotePlaceholder": "Details hinzufügen (optional)",
+      "reportSubmit": "Meldung senden",
+      "reportFailed": "Meldung konnte nicht gesendet werden. Bitte erneut versuchen.",
+      "reportThanksTitle": "Danke",
+      "reportThanksBody": "Deine Meldung wurde gesendet. Wir prüfen sie so schnell wie möglich.",
+      "blockTitle": "{name} blockieren?",
+      "blockBody": "Du siehst ihre Beiträge nicht mehr und sie können dir nicht schreiben.",
+      "blockConfirm": "Blockieren",
+      "blockFailed": "Nutzer konnte nicht blockiert werden. Bitte erneut versuchen.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Belästigung",
+        "inappropriate": "Unangemessene Inhalte",
+        "misinformation": "Fehlinformation",
+        "other": "Sonstiges"
+      }
     },
     "reports": {
       "title": "Meldungen",

@@ -258,7 +258,27 @@
         "question": "Pregunta"
       },
       "remove": "Quitar",
-      "unsave": "Quitar de guardados"
+      "unsave": "Quitar de guardados",
+      "postOptions": "Opciones de la publicación",
+      "reportPost": "Denunciar publicación",
+      "blockUser": "Bloquear usuario",
+      "reportWhy": "¿Por qué denuncias esto?",
+      "reportNotePlaceholder": "Añadir detalles (opcional)",
+      "reportSubmit": "Enviar denuncia",
+      "reportFailed": "No se pudo enviar la denuncia. Inténtalo de nuevo.",
+      "reportThanksTitle": "Gracias",
+      "reportThanksBody": "Tu denuncia se ha enviado. La revisaremos lo antes posible.",
+      "blockTitle": "¿Bloquear a {name}?",
+      "blockBody": "No verás sus publicaciones y no podrá enviarte mensajes.",
+      "blockConfirm": "Bloquear",
+      "blockFailed": "No se pudo bloquear a este usuario. Inténtalo de nuevo.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Acoso",
+        "inappropriate": "Contenido inapropiado",
+        "misinformation": "Desinformación",
+        "other": "Otro"
+      }
     },
     "reports": {
       "title": "Reportes",

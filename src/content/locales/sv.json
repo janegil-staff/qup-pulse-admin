@@ -258,7 +258,27 @@
         "question": "Fråga"
       },
       "remove": "Ta bort",
-      "unsave": "Ta bort sparad"
+      "unsave": "Ta bort sparad",
+      "postOptions": "Inläggsalternativ",
+      "reportPost": "Rapportera inlägg",
+      "blockUser": "Blockera användare",
+      "reportWhy": "Varför rapporterar du detta?",
+      "reportNotePlaceholder": "Lägg till detaljer (valfritt)",
+      "reportSubmit": "Skicka rapport",
+      "reportFailed": "Kunde inte skicka rapporten. Försök igen.",
+      "reportThanksTitle": "Tack",
+      "reportThanksBody": "Din rapport har skickats. Vi granskar den så snart vi kan.",
+      "blockTitle": "Blockera {name}?",
+      "blockBody": "Du kommer inte se deras inlägg och de kan inte skicka meddelanden till dig.",
+      "blockConfirm": "Blockera",
+      "blockFailed": "Kunde inte blockera användaren. Försök igen.",
+      "reasons": {
+        "spam": "Spam",
+        "harassment": "Trakasserier",
+        "inappropriate": "Olämpligt innehåll",
+        "misinformation": "Desinformation",
+        "other": "Annat"
+      }
     },
     "reports": {
       "title": "Rapporter",

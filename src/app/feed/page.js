@@ -15,6 +15,8 @@
 //    the Following tab the save flag starts false until the user toggles it.
 //  - Pagination is cursor-style: pass `before` = oldest createdAt seen.
 //  - createPost takes imageUrl as a STRING (not {url, publicId}).
+//  - /posts/feed excludes blocked authors in BOTH directions (blocker OR
+//    blocked). /posts/following may not — see dropAuthor below.
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -109,6 +111,14 @@ export default function FeedPage() {
     setPosts((prev) => prev.map((p) => (String(p.id) === String(id) ? { ...p, ...patch } : p)));
   }
 
+  // BLOCK_PRUNE_V1 — the block is already persisted by the time this runs, so
+  // this is a local drop for immediate feedback, not a source of truth.
+  // /posts/feed re-filters blocked authors on the next load anyway.
+  function dropAuthor(authorId) {
+    if (!authorId) return;
+    setPosts((prev) => prev.filter((p) => String(p.author?.id) !== String(authorId)));
+  }
+
   if (!ready) {
     return (
       <div className="grid min-h-screen place-items-center bg-slate-50 text-slate-500 dark:bg-[#0b1016] dark:text-slate-400">
@@ -146,7 +156,12 @@ export default function FeedPage() {
           <>
             <div className="space-y-3">
               {posts.map((post) => (
-                <PostCard key={String(post.id)} post={post} onPatch={patchPost} />
+                <PostCard
+                  key={String(post.id)}
+                  post={post}
+                  onPatch={patchPost}
+                  onAuthorBlocked={dropAuthor}
+                />
               ))}
             </div>
             {!done ? (
