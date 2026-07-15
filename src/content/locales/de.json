@@ -340,7 +340,19 @@
       "sendFailed": "Nachricht konnte nicht gesendet werden",
       "joinFailed": "Verbindung zur Unterhaltung fehlgeschlagen",
       "textPending": "Du kannst eine Nachricht senden. Alles Weitere wartet auf die Annahme deiner Anfrage.",
-      "textPendingPlaceholder": "Warten auf Annahme …"
+      "textPendingPlaceholder": "Warten auf Annahme …",
+      "unreadCount": "{count} ungelesene Nachrichten"
+    },
+    "discover": {
+      "peopleNearby": "Leute in der Nähe",
+      "refresh": "Aktualisieren",
+      "refreshing": "Wird aktualisiert …",
+      "loading": "Wird geladen …",
+      "browseNearMeAgain": "Wieder in meiner Nähe suchen",
+      "someone": "Jemand",
+      "emailConfirmed": "E-Mail bestätigt",
+      "empty": "Noch niemand in der Nähe. Aktualisiere, oder erhöhe die Entfernung in den App-Einstellungen.",
+      "loadFailed": "Leute in der Nähe konnten nicht geladen werden"
     }
   },
   "auth": {

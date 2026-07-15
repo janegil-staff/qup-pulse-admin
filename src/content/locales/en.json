@@ -340,7 +340,19 @@
       "sendFailed": "Could not send the message",
       "joinFailed": "Could not connect to the conversation",
       "textPending": "You can send one message. The rest waits until your request is accepted.",
-      "textPendingPlaceholder": "Waiting for acceptance …"
+      "textPendingPlaceholder": "Waiting for acceptance …",
+      "unreadCount": "{count} unread messages"
+    },
+    "discover": {
+      "peopleNearby": "People nearby",
+      "refresh": "Refresh",
+      "refreshing": "Refreshing …",
+      "loading": "Loading …",
+      "browseNearMeAgain": "Browse near me again",
+      "someone": "Someone",
+      "emailConfirmed": "Email confirmed",
+      "empty": "No one nearby yet. Refresh, or widen your distance in the app settings.",
+      "loadFailed": "Could not load people nearby"
     }
   },
   "auth": {

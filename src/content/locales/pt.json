@@ -340,7 +340,19 @@
       "sendFailed": "Não foi possível enviar a mensagem",
       "joinFailed": "Não foi possível ligar à conversa",
       "textPending": "Podes enviar uma mensagem. O resto aguarda a aceitação do teu pedido.",
-      "textPendingPlaceholder": "A aguardar aceitação …"
+      "textPendingPlaceholder": "A aguardar aceitação …",
+      "unreadCount": "{count} mensagens não lidas"
+    },
+    "discover": {
+      "peopleNearby": "Pessoas por perto",
+      "refresh": "Atualizar",
+      "refreshing": "A atualizar …",
+      "loading": "A carregar …",
+      "browseNearMeAgain": "Procurar perto de mim novamente",
+      "someone": "Alguém",
+      "emailConfirmed": "E-mail confirmado",
+      "empty": "Ainda não há ninguém por perto. Atualiza, ou aumenta a distância nas definições da aplicação.",
+      "loadFailed": "Não foi possível carregar pessoas por perto"
     }
   },
   "auth": {

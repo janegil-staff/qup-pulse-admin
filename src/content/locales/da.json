@@ -340,7 +340,19 @@
       "sendFailed": "Kunne ikke sende beskeden",
       "joinFailed": "Kunne ikke oprette forbindelse til samtalen",
       "textPending": "Du kan sende én besked. Resten venter, til din anmodning er accepteret.",
-      "textPendingPlaceholder": "Venter på accept …"
+      "textPendingPlaceholder": "Venter på accept …",
+      "unreadCount": "{count} ulæste beskeder"
+    },
+    "discover": {
+      "peopleNearby": "Folk i nærheden",
+      "refresh": "Opdater",
+      "refreshing": "Opdaterer …",
+      "loading": "Indlæser …",
+      "browseNearMeAgain": "Søg i nærheden af mig igen",
+      "someone": "Nogen",
+      "emailConfirmed": "E-mail bekræftet",
+      "empty": "Ingen i nærheden endnu. Opdater, eller øg afstanden i appens indstillinger.",
+      "loadFailed": "Kunne ikke indlæse folk i nærheden"
     }
   },
   "auth": {

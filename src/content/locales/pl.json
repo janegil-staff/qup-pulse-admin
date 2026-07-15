@@ -340,7 +340,19 @@
       "sendFailed": "Nie można wysłać wiadomości",
       "joinFailed": "Nie można połączyć się z rozmową",
       "textPending": "Możesz wysłać jedną wiadomość. Reszta czeka na zaakceptowanie prośby.",
-      "textPendingPlaceholder": "Oczekiwanie na akceptację …"
+      "textPendingPlaceholder": "Oczekiwanie na akceptację …",
+      "unreadCount": "{count} nieprzeczytanych wiadomości"
+    },
+    "discover": {
+      "peopleNearby": "Osoby w pobliżu",
+      "refresh": "Odśwież",
+      "refreshing": "Odświeżanie …",
+      "loading": "Ładowanie …",
+      "browseNearMeAgain": "Przeglądaj ponownie w pobliżu",
+      "someone": "Ktoś",
+      "emailConfirmed": "E-mail potwierdzony",
+      "empty": "Nikogo jeszcze nie ma w pobliżu. Odśwież lub zwiększ odległość w ustawieniach aplikacji.",
+      "loadFailed": "Nie udało się załadować osób w pobliżu"
     }
   },
   "auth": {

@@ -340,7 +340,19 @@
       "sendFailed": "Viestiä ei voitu lähettää",
       "joinFailed": "Keskusteluun ei voitu yhdistää",
       "textPending": "Voit lähettää yhden viestin. Loput odottavat pyyntösi hyväksymistä.",
-      "textPendingPlaceholder": "Odottaa hyväksyntää …"
+      "textPendingPlaceholder": "Odottaa hyväksyntää …",
+      "unreadCount": "{count} lukematonta viestiä"
+    },
+    "discover": {
+      "peopleNearby": "Ihmisiä lähellä",
+      "refresh": "Päivitä",
+      "refreshing": "Päivitetään …",
+      "loading": "Ladataan …",
+      "browseNearMeAgain": "Selaa taas lähelläni",
+      "someone": "Joku",
+      "emailConfirmed": "Sähköposti vahvistettu",
+      "empty": "Ketään ei ole vielä lähellä. Päivitä, tai kasvata etäisyyttä sovelluksen asetuksissa.",
+      "loadFailed": "Lähellä olevia ihmisiä ei voitu ladata"
     }
   },
   "auth": {

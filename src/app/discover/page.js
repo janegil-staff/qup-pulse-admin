@@ -10,11 +10,15 @@
 //
 // Privacy note: this shows real users' photos, ages, and approximate distances,
 // so it is deliberately behind auth. Do NOT make this route public.
+//
+// Localized via useLang() (t.app.discover.*). `browsingFrom` is a place name
+// from the server and stays as-is — it's data, not copy.
 
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getToken } from '../../lib/api';
+import { useLang } from '../../context/LandingLang';
 import AppNav from '../../components/AppNav';
 import {
     getDiscovery, updateLocation, clearBrowseLocation, extractPeople, avatarUrl,
@@ -22,6 +26,9 @@ import {
 
 export default function DiscoverPage() {
     const router = useRouter();
+    const { t } = useLang();
+    const d = t.app.discover;
+
     const [ready, setReady] = useState(false);
     const [people, setPeople] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -52,12 +59,14 @@ export default function DiscoverPage() {
             setBrowsingFrom(data.browsingFrom ?? null);
             setBrowsingElsewhere(Boolean(data.browsingElsewhere));
         } catch (e) {
-            setError(e?.message ?? 'Could not load people nearby');
+            // The server's error strings are untranslated, so prefer our own copy
+            // and keep theirs only as a last resort.
+            setError(d.loadFailed || e?.message);
         } finally {
             setLoading(false);
             setRefreshing(false);
         }
-    }, []);
+    }, [d.loadFailed]);
 
     // Auth gate + initial load.
     useEffect(() => {
@@ -77,7 +86,7 @@ export default function DiscoverPage() {
     if (!ready) {
         return (
             <div className="grid min-h-screen place-items-center bg-slate-50 text-slate-500 dark:bg-[#0b1016] dark:text-slate-400">
-                Loading…
+                {d.loading}
             </div>
         );
     }
@@ -87,15 +96,17 @@ export default function DiscoverPage() {
             <AppNav />
             <div className="border-b border-slate-200 dark:border-slate-800">
                 <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
+                    {/* browsingFrom is a place name from the geocoder — data, not copy,
+              so it isn't localized. The fallback is. */}
                     <div className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                        {browsingFrom || 'People nearby'}
+                        {browsingFrom || d.peopleNearby}
                     </div>
                     <button
                         onClick={onRefresh}
                         disabled={refreshing || loading}
                         className="rounded-lg border border-slate-300 px-3.5 py-1.5 text-sm transition hover:bg-slate-100 disabled:opacity-50 dark:border-slate-700 dark:hover:bg-slate-800"
                     >
-                        {refreshing ? 'Refreshing…' : 'Refresh'}
+                        {refreshing ? d.refreshing : d.refresh}
                     </button>
                 </div>
                 {browsingElsewhere ? (
@@ -103,22 +114,22 @@ export default function DiscoverPage() {
                         onClick={browseNearMeAgain}
                         className="w-full border-t border-slate-200 bg-slate-100 py-2.5 text-sm font-semibold text-emerald-600 transition hover:bg-slate-200 dark:border-slate-800 dark:bg-slate-800/50 dark:text-emerald-400 dark:hover:bg-slate-800"
                     >
-                        Browse near me again
+                        {d.browseNearMeAgain}
                     </button>
                 ) : null}
             </div>
 
             <main className="mx-auto max-w-4xl px-4 py-4">
                 {loading ? (
-                    <div className="grid place-items-center py-24 text-slate-500 dark:text-slate-400">Loading…</div>
+                    <div className="grid place-items-center py-24 text-slate-500 dark:text-slate-400">{d.loading}</div>
                 ) : people.length === 0 ? (
                     <p className="mx-auto max-w-sm py-24 text-center text-slate-500 dark:text-slate-400">
-                        {error || 'No one nearby yet. Refresh, or widen your distance in the app settings.'}
+                        {error || d.empty}
                     </p>
                 ) : (
                     <div className="grid grid-cols-3 gap-2">
                         {people.map((p) => (
-                            <PersonCard key={String(p.id ?? p._id ?? p.username)} person={p} />
+                            <PersonCard key={String(p.id ?? p._id ?? p.username)} person={p} d={d} />
                         ))}
                     </div>
                 )}
@@ -127,8 +138,8 @@ export default function DiscoverPage() {
     );
 }
 
-function PersonCard({ person }) {
-    const name = person.displayName || person.username || 'Someone';
+function PersonCard({ person, d }) {
+    const name = person.displayName || person.username || d.someone;
     const src = avatarUrl(person);
 
     const card = (
@@ -141,11 +152,11 @@ function PersonCard({ person }) {
                     {name.slice(0, 1).toUpperCase()}
                 </div>
             )}
-       
+
             {person.emailVerified ? (
                 <span className="absolute left-1.5 top-1.5 flex max-w-[calc(100%-1rem)] items-center gap-1 rounded-full bg-black/55 px-1.5 py-[3px] text-[9px] font-bold text-white">
                     <span className="grid h-2.5 w-2.5 place-items-center rounded-full bg-emerald-400 text-[7px] text-emerald-950">✓</span>
-                    <span className="truncate">Email confirmed</span>
+                    <span className="truncate">{d.emailConfirmed}</span>
                 </span>
             ) : null}
 

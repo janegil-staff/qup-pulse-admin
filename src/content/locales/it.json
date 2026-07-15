@@ -340,7 +340,19 @@
       "sendFailed": "Impossibile inviare il messaggio",
       "joinFailed": "Impossibile connettersi alla conversazione",
       "textPending": "Puoi inviare un messaggio. Il resto attende l’accettazione della richiesta.",
-      "textPendingPlaceholder": "In attesa di accettazione …"
+      "textPendingPlaceholder": "In attesa di accettazione …",
+      "unreadCount": "{count} messaggi non letti"
+    },
+    "discover": {
+      "peopleNearby": "Persone nelle vicinanze",
+      "refresh": "Aggiorna",
+      "refreshing": "Aggiornamento …",
+      "loading": "Caricamento …",
+      "browseNearMeAgain": "Cerca di nuovo vicino a me",
+      "someone": "Qualcuno",
+      "emailConfirmed": "E-mail confermata",
+      "empty": "Ancora nessuno nelle vicinanze. Aggiorna, o aumenta la distanza nelle impostazioni dell’app.",
+      "loadFailed": "Impossibile caricare le persone nelle vicinanze"
     }
   },
   "auth": {

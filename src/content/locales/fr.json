@@ -340,7 +340,19 @@
       "sendFailed": "Impossible d’envoyer le message",
       "joinFailed": "Impossible de rejoindre la conversation",
       "textPending": "Vous pouvez envoyer un message. La suite attend l’acceptation de votre demande.",
-      "textPendingPlaceholder": "En attente d’acceptation …"
+      "textPendingPlaceholder": "En attente d’acceptation …",
+      "unreadCount": "{count} messages non lus"
+    },
+    "discover": {
+      "peopleNearby": "Personnes à proximité",
+      "refresh": "Actualiser",
+      "refreshing": "Actualisation …",
+      "loading": "Chargement …",
+      "browseNearMeAgain": "Rechercher près de moi à nouveau",
+      "someone": "Quelqu’un",
+      "emailConfirmed": "E-mail confirmé",
+      "empty": "Personne à proximité pour le moment. Actualisez, ou augmentez la distance dans les réglages de l’application.",
+      "loadFailed": "Impossible de charger les personnes à proximité"
     }
   },
   "auth": {

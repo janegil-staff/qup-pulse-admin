@@ -340,7 +340,19 @@
       "sendFailed": "Kan het bericht niet versturen",
       "joinFailed": "Kan geen verbinding maken met het gesprek",
       "textPending": "Je kunt één bericht sturen. De rest wacht tot je verzoek is geaccepteerd.",
-      "textPendingPlaceholder": "Wachten op acceptatie …"
+      "textPendingPlaceholder": "Wachten op acceptatie …",
+      "unreadCount": "{count} ongelezen berichten"
+    },
+    "discover": {
+      "peopleNearby": "Mensen in de buurt",
+      "refresh": "Vernieuwen",
+      "refreshing": "Vernieuwen …",
+      "loading": "Laden …",
+      "browseNearMeAgain": "Weer in mijn buurt zoeken",
+      "someone": "Iemand",
+      "emailConfirmed": "E-mail bevestigd",
+      "empty": "Nog niemand in de buurt. Vernieuw, of vergroot je afstand in de app-instellingen.",
+      "loadFailed": "Kon mensen in de buurt niet laden"
     }
   },
   "auth": {

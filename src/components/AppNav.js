@@ -6,10 +6,6 @@
 // Desktop: inline tabs + toggle on the right. Mobile: hamburger dropdown with
 // the toggle at the bottom.
 //
-// Discover, Profile and Settings are live. Feed and Messages show "Soon" until
-// their pages exist. Reports shows only for admins (UX gate — the server still
-// enforces requireAdmin).
-//
 // Fully localized via useLang() (t.app.nav.*). The wordmark stays literal — it's
 // the brand, not copy. Tabs carry a labelKey rather than a label so the array
 // can stay module-level while the text resolves per render.
@@ -17,17 +13,16 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { isAdmin, clearToken } from '../lib/api';
+import { isAdmin, clearToken, getToken } from '../lib/api';
 import { useDarkMode } from '../lib/useDarkMode';
 import { useLang } from '../context/LandingLang';
-import { getToken } from '../lib/api';
 import { getSocket } from '../lib/socket';
-import { getUnreadCount } from '../lib/chatApi';
+import { chatUnreadCount } from '../lib/chatApi';
 
 const TABS = [
     { href: '/discover', labelKey: 'discover', enabled: true },
     { href: '/feed', labelKey: 'feed', enabled: true },
-    { href: '/messages', labelKey: 'messages', enabled: true },
+    { href: '/messages', labelKey: 'messages', enabled: true, badge: 'unread' },
     { href: '/profile', labelKey: 'profile', enabled: true },
     { href: '/settings', labelKey: 'settings', enabled: true },
 ];
@@ -37,18 +32,22 @@ export default function AppNav() {
     const router = useRouter();
     const { t } = useLang();
     const n = t.app.nav;
+    const m = t.app.messages;
     const [open, setOpen] = useState(false);
     const [admin, setAdmin] = useState(false);
     const { dark, toggle } = useDarkMode();
-    // Unread badge on the Meldinger tab. Fed by chat:notify, which deliver()
+
+    // Unread badge on the Messages tab. Fed by chat:notify, which deliver()
     // emits to `user:${id}` for every participant who isn't the sender — so it
     // fires regardless of which tab you're on, unlike chat:message, which only
     // reaches sockets that have joined a convo: room.
     //
-    // The notify payload carries `pending`, so a pending thread the RECIPIENT
-    // hasn't accepted routes to the Requests count instead. The initiator's own
-    // sends never reach them (deliver filters the sender out), so their outgoing
-    // request can't inflate their own badge.
+    // Refetch rather than increment: markRead fires from the thread page and a
+    // locally-incremented count would go stale against it.
+    //
+    // The catches LOG. A bare `.catch(() => {})` here previously hid a
+    // ReferenceError for hours — the badge just sat at zero with a clean
+    // console. A failing badge is not worth a crash, but it is worth a line.
     const [unread, setUnread] = useState(0);
 
     useEffect(() => {
@@ -56,20 +55,37 @@ export default function AppNav() {
         let cancelled = false;
 
         const refresh = () => {
-            getUnreadCount()
-                .then((n) => { if (!cancelled) setUnread(n); })
-                .catch(() => { });
+            chatUnreadCount()
+                .then((count) => { if (!cancelled) setUnread(count); })
+                .catch((e) => console.error('unread badge', e));
         };
 
         refresh();
 
         const socket = getSocket();
         socket?.on('chat:notify', refresh);
+
+        // markRead happens in messages/[id]/page.js, which has no handle on this
+        // component. It dispatches this event after the receipt lands so the
+        // badge clears without waiting for the next notify or navigation.
+        window.addEventListener('chat:read', refresh);
+
         return () => {
             cancelled = true;
             socket?.off('chat:notify', refresh);
+            window.removeEventListener('chat:read', refresh);
         };
     }, []);
+
+    // Route changes are the other moment the count goes stale — navigating away
+    // from a thread we just read, or landing on the app from a cold start before
+    // the socket has connected.
+    useEffect(() => {
+        if (!getToken()) return;
+        chatUnreadCount()
+            .then(setUnread)
+            .catch((e) => console.error('unread badge', e));
+    }, [pathname]);
 
     useEffect(() => {
         setAdmin(isAdmin());
@@ -83,6 +99,7 @@ export default function AppNav() {
 
     const tabs = TABS;
     const isActive = (href) => pathname === href || pathname?.startsWith(`${href}/`);
+    const badgeFor = (tab) => (tab.badge === 'unread' ? unread : 0);
 
     return (
         <nav className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-[#0b1016]/90">
@@ -98,7 +115,14 @@ export default function AppNav() {
                 {/* Desktop tabs + toggle */}
                 <div className="hidden items-center gap-1 sm:flex">
                     {tabs.map((tab) => (
-                        <TabLink key={tab.href} tab={tab} n={n} active={isActive(tab.href)} />
+                        <TabLink
+                            key={tab.href}
+                            tab={tab}
+                            n={n}
+                            m={m}
+                            active={isActive(tab.href)}
+                            unread={badgeFor(tab)}
+                        />
                     ))}
                     <ThemeToggle dark={dark} onToggle={toggle} n={n} className="ml-2" />
                     <button
@@ -109,15 +133,18 @@ export default function AppNav() {
                     </button>
                 </div>
 
-                {/* Mobile hamburger */}
+                {/* Mobile hamburger. The badge is mirrored onto the closed hamburger —
+            otherwise an unread count is invisible on mobile until the menu is
+            opened, which is most of the time. */}
                 <button
                     type="button"
                     onClick={() => setOpen((v) => !v)}
                     aria-label={n.menu}
                     aria-expanded={open}
-                    className="grid h-9 w-9 place-items-center rounded-lg border border-slate-300 sm:hidden dark:border-slate-700"
+                    className="relative grid h-9 w-9 place-items-center rounded-lg border border-slate-300 sm:hidden dark:border-slate-700"
                 >
                     <span className="text-lg leading-none">{open ? '✕' : '☰'}</span>
+                    {!open && unread > 0 ? <UnreadBadge count={unread} m={m} /> : null}
                 </button>
             </div>
 
@@ -129,12 +156,13 @@ export default function AppNav() {
                             key={tab.href}
                             tab={tab}
                             n={n}
+                            m={m}
                             active={isActive(tab.href)}
+                            unread={badgeFor(tab)}
                             block
                             onNavigate={() => setOpen(false)}
                         />
                     ))}
-                    {/* Toggle at the bottom of the dropdown */}
                     <div className="mt-1 border-t border-slate-200 pt-2 dark:border-slate-800">
                         <button
                             type="button"
@@ -158,6 +186,21 @@ export default function AppNav() {
     );
 }
 
+// The digits carry no language, but a screen reader announcing a bare "3" next
+// to "Meldinger" is meaningless — hence the localized aria-label. Capped at 99+
+// so a long-dormant account can't stretch the nav.
+function UnreadBadge({ count, m }) {
+    const label = (m?.unreadCount || '{count}').replace('{count}', String(count));
+    return (
+        <span
+            aria-label={label}
+            className="absolute -right-1.5 -top-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white"
+        >
+            {count > 99 ? '99+' : count}
+        </span>
+    );
+}
+
 function ThemeToggle({ dark, onToggle, n, className = '' }) {
     return (
         <button
@@ -171,7 +214,7 @@ function ThemeToggle({ dark, onToggle, n, className = '' }) {
     );
 }
 
-function TabLink({ tab, n, active, block, onNavigate }) {
+function TabLink({ tab, n, m, active, block, unread = 0, onNavigate }) {
     const base = block
         ? 'block w-full rounded-lg px-3.5 py-2.5 mb-1.5 text-sm font-semibold no-underline transition'
         : 'rounded-lg px-3.5 py-1.5 text-sm font-semibold no-underline transition';
@@ -197,7 +240,9 @@ function TabLink({ tab, n, active, block, onNavigate }) {
             href={tab.href}
             onClick={onNavigate}
             aria-current={active ? 'page' : undefined}
-            className={`${base} flex items-center gap-2 border ${active
+            // `relative` anchors the badge; without it the absolute positioning
+            // escapes to the nav and lands in the wrong corner entirely.
+            className={`${base} relative flex items-center gap-2 border ${active
                 ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
                 : 'border-slate-300 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
                 }`}
@@ -208,6 +253,7 @@ function TabLink({ tab, n, active, block, onNavigate }) {
                     {n.admin}
                 </span>
             ) : null}
+            {unread > 0 ? <UnreadBadge count={unread} m={m} /> : null}
         </Link>
     );
 }

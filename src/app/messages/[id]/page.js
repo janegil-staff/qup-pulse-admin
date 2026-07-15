@@ -87,7 +87,11 @@ export default function ThreadPage() {
 
                 setConvo([...convos, ...reqs].find((x) => String(x.id) === id) || null);
                 setMessages(msgs);
-                markRead(id).catch(() => { }); // best-effort; a failed receipt isn't banner-worthy
+                // Tell AppNav to refresh its badge; the receipt just cleared this thread's
+                // unread and nothing else would tell it.
+                markRead(id)
+                    .then(() => window.dispatchEvent(new Event('chat:read')))
+                    .catch(() => { });
             } catch (e) {
                 if (!cancelled) setError(e.message || m.loadFailed);
             } finally {

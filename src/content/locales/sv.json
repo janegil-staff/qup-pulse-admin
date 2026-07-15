@@ -340,7 +340,19 @@
       "sendFailed": "Det gick inte att skicka meddelandet",
       "joinFailed": "Det gick inte att ansluta till konversationen",
       "textPending": "Du kan skicka ett meddelande. Resten väntar tills din förfrågan har godkänts.",
-      "textPendingPlaceholder": "Väntar på godkännande …"
+      "textPendingPlaceholder": "Väntar på godkännande …",
+      "unreadCount": "{count} olästa meddelanden"
+    },
+    "discover": {
+      "peopleNearby": "Personer i närheten",
+      "refresh": "Uppdatera",
+      "refreshing": "Uppdaterar …",
+      "loading": "Laddar …",
+      "browseNearMeAgain": "Bläddra nära mig igen",
+      "someone": "Någon",
+      "emailConfirmed": "E-post bekräftad",
+      "empty": "Ingen i närheten ännu. Uppdatera, eller öka avståndet i appens inställningar.",
+      "loadFailed": "Kunde inte ladda personer i närheten"
     }
   },
   "auth": {

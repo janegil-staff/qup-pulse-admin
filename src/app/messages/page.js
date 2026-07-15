@@ -44,6 +44,8 @@ export default function MessagesPage() {
   const [busyId, setBusyId] = useState(null);
 
   const load = useCallback(async () => {
+    // 1. Does the endpoint work at all?
+
     try {
       // Both tabs load up front so the Requests badge is correct without the
       // user having to open the tab first.

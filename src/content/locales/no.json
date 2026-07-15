@@ -340,7 +340,19 @@
       "sendFailed": "Kunne ikke sende meldingen",
       "joinFailed": "Kunne ikke koble til samtalen",
       "textPending": "Du kan sende én melding. Resten venter til forespørselen er godkjent.",
-      "textPendingPlaceholder": "Venter på godkjenning …"
+      "textPendingPlaceholder": "Venter på godkjenning …",
+      "unreadCount": "{count} uleste meldinger"
+    },
+    "discover": {
+      "peopleNearby": "Folk i nærheten",
+      "refresh": "Oppdater",
+      "refreshing": "Oppdaterer …",
+      "loading": "Laster …",
+      "browseNearMeAgain": "Bla i nærheten av meg igjen",
+      "someone": "Noen",
+      "emailConfirmed": "E-post bekreftet",
+      "empty": "Ingen i nærheten ennå. Oppdater, eller øk avstanden i innstillingene i appen.",
+      "loadFailed": "Kunne ikke laste folk i nærheten"
     }
   },
   "auth": {
