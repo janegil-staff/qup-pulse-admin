@@ -335,10 +335,12 @@
       "typing": "skriver…",
       "pendingBody": "Denne personen vil sende deg meldinger.",
       "sendPhoto": "Send bilde",
-      "photoPending": "Du kan sende bilder når forespørselen er godtatt",
+      "photoPending": "Du kan sende bilder når forespørselen er godkjent.",
       "photoMessage": "Bilde",
       "sendFailed": "Kunne ikke sende meldingen",
-      "joinFailed": "Kunne ikke koble til samtalen"
+      "joinFailed": "Kunne ikke koble til samtalen",
+      "textPending": "Du kan sende én melding. Resten venter til forespørselen er godkjent.",
+      "textPendingPlaceholder": "Venter på godkjenning …"
     }
   },
   "auth": {

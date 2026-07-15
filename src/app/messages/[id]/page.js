@@ -24,8 +24,16 @@
 // filtering listConversations()/listRequests(). Two extra round-trips; a
 // GET /chat/conversations/:id would be better.
 //
-// Text sends on a pending thread; images do NOT — chat:sendImage requires
-// status 'accepted'. The + button is disabled until then.
+// PENDING RULES (mirrored from chat:send in server/src/socket/chat.js):
+//   - The INITIATOR gets exactly one message on a pending thread — the opener,
+//     so the recipient has something to judge the request on. After that the
+//     composer locks until accept. The server enforces this with a
+//     countDocuments check and returns PENDING_LIMIT; the disable here is
+//     cosmetic, to avoid a send that visibly fails.
+//   - The RECIPIENT is unrestricted: replying to a request is implicit consent.
+//   - Images are accepted-only for BOTH parties, regardless of message count.
+// The two gates are separate on purpose: canSendText can be true while
+// canSendImage is false (the opener), and vice versa never happens.
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -105,7 +113,6 @@ export default function ThreadPage() {
         // directions. Dedupe by id: chat:send's ack also returns the message and
         // both can land.
         const onMessage = (msg) => {
-            console.log(JSON.parse(atob(localStorage.getItem('qup_pulse_admin_jwt').split('.')[1])).sub);
             if (String(msg.conversationId) !== id) return;
             setMessages((prev) => (prev.some((x) => String(x.id) === String(msg.id)) ? prev : [...prev, msg]));
         };
@@ -127,6 +134,7 @@ export default function ThreadPage() {
     }, [id, m.joinFailed]);
 
     useEffect(() => { scrollToBottom(); }, [messages, scrollToBottom]);
+
     // The JWT's `sub` is the user id — the same claim authSocket reads in
     // server/src/socket/chat.js. Reading it directly avoids a /me round-trip and a
     // dependency on that endpoint's envelope shape.
@@ -138,9 +146,10 @@ export default function ThreadPage() {
             return null;
         }
     }
+
     async function send() {
         const body = text.trim();
-        if (!body || sending) return;
+        if (!body || sending || !canSendText) return;
         setSending(true);
         setError('');
         try {
@@ -148,7 +157,12 @@ export default function ThreadPage() {
             await emitAck('chat:send', { conversationId: id, text: body });
         } catch (e) {
             setText(body); // put it back so the typing isn't lost
-            setError(e.message || m.sendFailed);
+            // PENDING_LIMIT means the opener already landed and the thread is
+            // waiting on accept. Reachable despite canSendText: the disable is
+            // driven by local `messages`, which a second tab or a race can lag.
+            setError(e.code === 'PENDING_LIMIT' || e.message === 'PENDING_LIMIT'
+                ? m.textPending
+                : (e.message || m.sendFailed));
         } finally {
             setSending(false);
         }
@@ -195,6 +209,12 @@ export default function ThreadPage() {
     // offer them a button that always fails.
     const showAccept = convo?.status === 'pending' && !convo?.isInitiator;
     const canSendImage = convo?.status === 'accepted';
+    // The initiator's one-message allowance, spent. `messages.length` is the
+    // whole thread, which is the same count the server takes — on a pending
+    // thread only the initiator can have written, so there's nothing to filter.
+    const pendingLocked =
+        convo?.status === 'pending' && convo?.isInitiator && messages.length >= 1;
+    const canSendText = !pendingLocked;
 
     return (
         <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
@@ -257,59 +277,87 @@ export default function ThreadPage() {
                     </div>
                 ) : null}
 
+                {/* The initiator's counterpart to showAccept. Without this the composer
+            just goes dead after one message with no explanation — the disabled
+            input's title only surfaces on hover, and not at all on touch. */}
+                {pendingLocked ? (
+                    <div className="mb-3 rounded-xl border border-slate-300 bg-white px-4 py-3 dark:border-slate-800 dark:bg-[#131c26]">
+                        <p className="text-sm text-slate-600 dark:text-slate-300">{m.textPending}</p>
+                    </div>
+                ) : null}
+
                 <div className="flex-1 space-y-2 overflow-y-auto rounded-2xl border border-slate-300 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-[#131c26] dark:shadow-none">
                     {messages.length === 0 ? (
                         <p className="py-12 text-center text-sm text-slate-500 dark:text-slate-400">{m.noMessagesYet}</p>
                     ) : (
-                        messages.map((msg) => {
-                            console.log('meId=', meId, 'sender.id=', msg.sender?.id, 'mine=', meId != null && String(msg.sender?.id) === meId);
-                            return <Bubble key={msg.id} msg={msg} mine={meId != null && String(msg.sender?.id) === meId} />;
-                        })
+                        messages.map((msg) => (
+                            <Bubble
+                                key={msg.id}
+                                msg={msg}
+                                mine={meId != null && String(msg.sender?.id) === meId}
+                            />
+                        ))
                     )}
                     <div ref={bottomRef} />
                 </div>
 
                 <div className="mt-3 flex items-center gap-2">
-                    {/* Image upload. chat:sendImage requires an ACCEPTED conversation —
-              an unsolicited image in a location-based app is a known abuse
-              vector, so the recipient opts in first. Disabled rather than
-              left to fail with the server's untranslated error string. */}
-                    <label
-                        title={canSendImage ? m.sendPhoto : m.photoPending}
-                        className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-slate-300 text-xl font-semibold transition dark:border-slate-700 ${canSendImage
-                            ? 'cursor-pointer text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800'
-                            : 'cursor-not-allowed text-slate-300 dark:text-slate-700'
-                            }`}
-                    >
-                        {uploading ? '…' : '+'}
-                        <input
-                            type="file"
-                            accept="image/*"
-                            disabled={!canSendImage || uploading}
-                            onChange={(e) => {
-                                const f = e.target.files?.[0];
-                                e.target.value = ''; // reset so the same file can be picked twice
-                                if (f) sendImage(f);
-                            }}
-                            className="hidden"
-                        />
-                    </label>
+                    {/* Image upload. chat:sendImage requires an ACCEPTED conversation — an
+    unsolicited image in a location-based app is a known abuse vector, so the
+    recipient opts in first. Disabled rather than left to fail with the
+    server's untranslated error string.
 
+    The tooltip is CSS, not the native `title` attribute: a `title` on a label
+    wrapping a disabled input fires unreliably in Chrome, and never fires on
+    touch at all. `group` + `group-hover` renders it ourselves. */}
+                    <div className="group relative shrink-0">
+                        <label
+                            className={`grid h-12 w-12 place-items-center rounded-xl border border-slate-300 text-xl font-semibold transition dark:border-slate-700 ${canSendImage
+                                ? 'cursor-pointer text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800'
+                                : 'cursor-not-allowed text-slate-300 dark:text-slate-700'
+                                }`}
+                        >
+                            {uploading ? '…' : '+'}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                disabled={!canSendImage || uploading}
+                                onChange={(e) => {
+                                    const f = e.target.files?.[0];
+                                    e.target.value = ''; // reset so the same file can be picked twice
+                                    if (f) sendImage(f);
+                                }}
+                                className="hidden"
+                            />
+                        </label>
+
+                        {!canSendImage ? (
+                            <span
+                                role="tooltip"
+                                className="pointer-events-none absolute bottom-full left-0 z-10 mb-2 w-56 rounded-lg bg-slate-900 px-3 py-2 text-xs font-medium leading-snug text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 dark:bg-slate-700"
+                            >
+                                {m.photoPending}
+                            </span>
+                        ) : null}
+                    </div>
                     <input
                         value={text}
+                        disabled={!canSendText}
+                        title={canSendText ? undefined : m.textPending}
                         onChange={(e) => {
                             setText(e.target.value.slice(0, 2000)); // Message schema maxlength
                             getSocket()?.emit('chat:typing', { conversationId: id });
                         }}
                         onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
-                        placeholder={m.placeholder}
-                        className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] outline-none focus:border-emerald-500 dark:border-slate-700 dark:bg-[#131c26]"
+                        placeholder={canSendText ? m.placeholder : m.textPendingPlaceholder}
+                        className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] outline-none focus:border-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-[#131c26] dark:disabled:bg-slate-900 dark:disabled:text-slate-600"
                     />
 
                     <button
                         type="button"
                         onClick={send}
-                        disabled={sending || !text.trim()}
+                        disabled={sending || !text.trim() || !canSendText}
+                        title={canSendText ? undefined : m.textPending}
                         className="shrink-0 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-emerald-950 transition hover:brightness-105 disabled:opacity-50"
                     >
                         {sending ? '…' : m.send}

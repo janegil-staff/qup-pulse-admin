@@ -335,10 +335,12 @@
       "typing": "typing…",
       "pendingBody": "This person wants to message you.",
       "sendPhoto": "Send photo",
-      "photoPending": "You can send photos once the request is accepted",
+      "photoPending": "You can send photos once the request is accepted.",
       "photoMessage": "Photo",
       "sendFailed": "Could not send the message",
-      "joinFailed": "Could not connect to the conversation"
+      "joinFailed": "Could not connect to the conversation",
+      "textPending": "You can send one message. The rest waits until your request is accepted.",
+      "textPendingPlaceholder": "Waiting for acceptance …"
     }
   },
   "auth": {

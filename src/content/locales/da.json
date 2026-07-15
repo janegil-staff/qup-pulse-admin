@@ -335,10 +335,12 @@
       "typing": "skriver…",
       "pendingBody": "Denne person vil sende dig beskeder.",
       "sendPhoto": "Send billede",
-      "photoPending": "Du kan sende billeder, når anmodningen er accepteret",
+      "photoPending": "Du kan sende billeder, når anmodningen er accepteret.",
       "photoMessage": "Billede",
       "sendFailed": "Kunne ikke sende beskeden",
-      "joinFailed": "Kunne ikke oprette forbindelse til samtalen"
+      "joinFailed": "Kunne ikke oprette forbindelse til samtalen",
+      "textPending": "Du kan sende én besked. Resten venter, til din anmodning er accepteret.",
+      "textPendingPlaceholder": "Venter på accept …"
     }
   },
   "auth": {

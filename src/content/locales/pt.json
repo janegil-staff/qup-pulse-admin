@@ -335,10 +335,12 @@
       "typing": "a escrever…",
       "pendingBody": "Esta pessoa quer enviar-te mensagens.",
       "sendPhoto": "Enviar foto",
-      "photoPending": "Podes enviar fotos assim que o pedido for aceite",
+      "photoPending": "Podes enviar fotos assim que o pedido for aceite.",
       "photoMessage": "Foto",
       "sendFailed": "Não foi possível enviar a mensagem",
-      "joinFailed": "Não foi possível ligar à conversa"
+      "joinFailed": "Não foi possível ligar à conversa",
+      "textPending": "Podes enviar uma mensagem. O resto aguarda a aceitação do teu pedido.",
+      "textPendingPlaceholder": "A aguardar aceitação …"
     }
   },
   "auth": {

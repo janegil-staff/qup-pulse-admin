@@ -335,10 +335,12 @@
       "typing": "aan het typen…",
       "pendingBody": "Deze persoon wil je een bericht sturen.",
       "sendPhoto": "Foto sturen",
-      "photoPending": "Je kunt foto’s sturen zodra het verzoek is geaccepteerd",
+      "photoPending": "Je kunt foto’s sturen zodra het verzoek is geaccepteerd.",
       "photoMessage": "Foto",
       "sendFailed": "Kan het bericht niet versturen",
-      "joinFailed": "Kan geen verbinding maken met het gesprek"
+      "joinFailed": "Kan geen verbinding maken met het gesprek",
+      "textPending": "Je kunt één bericht sturen. De rest wacht tot je verzoek is geaccepteerd.",
+      "textPendingPlaceholder": "Wachten op acceptatie …"
     }
   },
   "auth": {

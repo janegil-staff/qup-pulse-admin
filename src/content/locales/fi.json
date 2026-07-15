@@ -335,10 +335,12 @@
       "typing": "kirjoittaa…",
       "pendingBody": "Tämä henkilö haluaa lähettää sinulle viestejä.",
       "sendPhoto": "Lähetä kuva",
-      "photoPending": "Voit lähettää kuvia, kun pyyntö on hyväksytty",
+      "photoPending": "Voit lähettää kuvia, kun pyyntö on hyväksytty.",
       "photoMessage": "Kuva",
       "sendFailed": "Viestiä ei voitu lähettää",
-      "joinFailed": "Keskusteluun ei voitu yhdistää"
+      "joinFailed": "Keskusteluun ei voitu yhdistää",
+      "textPending": "Voit lähettää yhden viestin. Loput odottavat pyyntösi hyväksymistä.",
+      "textPendingPlaceholder": "Odottaa hyväksyntää …"
     }
   },
   "auth": {
