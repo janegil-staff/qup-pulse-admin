@@ -16,8 +16,8 @@
   },
   "features": {
     "local": {
-      "title": "Local por predefinição",
-      "body": "O teu feed é a área à tua volta, não uma linha do tempo global. O que vês está mesmo por perto."
+      "title": "Local ou global — tu decides",
+      "body": "Vê o mundo inteiro, ou reduz o teu feed às ruas à tua volta. O alcance é teu para definir, quando quiseres."
     },
     "now": {
       "title": "Agora mesmo",
@@ -25,7 +25,7 @@
     },
     "safety": {
       "title": "Feito para a segurança",
-      "body": "Denuncia e bloqueia com um toque, com moderação real por trás, e a tua localização exata nunca é mostrada a outros."
+      "body": "Denuncia e bloqueia com um toque, com moderação real por trás. O teu perfil mostra a tua área, nunca a tua posição exata."
     }
   },
   "download": {

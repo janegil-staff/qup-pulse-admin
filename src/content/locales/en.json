@@ -16,8 +16,8 @@
   },
   "features": {
     "local": {
-      "title": "Local by default",
-      "body": "Your feed is the area around you, not a global timeline. What you see is what's actually nearby."
+      "title": "Local or global — your call",
+      "body": "See the whole world, or dial your feed down to the blocks around you. The range is yours to set, whenever you like."
     },
     "now": {
       "title": "Right now",
@@ -25,7 +25,7 @@
     },
     "safety": {
       "title": "Built for safety",
-      "body": "Report and block in a tap, real moderation behind it, and your exact location is never shown to others."
+      "body": "Report and block in a tap, with real moderation behind it. Your profile shows your area — never your exact position."
     }
   },
   "download": {

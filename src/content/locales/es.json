@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Local por defecto",
-      "body": "Tu feed es la zona a tu alrededor, no una línea de tiempo global. Lo que ves está de verdad cerca."
+      "title": "Local o global — tú decides",
+      "body": "Mira el mundo entero, o reduce tu feed a las calles que te rodean. El alcance lo eliges tú, cuando quieras."
     },
     "now": {
       "title": "Ahora mismo",
-      "body": "Las publicaciones tratan del momento presente. Mira lo que ocurre mientras ocurre, de la gente que comparte tu espacio."
+      "body": "Las publicaciones tratan del momento presente. Ve lo que pasa mientras pasa, de quienes comparten tu espacio."
     },
     "safety": {
       "title": "Creado para la seguridad",
-      "body": "Reporta y bloquea con un toque, con moderación real detrás, y tu ubicación exacta nunca se muestra a los demás."
+      "body": "Reporta y bloquea con un toque, con moderación real detrás. Tu perfil muestra tu zona, nunca tu posición exacta."
     }
   },
   "download": {

@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Lokalt som standard",
-      "body": "Strømmen din er området rundt deg, ikke en global tidslinje. Det du ser, er faktisk i nærheten."
+      "title": "Lokalt eller globalt — du velger",
+      "body": "Se hele verden, eller skru feeden ned til kvartalet rundt deg. Rekkevidden er din å bestemme, når som helst."
     },
     "now": {
       "title": "Akkurat nå",
-      "body": "Innleggene handler om øyeblikket. Se hva som skjer mens det skjer, fra folk som deler stedet ditt."
+      "body": "Innlegg handler om øyeblikket. Se det skje mens det skjer, fra folk som deler stedet ditt."
     },
     "safety": {
       "title": "Bygget for trygghet",
-      "body": "Rapporter og blokker med ett trykk, ekte moderering bak, og din nøyaktige posisjon vises aldri til andre."
+      "body": "Rapporter og blokker med ett trykk, med ekte moderering bak. Profilen viser området ditt, aldri den nøyaktige posisjonen."
     }
   },
   "download": {

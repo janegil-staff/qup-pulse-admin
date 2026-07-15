@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Lokaal als standaard",
-      "body": "Je feed is het gebied om je heen, geen wereldwijde tijdlijn. Wat je ziet, is echt dichtbij."
+      "title": "Lokaal of globaal — jij kiest",
+      "body": "Bekijk de hele wereld, of stel je feed in op de straten om je heen. Jij bepaalt het bereik, wanneer je maar wilt."
     },
     "now": {
       "title": "Nu meteen",
-      "body": "Berichten gaan over het huidige moment. Zie wat er gebeurt terwijl het gebeurt, van mensen die jouw plek delen."
+      "body": "Posts gaan over het moment zelf. Zie het gebeuren terwijl het gebeurt, van mensen om je heen."
     },
     "safety": {
       "title": "Gebouwd op veiligheid",
-      "body": "Rapporteer en blokkeer met één tik, met echte moderatie erachter, en je exacte locatie wordt nooit aan anderen getoond."
+      "body": "Rapporteren en blokkeren met één tik, met echte moderatie erachter. Je profiel toont je gebied, nooit je exacte positie."
     }
   },
   "download": {

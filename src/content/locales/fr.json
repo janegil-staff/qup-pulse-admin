@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Local par défaut",
-      "body": "Votre fil, c’est la zone autour de vous, pas une chronologie mondiale. Ce que vous voyez est vraiment à proximité."
+      "title": "Local ou mondial — à vous de choisir",
+      "body": "Voyez le monde entier, ou réduisez votre fil au quartier autour de vous. La portée, c'est vous qui la fixez, quand vous voulez."
     },
     "now": {
       "title": "En ce moment",
-      "body": "Les publications parlent de l’instant présent. Voyez ce qui se passe en direct, par les gens qui partagent votre espace."
+      "body": "Les publications parlent de l'instant présent. Voyez les choses se produire, par ceux qui partagent votre lieu."
     },
     "safety": {
       "title": "Conçu pour la sécurité",
-      "body": "Signalez et bloquez d’un geste, avec une vraie modération derrière, et votre position exacte n’est jamais montrée aux autres."
+      "body": "Signalez et bloquez d'un geste, avec une vraie modération derrière. Votre profil montre votre zone, jamais votre position exacte."
     }
   },
   "download": {

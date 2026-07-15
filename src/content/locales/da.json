@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Lokalt som standard",
-      "body": "Dit feed er området omkring dig, ikke en global tidslinje. Det, du ser, er faktisk i nærheden."
+      "title": "Lokalt eller globalt — du vælger",
+      "body": "Se hele verden, eller skru dit feed ned til kvarteret omkring dig. Rækkevidden bestemmer du, når du vil."
     },
     "now": {
       "title": "Lige nu",
-      "body": "Opslag handler om nuet. Se, hvad der sker, mens det sker, fra folk der deler dit sted."
+      "body": "Opslag handler om øjeblikket. Se det ske, mens det sker, fra folk der deler dit sted."
     },
     "safety": {
       "title": "Bygget til tryghed",
-      "body": "Rapportér og blokér med ét tryk, med rigtig moderation bag, og din nøjagtige placering vises aldrig til andre."
+      "body": "Rapportér og blokér med ét tryk, med rigtig moderering bag. Profilen viser dit område, aldrig din nøjagtige position."
     }
   },
   "download": {

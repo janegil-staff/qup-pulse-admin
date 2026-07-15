@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Lokalt som standard",
-      "body": "Ditt flöde är området runt dig, inte en global tidslinje. Det du ser finns faktiskt i närheten."
+      "title": "Lokalt eller globalt — du väljer",
+      "body": "Se hela världen, eller dra ner flödet till kvarteren omkring dig. Räckvidden bestämmer du, när du vill."
     },
     "now": {
       "title": "Just nu",
-      "body": "Inläggen handlar om stunden. Se vad som händer medan det händer, från folk som delar din plats."
+      "body": "Inlägg handlar om ögonblicket. Se det hända medan det händer, från människor som delar din plats."
     },
     "safety": {
       "title": "Byggt för trygghet",
-      "body": "Rapportera och blockera med ett tryck, med riktig moderering bakom, och din exakta position visas aldrig för andra."
+      "body": "Rapportera och blockera med ett tryck, med riktig moderering bakom. Profilen visar ditt område, aldrig din exakta position."
     }
   },
   "download": {

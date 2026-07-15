@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Lokal von Haus aus",
-      "body": "Dein Feed ist die Umgebung um dich herum, keine globale Timeline. Was du siehst, ist wirklich in der Nähe."
+      "title": "Lokal oder global — du entscheidest",
+      "body": "Sieh die ganze Welt, oder stell deinen Feed auf die Straßen um dich herum ein. Die Reichweite bestimmst du, jederzeit."
     },
     "now": {
       "title": "Genau jetzt",
-      "body": "Beiträge drehen sich um den Moment. Sieh, was passiert, während es passiert — von Leuten, die deinen Ort teilen."
+      "body": "Beiträge handeln vom Augenblick. Sieh zu, während es passiert — von Leuten in deiner Nähe."
     },
     "safety": {
       "title": "Auf Sicherheit gebaut",
-      "body": "Melde und blockiere mit einem Tippen, mit echter Moderation dahinter, und dein genauer Standort wird anderen nie gezeigt."
+      "body": "Melden und blockieren mit einem Tipp, mit echter Moderation dahinter. Dein Profil zeigt deine Gegend, nie deinen genauen Standort."
     }
   },
   "download": {

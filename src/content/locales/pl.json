@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Lokalnie z założenia",
-      "body": "Twój kanał to obszar wokół ciebie, a nie globalna oś czasu. To, co widzisz, jest naprawdę w pobliżu."
+      "title": "Lokalnie lub globalnie — ty decydujesz",
+      "body": "Zobacz cały świat albo zawęź strumień do najbliższych ulic. Zasięg ustawiasz ty, kiedy tylko chcesz."
     },
     "now": {
       "title": "Właśnie teraz",
-      "body": "Posty dotyczą chwili obecnej. Zobacz, co się dzieje, gdy się dzieje, od osób dzielących twoją przestrzeń."
+      "body": "Posty dotyczą chwili obecnej. Zobacz, jak to się dzieje, od ludzi dzielących twoją przestrzeń."
     },
     "safety": {
-      "title": "Stworzone dla bezpieczeństwa",
-      "body": "Zgłaszaj i blokuj jednym dotknięciem, z prawdziwą moderacją w tle, a twoja dokładna lokalizacja nigdy nie jest pokazywana innym."
+      "title": "Stworzone z myślą o bezpieczeństwie",
+      "body": "Zgłaszaj i blokuj jednym dotknięciem, z prawdziwą moderacją w tle. Profil pokazuje twoją okolicę, nigdy dokładną pozycję."
     }
   },
   "download": {

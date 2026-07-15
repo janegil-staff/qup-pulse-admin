@@ -16,16 +16,16 @@
   },
   "features": {
     "local": {
-      "title": "Paikallinen oletuksena",
-      "body": "Syötteesi on ympärilläsi oleva alue, ei maailmanlaajuinen aikajana. Näkemäsi on oikeasti lähellä."
+      "title": "Paikallisesti tai globaalisti — sinä valitset",
+      "body": "Katso koko maailmaa, tai rajaa syötteesi ympärilläsi oleviin kortteleihin. Sinä päätät kantaman, milloin haluat."
     },
     "now": {
       "title": "Juuri nyt",
-      "body": "Julkaisut kertovat nykyhetkestä. Näe mitä tapahtuu sen tapahtuessa, tilaasi jakavilta ihmisiltä."
+      "body": "Julkaisut kertovat tästä hetkestä. Näe se tapahtuessaan, ihmisiltä jotka jakavat tilasi."
     },
     "safety": {
       "title": "Rakennettu turvalliseksi",
-      "body": "Ilmoita ja estä yhdellä napautuksella, takana aito moderointi, eikä tarkkaa sijaintiasi näytetä koskaan muille."
+      "body": "Ilmoita ja estä yhdellä napautuksella, takana oikea moderointi. Profiilisi näyttää alueesi, ei koskaan tarkkaa sijaintiasi."
     }
   },
   "download": {
