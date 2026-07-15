@@ -214,7 +214,12 @@
       },
       "distance": "Avstand",
       "message": "Melding",
-      "savedPosts": "Lagrede innlegg"
+      "savedPosts": "Lagrede innlegg",
+      "verifyEmailTitle": "Bekreft e-postadressen din",
+      "verifyEmailBody": "Vi sendte deg en lenke da du registrerte deg. Bekreft for å få merket «E-post bekreftet» og for å kunne tilbakestille PIN-koden.",
+      "verifyEmailAction": "Send på nytt",
+      "verifyEmailSent": "Vi har sendt en ny lenke. Sjekk innboksen — og søppelposten.",
+      "verifyEmailFailed": "Kunne ikke sende lenken på nytt"
     },
     "feed": {
       "nearby": "I nærheten",

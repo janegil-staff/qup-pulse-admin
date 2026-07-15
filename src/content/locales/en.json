@@ -214,7 +214,12 @@
       },
       "distance": "Distance",
       "message": "Message",
-      "savedPosts": "Saved posts"
+      "savedPosts": "Saved posts",
+      "verifyEmailTitle": "Confirm your email address",
+      "verifyEmailBody": "We sent you a link when you signed up. Confirm to get the “Email confirmed” badge and to be able to reset your PIN.",
+      "verifyEmailAction": "Send again",
+      "verifyEmailSent": "We’ve sent a new link. Check your inbox — and your spam folder.",
+      "verifyEmailFailed": "Could not resend the link"
     },
     "feed": {
       "nearby": "Nearby",

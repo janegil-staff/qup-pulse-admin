@@ -161,3 +161,16 @@ export async function openConversation(userId) {
   });
   return parse(res); // { conversationId, status }
 }
+
+// qup-pulse-admin/src/lib/profileSettingsApi.js
+
+// Re-send the verification email. The server rate-limits this (authLimiter),
+// so a rejected call is likely 429, not a real failure — surface the message
+// rather than swallowing it.
+export async function resendVerification() {
+  const res = await fetch(`${API_URL}/auth/resend-verification`, {
+    method: 'POST',
+    headers: headers(),
+  });
+  return parse(res);
+}

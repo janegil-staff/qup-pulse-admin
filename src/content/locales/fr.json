@@ -214,7 +214,12 @@
       },
       "distance": "Distance",
       "message": "Message",
-      "savedPosts": "Publications enregistrées"
+      "savedPosts": "Publications enregistrées",
+      "verifyEmailTitle": "Confirmez votre adresse e-mail",
+      "verifyEmailBody": "Nous vous avons envoyé un lien à l’inscription. Confirmez pour obtenir le badge « E-mail confirmé » et pouvoir réinitialiser votre code PIN.",
+      "verifyEmailAction": "Renvoyer",
+      "verifyEmailSent": "Nous avons envoyé un nouveau lien. Vérifiez votre boîte de réception — et vos spams.",
+      "verifyEmailFailed": "Impossible de renvoyer le lien"
     },
     "feed": {
       "nearby": "À proximité",

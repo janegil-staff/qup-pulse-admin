@@ -148,14 +148,7 @@ export default function AppNav() {
                     <ThemeToggle dark={dark} onToggle={toggle} n={n} className="ml-2" />
                     {/* Truncated: a long display name would push Log out off the row.
               The title attribute carries the full string on hover. */}
-                    {me ? (
-                        <span
-                            title={me}
-                            className="ml-2 max-w-[12ch] truncate text-sm font-semibold text-slate-500 dark:text-slate-400"
-                        >
-                            {me}
-                        </span>
-                    ) : null}
+       
                     <button
                         onClick={logOut}
                         className="ml-1 rounded-lg border border-slate-300 px-3.5 py-1.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"

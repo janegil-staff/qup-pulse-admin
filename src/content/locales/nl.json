@@ -214,7 +214,12 @@
       },
       "distance": "Afstand",
       "message": "Bericht",
-      "savedPosts": "Opgeslagen berichten"
+      "savedPosts": "Opgeslagen berichten",
+      "verifyEmailTitle": "Bevestig je e-mailadres",
+      "verifyEmailBody": "We hebben je bij het aanmelden een link gestuurd. Bevestig om het label “E-mail bevestigd” te krijgen en je pincode te kunnen resetten.",
+      "verifyEmailAction": "Opnieuw sturen",
+      "verifyEmailSent": "We hebben een nieuwe link gestuurd. Kijk in je inbox — en in je spammap.",
+      "verifyEmailFailed": "Kon de link niet opnieuw versturen"
     },
     "feed": {
       "nearby": "Dichtbij",

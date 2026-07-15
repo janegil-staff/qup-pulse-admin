@@ -214,7 +214,12 @@
       },
       "distance": "Distancia",
       "message": "Mensaje",
-      "savedPosts": "Publicaciones guardadas"
+      "savedPosts": "Publicaciones guardadas",
+      "verifyEmailTitle": "Confirma tu dirección de correo",
+      "verifyEmailBody": "Te enviamos un enlace al registrarte. Confirma para obtener la insignia “Correo confirmado” y poder restablecer tu PIN.",
+      "verifyEmailAction": "Enviar de nuevo",
+      "verifyEmailSent": "Hemos enviado un nuevo enlace. Revisa tu bandeja de entrada — y el spam.",
+      "verifyEmailFailed": "No se pudo reenviar el enlace"
     },
     "feed": {
       "nearby": "Cerca",

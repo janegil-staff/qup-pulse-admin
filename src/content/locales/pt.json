@@ -214,7 +214,12 @@
       },
       "distance": "Distância",
       "message": "Mensagem",
-      "savedPosts": "Publicações guardadas"
+      "savedPosts": "Publicações guardadas",
+      "verifyEmailTitle": "Confirma o teu endereço de e-mail",
+      "verifyEmailBody": "Enviámos-te uma ligação quando te registaste. Confirma para obteres o distintivo “E-mail confirmado” e poderes repor o teu PIN.",
+      "verifyEmailAction": "Enviar novamente",
+      "verifyEmailSent": "Enviámos uma nova ligação. Verifica a tua caixa de entrada — e o spam.",
+      "verifyEmailFailed": "Não foi possível reenviar a ligação"
     },
     "feed": {
       "nearby": "Por perto",

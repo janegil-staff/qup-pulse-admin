@@ -214,7 +214,12 @@
       },
       "distance": "Etäisyys",
       "message": "Viesti",
-      "savedPosts": "Tallennetut julkaisut"
+      "savedPosts": "Tallennetut julkaisut",
+      "verifyEmailTitle": "Vahvista sähköpostiosoitteesi",
+      "verifyEmailBody": "Lähetimme sinulle linkin rekisteröityessäsi. Vahvista saadaksesi ”Sähköposti vahvistettu” -merkin ja voidaksesi nollata PIN-koodisi.",
+      "verifyEmailAction": "Lähetä uudelleen",
+      "verifyEmailSent": "Lähetimme uuden linkin. Tarkista postilaatikkosi — ja roskapostikansio.",
+      "verifyEmailFailed": "Linkin lähettäminen uudelleen epäonnistui"
     },
     "feed": {
       "nearby": "Lähellä",

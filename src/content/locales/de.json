@@ -214,7 +214,12 @@
       },
       "distance": "Entfernung",
       "message": "Nachricht",
-      "savedPosts": "Gespeicherte Beiträge"
+      "savedPosts": "Gespeicherte Beiträge",
+      "verifyEmailTitle": "Bestätige deine E-Mail-Adresse",
+      "verifyEmailBody": "Wir haben dir bei der Anmeldung einen Link geschickt. Bestätige, um das Abzeichen „E-Mail bestätigt“ zu erhalten und deine PIN zurücksetzen zu können.",
+      "verifyEmailAction": "Erneut senden",
+      "verifyEmailSent": "Wir haben einen neuen Link geschickt. Sieh in deinem Posteingang nach — und im Spam-Ordner.",
+      "verifyEmailFailed": "Der Link konnte nicht erneut gesendet werden"
     },
     "feed": {
       "nearby": "In der Nähe",

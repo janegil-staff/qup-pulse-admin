@@ -4,20 +4,29 @@
 // Own profile — view + edit (photo, display name, bio).
 // LOGGED-IN ONLY (redirects to / without a token). Localized via useLang().
 //
-// API:  GET   /me                  -> { profile: toSelf() }
-//       PATCH /me                  { displayName, bio, photos }
-//       POST  /upload  (multipart) -> { url, publicId }
+// API:  GET   /me                        -> { profile: toSelf() }
+//       PATCH /me                        { displayName, bio, photos }
+//       POST  /upload  (multipart)       -> { url, publicId }
+//       POST  /auth/resend-verification  -> { ok }
 //
 // Photos are replace-in-full on PATCH: the server destroys any photo dropped
 // from the array, so the edit modal always sends the whole list.
+//
+// The ADMIN badge is here and nowhere else. toPublic() deliberately omits role,
+// so it cannot leak to other users' view of you — on a proximity-based social
+// app, a public list of who the staff are is a targeting list. isAdmin() reads
+// localStorage, which is a UI hint, not a claim: every /admin/* route re-checks
+// server-side via requireAdmin.
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { getToken, isAdmin } from '../../lib/api';
 import { useLang } from '../../context/LandingLang';
 import AppNav from '../../components/AppNav';
-import { getMyProfile, updateMyProfile, uploadImage } from '../../lib/profileSettingsApi';
-import Link from 'next/link';
+import {
+    getMyProfile, updateMyProfile, uploadImage, resendVerification,
+} from '../../lib/profileSettingsApi';
 
 const BIO_MAX = 300;
 const NAME_MAX = 40;
@@ -32,6 +41,9 @@ export default function ProfilePage() {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState('');
     const [editing, setEditing] = useState(false);
+    const [admin, setAdmin] = useState(false);
+    const [resending, setResending] = useState(false);
+    const [resent, setResent] = useState(false);
 
     const reload = async () => setProfile(await getMyProfile());
 
@@ -42,6 +54,28 @@ export default function ProfilePage() {
             .catch((e) => { setError(e.message || p.loadFailed); setReady(true); });
     }, [router]);
 
+    // localStorage is client-only — reading it during render would mismatch the
+    // server-rendered HTML and hydrate wrong.
+    useEffect(() => {
+        setAdmin(isAdmin());
+    }, []);
+
+    // Re-send the confirmation link. The success state is sticky for the rest of
+    // the session — a button that returns to "Send again" invites the user to
+    // hammer it into the rate limiter while the first mail is still in flight.
+    async function resend() {
+        setResending(true);
+        setError('');
+        try {
+            await resendVerification();
+            setResent(true);
+        } catch (e) {
+            setError(e.message || p.verifyEmailFailed);
+        } finally {
+            setResending(false);
+        }
+    }
+
     if (!ready) {
         return (
             <div className="grid min-h-screen place-items-center bg-slate-50 text-slate-500 dark:bg-[#0b1016] dark:text-slate-400">
@@ -49,6 +83,7 @@ export default function ProfilePage() {
             </div>
         );
     }
+
     const avatar = profile?.photos?.[0]?.url || '';
     const name = profile?.displayName || profile?.username || '—';
 
@@ -64,6 +99,39 @@ export default function ProfilePage() {
                     </p>
                 ) : null}
 
+                {/* Unverified accounts still work — this nudges rather than blocks.
+            Verification drives the "Email confirmed" badge others see on
+            Discover, and it's how PIN reset reaches you, so it's worth
+            surfacing every visit until it's done. Amber, not red: nothing is
+            broken. */}
+                {profile && !profile.emailVerified ? (
+                    <div className="mb-4 overflow-hidden rounded-2xl border border-amber-300 bg-gradient-to-br from-amber-50 to-white shadow-sm dark:border-amber-500/30 dark:from-amber-500/10 dark:to-transparent dark:shadow-none">
+                        <div className="flex items-start gap-4 p-5">
+                            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-amber-400/20 text-lg">
+                                ✉️
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p className="text-[15px] font-bold text-amber-900 dark:text-amber-200">
+                                    {p.verifyEmailTitle}
+                                </p>
+                                <p className="mt-1 text-sm leading-relaxed text-amber-800/90 dark:text-amber-300/90">
+                                    {resent ? p.verifyEmailSent : p.verifyEmailBody}
+                                </p>
+                                {!resent ? (
+                                    <button
+                                        type="button"
+                                        onClick={resend}
+                                        disabled={resending}
+                                        className="mt-3 rounded-lg bg-amber-500 px-4 py-1.5 text-sm font-semibold text-amber-950 shadow-sm transition hover:brightness-105 disabled:opacity-50"
+                                    >
+                                        {resending ? '…' : p.verifyEmailAction}
+                                    </button>
+                                ) : null}
+                            </div>
+                        </div>
+                    </div>
+                ) : null}
+
                 <div className="mb-4 rounded-2xl border border-slate-300 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-[#131c26] dark:shadow-none">
                     <div className="flex items-start gap-5">
                         <div className="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-full border border-slate-300 bg-slate-100 text-slate-400 dark:border-slate-700 dark:bg-slate-800">
@@ -76,7 +144,14 @@ export default function ProfilePage() {
                         </div>
 
                         <div className="min-w-0 flex-1">
-                            <h2 className="truncate text-xl font-bold text-slate-900 dark:text-white">{name}</h2>
+                            <div className="flex items-center gap-2">
+                                <h2 className="truncate text-xl font-bold text-slate-900 dark:text-white">{name}</h2>
+                                {admin ? (
+                                    <span className="shrink-0 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-950">
+                                        {t.app.nav.admin}
+                                    </span>
+                                ) : null}
+                            </div>
                             <p className="truncate text-sm text-slate-500 dark:text-slate-400">@{profile?.username}</p>
                             {profile?.age ? (
                                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{profile.age}</p>
@@ -85,6 +160,7 @@ export default function ProfilePage() {
                                 <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">{profile.locationName}</p>
                             ) : null}
                         </div>
+
                         <div className="flex shrink-0 flex-col items-stretch gap-2">
                             <button
                                 type="button"
@@ -103,7 +179,7 @@ export default function ProfilePage() {
                                 {p.savedPosts}
                             </Link>
 
-                            {isAdmin() ? (
+                            {admin ? (
                                 <Link
                                     href="/reports"
                                     className="w-full rounded-lg border border-slate-300 px-3.5 py-1.5 text-center text-sm font-semibold text-slate-600 no-underline transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
@@ -122,13 +198,13 @@ export default function ProfilePage() {
                 </div>
             </main>
 
-            {editing && (
+            {editing ? (
                 <EditModal
                     profile={profile}
                     onClose={() => setEditing(false)}
                     onSaved={reload}
                 />
-            )}
+            ) : null}
         </div>
     );
 }

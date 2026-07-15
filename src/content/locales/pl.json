@@ -214,7 +214,12 @@
       },
       "distance": "Odległość",
       "message": "Wiadomość",
-      "savedPosts": "Zapisane posty"
+      "savedPosts": "Zapisane posty",
+      "verifyEmailTitle": "Potwierdź swój adres e-mail",
+      "verifyEmailBody": "Wysłaliśmy Ci link przy rejestracji. Potwierdź, aby otrzymać odznakę „E-mail potwierdzony” i móc zresetować PIN.",
+      "verifyEmailAction": "Wyślij ponownie",
+      "verifyEmailSent": "Wysłaliśmy nowy link. Sprawdź skrzynkę odbiorczą — i folder spam.",
+      "verifyEmailFailed": "Nie udało się wysłać linku ponownie"
     },
     "feed": {
       "nearby": "W pobliżu",
