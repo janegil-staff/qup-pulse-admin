@@ -219,7 +219,10 @@
       "verifyEmailBody": "Te enviamos un enlace al registrarte. Confirma para obtener la insignia “Correo confirmado” y poder restablecer tu PIN.",
       "verifyEmailAction": "Enviar de nuevo",
       "verifyEmailSent": "Hemos enviado un nuevo enlace. Revisa tu bandeja de entrada — y el spam.",
-      "verifyEmailFailed": "No se pudo reenviar el enlace"
+      "verifyEmailFailed": "No se pudo reenviar el enlace",
+      "neighborhood": "Barrio",
+      "appLanguage": "Idioma de la app",
+      "locationName": "Ubicación"
     },
     "feed": {
       "nearby": "Cerca",
@@ -386,6 +389,20 @@
       "title": "Publicaciones guardadas",
       "empty": "Todavía no has guardado ninguna publicación.",
       "loadFailed": "No se pudieron cargar las publicaciones guardadas"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Elige un motivo.",
       "reportFailed": "No se pudo enviar la denuncia.",
       "blockFailed": "No se pudo bloquear a este usuario."
-    }
+    },
+    "locationName": "Ubicación"
   }
 }

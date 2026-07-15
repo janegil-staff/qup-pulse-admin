@@ -219,7 +219,10 @@
       "verifyEmailBody": "Wir haben dir bei der Anmeldung einen Link geschickt. Bestätige, um das Abzeichen „E-Mail bestätigt“ zu erhalten und deine PIN zurücksetzen zu können.",
       "verifyEmailAction": "Erneut senden",
       "verifyEmailSent": "Wir haben einen neuen Link geschickt. Sieh in deinem Posteingang nach — und im Spam-Ordner.",
-      "verifyEmailFailed": "Der Link konnte nicht erneut gesendet werden"
+      "verifyEmailFailed": "Der Link konnte nicht erneut gesendet werden",
+      "neighborhood": "Viertel",
+      "appLanguage": "App-Sprache",
+      "locationName": "Ort"
     },
     "feed": {
       "nearby": "In der Nähe",
@@ -386,6 +389,20 @@
       "title": "Gespeicherte Beiträge",
       "empty": "Du hast noch keine Beiträge gespeichert.",
       "loadFailed": "Gespeicherte Beiträge konnten nicht geladen werden"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Bitte wähle einen Grund.",
       "reportFailed": "Meldung konnte nicht gesendet werden.",
       "blockFailed": "Nutzer konnte nicht blockiert werden."
-    }
+    },
+    "locationName": "Ort"
   }
 }

@@ -86,7 +86,18 @@ export default function ProfilePage() {
 
     const avatar = profile?.photos?.[0]?.url || '';
     const name = profile?.displayName || profile?.username || '—';
-
+    const facts = [
+        profile.age != null ? { key: 'age', label: p.age, value: String(profile.age) } : null,
+        profile.gender ? { key: 'gender', label: s.gender, value: t.app.genders[profile.gender] || profile.gender } : null,
+        profile.locationName ? { key: 'locName', label: p.locationName, value: profile.locationName } : null,
+        profile.language
+            ? {
+                key: 'lang',
+                label: p.appLanguage,
+                value: t.app.languages?.[profile.language] || profile.language,
+            }
+            : null,
+    ].filter(Boolean);
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
             <AppNav />
@@ -189,7 +200,19 @@ export default function ProfilePage() {
                             ) : null}
                         </div>
                     </div>
-
+       {/* Facts strip — age / gender / neighborhood / location / distance / language */}
+                    {facts.length > 0 ? (
+                        <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 border-t border-slate-200 pt-4 dark:border-slate-800">
+                            {facts.map((f) => (
+                                <div key={f.key}>
+                                    <dt className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                                        {f.label}
+                                    </dt>
+                                    <dd className="mt-0.5 text-[15px] text-slate-800 dark:text-slate-200">{f.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                    ) : null}
                     {profile?.bio ? (
                         <p className="mt-5 whitespace-pre-wrap text-[15px] text-slate-700 dark:text-slate-300">{profile.bio}</p>
                     ) : (

@@ -219,7 +219,10 @@
       "verifyEmailBody": "Vi sendte deg en lenke da du registrerte deg. Bekreft for å få merket «E-post bekreftet» og for å kunne tilbakestille PIN-koden.",
       "verifyEmailAction": "Send på nytt",
       "verifyEmailSent": "Vi har sendt en ny lenke. Sjekk innboksen — og søppelposten.",
-      "verifyEmailFailed": "Kunne ikke sende lenken på nytt"
+      "verifyEmailFailed": "Kunne ikke sende lenken på nytt",
+      "neighborhood": "Nabolag",
+      "appLanguage": "Appspråk",
+      "locationName": "Sted"
     },
     "feed": {
       "nearby": "I nærheten",
@@ -386,6 +389,20 @@
       "title": "Lagrede innlegg",
       "empty": "Du har ikke lagret noen innlegg ennå.",
       "loadFailed": "Kunne ikke laste lagrede innlegg"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Velg en grunn.",
       "reportFailed": "Kunne ikke sende rapporten.",
       "blockFailed": "Kunne ikke blokkere brukeren."
-    }
+    },
+    "locationName": "Sted"
   }
 }

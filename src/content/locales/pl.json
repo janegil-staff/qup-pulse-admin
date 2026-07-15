@@ -219,7 +219,10 @@
       "verifyEmailBody": "Wysłaliśmy Ci link przy rejestracji. Potwierdź, aby otrzymać odznakę „E-mail potwierdzony” i móc zresetować PIN.",
       "verifyEmailAction": "Wyślij ponownie",
       "verifyEmailSent": "Wysłaliśmy nowy link. Sprawdź skrzynkę odbiorczą — i folder spam.",
-      "verifyEmailFailed": "Nie udało się wysłać linku ponownie"
+      "verifyEmailFailed": "Nie udało się wysłać linku ponownie",
+      "neighborhood": "Dzielnica",
+      "appLanguage": "Język aplikacji",
+      "locationName": "Lokalizacja"
     },
     "feed": {
       "nearby": "W pobliżu",
@@ -386,6 +389,20 @@
       "title": "Zapisane posty",
       "empty": "Nie masz jeszcze zapisanych postów.",
       "loadFailed": "Nie udało się załadować zapisanych postów"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Wybierz powód.",
       "reportFailed": "Nie udało się wysłać zgłoszenia.",
       "blockFailed": "Nie udało się zablokować użytkownika."
-    }
+    },
+    "locationName": "Lokalizacja"
   }
 }

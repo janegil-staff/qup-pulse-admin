@@ -138,5 +138,8 @@
     "privacyPre": "Jeg samtykker til lagring og bruk av mine data i samsvar med",
     "privacyLink": "personvernerklæringen",
     "privacyPost": "."
+  },
+  "profile": {
+    "locationName": "Sted"
   }
 }

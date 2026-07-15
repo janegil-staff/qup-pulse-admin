@@ -219,7 +219,10 @@
       "verifyEmailBody": "Enviámos-te uma ligação quando te registaste. Confirma para obteres o distintivo “E-mail confirmado” e poderes repor o teu PIN.",
       "verifyEmailAction": "Enviar novamente",
       "verifyEmailSent": "Enviámos uma nova ligação. Verifica a tua caixa de entrada — e o spam.",
-      "verifyEmailFailed": "Não foi possível reenviar a ligação"
+      "verifyEmailFailed": "Não foi possível reenviar a ligação",
+      "neighborhood": "Bairro",
+      "appLanguage": "Idioma da app",
+      "locationName": "Localização"
     },
     "feed": {
       "nearby": "Por perto",
@@ -386,6 +389,20 @@
       "title": "Publicações guardadas",
       "empty": "Ainda não guardaste nenhuma publicação.",
       "loadFailed": "Não foi possível carregar as publicações guardadas"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Escolha um motivo.",
       "reportFailed": "Não foi possível enviar a denúncia.",
       "blockFailed": "Não foi possível bloquear este utilizador."
-    }
+    },
+    "locationName": "Localização"
   }
 }

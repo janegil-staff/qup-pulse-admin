@@ -219,7 +219,10 @@
       "verifyEmailBody": "Ti abbiamo inviato un link al momento della registrazione. Conferma per ottenere il badge “E-mail confermata” e per poter reimpostare il PIN.",
       "verifyEmailAction": "Invia di nuovo",
       "verifyEmailSent": "Abbiamo inviato un nuovo link. Controlla la posta in arrivo — e lo spam.",
-      "verifyEmailFailed": "Impossibile inviare di nuovo il link"
+      "verifyEmailFailed": "Impossibile inviare di nuovo il link",
+      "neighborhood": "Quartiere",
+      "appLanguage": "Lingua dell'app",
+      "locationName": "Località"
     },
     "feed": {
       "nearby": "Nelle vicinanze",
@@ -386,6 +389,20 @@
       "title": "Post salvati",
       "empty": "Non hai ancora salvato nessun post.",
       "loadFailed": "Impossibile caricare i post salvati"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Scegli un motivo.",
       "reportFailed": "Impossibile inviare la segnalazione.",
       "blockFailed": "Impossibile bloccare questo utente."
-    }
+    },
+    "locationName": "Località"
   }
 }

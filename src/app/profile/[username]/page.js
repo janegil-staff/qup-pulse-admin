@@ -6,7 +6,7 @@
 //
 // API:  GET    /users/:username     (optionalAuth — JWT gives followedByMe)
 //         -> { profile: { id, username, displayName, photos, avatarUrl, online,
-//                         age, gender, locationLabel,
+//                         age, gender, locationLabel, neighborhood, language,
 //                         followerCount, followingCount, followedByMe },
 //              posts: [ toClient() ] }
 //       POST   /users/:id/follow    -> { following: true }
@@ -17,6 +17,21 @@
 // age / gender / locationLabel come from the extended toPublic(). locationLabel
 // is already coarsened + gated server-side (see User.coarseLocation) — the raw
 // locationName never reaches this page, so it can be rendered as-is.
+//
+// neighborhood and language come from the base toPublic(). They differ in kind
+// and are treated differently:
+//
+//  - neighborhood is FREE TEXT the user typed about themselves ("local flavor",
+//    User.neighborhood, default ''). It is NOT derived from GPS and is NOT
+//    gated by showDistance — it's self-authored, so showing it discloses only
+//    what the user chose to write. Blank for anyone who never filled it in,
+//    and dropped from the strip in that case.
+//
+//  - language is User.language, the UI LANGUAGE (default 'en'), not "languages
+//    I speak". Every account has a value whether or not the user ever picked
+//    one, so it's labelled as the app language (p.appLanguage) rather than
+//    implying fluency. Rendered via t.app.languages[code] so 'no' shows as
+//    "Norsk", not "no"; an unmapped code falls back to the raw value.
 //
 // NOTE: toPublic() carries no bio, so none is shown here (server-side gap).
 // Viewing your own username redirects to /profile, which is editable.
@@ -135,14 +150,18 @@ export default function PublicProfilePage() {
     const avatar = profile.avatarUrl || profile.photos?.[0]?.url || '';
     const name = profile.displayName || profile.username;
 
-    // Any of these may be absent: age is null without a dob, gender is unset
-    // until onboarding, locationLabel is '' when showDistance is off. Each cell
-    // is dropped rather than rendered as a dash, so the strip stays honest.
     const facts = [
         profile.age != null ? { key: 'age', label: p.age, value: String(profile.age) } : null,
         profile.gender ? { key: 'gender', label: s.gender, value: t.app.genders[profile.gender] || profile.gender } : null,
-        profile.locationLabel ? { key: 'loc', label: p.location, value: profile.locationLabel } : null,
+        profile.locationName ? { key: 'locName', label: p.locationName, value: profile.locationName } : null,
         profile.distanceKm != null ? { key: 'dist', label: p.distance, value: `~${profile.distanceKm} km` } : null,
+        profile.language
+            ? {
+                key: 'lang',
+                label: p.appLanguage,
+                value: t.app.languages?.[profile.language] || profile.language,
+            }
+            : null,
     ].filter(Boolean);
 
     return (
@@ -247,7 +266,7 @@ export default function PublicProfilePage() {
                         </div>
                     </div>
 
-                    {/* Facts strip — age / gender / location */}
+                    {/* Facts strip — age / gender / neighborhood / location / distance / language */}
                     {facts.length > 0 ? (
                         <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 border-t border-slate-200 pt-4 dark:border-slate-800">
                             {facts.map((f) => (

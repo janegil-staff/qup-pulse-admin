@@ -219,7 +219,10 @@
       "verifyEmailBody": "Lähetimme sinulle linkin rekisteröityessäsi. Vahvista saadaksesi ”Sähköposti vahvistettu” -merkin ja voidaksesi nollata PIN-koodisi.",
       "verifyEmailAction": "Lähetä uudelleen",
       "verifyEmailSent": "Lähetimme uuden linkin. Tarkista postilaatikkosi — ja roskapostikansio.",
-      "verifyEmailFailed": "Linkin lähettäminen uudelleen epäonnistui"
+      "verifyEmailFailed": "Linkin lähettäminen uudelleen epäonnistui",
+      "neighborhood": "Kaupunginosa",
+      "appLanguage": "Sovelluksen kieli",
+      "locationName": "Sijainti"
     },
     "feed": {
       "nearby": "Lähellä",
@@ -386,6 +389,20 @@
       "title": "Tallennetut julkaisut",
       "empty": "Et ole vielä tallentanut yhtään julkaisua.",
       "loadFailed": "Tallennettuja julkaisuja ei voitu ladata"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Valitse syy.",
       "reportFailed": "Ilmoitusta ei voitu lähettää.",
       "blockFailed": "Käyttäjää ei voitu estää."
-    }
+    },
+    "locationName": "Sijainti"
   }
 }

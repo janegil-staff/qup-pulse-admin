@@ -219,7 +219,10 @@
       "verifyEmailBody": "Vi sendte dig et link, da du oprettede dig. Bekræft for at få mærket “E-mail bekræftet” og for at kunne nulstille din PIN-kode.",
       "verifyEmailAction": "Send igen",
       "verifyEmailSent": "Vi har sendt et nyt link. Tjek din indbakke — og din spammappe.",
-      "verifyEmailFailed": "Kunne ikke sende linket igen"
+      "verifyEmailFailed": "Kunne ikke sende linket igen",
+      "neighborhood": "Kvarter",
+      "appLanguage": "App-sprog",
+      "locationName": "Sted"
     },
     "feed": {
       "nearby": "I nærheden",
@@ -386,6 +389,20 @@
       "title": "Gemte opslag",
       "empty": "Du har ikke gemt nogen opslag endnu.",
       "loadFailed": "Kunne ikke indlæse gemte opslag"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Vælg en årsag.",
       "reportFailed": "Kunne ikke sende anmeldelsen.",
       "blockFailed": "Kunne ikke blokere brugeren."
-    }
+    },
+    "locationName": "Sted"
   }
 }

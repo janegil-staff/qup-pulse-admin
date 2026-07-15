@@ -138,5 +138,8 @@
     "privacyPre": "Jag samtycker till lagring och användning av mina uppgifter i enlighet med",
     "privacyLink": "integritetspolicyn",
     "privacyPost": "."
+  },
+  "profile": {
+    "locationName": "Plats"
   }
 }

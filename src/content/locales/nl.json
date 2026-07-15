@@ -219,7 +219,10 @@
       "verifyEmailBody": "We hebben je bij het aanmelden een link gestuurd. Bevestig om het label “E-mail bevestigd” te krijgen en je pincode te kunnen resetten.",
       "verifyEmailAction": "Opnieuw sturen",
       "verifyEmailSent": "We hebben een nieuwe link gestuurd. Kijk in je inbox — en in je spammap.",
-      "verifyEmailFailed": "Kon de link niet opnieuw versturen"
+      "verifyEmailFailed": "Kon de link niet opnieuw versturen",
+      "neighborhood": "Buurt",
+      "appLanguage": "App-taal",
+      "locationName": "Locatie"
     },
     "feed": {
       "nearby": "Dichtbij",
@@ -386,6 +389,20 @@
       "title": "Opgeslagen berichten",
       "empty": "Je hebt nog geen berichten opgeslagen.",
       "loadFailed": "Kon opgeslagen berichten niet laden"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Kies een reden.",
       "reportFailed": "Kon de melding niet versturen.",
       "blockFailed": "Kon deze gebruiker niet blokkeren."
-    }
+    },
+    "locationName": "Locatie"
   }
 }

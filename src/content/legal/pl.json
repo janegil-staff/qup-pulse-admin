@@ -138,5 +138,8 @@
     "privacyPre": "Wyrażam zgodę na przechowywanie i wykorzystywanie moich danych zgodnie z",
     "privacyLink": "polityką prywatności",
     "privacyPost": "."
+  },
+  "profile": {
+    "locationName": "Lokalizacja"
   }
 }

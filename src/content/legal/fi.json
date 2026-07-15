@@ -138,5 +138,8 @@
     "privacyPre": "Suostun tietojeni tallentamiseen ja käyttöön",
     "privacyLink": "tietosuojakäytännön",
     "privacyPost": "mukaisesti."
+  },
+  "profile": {
+    "locationName": "Sijainti"
   }
 }

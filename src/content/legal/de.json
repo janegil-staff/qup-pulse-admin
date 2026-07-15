@@ -138,5 +138,8 @@
     "privacyPre": "Ich willige in die Speicherung und Nutzung meiner Daten gemäß der",
     "privacyLink": "Datenschutzerklärung",
     "privacyPost": "ein."
+  },
+  "profile": {
+    "locationName": "Ort"
   }
 }

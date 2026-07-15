@@ -138,5 +138,8 @@
     "privacyPre": "Je consens au stockage et à l'utilisation de mes données conformément à la",
     "privacyLink": "politique de confidentialité",
     "privacyPost": "."
+  },
+  "profile": {
+    "locationName": "Lieu"
   }
 }

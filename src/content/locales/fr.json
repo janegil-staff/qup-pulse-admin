@@ -219,7 +219,10 @@
       "verifyEmailBody": "Nous vous avons envoyé un lien à l’inscription. Confirmez pour obtenir le badge « E-mail confirmé » et pouvoir réinitialiser votre code PIN.",
       "verifyEmailAction": "Renvoyer",
       "verifyEmailSent": "Nous avons envoyé un nouveau lien. Vérifiez votre boîte de réception — et vos spams.",
-      "verifyEmailFailed": "Impossible de renvoyer le lien"
+      "verifyEmailFailed": "Impossible de renvoyer le lien",
+      "neighborhood": "Quartier",
+      "appLanguage": "Langue de l'app",
+      "locationName": "Lieu"
     },
     "feed": {
       "nearby": "À proximité",
@@ -386,6 +389,20 @@
       "title": "Publications enregistrées",
       "empty": "Vous n’avez encore enregistré aucune publication.",
       "loadFailed": "Impossible de charger les publications enregistrées"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Veuillez choisir un motif.",
       "reportFailed": "Impossible d’envoyer le signalement.",
       "blockFailed": "Impossible de bloquer cet utilisateur."
-    }
+    },
+    "locationName": "Lieu"
   }
 }

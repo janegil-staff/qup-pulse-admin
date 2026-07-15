@@ -138,5 +138,8 @@
     "privacyPre": "Ik stem in met de opslag en het gebruik van mijn gegevens in overeenstemming met het",
     "privacyLink": "privacybeleid",
     "privacyPost": "."
+  },
+  "profile": {
+    "locationName": "Locatie"
   }
 }

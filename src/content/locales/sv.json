@@ -219,7 +219,10 @@
       "verifyEmailBody": "Vi skickade dig en länk när du registrerade dig. Bekräfta för att få märket ”E-post bekräftad” och för att kunna återställa din PIN-kod.",
       "verifyEmailAction": "Skicka igen",
       "verifyEmailSent": "Vi har skickat en ny länk. Kolla inkorgen — och skräpposten.",
-      "verifyEmailFailed": "Kunde inte skicka länken igen"
+      "verifyEmailFailed": "Kunde inte skicka länken igen",
+      "neighborhood": "Område",
+      "appLanguage": "Appspråk",
+      "locationName": "Plats"
     },
     "feed": {
       "nearby": "I närheten",
@@ -386,6 +389,20 @@
       "title": "Sparade inlägg",
       "empty": "Du har inte sparat några inlägg ännu.",
       "loadFailed": "Kunde inte ladda sparade inlägg"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Välj en anledning.",
       "reportFailed": "Kunde inte skicka rapporten.",
       "blockFailed": "Kunde inte blockera användaren."
-    }
+    },
+    "locationName": "Plats"
   }
 }

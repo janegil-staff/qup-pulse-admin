@@ -219,7 +219,10 @@
       "verifyEmailBody": "We sent you a link when you signed up. Confirm to get the “Email confirmed” badge and to be able to reset your PIN.",
       "verifyEmailAction": "Send again",
       "verifyEmailSent": "We’ve sent a new link. Check your inbox — and your spam folder.",
-      "verifyEmailFailed": "Could not resend the link"
+      "verifyEmailFailed": "Could not resend the link",
+      "neighborhood": "Neighborhood",
+      "appLanguage": "App language",
+      "locationName": "Location"
     },
     "feed": {
       "nearby": "Nearby",
@@ -386,6 +389,20 @@
       "title": "Saved posts",
       "empty": "You haven’t saved any posts yet.",
       "loadFailed": "Could not load saved posts"
+    },
+    "languages": {
+      "no": "Norsk",
+      "en": "English",
+      "nl": "Nederlands",
+      "fr": "Français",
+      "de": "Deutsch",
+      "it": "Italiano",
+      "sv": "Svenska",
+      "da": "Dansk",
+      "fi": "Suomi",
+      "es": "Español",
+      "pl": "Polski",
+      "pt": "Português"
     }
   },
   "auth": {
@@ -479,6 +496,7 @@
       "pickReason": "Please pick a reason.",
       "reportFailed": "Could not send the report.",
       "blockFailed": "Could not block this user."
-    }
+    },
+    "locationName": "Location"
   }
 }
