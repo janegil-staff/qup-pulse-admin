@@ -174,3 +174,9 @@ export async function resendVerification() {
   });
   return parse(res);
 }
+
+// qup-pulse-admin/src/lib/profileSettingsApi.js
+// Persist the UI locale on the profile. Server must accept `language` on PATCH /me.
+export async function persistLanguage(language) {
+  return updateMyProfile({ language });
+}
