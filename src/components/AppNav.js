@@ -42,6 +42,12 @@ export default function AppNav() {
     const [me, setMe] = useState('');
     const { dark, toggle } = useDarkMode();
 
+    // COMBINED_UNREAD_NAV_V1 — the badge counts inbox unreads AND incoming
+    // message requests as one number. /messages shows Inbox and Requests as
+    // sibling tabs, so a single count resolves either way; splitting them into
+    // two indicators would need requestCount, which chatUnreadCount() already
+    // returns.
+    //
     // Unread badge on the Messages tab. Fed by chat:notify, which deliver()
     // emits to `user:${id}` for every participant who isn't the sender — so it
     // fires regardless of which tab you're on, unlike chat:message, which only
@@ -61,7 +67,7 @@ export default function AppNav() {
 
         const refresh = () => {
             chatUnreadCount()
-                .then((count) => { if (!cancelled) setUnread(count); })
+                .then(({ count }) => { if (!cancelled) setUnread(count); })
                 .catch((e) => console.error('unread badge', e));
         };
 
@@ -88,7 +94,7 @@ export default function AppNav() {
     useEffect(() => {
         if (!getToken()) return;
         chatUnreadCount()
-            .then(setUnread)
+            .then(({ count }) => setUnread(count))
             .catch((e) => console.error('unread badge', e));
     }, [pathname]);
 

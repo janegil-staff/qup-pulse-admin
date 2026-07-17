@@ -7,7 +7,7 @@
 //   openConversation    POST /chat/conversations/:userId   -> { conversationId, status }
 //   acceptConversation  POST /chat/conversations/:id/accept-> { ok, conversationId, status }
 //   getMessages         GET  /chat/conversations/:id/messages?before= -> { messages: [toClient()] }
-//   chatUnreadCount     GET  /chat/unread-count            -> { count }
+//   chatUnreadCount     GET  /chat/unread-count            -> { count, requestCount }
 //   markRead            POST /chat/conversations/:id/read   -> { ok }
 //
 // Sending is NOT here — the server exposes no POST for messages; it's Socket.IO.
@@ -58,10 +58,14 @@ export async function getMessages(id, { before } = {}) {
   return data.messages || [];
 }
 
+// COMBINED_UNREAD_CLIENT_V1 — `count` is the combined total (inbox unreads +
+// incoming requests) the badge shows; `requestCount` is the request share of
+// it, available for a split badge without another round-trip. Returns an object
+// now, not a number — callers must read `.count`.
 export async function chatUnreadCount() {
   const res = await fetch(`${API_URL}/chat/unread-count`, { headers: headers(), cache: 'no-store' });
   const data = await parse(res);
-  return data.count || 0;
+  return { count: data.count || 0, requestCount: data.requestCount || 0 };
 }
 
 export async function markRead(id) {
@@ -69,10 +73,4 @@ export async function markRead(id) {
     method: 'POST', headers: headers(),
   });
   return parse(res);
-}
-
-// qup-pulse-admin/src/lib/chatApi.js
-export async function getUnreadCount() {
-const { count } = await apiGet('/chat/unread-count');
-return count || 0;
 }
