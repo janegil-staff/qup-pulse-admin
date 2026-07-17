@@ -3,7 +3,7 @@ import './globals.css';
 import { LandingLangProvider } from '../context/LandingLang';
 import Footer from '../components/Footer';
 
-export const metadata = { title: 'Qup Pulse' };
+export const metadata = { title: 'Qup Pulse', description: 'Qup Pulse — a location-based social app for discovering what\'s happening around you.' };
 
 // Applies the stored theme to <html> before React hydrates.
 //
