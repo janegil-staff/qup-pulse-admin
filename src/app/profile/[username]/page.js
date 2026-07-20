@@ -41,6 +41,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { getToken } from '../../../lib/api';
 import { useLang } from '../../../context/LandingLang';
 import AppNav from '../../../components/AppNav';
+import PhotoGallery from '../../../components/PhotoGallery';
 import {
     getPublicProfile, followUser, unfollowUser, getMyProfile,
     reportUser, blockUser, openConversation,
@@ -280,6 +281,9 @@ export default function PublicProfilePage() {
                         </dl>
                     ) : null}
                 </div>
+
+                {/* Photo gallery — every photo the user has, not just the avatar. */}
+                <PhotoGallery photos={profile.photos} label={p.photos} />
 
                 {/* Posts */}
                 <h2 className="mb-2 mt-6 px-1 text-xs font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500">

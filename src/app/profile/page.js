@@ -24,6 +24,7 @@ import Link from 'next/link';
 import { getToken, isAdmin } from '../../lib/api';
 import { useLang } from '../../context/LandingLang';
 import AppNav from '../../components/AppNav';
+import PhotoGallery from '../../components/PhotoGallery';
 import {
     getMyProfile, updateMyProfile, uploadImage, resendVerification,
 } from '../../lib/profileSettingsApi';
@@ -219,6 +220,9 @@ export default function ProfilePage() {
                         <p className="mt-5 text-[15px] text-slate-400 dark:text-slate-600">{p.noBio}</p>
                     )}
                 </div>
+
+                {/* Photo gallery — every photo you have, not just the avatar. */}
+                <PhotoGallery photos={profile?.photos} label={p.photos} />
             </main>
 
             {editing ? (
