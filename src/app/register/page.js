@@ -253,13 +253,7 @@ export default function RegisterPage() {
                 ))}
               </div>
               <Label>{a.dob}</Label>
-              <input
-                type="date"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
-                max={new Date().toISOString().slice(0, 10)}
-                className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] outline-none focus:border-emerald-500 dark:border-slate-700 dark:bg-[#131c26]"
-              />
+              <DobPicker value={dob} onChange={setDob} t={a} />
               <Row onBack={back} busy={busy} cta={a.continue} backLabel={a.back} busyLabel={a.pleaseWait} />
             </form>
           </Card>
@@ -382,6 +376,89 @@ export default function RegisterPage() {
   );
 }
 
+//* ---------- date-of-birth picker (three dropdowns) ---------- */
+
+function DobPicker({ value, onChange, t }) {
+  // Local state for the three parts. The picker must hold these itself: a
+  // partial selection (day only) can't be represented in the parent's `value`
+  // (a full date or empty), so deriving the selects from `value` made each pick
+  // snap back. We keep parts here and push a full ISO date up only when all
+  // three are chosen.
+  const parseValue = (v) => {
+    if (!v) return { d: '', m: '', y: '' };
+    const dt = new Date(v);
+    if (Number.isNaN(dt.getTime())) return { d: '', m: '', y: '' };
+    return { d: dt.getUTCDate(), m: dt.getUTCMonth() + 1, y: dt.getUTCFullYear() };
+  };
+
+  const initial = parseValue(value);
+  const [day, setDay] = useState(initial.d);
+  const [month, setMonth] = useState(initial.m);
+  const [year, setYear] = useState(initial.y);
+
+  const thisYear = new Date().getFullYear();
+  const maxYear = thisYear - 18;
+  const minYear = thisYear - 100;
+  const years = [];
+  for (let yr = maxYear; yr >= minYear; yr -= 1) years.push(yr);
+
+  const monthNames = Array.isArray(t?.months) && t.months.length === 12
+    ? t.months
+    : Array.from({ length: 12 }, (_, i) => String(i + 1));
+
+  const daysInMonth = (month && year)
+    ? new Date(year, month, 0).getDate()
+    : (month ? new Date(2000, month, 0).getDate() : 31);
+  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+  function update(nextD, nextM, nextY) {
+    setDay(nextD);
+    setMonth(nextM);
+    setYear(nextY);
+    if (!nextD || !nextM || !nextY) { onChange(''); return; }
+    const maxD = new Date(nextY, nextM, 0).getDate();
+    const dd = Math.min(nextD, maxD);
+    if (dd !== nextD) setDay(dd);
+    onChange(new Date(Date.UTC(nextY, nextM - 1, dd)).toISOString());
+  }
+
+  const selectCls =
+    'w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-[15px] outline-none focus:border-emerald-500 dark:border-slate-700 dark:bg-[#131c26]';
+
+  return (
+    <div className="mb-5 grid grid-cols-3 gap-2">
+      <select
+        aria-label={t?.dobDay || 'Day'}
+        value={day || ''}
+        onChange={(e) => update(Number(e.target.value) || '', month, year)}
+        className={selectCls}
+      >
+        <option value="">{t?.dobDay || 'Day'}</option>
+        {days.map((dNum) => <option key={dNum} value={dNum}>{dNum}</option>)}
+      </select>
+
+      <select
+        aria-label={t?.dobMonth || 'Month'}
+        value={month || ''}
+        onChange={(e) => update(day, Number(e.target.value) || '', year)}
+        className={selectCls}
+      >
+        <option value="">{t?.dobMonth || 'Month'}</option>
+        {monthNames.map((name, i) => <option key={i} value={i + 1}>{name}</option>)}
+      </select>
+
+      <select
+        aria-label={t?.dobYear || 'Year'}
+        value={year || ''}
+        onChange={(e) => update(day, month, Number(e.target.value) || '')}
+        className={selectCls}
+      >
+        <option value="">{t?.dobYear || 'Year'}</option>
+        {years.map((yr) => <option key={yr} value={yr}>{yr}</option>)}
+      </select>
+    </div>
+  );
+}
 /* ---------- small presentational helpers ---------- */
 
 function Progress({ step }) {
