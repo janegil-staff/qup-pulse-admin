@@ -134,8 +134,13 @@
         "saveLocation": "Impossibile salvare la posizione.",
         "setLocation": "Impossibile impostare la posizione.",
         "noGeolocation": "Il tuo browser non supporta la geolocalizzazione.",
-        "getLocation": "Impossibile ottenere la tua posizione. Cerca invece una città."
-      }
+        "getLocation": "Impossibile ottenere la tua posizione. Cerca invece una città.",
+        "deleteAccount": "Impossibile eliminare l’account."
+      },
+      "deleteAccountTitle": "Eliminare l’account?",
+      "deleteAccountBody": "Questa operazione elimina definitivamente il tuo account e tutti i tuoi dati. Non può essere annullata.",
+      "deleteAccountConfirm": "Elimina account",
+      "deletingAccount": "Eliminazione…"
     },
     "show": {
       "women": "Donne",

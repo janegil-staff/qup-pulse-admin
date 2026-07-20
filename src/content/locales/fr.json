@@ -134,8 +134,13 @@
         "saveLocation": "Impossible d’enregistrer la position.",
         "setLocation": "Impossible de définir la position.",
         "noGeolocation": "Votre navigateur ne prend pas en charge la localisation.",
-        "getLocation": "Impossible d’obtenir votre position. Recherchez plutôt une ville."
-      }
+        "getLocation": "Impossible d’obtenir votre position. Recherchez plutôt une ville.",
+        "deleteAccount": "Impossible de supprimer le compte."
+      },
+      "deleteAccountTitle": "Supprimer le compte ?",
+      "deleteAccountBody": "Cela supprime définitivement votre compte et toutes vos données. Cette action est irréversible.",
+      "deleteAccountConfirm": "Supprimer le compte",
+      "deletingAccount": "Suppression…"
     },
     "show": {
       "women": "Femmes",

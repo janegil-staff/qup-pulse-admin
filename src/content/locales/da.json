@@ -134,8 +134,13 @@
         "saveLocation": "Kunne ikke gemme placering.",
         "setLocation": "Kunne ikke angive placering.",
         "noGeolocation": "Din browser understøtter ikke placering.",
-        "getLocation": "Kunne ikke hente din placering. Søg efter en by i stedet."
-      }
+        "getLocation": "Kunne ikke hente din placering. Søg efter en by i stedet.",
+        "deleteAccount": "Kunne ikke slette kontoen."
+      },
+      "deleteAccountTitle": "Slet konto?",
+      "deleteAccountBody": "Dette sletter din konto og alle dine data permanent. Dette kan ikke fortrydes.",
+      "deleteAccountConfirm": "Slet konto",
+      "deletingAccount": "Sletter …"
     },
     "show": {
       "women": "Kvinder",

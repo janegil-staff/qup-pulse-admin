@@ -134,8 +134,13 @@
         "saveLocation": "Sijaintia ei voitu tallentaa.",
         "setLocation": "Sijaintia ei voitu asettaa.",
         "noGeolocation": "Selaimesi ei tue sijaintia.",
-        "getLocation": "Sijaintiasi ei saatu. Hae sen sijaan kaupunkia."
-      }
+        "getLocation": "Sijaintiasi ei saatu. Hae sen sijaan kaupunkia.",
+        "deleteAccount": "Tilin poistaminen epäonnistui."
+      },
+      "deleteAccountTitle": "Poistetaanko tili?",
+      "deleteAccountBody": "Tämä poistaa tilisi ja kaikki tietosi pysyvästi. Tätä ei voi kumota.",
+      "deleteAccountConfirm": "Poista tili",
+      "deletingAccount": "Poistetaan…"
     },
     "show": {
       "women": "Naiset",

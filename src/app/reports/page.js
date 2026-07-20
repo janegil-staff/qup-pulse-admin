@@ -128,10 +128,18 @@ export default function ReportsPage() {
     if (!postId) return;
     if (!window.confirm(r_.confirmDeletePost)) return;
     setBusyId(postId);
+    // Optimistically drop every report pointing at this post — deleting the
+    // post resolves all of them, so the rows should disappear immediately
+    // rather than waiting for a manual refresh. Keep a snapshot to restore if
+    // the server rejects the delete.
+    const snapshot = reports;
+    const pid = String(postId);
+    setReports((prev) => prev.filter((x) => String(x.post?.id) !== pid));
     try {
       await adminApi.deletePost(postId);
       setError('');
     } catch (err) {
+      setReports(snapshot); // roll back the optimistic removal
       if (err instanceof AuthError) return bounce();
       setError(err.message || r_.err.deletePost);
     } finally {

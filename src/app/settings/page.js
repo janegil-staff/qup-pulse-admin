@@ -11,12 +11,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { getToken } from '../../lib/api';
+import { getToken, clearToken } from '../../lib/api';
 import { useLang } from '../../context/LandingLang';
 import { LANGUAGES, SUPPORTED_LANGS } from '../../content/landingContent';
 import AppNav from '../../components/AppNav';
 import {
-  getMyProfile, updateMyProfile, updatePreferences, changePin, geocode, setLocation,
+  getMyProfile, updateMyProfile, updatePreferences, changePin, geocode, setLocation, deleteAccount,
 } from '../../lib/profileSettingsApi';
 
 const GENDER_KEYS = ['male', 'female', 'nonbinary', 'other'];
@@ -160,7 +160,13 @@ export default function SettingsPage() {
         {/* Account actions */}
         <div className="mt-6" />
         <Card>
-          <RowLink href="/delete" label={s.deleteAccount} danger last />
+          <button
+            onClick={() => setModal('delete')}
+            className="flex w-full items-center justify-between gap-3 px-5 py-4 text-[15px] text-left transition hover:bg-slate-50 dark:hover:bg-slate-800/50"
+          >
+            <span className="font-semibold text-red-600 dark:text-red-400">{s.deleteAccount}</span>
+            <span className="text-slate-400">›</span>
+          </button>
         </Card>
 
         <p className="mt-8 text-center text-sm text-slate-400 dark:text-slate-600">Qup Pulse</p>
@@ -173,6 +179,7 @@ export default function SettingsPage() {
       {modal === 'gender' && <GenderModal current={profile?.gender} onClose={() => setModal(null)} onSaved={reload} />}
       {modal === 'language' && <LanguageModal current={lang} setLang={setLang} onClose={() => setModal(null)} />}
       {modal === 'location' && <LocationModal onClose={() => setModal(null)} onSaved={reload} />}
+      {modal === 'delete' && <DeleteAccountModal onClose={() => setModal(null)} onDeleted={() => { clearToken(); router.replace('/'); }} />}
     </div>
   );
 }
@@ -385,6 +392,39 @@ function LanguageModal({ current, setLang, onClose }) {
             {code === current ? <span className="text-emerald-500">✓</span> : null}
           </button>
         ))}
+      </div>
+    </ModalShell>
+  );
+}
+
+function DeleteAccountModal({ onClose, onDeleted }) {
+  const { t } = useLang();
+  const s = t.app.settings;
+  const c = t.app.common;
+  const [deleting, setDeleting] = useState(false);
+  const [err, setErr] = useState('');
+
+  async function confirmDelete() {
+    setDeleting(true);
+    setErr('');
+    try {
+      await deleteAccount();
+      onDeleted();
+    } catch (e) {
+      setErr(e.message || s.err.deleteAccount);
+      setDeleting(false);
+    }
+  }
+
+  return (
+    <ModalShell title={s.deleteAccountTitle} onClose={deleting ? () => {} : onClose}>
+      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{s.deleteAccountBody}</p>
+      {err ? <p className="mt-3 text-sm text-red-600 dark:text-red-400">{err}</p> : null}
+      <div className="mt-5 flex justify-end gap-3">
+        <button onClick={onClose} disabled={deleting} className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 disabled:opacity-50 dark:text-slate-300">{c.cancel}</button>
+        <button onClick={confirmDelete} disabled={deleting} className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-50">
+          {deleting ? s.deletingAccount : s.deleteAccountConfirm}
+        </button>
       </div>
     </ModalShell>
   );

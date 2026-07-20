@@ -134,8 +134,13 @@
         "saveLocation": "Could not save location.",
         "setLocation": "Could not set location.",
         "noGeolocation": "Your browser does not support location.",
-        "getLocation": "Could not get your location. Search for a city instead."
-      }
+        "getLocation": "Could not get your location. Search for a city instead.",
+        "deleteAccount": "Could not delete account."
+      },
+      "deleteAccountTitle": "Delete account?",
+      "deleteAccountBody": "This permanently deletes your account and all your data. This cannot be undone.",
+      "deleteAccountConfirm": "Delete account",
+      "deletingAccount": "Deleting…"
     },
     "show": {
       "women": "Women",

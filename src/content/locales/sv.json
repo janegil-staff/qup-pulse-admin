@@ -134,8 +134,13 @@
         "saveLocation": "Kunde inte spara plats.",
         "setLocation": "Kunde inte ange plats.",
         "noGeolocation": "Din webbläsare stöder inte plats.",
-        "getLocation": "Kunde inte hämta din plats. Sök efter en stad istället."
-      }
+        "getLocation": "Kunde inte hämta din plats. Sök efter en stad istället.",
+        "deleteAccount": "Det gick inte att radera kontot."
+      },
+      "deleteAccountTitle": "Radera konto?",
+      "deleteAccountBody": "Detta raderar ditt konto och all din data permanent. Detta kan inte ångras.",
+      "deleteAccountConfirm": "Radera konto",
+      "deletingAccount": "Raderar …"
     },
     "show": {
       "women": "Kvinnor",

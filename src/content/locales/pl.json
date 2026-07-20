@@ -134,8 +134,13 @@
         "saveLocation": "Nie udało się zapisać lokalizacji.",
         "setLocation": "Nie udało się ustawić lokalizacji.",
         "noGeolocation": "Twoja przeglądarka nie obsługuje lokalizacji.",
-        "getLocation": "Nie udało się pobrać Twojej lokalizacji. Zamiast tego wyszukaj miasto."
-      }
+        "getLocation": "Nie udało się pobrać Twojej lokalizacji. Zamiast tego wyszukaj miasto.",
+        "deleteAccount": "Nie udało się usunąć konta."
+      },
+      "deleteAccountTitle": "Usunąć konto?",
+      "deleteAccountBody": "Spowoduje to trwałe usunięcie konta i wszystkich danych. Tej operacji nie można cofnąć.",
+      "deleteAccountConfirm": "Usuń konto",
+      "deletingAccount": "Usuwanie…"
     },
     "show": {
       "women": "Kobiety",

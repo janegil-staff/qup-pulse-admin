@@ -134,8 +134,13 @@
         "saveLocation": "Não foi possível guardar a localização.",
         "setLocation": "Não foi possível definir a localização.",
         "noGeolocation": "O teu navegador não suporta localização.",
-        "getLocation": "Não foi possível obter a tua localização. Procura uma cidade em vez disso."
-      }
+        "getLocation": "Não foi possível obter a tua localização. Procura uma cidade em vez disso.",
+        "deleteAccount": "Não foi possível eliminar a conta."
+      },
+      "deleteAccountTitle": "Eliminar conta?",
+      "deleteAccountBody": "Isto elimina permanentemente a tua conta e todos os teus dados. Não pode ser anulado.",
+      "deleteAccountConfirm": "Eliminar conta",
+      "deletingAccount": "A eliminar…"
     },
     "show": {
       "women": "Mulheres",

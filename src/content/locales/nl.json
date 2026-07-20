@@ -134,8 +134,13 @@
         "saveLocation": "Kon locatie niet opslaan.",
         "setLocation": "Kon locatie niet instellen.",
         "noGeolocation": "Je browser ondersteunt geen locatie.",
-        "getLocation": "Kon je locatie niet ophalen. Zoek in plaats daarvan een stad."
-      }
+        "getLocation": "Kon je locatie niet ophalen. Zoek in plaats daarvan een stad.",
+        "deleteAccount": "Kon account niet verwijderen."
+      },
+      "deleteAccountTitle": "Account verwijderen?",
+      "deleteAccountBody": "Hiermee worden je account en al je gegevens permanent verwijderd. Dit kan niet ongedaan worden gemaakt.",
+      "deleteAccountConfirm": "Account verwijderen",
+      "deletingAccount": "Verwijderen…"
     },
     "show": {
       "women": "Vrouwen",

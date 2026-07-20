@@ -134,8 +134,13 @@
         "saveLocation": "Standort konnte nicht gespeichert werden.",
         "setLocation": "Standort konnte nicht festgelegt werden.",
         "noGeolocation": "Dein Browser unterstützt keine Standortermittlung.",
-        "getLocation": "Standort konnte nicht ermittelt werden. Suche stattdessen eine Stadt."
-      }
+        "getLocation": "Standort konnte nicht ermittelt werden. Suche stattdessen eine Stadt.",
+        "deleteAccount": "Konto konnte nicht gelöscht werden."
+      },
+      "deleteAccountTitle": "Konto löschen?",
+      "deleteAccountBody": "Dadurch werden dein Konto und alle deine Daten dauerhaft gelöscht. Dies kann nicht rückgängig gemacht werden.",
+      "deleteAccountConfirm": "Konto löschen",
+      "deletingAccount": "Wird gelöscht…"
     },
     "show": {
       "women": "Frauen",

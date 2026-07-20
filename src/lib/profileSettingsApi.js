@@ -180,3 +180,15 @@ export async function resendVerification() {
 export async function persistLanguage(language) {
   return updateMyProfile({ language });
 }
+
+// Delete the logged-in account — DELETE /me. Matches the app client
+// (client.js: deleteAccount => request('/me', { method: 'DELETE' })). The server
+// removes the user and their data; the settings page clears the token and
+// redirects to the landing page on success.
+export async function deleteAccount() {
+  const res = await fetch(`${API_URL}/me`, {
+    method: 'DELETE',
+    headers: headers(),
+  });
+  return parse(res);
+}
