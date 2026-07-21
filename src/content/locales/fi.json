@@ -227,7 +227,8 @@
       "verifyEmailFailed": "Linkin lähettäminen uudelleen epäonnistui",
       "neighborhood": "Kaupunginosa",
       "appLanguage": "Sovelluksen kieli",
-      "locationName": "Sijainti"
+      "locationName": "Sijainti",
+      "interests": "Kiinnostukset"
     },
     "feed": {
       "nearby": "Lähellä",

@@ -7,7 +7,7 @@
 // API:  GET    /users/:username     (optionalAuth — JWT gives followedByMe)
 //         -> { profile: { id, username, displayName, photos, avatarUrl, online,
 //                         age, gender, locationLabel, neighborhood, language,
-//                         followerCount, followingCount, followedByMe },
+//                         interests, followerCount, followingCount, followedByMe },
 //              posts: [ toClient() ] }
 //       POST   /users/:id/follow    -> { following: true }
 //       DELETE /users/:id/follow    -> { following: false }
@@ -32,6 +32,9 @@
 //    one, so it's labelled as the app language (p.appLanguage) rather than
 //    implying fluency. Rendered via t.app.languages[code] so 'no' shows as
 //    "Norsk", not "no"; an unmapped code falls back to the raw value.
+//
+// interests come from toPublic() (User.interests, free tags). Rendered as chips
+// below the facts strip, only when the user has at least one.
 //
 // NOTE: toPublic() carries no bio, so none is shown here (server-side gap).
 // Viewing your own username redirects to /profile, which is editable.
@@ -279,6 +282,26 @@ export default function PublicProfilePage() {
                                 </div>
                             ))}
                         </dl>
+                    ) : null}
+
+                    {/* Interests — free tags from toPublic(). Chips, shown only when the
+                        user set at least one. */}
+                    {profile.interests?.length > 0 ? (
+                        <div className="mt-5 border-t border-slate-200 pt-4 dark:border-slate-800">
+                            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                                {p.interests}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                                {profile.interests.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="rounded-full border border-slate-300 px-3 py-1 text-xs text-slate-600 dark:border-slate-700 dark:text-slate-300"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     ) : null}
                 </div>
 

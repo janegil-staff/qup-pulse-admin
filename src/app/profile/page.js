@@ -219,6 +219,25 @@ export default function ProfilePage() {
                     ) : (
                         <p className="mt-5 text-[15px] text-slate-400 dark:text-slate-600">{p.noBio}</p>
                     )}
+
+                    {/* Interests — free tags from toSelf(). Chips, shown only when set. */}
+                    {profile?.interests?.length > 0 ? (
+                        <div className="mt-5 border-t border-slate-200 pt-4 dark:border-slate-800">
+                            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                                {p.interests}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                                {profile.interests.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="rounded-full border border-slate-300 px-3 py-1 text-xs text-slate-600 dark:border-slate-700 dark:text-slate-300"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
 
                 {/* Photo gallery — every photo you have, not just the avatar. */}

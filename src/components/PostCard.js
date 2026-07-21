@@ -6,7 +6,13 @@
 // either page gained a feature.
 //
 // Post shape is Post.toClient(viewerId): { id, author: toPublic(), text, type,
-// placeName?, imageUrl?, likeCount, likedByMe, savedByMe?, createdAt }.
+// placeName?, imageUrl?, likeCount, likedByMe, savedByMe?, commentCount,
+// createdAt }.
+//
+// commentCount is returned by /posts/feed (computed on read via one grouped
+// aggregation — see postController.getFeed). The comment button shows the count
+// when > 0. The expanded Comments panel keeps that badge in sync as the viewer
+// adds or deletes comments, via onCountChange -> onPatch.
 //
 // savedByMe is NOT returned by /posts/following (only /posts/feed and
 // /posts/saved pass the viewer to toClient), so on that tab the flag starts
@@ -52,6 +58,10 @@ export default function PostCard({ post, onPatch, onUnsaved, onAuthorBlocked }) 
   const author = post.author || {};
   const avatar = author.avatarUrl || author.photos?.[0]?.url || '';
   const name = author.displayName || author.username || '—';
+
+  // Count shown on the comment button. Falls back to 0 when the feed endpoint
+  // didn't supply it (e.g. /posts/following). Kept live by <Comments> below.
+  const commentCount = post.commentCount ?? 0;
 
   // Close the overflow menu on outside click / Escape. Without this the menu
   // stays open when the user clicks another card's `⋯`.
@@ -196,7 +206,10 @@ export default function PostCard({ post, onPatch, onUnsaved, onAuthorBlocked }) 
           onClick={() => setShowComments((v) => !v)}
           className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
         >
-          {showComments ? f.hideComments : f.comments}
+          {/* Icon always; the count only appears once there's at least one
+              comment, mirroring "♥ {n}" on the like button. */}
+          💬 {showComments ? f.hideComments : f.comments}
+          {commentCount > 0 ? ` (${commentCount})` : ''}
         </button>
 
         <button
@@ -216,7 +229,12 @@ export default function PostCard({ post, onPatch, onUnsaved, onAuthorBlocked }) 
         </button>
       </div>
 
-      {showComments ? <Comments postId={post.id} /> : null}
+      {showComments ? (
+        <Comments
+          postId={post.id}
+          onCountChange={(n) => onPatch(post.id, { commentCount: n })}
+        />
+      ) : null}
 
       {dialog === 'report' ? (
         <ReportDialog post={post} onClose={() => setDialog(null)} />
@@ -429,10 +447,12 @@ function BlockDialog({ author, onClose, onBlocked }) {
 
 /* ---------- comments (loaded on demand) ---------- */
 
-// Post.toClient() carries no commentCount and there's no count endpoint, so
-// comments load only when a post is expanded. Fetching them on render would be
-// an N+1 across the whole page.
-function Comments({ postId }) {
+// The feed now carries commentCount (see postController.getFeed), so the badge
+// renders without opening the panel. The actual comment LIST still loads only
+// when a post is expanded — fetching every thread on render would be an N+1
+// across the page. onCountChange keeps the parent's badge in sync as the viewer
+// adds or deletes comments here, without a feed refetch.
+function Comments({ postId, onCountChange }) {
   const { t } = useLang();
   const f = t.app.feed;
   const s = t.app.settings;
@@ -445,9 +465,17 @@ function Comments({ postId }) {
   useEffect(() => {
     let cancelled = false;
     listComments(postId)
-      .then((cs) => { if (!cancelled) setList(cs); })
+      .then((cs) => {
+        if (cancelled) return;
+        setList(cs);
+        // Reconcile the badge with the authoritative loaded count.
+        onCountChange?.(cs.length);
+      })
       .catch((e) => { if (!cancelled) { setErr(e.message || f.commentsFailed); setList([]); } });
     return () => { cancelled = true; };
+    // onCountChange intentionally omitted: it's a fresh closure each render and
+    // would re-run this effect on every parent update. postId is the real dep.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId, f]);
 
   async function submit() {
@@ -457,7 +485,11 @@ function Comments({ postId }) {
     setErr('');
     try {
       const c = await addComment(postId, body.slice(0, COMMENT_MAX));
-      setList((prev) => [...(prev || []), c]);
+      setList((prev) => {
+        const next = [...(prev || []), c];
+        onCountChange?.(next.length);
+        return next;
+      });
       setText('');
     } catch (e) {
       setErr(e.message || f.commentFailed);
@@ -469,7 +501,11 @@ function Comments({ postId }) {
   async function remove(id) {
     try {
       await deleteComment(id);
-      setList((prev) => (prev || []).filter((c) => String(c.id) !== String(id)));
+      setList((prev) => {
+        const next = (prev || []).filter((c) => String(c.id) !== String(id));
+        onCountChange?.(next.length);
+        return next;
+      });
     } catch (e) {
       setErr(e.message || f.deleteFailed);
     }

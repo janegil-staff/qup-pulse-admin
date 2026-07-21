@@ -227,7 +227,8 @@
       "verifyEmailFailed": "No se pudo reenviar el enlace",
       "neighborhood": "Barrio",
       "appLanguage": "Idioma de la app",
-      "locationName": "Ubicación"
+      "locationName": "Ubicación",
+      "interests": "Intereses"
     },
     "feed": {
       "nearby": "Cerca",

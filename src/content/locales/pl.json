@@ -227,7 +227,8 @@
       "verifyEmailFailed": "Nie udało się wysłać linku ponownie",
       "neighborhood": "Dzielnica",
       "appLanguage": "Język aplikacji",
-      "locationName": "Lokalizacja"
+      "locationName": "Lokalizacja",
+      "interests": "Zainteresowania"
     },
     "feed": {
       "nearby": "W pobliżu",

@@ -227,7 +227,8 @@
       "verifyEmailFailed": "Kunde inte skicka länken igen",
       "neighborhood": "Område",
       "appLanguage": "Appspråk",
-      "locationName": "Plats"
+      "locationName": "Plats",
+      "interests": "Intressen"
     },
     "feed": {
       "nearby": "I närheten",

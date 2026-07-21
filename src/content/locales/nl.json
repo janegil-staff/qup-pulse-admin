@@ -227,7 +227,8 @@
       "verifyEmailFailed": "Kon de link niet opnieuw versturen",
       "neighborhood": "Buurt",
       "appLanguage": "App-taal",
-      "locationName": "Locatie"
+      "locationName": "Locatie",
+      "interests": "Interesses"
     },
     "feed": {
       "nearby": "Dichtbij",

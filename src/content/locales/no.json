@@ -227,7 +227,8 @@
       "verifyEmailFailed": "Kunne ikke sende lenken på nytt",
       "neighborhood": "Nabolag",
       "appLanguage": "Appspråk",
-      "locationName": "Sted"
+      "locationName": "Sted",
+      "interests": "Interesser"
     },
     "feed": {
       "nearby": "I nærheten",

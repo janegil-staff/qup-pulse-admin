@@ -1,0 +1,180 @@
+{
+  "avatars": {
+    "isabellexo": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/isabellexo/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/isabellexo/1"
+      }
+    ],
+    "sophiejade": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/sophiejade/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/sophiejade/1"
+      }
+    ],
+    "lenaavaa": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/lenaavaa/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/lenaavaa/1"
+      }
+    ],
+    "emiliaro": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/emiliaro/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/emiliaro/1"
+      }
+    ],
+    "noraexplores": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/noraexplores/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/noraexplores/1"
+      }
+    ],
+    "amaliemusic": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/amaliemusic/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/amaliemusic/1"
+      }
+    ],
+    "miafit": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/miafit/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/miafit/1"
+      }
+    ],
+    "claraart": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/claraart/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/claraart/1"
+      }
+    ],
+    "ellabakes": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/ellabakes/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/ellabakes/1"
+      }
+    ],
+    "sarahlives": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/sarahlives/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/sarahlives/1"
+      }
+    ],
+    "matthewjames": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/matthewjames/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/matthewjames/1"
+      }
+    ],
+    "alexmoreno": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/alexmoreno/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/alexmoreno/1"
+      }
+    ],
+    "lukaswayfarer": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/lukaswayfarer/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/lukaswayfarer/1"
+      }
+    ],
+    "olivercodes": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/olivercodes/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/olivercodes/1"
+      }
+    ],
+    "noahfitness": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/noahfitness/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/noahfitness/1"
+      }
+    ],
+    "henrikoutside": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/henrikoutside/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/henrikoutside/1"
+      }
+    ],
+    "danielcreates": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/danielcreates/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/danielcreates/1"
+      }
+    ],
+    "williamfoodie": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/williamfoodie/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/williamfoodie/1"
+      }
+    ],
+    "theomusic": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/theomusic/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/theomusic/1"
+      }
+    ],
+    "jacobmoves": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/avatars/jacobmoves/1.jpg",
+        "publicId": "localpulse/seed-assets/avatars/jacobmoves/1"
+      }
+    ]
+  },
+  "posts": {
+    "city": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/city/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/city/1"
+      }
+    ],
+    "coffee": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/coffee/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/coffee/1"
+      }
+    ],
+    "events": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/events/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/events/1"
+      }
+    ],
+    "fitness": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/fitness/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/fitness/1"
+      }
+    ],
+    "food": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/food/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/food/1"
+      }
+    ],
+    "lostfound": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/lostfound/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/lostfound/1"
+      }
+    ],
+    "marketplace": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/marketplace/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/marketplace/1"
+      }
+    ],
+    "music": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/music/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/music/1"
+      }
+    ],
+    "outdoors": [
+      {
+        "url": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/localpulse/seed-assets/posts/outdoors/1.jpg",
+        "publicId": "localpulse/seed-assets/posts/outdoors/1"
+      }
+    ]
+  }
+}
