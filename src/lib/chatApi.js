@@ -7,10 +7,15 @@
 //   openConversation    POST /chat/conversations/:userId   -> { conversationId, status }
 //   acceptConversation  POST /chat/conversations/:id/accept-> { ok, conversationId, status }
 //   getMessages         GET  /chat/conversations/:id/messages?before= -> { messages: [toClient()] }
+//   sendMessage         POST /chat/conversations/:id/messages -> { message: toClient() }
 //   chatUnreadCount     GET  /chat/unread-count            -> { count, requestCount }
 //   markRead            POST /chat/conversations/:id/read   -> { ok }
 //
-// Sending is NOT here — the server exposes no POST for messages; it's Socket.IO.
+// Sending goes over REST (POST .../messages) — the server persists AND
+// broadcasts chat:message to both sides over the socket. It used to be a
+// Socket.IO emit (chat:send), but that ack path was unreliable and has been
+// removed server-side; awaiting an ack that never fired left the send button
+// stuck on "…". REST is the single source of truth.
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 const TOKEN_KEY = 'qup_pulse_admin_jwt';
@@ -56,6 +61,17 @@ export async function getMessages(id, { before } = {}) {
   });
   const data = await parse(res);
   return data.messages || [];
+}
+
+// Send a text or image message over REST. Pass { text } or { imageUrl }.
+// Returns { message: toClient() }. The server also broadcasts chat:message to
+// the conversation room (both participants), so the thread's socket listener
+// renders the bubble; dedup by id handles the echo of our own message.
+export async function sendMessage(id, body) {
+  const res = await fetch(`${API_URL}/chat/conversations/${encodeURIComponent(id)}/messages`, {
+    method: 'POST', headers: headers(), body: JSON.stringify(body), cache: 'no-store',
+  });
+  return parse(res);
 }
 
 // COMBINED_UNREAD_CLIENT_V1 — `count` is the combined total (inbox unreads +

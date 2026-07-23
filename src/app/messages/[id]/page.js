@@ -1,44 +1,32 @@
 // qup-pulse-admin/src/app/messages/[id]/page.js
 'use client';
 
-// Thread view — history via REST, live send/receive via Socket.IO.
+// Thread view — history + send via REST, live receive via Socket.IO.
 //
 // REST:   GET  /chat/conversations/:id/messages?before= -> { messages: [toClient()] }
-//         POST /chat/conversations/:id/read             -> { ok }
-//         POST /chat/conversations/:id/accept           -> { ok, status }
-//         POST /upload (multipart, field "image")       -> { url, publicId }
+//         POST /chat/conversations/:id/messages          -> { message: toClient() }
+//         POST /chat/conversations/:id/read              -> { ok }
+//         POST /chat/conversations/:id/accept            -> { ok, status }
+//         POST /upload (multipart, field "image")        -> { url, publicId }
 //
 // Socket: chat:join {conversationId}  -> ack { ok } | { error }   REQUIRED
-//         chat:send {conversationId, text}          -> ack { ok, message }
-//         chat:sendImage {conversationId, imageUrl} -> ack { ok, message }
 //         chat:typing {conversationId}              (fire and forget)
 //         chat:leave {conversationId}
 //         chat:message  <- Message.toClient(), for EVERY message in the room
 //                          including our own echo
 //         chat:typing   <- { userId }
-//         chat:accepted <- { conversationId, status }  (see below)
+//         chat:accepted <- { conversationId, status }
 //
-// Message shape: { id, conversationId, sender: toPublic(), text, imageUrl?,
-//                  createdAt }. imageUrl is OMITTED on text messages, not null.
+// Sending is over REST (sendMessage). It used to be a Socket.IO emit
+// (chat:send / chat:sendImage) awaiting an ack; that server handler was removed
+// and the ack never came back, leaving the send button stuck on "…". The server
+// now persists over REST and broadcasts chat:message to the room, so the bubble
+// still arrives live via the listener below (deduped by id).
 //
-// The server exposes no GET for a single conversation, so the header comes from
-// filtering listConversations()/listRequests(). Two extra round-trips; a
-// GET /chat/conversations/:id would be better.
-//
-// PENDING RULES (mirrored from chat:send in server/src/socket/chat.js):
-//   - The INITIATOR gets exactly one message on a pending thread — the opener,
-//     so the recipient has something to judge the request on. After that the
-//     composer locks until accept. The server enforces it with a countDocuments
-//     check and returns PENDING_LIMIT; the disable here is cosmetic, to avoid a
-//     send that visibly fails.
-//   - The RECIPIENT is unrestricted: replying to a request is implicit consent.
-//   - Images are accepted-only for BOTH parties, regardless of message count.
-//
-// chat:accepted exists because acceptConversation is a REST handler — nothing
-// else would tell the initiator's open page that their request went through, so
-// the composer stayed locked until they happened to reload. Requires the server
-// to emit it to `user:${initiator}`; without that emit this listener is inert
-// and the old reload-to-unlock behaviour returns.
+// The message-request SEND GATE has been removed server-side: both participants
+// can send freely regardless of status. The Requests tab and Accept button
+// remain as an informational/moderation surface, but the composer is never
+// locked. (The old pendingLocked / canSendText cosmetic lock is gone to match.)
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -47,10 +35,10 @@ import { getToken } from '../../../lib/api';
 import { useLang } from '../../../context/LandingLang';
 import AppNav from '../../../components/AppNav';
 import {
-    getMessages, markRead, acceptConversation, listConversations, listRequests,
+    getMessages, markRead, acceptConversation, listConversations, listRequests, sendMessage,
 } from '../../../lib/chatApi';
 import { uploadImage } from '../../../lib/profileSettingsApi';
-import { getSocket, emitAck } from '../../../lib/socket';
+import { getSocket } from '../../../lib/socket';
 
 export default function ThreadPage() {
     const router = useRouter();
@@ -92,8 +80,6 @@ export default function ThreadPage() {
 
                 setConvo([...convos, ...reqs].find((x) => String(x.id) === id) || null);
                 setMessages(msgs);
-                // Best-effort; a failed receipt isn't banner-worthy. The event tells
-                // AppNav to refresh its unread badge — it has no handle on this page.
                 markRead(id)
                     .then(() => window.dispatchEvent(new Event('chat:read')))
                     .catch(() => { });
@@ -112,15 +98,13 @@ export default function ThreadPage() {
         if (!socket || !id) return;
 
         // The ack is not optional. A rejected join (not a participant, blocked, or
-        // no such thread) is the ONLY signal we get — ignore it and the thread
-        // looks fine and simply never receives a message.
-        emitAck('chat:join', { conversationId: id }).catch((e) => {
-            setError(e.message || m.joinFailed);
+        // no such thread) is the ONLY signal we get.
+        socket.emit('chat:join', { conversationId: id }, (ack) => {
+            if (ack?.error) setError(ack.error || m.joinFailed);
         });
 
         // The server echoes our own sends into the room, so this covers both
-        // directions. Dedupe by id: chat:send's ack also returns the message and
-        // both can land.
+        // directions. Dedupe by id.
         const onMessage = (msg) => {
             if (String(msg.conversationId) !== id) return;
             setMessages((prev) => (prev.some((x) => String(x.id) === String(msg.id)) ? prev : [...prev, msg]));
@@ -132,8 +116,7 @@ export default function ThreadPage() {
             typingTimer.current = setTimeout(() => setTheyreTyping(false), 3000);
         };
 
-        // The other party accepted. Flip our local status so the composer unlocks
-        // and the image button enables, without a reload.
+        // The other party accepted. Flip local status so the header/labels update.
         const onAccepted = ({ conversationId, status }) => {
             if (String(conversationId) !== id) return;
             setConvo((prev) => (prev ? { ...prev, status: status || 'accepted' } : prev));
@@ -154,9 +137,7 @@ export default function ThreadPage() {
 
     useEffect(() => { scrollToBottom(); }, [messages, scrollToBottom]);
 
-    // The JWT's `sub` is the user id — the same claim authSocket reads in
-    // server/src/socket/chat.js. Reading it directly avoids a /me round-trip and a
-    // dependency on that endpoint's envelope shape.
+    // The JWT's `sub` is the user id.
     function myIdFromToken() {
         try {
             const tok = getToken();
@@ -168,34 +149,36 @@ export default function ThreadPage() {
 
     async function send() {
         const body = text.trim();
-        if (!body || sending || !canSendText) return;
+        if (!body || sending) return;
         setSending(true);
         setError('');
         try {
             setText(''); // clear optimistically; the bubble arrives via chat:message
-            await emitAck('chat:send', { conversationId: id, text: body });
+            const { message } = await sendMessage(id, { text: body });
+            // Render immediately in case the socket echo is slow/absent (deduped).
+            if (message) {
+                setMessages((prev) =>
+                    prev.some((x) => String(x.id) === String(message.id)) ? prev : [...prev, message]);
+            }
         } catch (e) {
             setText(body); // put it back so the typing isn't lost
-            // PENDING_LIMIT means the opener already landed and the thread is
-            // waiting on accept. Reachable despite canSendText: the disable is
-            // driven by local `messages`, which a second tab or a race can lag.
-            setError(e.code === 'PENDING_LIMIT' || e.message === 'PENDING_LIMIT'
-                ? m.textPending
-                : (e.message || m.sendFailed));
+            setError(e.message || m.sendFailed);
         } finally {
             setSending(false);
         }
     }
 
-    // Two steps: POST /upload for a Cloudinary URL, then chat:sendImage with it.
-    // The server validates the host (res.cloudinary.com, or a local /uploads/
-    // path in dev) and rejects anything else, so a URL from elsewhere won't stick.
+    // Two steps: POST /upload for a Cloudinary URL, then sendMessage with it.
     async function sendImage(file) {
         setUploading(true);
         setError('');
         try {
             const { url } = await uploadImage(file);
-            await emitAck('chat:sendImage', { conversationId: id, imageUrl: url });
+            const { message } = await sendMessage(id, { imageUrl: url });
+            if (message) {
+                setMessages((prev) =>
+                    prev.some((x) => String(x.id) === String(message.id)) ? prev : [...prev, message]);
+            }
         } catch (e) {
             setError(e.message || m.sendFailed);
         } finally {
@@ -225,15 +208,12 @@ export default function ThreadPage() {
     const name = u?.displayName || u?.username || m.unknownUser;
     const avatar = u?.avatarUrl || u?.photos?.[0]?.url || '';
     // Only the RECIPIENT can accept — the server 400s the initiator, so don't
-    // offer them a button that always fails.
+    // offer them a button that always fails. The Accept surface stays as a
+    // moderation affordance; it no longer gates sending.
     const showAccept = convo?.status === 'pending' && !convo?.isInitiator;
+    // Images still require an accepted conversation for BOTH parties — an
+    // unsolicited image in a location-based app is a known abuse vector.
     const canSendImage = convo?.status === 'accepted';
-    // The initiator's one-message allowance, spent. `messages.length` is the whole
-    // thread, which is the same count the server takes — on a pending thread only
-    // the initiator can have written, so there's nothing to filter.
-    const pendingLocked =
-        convo?.status === 'pending' && convo?.isInitiator && messages.length >= 1;
-    const canSendText = !pendingLocked;
 
     return (
         <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
@@ -296,15 +276,6 @@ export default function ThreadPage() {
                     </div>
                 ) : null}
 
-                {/* The initiator's counterpart to showAccept. Without this the composer
-            just goes dead after one message with no explanation — the disabled
-            input's title only surfaces on hover, and not at all on touch. */}
-                {pendingLocked ? (
-                    <div className="mb-3 rounded-xl border border-slate-300 bg-white px-4 py-3 dark:border-slate-800 dark:bg-[#131c26]">
-                        <p className="text-sm text-slate-600 dark:text-slate-300">{m.textPending}</p>
-                    </div>
-                ) : null}
-
                 <div className="flex-1 space-y-2 overflow-y-auto rounded-2xl border border-slate-300 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-[#131c26] dark:shadow-none">
                     {messages.length === 0 ? (
                         <p className="py-12 text-center text-sm text-slate-500 dark:text-slate-400">{m.noMessagesYet}</p>
@@ -321,14 +292,9 @@ export default function ThreadPage() {
                 </div>
 
                 <div className="mt-3 flex items-center gap-2">
-                    {/* Image upload. chat:sendImage requires an ACCEPTED conversation —
-              an unsolicited image in a location-based app is a known abuse
-              vector, so the recipient opts in first. Disabled rather than left
-              to fail with the server's untranslated error string.
-
-              The tooltip is CSS, not the native `title` attribute: a `title` on
-              a label wrapping a disabled input fires unreliably in Chrome, and
-              never fires on touch at all. */}
+                    {/* Image upload requires an ACCEPTED conversation — an unsolicited
+              image in a location-based app is a known abuse vector, so the
+              recipient opts in first. */}
                     <div className="group relative shrink-0">
                         <label
                             className={`grid h-12 w-12 place-items-center rounded-xl border border-slate-300 text-xl font-semibold transition dark:border-slate-700 ${canSendImage
@@ -362,20 +328,19 @@ export default function ThreadPage() {
 
                     <input
                         value={text}
-                        disabled={!canSendText}
                         onChange={(e) => {
                             setText(e.target.value.slice(0, 2000)); // Message schema maxlength
                             getSocket()?.emit('chat:typing', { conversationId: id });
                         }}
                         onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
-                        placeholder={canSendText ? m.placeholder : m.textPendingPlaceholder}
+                        placeholder={m.placeholder}
                         className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] outline-none focus:border-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-[#131c26] dark:disabled:bg-slate-900 dark:disabled:text-slate-600"
                     />
 
                     <button
                         type="button"
                         onClick={send}
-                        disabled={sending || !text.trim() || !canSendText}
+                        disabled={sending || !text.trim()}
                         className="shrink-0 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-emerald-950 transition hover:brightness-105 disabled:opacity-50"
                     >
                         {sending ? '…' : m.send}
@@ -387,7 +352,6 @@ export default function ThreadPage() {
 }
 
 // imageUrl is omitted (not null) on text messages, so truthiness is enough.
-// Text and image are mutually exclusive per the schema.
 function Bubble({ msg, mine }) {
     return (
         <div className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
