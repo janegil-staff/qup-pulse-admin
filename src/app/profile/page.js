@@ -96,6 +96,15 @@ export default function ProfilePage() {
 
   const avatar = profile?.photos?.[0]?.url || "";
   const name = profile?.displayName || profile?.username || "—";
+
+  // Shape depends on what toSelf() returns: a denormalised count if the server
+  // keeps one, otherwise the length of the populated array. Falling back to 0
+  // means the row still renders rather than showing "undefined".
+  const followerCount =
+    profile?.followersCount ?? profile?.followers?.length ?? 0;
+  const followingCount =
+    profile?.followingCount ?? profile?.following?.length ?? 0;
+
   const facts = [
     profile.age != null
       ? { key: "age", label: p.age, value: String(profile.age) }
@@ -118,6 +127,7 @@ export default function ProfilePage() {
         }
       : null,
   ].filter(Boolean);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
       <AppNav />
@@ -196,6 +206,30 @@ export default function ProfilePage() {
               <p className="truncate text-sm text-slate-500 dark:text-slate-400">
                 @{profile?.username}
               </p>
+
+              {/* Follow counts. Links rather than plain text — the number is
+                  only half the information; who they are is the other half. */}
+              <div className="mt-2 flex flex-wrap gap-4">
+                <Link
+                  href="/followers"
+                  className="text-sm text-slate-500 no-underline transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100"
+                >
+                  <span className="font-bold text-slate-900 dark:text-white">
+                    {followerCount}
+                  </span>{" "}
+                  {p.followers}
+                </Link>
+                <Link
+                  href="/following"
+                  className="text-sm text-slate-500 no-underline transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100"
+                >
+                  <span className="font-bold text-slate-900 dark:text-white">
+                    {followingCount}
+                  </span>{" "}
+                  {p.following}
+                </Link>
+              </div>
+
               {profile?.age ? (
                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   {profile.age}
@@ -236,6 +270,7 @@ export default function ProfilePage() {
               ) : null}
             </div>
           </div>
+
           {/* Facts strip — age / gender / neighborhood / location / distance / language */}
           {facts.length > 0 ? (
             <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 border-t border-slate-200 pt-4 dark:border-slate-800">
@@ -251,6 +286,7 @@ export default function ProfilePage() {
               ))}
             </dl>
           ) : null}
+
           {profile?.bio ? (
             <p className="mt-5 whitespace-pre-wrap text-[15px] text-slate-700 dark:text-slate-300">
               {profile.bio}
