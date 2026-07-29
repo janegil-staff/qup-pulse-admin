@@ -387,7 +387,8 @@
       "joinFailed": "Verbindung zur Unterhaltung fehlgeschlagen",
       "textPending": "Du kannst eine Nachricht senden. Alles Weitere wartet auf die Annahme deiner Anfrage.",
       "textPendingPlaceholder": "Warten auf Annahme …",
-      "unreadCount": "{count} ungelesene Nachrichten"
+      "unreadCount": "{count} ungelesene Nachrichten",
+      "photoPendingNote": "Fotos kannst du senden, sobald die Unterhaltung angenommen wurde."
     },
     "discover": {
       "peopleNearby": "Leute in der Nähe",
@@ -439,6 +440,11 @@
       "resolve": "Erledigen",
       "dismiss": "Ablehnen",
       "reportedBy": "Gemeldet von"
+    },
+    "chat": {
+      "pendingTitle": "Warten auf eine Antwort",
+      "pendingBody": "Du hast deine erste Nachricht gesendet. Sobald geantwortet wird, kannst du weitere senden.",
+      "pendingBlocked": "Du kannst eine weitere Nachricht senden, sobald geantwortet wurde."
     }
   },
   "auth": {

@@ -387,7 +387,8 @@
       "joinFailed": "Não foi possível ligar à conversa",
       "textPending": "Podes enviar uma mensagem. O resto aguarda a aceitação do teu pedido.",
       "textPendingPlaceholder": "A aguardar aceitação …",
-      "unreadCount": "{count} mensagens não lidas"
+      "unreadCount": "{count} mensagens não lidas",
+      "photoPendingNote": "Podes enviar fotos assim que a conversa for aceite."
     },
     "discover": {
       "peopleNearby": "Pessoas por perto",
@@ -439,6 +440,11 @@
       "resolve": "Resolver",
       "dismiss": "Rejeitar",
       "reportedBy": "Denunciado por"
+    },
+    "chat": {
+      "pendingTitle": "À espera de resposta",
+      "pendingBody": "Enviaste a tua primeira mensagem. Podes enviar mais assim que te responderem.",
+      "pendingBlocked": "Podes enviar outra mensagem assim que te responderem."
     }
   },
   "auth": {

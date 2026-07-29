@@ -387,7 +387,8 @@
       "joinFailed": "Keskusteluun ei voitu yhdistää",
       "textPending": "Voit lähettää yhden viestin. Loput odottavat pyyntösi hyväksymistä.",
       "textPendingPlaceholder": "Odottaa hyväksyntää …",
-      "unreadCount": "{count} lukematonta viestiä"
+      "unreadCount": "{count} lukematonta viestiä",
+      "photoPendingNote": "Voit lähettää kuvia, kun keskustelu on hyväksytty."
     },
     "discover": {
       "peopleNearby": "Ihmisiä lähellä",
@@ -439,6 +440,11 @@
       "resolve": "Ratkaise",
       "dismiss": "Hylkää",
       "reportedBy": "Ilmoittanut"
+    },
+    "chat": {
+      "pendingTitle": "Odotetaan vastausta",
+      "pendingBody": "Lähetit ensimmäisen viestisi. Voit lähettää lisää, kun sinulle vastataan.",
+      "pendingBlocked": "Voit lähettää uuden viestin, kun sinulle on vastattu."
     }
   },
   "auth": {

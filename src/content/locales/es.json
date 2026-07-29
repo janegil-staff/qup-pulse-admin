@@ -387,7 +387,8 @@
       "joinFailed": "No se pudo conectar con la conversación",
       "textPending": "Puedes enviar un mensaje. El resto espera a que se acepte tu solicitud.",
       "textPendingPlaceholder": "Esperando aceptación …",
-      "unreadCount": "{count} mensajes sin leer"
+      "unreadCount": "{count} mensajes sin leer",
+      "photoPendingNote": "Podrás enviar fotos cuando se acepte la conversación."
     },
     "discover": {
       "peopleNearby": "Personas cerca",
@@ -439,6 +440,11 @@
       "resolve": "Resolver",
       "dismiss": "Descartar",
       "reportedBy": "Denunciado por"
+    },
+    "chat": {
+      "pendingTitle": "Esperando respuesta",
+      "pendingBody": "Has enviado tu primer mensaje. Podrás enviar más cuando te respondan.",
+      "pendingBlocked": "Podrás enviar otro mensaje cuando te respondan."
     }
   },
   "auth": {

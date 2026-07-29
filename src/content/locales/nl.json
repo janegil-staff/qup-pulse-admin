@@ -387,7 +387,8 @@
       "joinFailed": "Kan geen verbinding maken met het gesprek",
       "textPending": "Je kunt één bericht sturen. De rest wacht tot je verzoek is geaccepteerd.",
       "textPendingPlaceholder": "Wachten op acceptatie …",
-      "unreadCount": "{count} ongelezen berichten"
+      "unreadCount": "{count} ongelezen berichten",
+      "photoPendingNote": "Je kunt foto's sturen zodra het gesprek is geaccepteerd."
     },
     "discover": {
       "peopleNearby": "Mensen in de buurt",
@@ -439,6 +440,11 @@
       "resolve": "Oplossen",
       "dismiss": "Afwijzen",
       "reportedBy": "Gerapporteerd door"
+    },
+    "chat": {
+      "pendingTitle": "Wachten op antwoord",
+      "pendingBody": "Je hebt je eerste bericht verstuurd. Je kunt meer sturen zodra ze reageren.",
+      "pendingBlocked": "Je kunt pas een nieuw bericht sturen als ze hebben geantwoord."
     }
   },
   "auth": {

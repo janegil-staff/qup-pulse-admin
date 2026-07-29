@@ -387,7 +387,8 @@
       "joinFailed": "Kunne ikke oprette forbindelse til samtalen",
       "textPending": "Du kan sende én besked. Resten venter, til din anmodning er accepteret.",
       "textPendingPlaceholder": "Venter på accept …",
-      "unreadCount": "{count} ulæste beskeder"
+      "unreadCount": "{count} ulæste beskeder",
+      "photoPendingNote": "Du kan sende billeder, når samtalen er accepteret."
     },
     "discover": {
       "peopleNearby": "Folk i nærheden",
@@ -439,6 +440,11 @@
       "resolve": "Løs",
       "dismiss": "Afvis",
       "reportedBy": "Anmeldt af"
+    },
+    "chat": {
+      "pendingTitle": "Venter på svar",
+      "pendingBody": "Du har sendt din første besked. Du kan sende flere, når du får svar.",
+      "pendingBlocked": "Du kan sende en ny besked, når du har fået svar."
     }
   },
   "auth": {

@@ -387,7 +387,8 @@
       "joinFailed": "Impossible de rejoindre la conversation",
       "textPending": "Vous pouvez envoyer un message. La suite attend l’acceptation de votre demande.",
       "textPendingPlaceholder": "En attente d’acceptation …",
-      "unreadCount": "{count} messages non lus"
+      "unreadCount": "{count} messages non lus",
+      "photoPendingNote": "Vous pourrez envoyer des photos une fois la conversation acceptée."
     },
     "discover": {
       "peopleNearby": "Personnes à proximité",
@@ -439,6 +440,11 @@
       "resolve": "Résoudre",
       "dismiss": "Rejeter",
       "reportedBy": "Signalé par"
+    },
+    "chat": {
+      "pendingTitle": "En attente d'une réponse",
+      "pendingBody": "Vous avez envoyé votre premier message. Vous pourrez en envoyer d'autres dès qu'on vous répondra.",
+      "pendingBlocked": "Vous pourrez envoyer un autre message dès qu'on vous aura répondu."
     }
   },
   "auth": {

@@ -387,7 +387,8 @@
       "joinFailed": "Kunne ikke koble til samtalen",
       "textPending": "Du kan sende én melding. Resten venter til forespørselen er godkjent.",
       "textPendingPlaceholder": "Venter på godkjenning …",
-      "unreadCount": "{count} uleste meldinger"
+      "unreadCount": "{count} uleste meldinger",
+      "photoPendingNote": "Du kan sende bilder når samtalen er godtatt."
     },
     "discover": {
       "peopleNearby": "Folk i nærheten",
@@ -439,6 +440,11 @@
       "resolve": "Løs",
       "dismiss": "Avvis",
       "reportedBy": "Rapportert av"
+    },
+    "chat": {
+      "pendingTitle": "Venter på svar",
+      "pendingBody": "Du har sendt den første meldingen din. Du kan sende flere når de svarer.",
+      "pendingBlocked": "Du kan sende en ny melding når de har svart."
     }
   },
   "auth": {

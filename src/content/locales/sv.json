@@ -387,7 +387,8 @@
       "joinFailed": "Det gick inte att ansluta till konversationen",
       "textPending": "Du kan skicka ett meddelande. Resten väntar tills din förfrågan har godkänts.",
       "textPendingPlaceholder": "Väntar på godkännande …",
-      "unreadCount": "{count} olästa meddelanden"
+      "unreadCount": "{count} olästa meddelanden",
+      "photoPendingNote": "Du kan skicka bilder när konversationen har accepterats."
     },
     "discover": {
       "peopleNearby": "Personer i närheten",
@@ -439,6 +440,11 @@
       "resolve": "Lös",
       "dismiss": "Avvisa",
       "reportedBy": "Anmäld av"
+    },
+    "chat": {
+      "pendingTitle": "Väntar på svar",
+      "pendingBody": "Du har skickat ditt första meddelande. Du kan skicka fler när du får svar.",
+      "pendingBlocked": "Du kan skicka ett nytt meddelande när du har fått svar."
     }
   },
   "auth": {

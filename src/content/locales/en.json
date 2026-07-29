@@ -387,7 +387,8 @@
       "joinFailed": "Could not connect to the conversation",
       "textPending": "You can send one message. The rest waits until your request is accepted.",
       "textPendingPlaceholder": "Waiting for acceptance …",
-      "unreadCount": "{count} unread messages"
+      "unreadCount": "{count} unread messages",
+      "photoPendingNote": "You can send photos once the conversation is accepted."
     },
     "discover": {
       "peopleNearby": "People nearby",
@@ -439,6 +440,11 @@
       "resolve": "Resolve",
       "dismiss": "Dismiss",
       "reportedBy": "Reported by"
+    },
+    "chat": {
+      "pendingTitle": "Waiting for a reply",
+      "pendingBody": "You've sent your first message. You can send more once they reply.",
+      "pendingBlocked": "You can send another message once they reply."
     }
   },
   "auth": {
