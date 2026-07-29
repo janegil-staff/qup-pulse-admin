@@ -23,10 +23,12 @@
 // now persists over REST and broadcasts chat:message to the room, so the bubble
 // still arrives live via the listener below (deduped by id).
 //
-// The message-request SEND GATE has been removed server-side: both participants
-// can send freely regardless of status. The Requests tab and Accept button
-// remain as an informational/moderation surface, but the composer is never
-// locked. (The old pendingLocked / canSendText cosmetic lock is gone to match.)
+// The one-opener SEND GATE is STILL ENFORCED server-side, despite an earlier
+// note in this file claiming otherwise: POST .../messages returns 403 on the
+// initiator's second message while the thread is pending. The composer is
+// therefore locked once the initiator has sent one message, and a 403 from any
+// send that slips through (stale tab, second device, race with an accept) is
+// caught and shown as the same explanation rather than a raw error.
 //
 // IMAGES are still gated on acceptance for both parties. That restriction is
 // explained INLINE above the composer rather than in a hover tooltip: hover
@@ -67,6 +69,10 @@ export default function ThreadPage() {
   const [sending, setSending] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [theyreTyping, setTheyreTyping] = useState(false);
+  // Set when the API rejects a send with 403. Belt and braces: the composer is
+  // already locked by the derived check below, so this only fires if the local
+  // view of the thread is stale.
+  const [gateHit, setGateHit] = useState(false);
   const bottomRef = useRef(null);
   const typingTimer = useRef(null);
 
@@ -141,6 +147,7 @@ export default function ThreadPage() {
       setConvo((prev) =>
         prev ? { ...prev, status: status || "accepted" } : prev,
       );
+      setGateHit(false); // the gate is gone; unlock without a reload
     };
 
     socket.on("chat:message", onMessage);
@@ -188,7 +195,14 @@ export default function ThreadPage() {
       }
     } catch (e) {
       setText(body); // put it back so the typing isn't lost
-      setError(e.message || m.sendFailed);
+      // 403 here means the one-opener gate, not a generic failure. Show the
+      // explanation instead of the raw server message.
+      if (e?.status === 403 || /403/.test(String(e?.message))) {
+        setGateHit(true);
+        setError("");
+      } else {
+        setError(e.message || m.sendFailed);
+      }
     } finally {
       setSending(false);
     }
@@ -247,6 +261,16 @@ export default function ThreadPage() {
   const canSendImage = convo?.status === "accepted";
   // Only worth explaining once the thread exists and the composer is in use.
   const showPhotoNote = Boolean(convo) && !canSendImage;
+
+  // The one-opener gate: the initiator may send once, then waits. Derived
+  // locally so the composer locks BEFORE a doomed request rather than after a
+  // 403 — a message that types fine and then bounces loses the user's words
+  // and reads as a bug.
+  const iHaveSent =
+    meId != null && messages.some((msg) => String(msg.sender?.id) === meId);
+  const awaitingReply =
+    convo?.status === "pending" && Boolean(convo?.isInitiator) && iHaveSent;
+  const composerLocked = awaitingReply || gateHit;
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
@@ -338,11 +362,29 @@ export default function ThreadPage() {
           <div ref={bottomRef} />
         </div>
 
+        {/* The one-opener gate, explained where the user is about to type.
+            Slate rather than red: the send did not fail, the feature works
+            this way. */}
+        {composerLocked ? (
+          <div
+            id="send-gate-note"
+            className="mt-3 rounded-xl border border-slate-300 bg-white px-4 py-3 dark:border-slate-800 dark:bg-[#131c26]"
+          >
+            <p className="text-[15px] font-bold text-slate-900 dark:text-white">
+              {m.awaitingReplyTitle || "Waiting for a reply"}
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+              {m.awaitingReplyBody ||
+                "You have sent your first message. You can send more once you get a reply."}
+            </p>
+          </div>
+        ) : null}
+
         {/* Why the photo button is greyed out. Inline and always visible —
             the hover tooltip this replaces showed nothing on touch devices,
             where most of these conversations happen. Slate, not amber:
             nothing is broken, this is how the feature works. */}
-        {showPhotoNote ? (
+        {showPhotoNote && !composerLocked ? (
           <p
             id="photo-gate-note"
             className="mt-3 flex items-start gap-2 rounded-xl bg-slate-100 px-3 py-2 text-xs leading-relaxed text-slate-500 dark:bg-slate-800/60 dark:text-slate-400"
@@ -389,13 +431,15 @@ export default function ThreadPage() {
               }
             }}
             placeholder={m.placeholder}
+            disabled={composerLocked}
+            aria-describedby={composerLocked ? "send-gate-note" : undefined}
             className="min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] outline-none focus:border-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 dark:border-slate-700 dark:bg-[#131c26] dark:disabled:bg-slate-900 dark:disabled:text-slate-600"
           />
 
           <button
             type="button"
             onClick={send}
-            disabled={sending || !text.trim()}
+            disabled={sending || composerLocked || !text.trim()}
             className="shrink-0 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-emerald-950 transition hover:brightness-105 disabled:opacity-50"
           >
             {sending ? "…" : m.send}

@@ -388,7 +388,9 @@
       "textPending": "Du kannst eine Nachricht senden. Alles Weitere wartet auf die Annahme deiner Anfrage.",
       "textPendingPlaceholder": "Warten auf Annahme …",
       "unreadCount": "{count} ungelesene Nachrichten",
-      "photoPendingNote": "Fotos kannst du senden, sobald die Unterhaltung angenommen wurde."
+      "photoPendingNote": "Fotos kannst du senden, sobald die Unterhaltung angenommen wurde.",
+      "awaitingReplyTitle": "Warten auf eine Antwort",
+      "awaitingReplyBody": "Du hast deine erste Nachricht gesendet. Sobald du eine Antwort erhältst, kannst du weitere senden."
     },
     "discover": {
       "peopleNearby": "Leute in der Nähe",

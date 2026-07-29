@@ -388,7 +388,9 @@
       "textPending": "Du kan skicka ett meddelande. Resten väntar tills din förfrågan har godkänts.",
       "textPendingPlaceholder": "Väntar på godkännande …",
       "unreadCount": "{count} olästa meddelanden",
-      "photoPendingNote": "Du kan skicka bilder när konversationen har accepterats."
+      "photoPendingNote": "Du kan skicka bilder när konversationen har accepterats.",
+      "awaitingReplyTitle": "Väntar på svar",
+      "awaitingReplyBody": "Du har skickat ditt första meddelande. Du kan skicka fler när du får svar."
     },
     "discover": {
       "peopleNearby": "Personer i närheten",

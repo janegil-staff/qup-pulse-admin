@@ -388,7 +388,9 @@
       "textPending": "Podes enviar uma mensagem. O resto aguarda a aceitação do teu pedido.",
       "textPendingPlaceholder": "A aguardar aceitação …",
       "unreadCount": "{count} mensagens não lidas",
-      "photoPendingNote": "Podes enviar fotos assim que a conversa for aceite."
+      "photoPendingNote": "Podes enviar fotos assim que a conversa for aceite.",
+      "awaitingReplyTitle": "À espera de resposta",
+      "awaitingReplyBody": "Enviaste a tua primeira mensagem. Podes enviar mais assim que receberes resposta."
     },
     "discover": {
       "peopleNearby": "Pessoas por perto",

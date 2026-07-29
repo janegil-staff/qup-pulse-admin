@@ -388,7 +388,9 @@
       "textPending": "Du kan sende én besked. Resten venter, til din anmodning er accepteret.",
       "textPendingPlaceholder": "Venter på accept …",
       "unreadCount": "{count} ulæste beskeder",
-      "photoPendingNote": "Du kan sende billeder, når samtalen er accepteret."
+      "photoPendingNote": "Du kan sende billeder, når samtalen er accepteret.",
+      "awaitingReplyTitle": "Venter på svar",
+      "awaitingReplyBody": "Du har sendt din første besked. Du kan sende flere, når du får svar."
     },
     "discover": {
       "peopleNearby": "Folk i nærheden",

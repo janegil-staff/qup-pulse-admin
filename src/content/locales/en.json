@@ -388,7 +388,9 @@
       "textPending": "You can send one message. The rest waits until your request is accepted.",
       "textPendingPlaceholder": "Waiting for acceptance …",
       "unreadCount": "{count} unread messages",
-      "photoPendingNote": "You can send photos once the conversation is accepted."
+      "photoPendingNote": "You can send photos once the conversation is accepted.",
+      "awaitingReplyTitle": "Waiting for a reply",
+      "awaitingReplyBody": "You've sent your first message. You can send more once you get a reply."
     },
     "discover": {
       "peopleNearby": "People nearby",

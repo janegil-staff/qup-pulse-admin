@@ -388,7 +388,9 @@
       "textPending": "Puoi inviare un messaggio. Il resto attende l’accettazione della richiesta.",
       "textPendingPlaceholder": "In attesa di accettazione …",
       "unreadCount": "{count} messaggi non letti",
-      "photoPendingNote": "Potrai inviare foto quando la conversazione sarà accettata."
+      "photoPendingNote": "Potrai inviare foto quando la conversazione sarà accettata.",
+      "awaitingReplyTitle": "In attesa di una risposta",
+      "awaitingReplyBody": "Hai inviato il tuo primo messaggio. Potrai inviarne altri quando riceverai una risposta."
     },
     "discover": {
       "peopleNearby": "Persone nelle vicinanze",

@@ -388,7 +388,9 @@
       "textPending": "Możesz wysłać jedną wiadomość. Reszta czeka na zaakceptowanie prośby.",
       "textPendingPlaceholder": "Oczekiwanie na akceptację …",
       "unreadCount": "{count} nieprzeczytanych wiadomości",
-      "photoPendingNote": "Zdjęcia możesz wysyłać po zaakceptowaniu rozmowy."
+      "photoPendingNote": "Zdjęcia możesz wysyłać po zaakceptowaniu rozmowy.",
+      "awaitingReplyTitle": "Czekamy na odpowiedź",
+      "awaitingReplyBody": "Pierwsza wiadomość została wysłana. Kolejne możesz wysłać po otrzymaniu odpowiedzi."
     },
     "discover": {
       "peopleNearby": "Osoby w pobliżu",

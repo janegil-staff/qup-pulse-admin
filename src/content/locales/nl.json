@@ -388,7 +388,9 @@
       "textPending": "Je kunt één bericht sturen. De rest wacht tot je verzoek is geaccepteerd.",
       "textPendingPlaceholder": "Wachten op acceptatie …",
       "unreadCount": "{count} ongelezen berichten",
-      "photoPendingNote": "Je kunt foto's sturen zodra het gesprek is geaccepteerd."
+      "photoPendingNote": "Je kunt foto's sturen zodra het gesprek is geaccepteerd.",
+      "awaitingReplyTitle": "Wachten op antwoord",
+      "awaitingReplyBody": "Je hebt je eerste bericht verstuurd. Je kunt meer sturen zodra je antwoord krijgt."
     },
     "discover": {
       "peopleNearby": "Mensen in de buurt",

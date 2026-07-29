@@ -388,7 +388,9 @@
       "textPending": "Voit lähettää yhden viestin. Loput odottavat pyyntösi hyväksymistä.",
       "textPendingPlaceholder": "Odottaa hyväksyntää …",
       "unreadCount": "{count} lukematonta viestiä",
-      "photoPendingNote": "Voit lähettää kuvia, kun keskustelu on hyväksytty."
+      "photoPendingNote": "Voit lähettää kuvia, kun keskustelu on hyväksytty.",
+      "awaitingReplyTitle": "Odotetaan vastausta",
+      "awaitingReplyBody": "Lähetit ensimmäisen viestisi. Voit lähettää lisää, kun saat vastauksen."
     },
     "discover": {
       "peopleNearby": "Ihmisiä lähellä",
