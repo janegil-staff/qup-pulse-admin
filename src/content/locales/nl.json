@@ -80,7 +80,9 @@
       "lightMode": "Lichte modus",
       "menu": "Menu",
       "switchToLight": "Schakel naar lichte modus",
-      "switchToDark": "Schakel naar donkere modus"
+      "switchToDark": "Schakel naar donkere modus",
+      "users": "Gebruikers",
+      "seed": "Testgegevens"
     },
     "settings": {
       "title": "Persoonlijke instellingen",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Beheer",
+      "subtitle": "Moderatie, gebruikers en ontwikkeltools.",
+      "reportsDescription": "Beoordeel gerapporteerde gebruikers en berichten.",
+      "usersDescription": "Zoek accounts, bekijk activiteit en verban gebruikers.",
+      "seedDescription": "Demogegevens aanmaken en verwijderen.",
+      "searchPlaceholder": "Gebruikers zoeken…",
+      "noResults": "Niets te tonen.",
+      "statusActive": "Actief",
+      "statusBanned": "Verbannen",
+      "ban": "Verbannen",
+      "unban": "Verbanning opheffen",
+      "joined": "Lid sinds",
+      "filterAll": "Alle",
+      "filterPending": "In behandeling",
+      "filterResolved": "Opgelost",
+      "filterDismissed": "Afgewezen",
+      "resolve": "Oplossen",
+      "dismiss": "Afwijzen",
+      "reportedBy": "Gerapporteerd door"
     }
   },
   "auth": {

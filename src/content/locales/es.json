@@ -80,7 +80,9 @@
       "lightMode": "Modo claro",
       "menu": "Menú",
       "switchToLight": "Cambiar a modo claro",
-      "switchToDark": "Cambiar a modo oscuro"
+      "switchToDark": "Cambiar a modo oscuro",
+      "users": "Usuarios",
+      "seed": "Datos de prueba"
     },
     "settings": {
       "title": "Ajustes personales",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Administración",
+      "subtitle": "Moderación, usuarios y herramientas de desarrollo.",
+      "reportsDescription": "Revisa usuarios y publicaciones denunciados.",
+      "usersDescription": "Busca cuentas, revisa la actividad y bloquea usuarios.",
+      "seedDescription": "Crea y elimina datos de demostración.",
+      "searchPlaceholder": "Buscar usuarios…",
+      "noResults": "Nada que mostrar.",
+      "statusActive": "Activo",
+      "statusBanned": "Bloqueado",
+      "ban": "Bloquear",
+      "unban": "Desbloquear",
+      "joined": "Se unió",
+      "filterAll": "Todos",
+      "filterPending": "Pendientes",
+      "filterResolved": "Resueltos",
+      "filterDismissed": "Descartados",
+      "resolve": "Resolver",
+      "dismiss": "Descartar",
+      "reportedBy": "Denunciado por"
     }
   },
   "auth": {

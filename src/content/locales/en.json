@@ -80,7 +80,9 @@
       "lightMode": "Light mode",
       "menu": "Menu",
       "switchToLight": "Switch to light mode",
-      "switchToDark": "Switch to dark mode"
+      "switchToDark": "Switch to dark mode",
+      "users": "Users",
+      "seed": "Seed data"
     },
     "settings": {
       "title": "Personal settings",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Administration",
+      "subtitle": "Moderation, users and development tools.",
+      "reportsDescription": "Review reported users and posts.",
+      "usersDescription": "Search accounts, review activity and ban users.",
+      "seedDescription": "Create and remove demo data for testing.",
+      "searchPlaceholder": "Search users…",
+      "noResults": "Nothing to show.",
+      "statusActive": "Active",
+      "statusBanned": "Banned",
+      "ban": "Ban",
+      "unban": "Unban",
+      "joined": "Joined",
+      "filterAll": "All",
+      "filterPending": "Pending",
+      "filterResolved": "Resolved",
+      "filterDismissed": "Dismissed",
+      "resolve": "Resolve",
+      "dismiss": "Dismiss",
+      "reportedBy": "Reported by"
     }
   },
   "auth": {

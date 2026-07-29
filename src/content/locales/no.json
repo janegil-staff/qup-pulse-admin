@@ -80,7 +80,9 @@
       "lightMode": "Lys modus",
       "menu": "Meny",
       "switchToLight": "Bytt til lys modus",
-      "switchToDark": "Bytt til mørk modus"
+      "switchToDark": "Bytt til mørk modus",
+      "users": "Brukere",
+      "seed": "Testdata"
     },
     "settings": {
       "title": "Personlige innstillinger",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Administrasjon",
+      "subtitle": "Moderering, brukere og utviklingsverktøy.",
+      "reportsDescription": "Gjennomgå rapporterte brukere og innlegg.",
+      "usersDescription": "Søk i kontoer, se aktivitet og utesteng brukere.",
+      "seedDescription": "Opprett og fjern testdata.",
+      "searchPlaceholder": "Søk etter brukere…",
+      "noResults": "Ingenting å vise.",
+      "statusActive": "Aktiv",
+      "statusBanned": "Utestengt",
+      "ban": "Utesteng",
+      "unban": "Opphev utestenging",
+      "joined": "Ble med",
+      "filterAll": "Alle",
+      "filterPending": "Venter",
+      "filterResolved": "Løst",
+      "filterDismissed": "Avvist",
+      "resolve": "Løs",
+      "dismiss": "Avvis",
+      "reportedBy": "Rapportert av"
     }
   },
   "auth": {

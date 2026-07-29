@@ -80,7 +80,9 @@
       "lightMode": "Modalità chiara",
       "menu": "Menu",
       "switchToLight": "Passa alla modalità chiara",
-      "switchToDark": "Passa alla modalità scura"
+      "switchToDark": "Passa alla modalità scura",
+      "users": "Utenti",
+      "seed": "Dati di test"
     },
     "settings": {
       "title": "Impostazioni personali",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Amministrazione",
+      "subtitle": "Moderazione, utenti e strumenti di sviluppo.",
+      "reportsDescription": "Esamina utenti e post segnalati.",
+      "usersDescription": "Cerca account, controlla l'attività e blocca utenti.",
+      "seedDescription": "Crea e rimuovi dati dimostrativi.",
+      "searchPlaceholder": "Cerca utenti…",
+      "noResults": "Nulla da mostrare.",
+      "statusActive": "Attivo",
+      "statusBanned": "Bloccato",
+      "ban": "Blocca",
+      "unban": "Sblocca",
+      "joined": "Iscritto",
+      "filterAll": "Tutti",
+      "filterPending": "In attesa",
+      "filterResolved": "Risolto",
+      "filterDismissed": "Respinto",
+      "resolve": "Risolvi",
+      "dismiss": "Respingi",
+      "reportedBy": "Segnalato da"
     }
   },
   "auth": {

@@ -80,7 +80,9 @@
       "lightMode": "Lys tilstand",
       "menu": "Menu",
       "switchToLight": "Skift til lys tilstand",
-      "switchToDark": "Skift til mørk tilstand"
+      "switchToDark": "Skift til mørk tilstand",
+      "users": "Brugere",
+      "seed": "Testdata"
     },
     "settings": {
       "title": "Personlige indstillinger",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Administration",
+      "subtitle": "Moderering, brugere og udviklingsværktøjer.",
+      "reportsDescription": "Gennemgå anmeldte brugere og opslag.",
+      "usersDescription": "Søg konti, gennemgå aktivitet og udeluk brugere.",
+      "seedDescription": "Opret og fjern demodata.",
+      "searchPlaceholder": "Søg brugere…",
+      "noResults": "Intet at vise.",
+      "statusActive": "Aktiv",
+      "statusBanned": "Udelukket",
+      "ban": "Udeluk",
+      "unban": "Ophæv udelukkelse",
+      "joined": "Tilmeldt",
+      "filterAll": "Alle",
+      "filterPending": "Afventer",
+      "filterResolved": "Løst",
+      "filterDismissed": "Afvist",
+      "resolve": "Løs",
+      "dismiss": "Afvis",
+      "reportedBy": "Anmeldt af"
     }
   },
   "auth": {

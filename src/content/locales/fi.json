@@ -80,7 +80,9 @@
       "lightMode": "Vaalea tila",
       "menu": "Valikko",
       "switchToLight": "Vaihda vaaleaan tilaan",
-      "switchToDark": "Vaihda tummaan tilaan"
+      "switchToDark": "Vaihda tummaan tilaan",
+      "users": "Käyttäjät",
+      "seed": "Testidata"
     },
     "settings": {
       "title": "Henkilökohtaiset asetukset",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Hallinta",
+      "subtitle": "Moderointi, käyttäjät ja kehitystyökalut.",
+      "reportsDescription": "Tarkista ilmoitetut käyttäjät ja julkaisut.",
+      "usersDescription": "Hae tilejä, tarkastele toimintaa ja estä käyttäjiä.",
+      "seedDescription": "Luo ja poista esittelydataa.",
+      "searchPlaceholder": "Hae käyttäjiä…",
+      "noResults": "Ei näytettävää.",
+      "statusActive": "Aktiivinen",
+      "statusBanned": "Estetty",
+      "ban": "Estä",
+      "unban": "Poista esto",
+      "joined": "Liittynyt",
+      "filterAll": "Kaikki",
+      "filterPending": "Odottaa",
+      "filterResolved": "Ratkaistu",
+      "filterDismissed": "Hylätty",
+      "resolve": "Ratkaise",
+      "dismiss": "Hylkää",
+      "reportedBy": "Ilmoittanut"
     }
   },
   "auth": {

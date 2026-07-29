@@ -80,7 +80,9 @@
       "lightMode": "Hellmodus",
       "menu": "Menü",
       "switchToLight": "Zum Hellmodus wechseln",
-      "switchToDark": "Zum Dunkelmodus wechseln"
+      "switchToDark": "Zum Dunkelmodus wechseln",
+      "users": "Benutzer",
+      "seed": "Testdaten"
     },
     "settings": {
       "title": "Persönliche Einstellungen",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Verwaltung",
+      "subtitle": "Moderation, Benutzer und Entwicklungswerkzeuge.",
+      "reportsDescription": "Gemeldete Benutzer und Beiträge prüfen.",
+      "usersDescription": "Konten suchen, Aktivität prüfen und Benutzer sperren.",
+      "seedDescription": "Demodaten erstellen und entfernen.",
+      "searchPlaceholder": "Benutzer suchen…",
+      "noResults": "Nichts anzuzeigen.",
+      "statusActive": "Aktiv",
+      "statusBanned": "Gesperrt",
+      "ban": "Sperren",
+      "unban": "Entsperren",
+      "joined": "Beigetreten",
+      "filterAll": "Alle",
+      "filterPending": "Ausstehend",
+      "filterResolved": "Erledigt",
+      "filterDismissed": "Abgelehnt",
+      "resolve": "Erledigen",
+      "dismiss": "Ablehnen",
+      "reportedBy": "Gemeldet von"
     }
   },
   "auth": {

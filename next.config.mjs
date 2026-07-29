@@ -8,8 +8,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: 'https://lionfish-app-ed6lo.ondigitalocean.app/api/:path*',
+        source: "/api/:path*",
+        destination: "https://lionfish-app-ed6lo.ondigitalocean.app/api/:path*",
       },
     ];
   },

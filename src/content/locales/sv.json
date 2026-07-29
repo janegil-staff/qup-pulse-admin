@@ -80,7 +80,9 @@
       "lightMode": "Ljust läge",
       "menu": "Meny",
       "switchToLight": "Byt till ljust läge",
-      "switchToDark": "Byt till mörkt läge"
+      "switchToDark": "Byt till mörkt läge",
+      "users": "Användare",
+      "seed": "Testdata"
     },
     "settings": {
       "title": "Personliga inställningar",
@@ -409,6 +411,27 @@
       "es": "Español",
       "pl": "Polski",
       "pt": "Português"
+    },
+    "admin": {
+      "title": "Administration",
+      "subtitle": "Moderering, användare och utvecklingsverktyg.",
+      "reportsDescription": "Granska anmälda användare och inlägg.",
+      "usersDescription": "Sök konton, granska aktivitet och stäng av användare.",
+      "seedDescription": "Skapa och ta bort demodata.",
+      "searchPlaceholder": "Sök användare…",
+      "noResults": "Inget att visa.",
+      "statusActive": "Aktiv",
+      "statusBanned": "Avstängd",
+      "ban": "Stäng av",
+      "unban": "Häv avstängning",
+      "joined": "Gick med",
+      "filterAll": "Alla",
+      "filterPending": "Väntar",
+      "filterResolved": "Löst",
+      "filterDismissed": "Avvisad",
+      "resolve": "Lös",
+      "dismiss": "Avvisa",
+      "reportedBy": "Anmäld av"
     }
   },
   "auth": {

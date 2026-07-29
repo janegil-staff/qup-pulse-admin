@@ -6,7 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:comments": "node scripts/seed-comments.js",
+    "seed:comments:remove": "node scripts/unseed-comments.js",
+    "seed:assets": "node scripts/uploadSeedAssets.js",
+    "seed:assets:remove": "node scripts/removeSeedAssets.js --confirm",
+    "seed:demo": "node scripts/seedDemoData.js",
+    "seed:demo:remove": "node scripts/removeDemoData.js",
+    "seed:down": "node scripts/removeSeedAssets.js --confirm  && node scripts/unseed-comments.cjs && node scripts/removeDemoData.js",
+    "seed:up": "node scripts/uploadSeedAssets.js && node scripts/seedDemoData.js && node scripts/seed-comments.cjs",
+    "seed:all": "npm run seed:assets && npm run seed:demo",
+    "seed:reset": "npm run seed:down && npm run seed:up"
   },
   "dependencies": {
     "next": "16.2.10",
