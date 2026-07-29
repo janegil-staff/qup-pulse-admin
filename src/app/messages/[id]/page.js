@@ -9,6 +9,13 @@
 //         POST /chat/conversations/:id/accept            -> { ok, status }
 //         POST /upload (multipart, field "image")        -> { url, publicId }
 //
+// getMessages returns { messages, otherUser, user, conversation } — NOT a bare
+// array. That metadata is load-bearing: an OUTGOING PENDING thread is in
+// neither listConversations() (accepted only) nor listRequests() (incoming
+// only), so the initiator's header fell back to "Unknown user" and every
+// convo-derived flag read undefined. This file accepts either response shape
+// and builds the conversation from the metadata when the lists come up empty.
+//
 // Socket: chat:join {conversationId}  -> ack { ok } | { error }   REQUIRED
 //         chat:typing {conversationId}              (fire and forget)
 //         chat:leave {conversationId}
@@ -90,15 +97,36 @@ export default function ThreadPage() {
 
     (async () => {
       try {
-        const [convos, reqs, msgs] = await Promise.all([
+        const [convos, reqs, raw] = await Promise.all([
           listConversations(),
           listRequests(),
           getMessages(id),
         ]);
         if (cancelled) return;
 
-        setConvo([...convos, ...reqs].find((x) => String(x.id) === id) || null);
-        setMessages(msgs);
+        // Tolerate both shapes: a bare array from an older chatApi, or
+        // the full { messages, otherUser, conversation } envelope.
+        const list = Array.isArray(raw) ? raw : raw?.messages || [];
+        const meta = Array.isArray(raw) ? null : raw;
+
+        const fromLists =
+          [...convos, ...reqs].find((x) => String(x.id) === id) || null;
+
+        // Outgoing pending threads are in neither list. Rebuild enough of
+        // the conversation from the metadata to render the header and
+        // drive the send gate.
+        const fromMeta =
+          meta && (meta.conversation || meta.otherUser)
+            ? {
+                id,
+                ...(meta.conversation || {}),
+                otherUser:
+                  meta.otherUser || meta.conversation?.otherUser || null,
+              }
+            : null;
+
+        setConvo(fromLists || fromMeta);
+        setMessages(list);
         markRead(id)
           .then(() => window.dispatchEvent(new Event("chat:read")))
           .catch(() => {});
@@ -250,12 +278,19 @@ export default function ThreadPage() {
   }
 
   const u = convo?.otherUser;
+  // The flag is absent when the conversation was rebuilt from metadata, so
+  // fall back to who opened the thread — the sender of the first message.
+  const isInitiator =
+    convo?.isInitiator ??
+    (meId != null &&
+      messages.length > 0 &&
+      String(messages[0]?.sender?.id) === meId);
   const name = u?.displayName || u?.username || m.unknownUser;
   const avatar = u?.avatarUrl || u?.photos?.[0]?.url || "";
   // Only the RECIPIENT can accept — the server 400s the initiator, so don't
   // offer them a button that always fails. The Accept surface stays as a
   // moderation affordance; it no longer gates sending.
-  const showAccept = convo?.status === "pending" && !convo?.isInitiator;
+  const showAccept = convo?.status === "pending" && !isInitiator;
   // Images still require an accepted conversation for BOTH parties — an
   // unsolicited image in a location-based app is a known abuse vector.
   const canSendImage = convo?.status === "accepted";
@@ -269,7 +304,7 @@ export default function ThreadPage() {
   const iHaveSent =
     meId != null && messages.some((msg) => String(msg.sender?.id) === meId);
   const awaitingReply =
-    convo?.status === "pending" && Boolean(convo?.isInitiator) && iHaveSent;
+    convo?.status === "pending" && Boolean(isInitiator) && iHaveSent;
   const composerLocked = awaitingReply || gateHit;
 
   return (
