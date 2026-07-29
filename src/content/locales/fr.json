@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Supprimer le compte ?",
       "deleteAccountBody": "Cela supprime définitivement votre compte et toutes vos données. Cette action est irréversible.",
       "deleteAccountConfirm": "Supprimer le compte",
-      "deletingAccount": "Suppression…"
+      "deletingAccount": "Suppression…",
+      "dateOfBirth": "Date de naissance",
+      "dobChangeHint": "La date de naissance ne peut être modifiée qu'un nombre limité de fois.",
+      "dobRequired": "La date de naissance est requise.",
+      "dobInvalid": "Cette date n'est pas valide.",
+      "dobInFuture": "La date de naissance ne peut pas être dans le futur.",
+      "dobUnderAge": "Vous devez avoir au moins 18 ans pour utiliser cette application.",
+      "dobChangeLimit": "La date de naissance a déjà été modifiée. Contactez le support pour la modifier à nouveau."
     },
     "show": {
       "women": "Femmes",

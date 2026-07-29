@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Poistetaanko tili?",
       "deleteAccountBody": "Tämä poistaa tilisi ja kaikki tietosi pysyvästi. Tätä ei voi kumota.",
       "deleteAccountConfirm": "Poista tili",
-      "deletingAccount": "Poistetaan…"
+      "deletingAccount": "Poistetaan…",
+      "dateOfBirth": "Syntymäaika",
+      "dobChangeHint": "Syntymäaikaa voi muuttaa vain rajoitetun määrän kertoja.",
+      "dobRequired": "Syntymäaika vaaditaan.",
+      "dobInvalid": "Virheellinen päivämäärä.",
+      "dobInFuture": "Syntymäaika ei voi olla tulevaisuudessa.",
+      "dobUnderAge": "Sinun on oltava vähintään 18-vuotias käyttääksesi sovellusta.",
+      "dobChangeLimit": "Syntymäaika on jo muutettu. Ota yhteyttä tukeen muuttaaksesi sitä uudelleen."
     },
     "show": {
       "women": "Naiset",

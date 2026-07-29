@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Radera konto?",
       "deleteAccountBody": "Detta raderar ditt konto och all din data permanent. Detta kan inte ångras.",
       "deleteAccountConfirm": "Radera konto",
-      "deletingAccount": "Raderar …"
+      "deletingAccount": "Raderar …",
+      "dateOfBirth": "Födelsedatum",
+      "dobChangeHint": "Födelsedatum kan bara ändras ett begränsat antal gånger.",
+      "dobRequired": "Födelsedatum krävs.",
+      "dobInvalid": "Ogiltigt datum.",
+      "dobInFuture": "Födelsedatum kan inte vara i framtiden.",
+      "dobUnderAge": "Du måste vara minst 18 år för att använda appen.",
+      "dobChangeLimit": "Födelsedatum har redan ändrats. Kontakta supporten för att ändra det igen."
     },
     "show": {
       "women": "Kvinnor",

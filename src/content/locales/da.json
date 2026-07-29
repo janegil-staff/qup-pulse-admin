@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Slet konto?",
       "deleteAccountBody": "Dette sletter din konto og alle dine data permanent. Dette kan ikke fortrydes.",
       "deleteAccountConfirm": "Slet konto",
-      "deletingAccount": "Sletter …"
+      "deletingAccount": "Sletter …",
+      "dateOfBirth": "Fødselsdato",
+      "dobChangeHint": "Fødselsdato kan kun ændres et begrænset antal gange.",
+      "dobRequired": "Fødselsdato er påkrævet.",
+      "dobInvalid": "Ugyldig dato.",
+      "dobInFuture": "Fødselsdato kan ikke være i fremtiden.",
+      "dobUnderAge": "Du skal være mindst 18 år for at bruge appen.",
+      "dobChangeLimit": "Fødselsdato er allerede ændret. Kontakt support for at ændre den igen."
     },
     "show": {
       "women": "Kvinder",

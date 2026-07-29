@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Delete account?",
       "deleteAccountBody": "This permanently deletes your account and all your data. This cannot be undone.",
       "deleteAccountConfirm": "Delete account",
-      "deletingAccount": "Deleting…"
+      "deletingAccount": "Deleting…",
+      "dateOfBirth": "Date of birth",
+      "dobChangeHint": "Date of birth can only be changed a limited number of times.",
+      "dobRequired": "Date of birth is required.",
+      "dobInvalid": "That date is not valid.",
+      "dobInFuture": "Date of birth cannot be in the future.",
+      "dobUnderAge": "You must be at least 18 to use this app.",
+      "dobChangeLimit": "Date of birth has already been changed. Contact support to change it again."
     },
     "show": {
       "women": "Women",

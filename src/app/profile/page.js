@@ -22,6 +22,8 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getToken, isAdmin } from "../../lib/api";
+import { getSocket } from "../../lib/socket";
+import { INTERESTS, MAX_INTERESTS, interestLabel } from "../../lib/interests";
 import { useLang } from "../../context/LandingLang";
 import AppNav from "../../components/AppNav";
 import PhotoGallery from "../../components/PhotoGallery";
@@ -34,6 +36,17 @@ import {
 
 const BIO_MAX = 300;
 const NAME_MAX = 40;
+
+// The server already emits follow changes to the per-user room — the mobile app
+// updates live off it. Several names are listed because the exact one is in the
+// mobile client; trim this to the real one once confirmed. Listening to a name
+// nothing emits costs nothing.
+const FOLLOW_EVENTS = [
+  "follow:counts",
+  "follow:changed",
+  "user:follow",
+  "follow",
+];
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -48,6 +61,11 @@ export default function ProfilePage() {
   const [admin, setAdmin] = useState(false);
   const [resending, setResending] = useState(false);
   const [resent, setResent] = useState(false);
+
+  // Counts live in state rather than being derived at render, so a socket event
+  // can move them without a refetch.
+  const [followerCount, setFollowerCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
 
   const reload = async () => setProfile(await getMyProfile());
 
@@ -68,6 +86,48 @@ export default function ProfilePage() {
   // server-rendered HTML and hydrate wrong.
   useEffect(() => {
     setAdmin(isAdmin());
+  }, []);
+
+  // Seed the counts whenever the profile loads or reloads. Shape depends on
+  // what toSelf() returns: a denormalised count if the server keeps one,
+  // otherwise the length of the populated array.
+  useEffect(() => {
+    if (!profile) return;
+    setFollowerCount(profile.followersCount ?? profile.followers?.length ?? 0);
+    setFollowingCount(profile.followingCount ?? profile.following?.length ?? 0);
+  }, [profile]);
+
+  // Live updates. Emits go to the per-user room, so every device this account
+  // has open receives them — following someone on your phone moves the number
+  // here without a refresh.
+  useEffect(() => {
+    const socket = getSocket();
+    if (!socket) return undefined;
+
+    function onFollowEvent(payload = {}) {
+      // Preferred: the server sends the new counts and nothing else is needed.
+      if (typeof payload.followersCount === "number") {
+        setFollowerCount(payload.followersCount);
+      }
+      if (typeof payload.followingCount === "number") {
+        setFollowingCount(payload.followingCount);
+      }
+
+      // Fallback for a bare notification with no counts attached. Refetching is
+      // heavier, but a stale number is worse than an extra request.
+      if (
+        typeof payload.followersCount !== "number" &&
+        typeof payload.followingCount !== "number"
+      ) {
+        reload().catch(() => {});
+      }
+    }
+
+    for (const event of FOLLOW_EVENTS) socket.on(event, onFollowEvent);
+
+    return () => {
+      for (const event of FOLLOW_EVENTS) socket.off(event, onFollowEvent);
+    };
   }, []);
 
   // Re-send the confirmation link. The success state is sticky for the rest of
@@ -96,14 +156,6 @@ export default function ProfilePage() {
 
   const avatar = profile?.photos?.[0]?.url || "";
   const name = profile?.displayName || profile?.username || "—";
-
-  // Shape depends on what toSelf() returns: a denormalised count if the server
-  // keeps one, otherwise the length of the populated array. Falling back to 0
-  // means the row still renders rather than showing "undefined".
-  const followerCount =
-    profile?.followersCount ?? profile?.followers?.length ?? 0;
-  const followingCount =
-    profile?.followingCount ?? profile?.following?.length ?? 0;
 
   const facts = [
     profile.age != null
@@ -257,7 +309,7 @@ export default function ProfilePage() {
                 href="/saved"
                 className="w-full rounded-lg border border-slate-300 px-3.5 py-1.5 text-center text-sm font-semibold text-slate-600 no-underline transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
               >
-                {p.savedPosts}
+                {p.savedPosts || "Saved posts"}
               </Link>
 
               {admin ? (
@@ -342,6 +394,7 @@ function EditModal({ profile, onClose, onSaved }) {
   const [displayName, setDisplayName] = useState(profile?.displayName || "");
   const [bio, setBio] = useState(profile?.bio || "");
   const [photos, setPhotos] = useState(profile?.photos || []);
+  const [interests, setInterests] = useState(profile?.interests || []);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState("");
@@ -372,6 +425,18 @@ function EditModal({ profile, onClose, onSaved }) {
     setPhotos((prev) => prev.filter((_, i) => i !== idx));
   }
 
+  // Deselect always works; select is capped. Storing in canonical list order
+  // matches sanitiseInterests on the API, so what is saved here is the same
+  // shape the server would have produced itself.
+  function toggleInterest(id) {
+    setErr("");
+    setInterests((prev) => {
+      if (prev.includes(id)) return prev.filter((value) => value !== id);
+      if (prev.length >= MAX_INTERESTS) return prev;
+      return INTERESTS.filter((value) => value === id || prev.includes(value));
+    });
+  }
+
   async function save() {
     setErr("");
     setSaving(true);
@@ -380,6 +445,7 @@ function EditModal({ profile, onClose, onSaved }) {
         displayName: displayName.trim().slice(0, NAME_MAX),
         bio: bio.trim().slice(0, BIO_MAX),
         photos,
+        interests,
       });
       await onSaved();
       onClose();
@@ -474,6 +540,48 @@ function EditModal({ profile, onClose, onSaved }) {
         <p className="mt-1 text-right text-xs text-slate-400">
           {bio.length}/{BIO_MAX}
         </p>
+
+        <div className="mb-1.5 mt-3 flex items-center justify-between">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            {p.interests}
+          </label>
+          <span
+            className={
+              "text-xs " +
+              (interests.length >= MAX_INTERESTS
+                ? "font-semibold text-amber-600 dark:text-amber-400"
+                : "text-slate-400")
+            }
+          >
+            {interests.length}/{MAX_INTERESTS}
+          </span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {INTERESTS.map((id) => {
+            const selected = interests.includes(id);
+            // Unselected chips grey out at the cap rather than disappearing —
+            // a list that changes length as you pick is disorienting.
+            const atCap = !selected && interests.length >= MAX_INTERESTS;
+
+            return (
+              <button
+                key={id}
+                type="button"
+                onClick={() => toggleInterest(id)}
+                aria-pressed={selected}
+                disabled={atCap}
+                className={
+                  "rounded-full border px-3 py-1 text-xs font-medium transition disabled:opacity-40 " +
+                  (selected
+                    ? "border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
+                    : "border-slate-300 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800")
+                }
+              >
+                {interestLabel(id)}
+              </button>
+            );
+          })}
+        </div>
 
         {err ? (
           <p className="mt-2 text-sm text-red-600 dark:text-red-400">{err}</p>

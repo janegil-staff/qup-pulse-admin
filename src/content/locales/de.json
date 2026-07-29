@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Konto löschen?",
       "deleteAccountBody": "Dadurch werden dein Konto und alle deine Daten dauerhaft gelöscht. Dies kann nicht rückgängig gemacht werden.",
       "deleteAccountConfirm": "Konto löschen",
-      "deletingAccount": "Wird gelöscht…"
+      "deletingAccount": "Wird gelöscht…",
+      "dateOfBirth": "Geburtsdatum",
+      "dobChangeHint": "Das Geburtsdatum kann nur begrenzt oft geändert werden.",
+      "dobRequired": "Geburtsdatum ist erforderlich.",
+      "dobInvalid": "Dieses Datum ist ungültig.",
+      "dobInFuture": "Das Geburtsdatum kann nicht in der Zukunft liegen.",
+      "dobUnderAge": "Du musst mindestens 18 Jahre alt sein, um diese App zu nutzen.",
+      "dobChangeLimit": "Das Geburtsdatum wurde bereits geändert. Wende dich an den Support, um es erneut zu ändern."
     },
     "show": {
       "women": "Frauen",

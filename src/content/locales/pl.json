@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Usunąć konto?",
       "deleteAccountBody": "Spowoduje to trwałe usunięcie konta i wszystkich danych. Tej operacji nie można cofnąć.",
       "deleteAccountConfirm": "Usuń konto",
-      "deletingAccount": "Usuwanie…"
+      "deletingAccount": "Usuwanie…",
+      "dateOfBirth": "Data urodzenia",
+      "dobChangeHint": "Datę urodzenia można zmienić tylko ograniczoną liczbę razy.",
+      "dobRequired": "Data urodzenia jest wymagana.",
+      "dobInvalid": "Nieprawidłowa data.",
+      "dobInFuture": "Data urodzenia nie może być w przyszłości.",
+      "dobUnderAge": "Musisz mieć co najmniej 18 lat, aby korzystać z aplikacji.",
+      "dobChangeLimit": "Data urodzenia została już zmieniona. Skontaktuj się z pomocą, aby zmienić ją ponownie."
     },
     "show": {
       "women": "Kobiety",

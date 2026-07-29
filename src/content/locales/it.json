@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Eliminare l’account?",
       "deleteAccountBody": "Questa operazione elimina definitivamente il tuo account e tutti i tuoi dati. Non può essere annullata.",
       "deleteAccountConfirm": "Elimina account",
-      "deletingAccount": "Eliminazione…"
+      "deletingAccount": "Eliminazione…",
+      "dateOfBirth": "Data di nascita",
+      "dobChangeHint": "La data di nascita può essere modificata solo un numero limitato di volte.",
+      "dobRequired": "La data di nascita è obbligatoria.",
+      "dobInvalid": "Data non valida.",
+      "dobInFuture": "La data di nascita non può essere nel futuro.",
+      "dobUnderAge": "Devi avere almeno 18 anni per usare questa app.",
+      "dobChangeLimit": "La data di nascita è già stata modificata. Contatta l'assistenza per cambiarla di nuovo."
     },
     "show": {
       "women": "Donne",

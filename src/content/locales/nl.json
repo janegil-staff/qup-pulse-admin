@@ -142,7 +142,14 @@
       "deleteAccountTitle": "Account verwijderen?",
       "deleteAccountBody": "Hiermee worden je account en al je gegevens permanent verwijderd. Dit kan niet ongedaan worden gemaakt.",
       "deleteAccountConfirm": "Account verwijderen",
-      "deletingAccount": "Verwijderen…"
+      "deletingAccount": "Verwijderen…",
+      "dateOfBirth": "Geboortedatum",
+      "dobChangeHint": "De geboortedatum kan slechts een beperkt aantal keren worden gewijzigd.",
+      "dobRequired": "Geboortedatum is verplicht.",
+      "dobInvalid": "Die datum is ongeldig.",
+      "dobInFuture": "Geboortedatum kan niet in de toekomst liggen.",
+      "dobUnderAge": "Je moet minstens 18 zijn om deze app te gebruiken.",
+      "dobChangeLimit": "De geboortedatum is al gewijzigd. Neem contact op met support om deze opnieuw te wijzigen."
     },
     "show": {
       "women": "Vrouwen",
