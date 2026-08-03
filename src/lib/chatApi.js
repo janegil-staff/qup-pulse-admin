@@ -28,17 +28,6 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 const TOKEN_KEY = "qup_pulse_admin_jwt";
 
-function headers() {
-  const t =
-    typeof window !== "undefined"
-      ? window.localStorage.getItem(TOKEN_KEY)
-      : null;
-  return {
-    "Content-Type": "application/json",
-    ...(t ? { Authorization: `Bearer ${t}` } : {}),
-  };
-}
-
 async function parse(res) {
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
@@ -126,19 +115,9 @@ export async function sendMessage(id, body) {
   return parse(res);
 }
 
-// COMBINED_UNREAD_CLIENT_V1 — `count` is the combined total (inbox unreads +
-// incoming requests) the badge shows; `requestCount` is the request share of
-// it, available for a split badge without another round-trip. Returns an object
-// now, not a number — callers must read `.count`.
-export async function chatUnreadCount() {
-  const res = await fetch(`${API_URL}/chat/unread-count`, {
-    headers: headers(),
-    cache: "no-store",
-  });
-  const data = await parse(res);
-  return { count: data.count || 0, requestCount: data.requestCount || 0 };
-}
-
+// Mark every message in a conversation as read by me. The thread page follows
+// this with a `chat:read` window event so AppNav's badge refetches without
+// waiting for the next notify or navigation.
 export async function markRead(id) {
   const res = await fetch(
     `${API_URL}/chat/conversations/${encodeURIComponent(id)}/read`,
@@ -148,4 +127,42 @@ export async function markRead(id) {
     },
   );
   return parse(res);
+}
+
+// COMBINED_UNREAD_CLIENT_V2 — the server returns `count` (unread messages in
+// ACCEPTED threads) and `requestCount` (pending threads awaiting my approval)
+// SEPARATELY, and deliberately: chatUnreadCount() in the API scopes `count` to
+// status 'accepted' precisely so the two cannot double-count, since an unread
+// message inside a pending thread would otherwise land in both. Adding them is
+// therefore the CLIENT's job.
+//
+// V1 of this comment asserted `count` was already the combined total. It never
+// was — the server's own comment says accepted-only — and AppNav rendered
+// `count`, so the ✉ badge silently ignored every incoming request. A request
+// with no messages yet (created the moment someone presses Message on a
+// profile) lives entirely in requestCount, which is why an empty request was
+// completely invisible.
+//
+// `total` is what the badge shows. The two parts stay exposed because the
+// Messages screen lists Inbox and Requests separately and wants them apart.
+export async function chatUnreadCount() {
+  const res = await fetch(`${API_URL}/chat/unread-count`, {
+    headers: headers(),
+    cache: "no-store",
+  });
+  const data = await parse(res);
+  const count = data.count || 0;
+  const requestCount = data.requestCount || 0;
+  return { count, requestCount, total: count + requestCount };
+}
+
+function headers() {
+  const t =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem(TOKEN_KEY)
+      : null;
+  return {
+    "Content-Type": "application/json",
+    ...(t ? { Authorization: `Bearer ${t}` } : {}),
+  };
 }

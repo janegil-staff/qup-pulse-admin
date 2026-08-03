@@ -30,26 +30,33 @@
 // now persists over REST and broadcasts chat:message to the room, so the bubble
 // still arrives live via the listener below (deduped by id).
 //
-// The one-opener SEND GATE is STILL ENFORCED server-side, despite an earlier
-// note in this file claiming otherwise: POST .../messages returns 403 on the
-// initiator's second message while the thread is pending. The composer is
-// therefore locked once the initiator has sent one message, and a 403 from any
-// send that slips through (stale tab, second device, race with an accept) is
-// caught and shown as the same explanation rather than a raw error.
+// The one-opener SEND GATE is STILL ENFORCED server-side: POST .../messages
+// returns 403 on the initiator's second message while the thread is pending.
+// The composer is therefore locked once the initiator has sent one message, and
+// a 403 from any send that slips through (stale tab, second device, race with
+// an accept) is caught and shown as the same explanation rather than a raw
+// error.
 //
 // IMAGES are still gated on acceptance for both parties. That restriction is
 // explained INLINE above the composer rather than in a hover tooltip: hover
 // does not exist on touch, so on a phone the greyed-out button had no
 // explanation at all. A rule the user cannot discover reads as a broken button.
 //
+// WHO OPENED THE THREAD is decided from the ENDPOINT the conversation came back
+// from, not from the messages. listRequests() is incoming-only, so presence
+// there means we are the recipient; presence in neither list means an outgoing
+// pending thread, which is ours by construction. This replaces a fallback that
+// read the sender of messages[0] and required messages.length > 0 — on an EMPTY
+// pending thread (created the moment you press Message on a profile) that
+// collapsed to false and showed the INITIATOR the recipient's "This person
+// wants to message you" banner, offering an Accept button the server would 400.
+// The server is untouched here on purpose: the mobile app runs on the same API.
+//
 // TYPING INDICATOR sits at the BOTTOM of the thread, directly beneath the
-// message list, not under the name in the header. It was in the header because
-// that is where the other user's identity lives, but that is the wrong place to
-// look: the eye is at the composer while typing, and a two-line header that
-// grows and shrinks nudges the whole thread down every time the other party
-// touches a key. As a sibling BELOW the scroll container it never scrolls out
-// of view, and it reads as coming from the conversation rather than from the
-// chrome.
+// message list, not under the name in the header. The eye is at the composer
+// while typing, and a two-line header that grows and shrinks nudged the whole
+// thread down on every keystroke. As a sibling BELOW the scroll container it
+// never scrolls out of view.
 //
 // The incoming chat:typing carries no stop event and no boolean — it is a bare
 // ping — so the indicator is expired locally on a 3s timer, and cleared early
@@ -142,6 +149,11 @@ export default function ThreadPage() {
         const list = Array.isArray(raw) ? raw : raw?.messages || [];
         const meta = Array.isArray(raw) ? null : raw;
 
+        // Which endpoint returned it IS the answer to "who opened this".
+        // listRequests() is incoming-only, so a hit there means we are the
+        // recipient. Recorded on the conversation because the lists are not
+        // refetched later and this cannot be recomputed at render time.
+        const inRequests = reqs.some((x) => String(x.id) === id);
         const fromLists =
           [...convos, ...reqs].find((x) => String(x.id) === id) || null;
 
@@ -158,7 +170,8 @@ export default function ThreadPage() {
               }
             : null;
 
-        setConvo(fromLists || fromMeta);
+        const base = fromLists || fromMeta;
+        setConvo(base ? { ...base, cameFromRequests: inRequests } : null);
         setMessages(list);
         markRead(id)
           .then(() => window.dispatchEvent(new Event("chat:read")))
@@ -329,19 +342,28 @@ export default function ThreadPage() {
   }
 
   const u = convo?.otherUser;
-  // The flag is absent when the conversation was rebuilt from metadata, so
-  // fall back to who opened the thread — the sender of the first message.
-  const isInitiator =
-    convo?.isInitiator ??
-    (meId != null &&
-      messages.length > 0 &&
-      String(messages[0]?.sender?.id) === meId);
   const name = u?.displayName || u?.username || m.unknownUser;
   const avatar = u?.avatarUrl || u?.photos?.[0]?.url || "";
+
+  // Precedence: an explicit server flag, then the endpoint the thread came back
+  // from, then whoever sent the first message. The last fallback used to stand
+  // alone and required messages.length > 0, so an EMPTY pending thread read as
+  // "not the initiator" and showed us the recipient's banner.
+  const isInitiator =
+    convo?.isInitiator ??
+    (convo?.cameFromRequests
+      ? false
+      : messages.length > 0
+        ? String(messages[0]?.sender?.id) === meId
+        : true);
+
   // Only the RECIPIENT can accept — the server 400s the initiator, so don't
-  // offer them a button that always fails. The Accept surface stays as a
-  // moderation affordance; it no longer gates sending.
-  const showAccept = convo?.status === "pending" && !isInitiator;
+  // offer them a button that always fails. The messages.length guard is belt
+  // and braces: there is nothing to accept on an empty thread, so even if both
+  // checks above read wrong the banner cannot appear.
+  const showAccept =
+    convo?.status === "pending" && !isInitiator && messages.length > 0;
+
   // Images still require an accepted conversation for BOTH parties — an
   // unsolicited image in a location-based app is a known abuse vector.
   const canSendImage = convo?.status === "accepted";
@@ -351,7 +373,8 @@ export default function ThreadPage() {
   // The one-opener gate: the initiator may send once, then waits. Derived
   // locally so the composer locks BEFORE a doomed request rather than after a
   // 403 — a message that types fine and then bounces loses the user's words
-  // and reads as a bug.
+  // and reads as a bug. Empty thread => iHaveSent is false => composer open,
+  // which is what we want: the first message must still be sendable.
   const iHaveSent =
     meId != null && messages.some((msg) => String(msg.sender?.id) === meId);
   const awaitingReply =
