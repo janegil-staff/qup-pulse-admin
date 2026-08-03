@@ -21,7 +21,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { getToken, isAdmin } from "../../lib/api";
+import { getToken, isAdmin, isStaff } from "../../lib/api";
 import { getSocket } from "../../lib/socket";
 import { INTERESTS, MAX_INTERESTS, interestLabel } from "../../lib/interests";
 import { useLang } from "../../context/LandingLang";
@@ -59,6 +59,9 @@ export default function ProfilePage() {
   const [error, setError] = useState("");
   const [editing, setEditing] = useState(false);
   const [admin, setAdmin] = useState(false);
+  // Staff = admin OR moderator. Both reach /admin; what they can do there
+  // is decided server-side by requireAdmin / requireModerator.
+  const [staff, setStaff] = useState(false);
   const [resending, setResending] = useState(false);
   const [resent, setResent] = useState(false);
 
@@ -86,6 +89,7 @@ export default function ProfilePage() {
   // server-rendered HTML and hydrate wrong.
   useEffect(() => {
     setAdmin(isAdmin());
+    setStaff(isStaff());
   }, []);
 
   // Seed the counts whenever the profile loads or reloads. Shape depends on
@@ -249,9 +253,15 @@ export default function ProfilePage() {
                 <h2 className="truncate text-xl font-bold text-slate-900 dark:text-white">
                   {name}
                 </h2>
-                {admin ? (
-                  <span className="shrink-0 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-950">
-                    {t.app.nav.admin}
+                {staff ? (
+                  <span
+                    className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                      admin
+                        ? "bg-emerald-500 text-emerald-950"
+                        : "bg-sky-500 text-sky-950"
+                    }`}
+                  >
+                    {admin ? t.app.nav.admin : t.app.nav.moderator}
                   </span>
                 ) : null}
               </div>
@@ -312,12 +322,12 @@ export default function ProfilePage() {
                 {p.savedPosts || "Saved posts"}
               </Link>
 
-              {admin ? (
+              {staff ? (
                 <Link
                   href="/admin"
                   className="w-full rounded-lg border border-emerald-500/60 px-3.5 py-1.5 text-center text-sm font-semibold text-emerald-700 no-underline transition hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-500/10"
                 >
-                  {t.app.nav.admin}
+                  {t.app.nav.adminPanel}
                 </Link>
               ) : null}
             </div>

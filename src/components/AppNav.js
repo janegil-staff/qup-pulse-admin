@@ -2,7 +2,7 @@
 "use client";
 
 // Top navigation for the logged-in app pages: Discover / Feed / Messages /
-// Profile / Settings, plus Reports for admins, and a dark/light toggle.
+// Profile / Settings, and a dark/light toggle.
 // Desktop: inline tabs + toggle on the right. Mobile: hamburger dropdown with
 // the toggle at the bottom.
 //
@@ -13,11 +13,22 @@
 // The current username shows next to Log out. It's here for the same reason a
 // terminal prompt shows the host: with several accounts open across windows,
 // "which user is this tab?" is otherwise unanswerable without decoding the JWT.
+//
+// ── No staff tabs here ───────────────────────────────────
+// The moderation panel is reached from the profile page (StaffPanelLink), not
+// from this header. Deliberate: the header is the same for every account, so a
+// moderator's screen doesn't advertise their role to anyone glancing at it.
+//
+// This component therefore reads NO role state. An earlier version called
+// setAdmin(isAdmin()) and rendered nothing from it — dead state that made the
+// panel look gated when it was simply unreachable. If a staff tab is ever
+// wanted here, the split lives in admin.routes.js and StaffPanelLink; match
+// those rather than inventing a third.
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { isAdmin, clearToken, getToken, getUsername } from "../lib/api";
+import { clearToken, getToken, getUsername } from "../lib/api";
 import { useDarkMode } from "../lib/useDarkMode";
 import { useLang } from "../context/LandingLang";
 import { getSocket } from "../lib/socket";
@@ -38,7 +49,6 @@ export default function AppNav() {
   const n = t.app.nav;
   const m = t.app.messages;
   const [open, setOpen] = useState(false);
-  const [admin, setAdmin] = useState(false);
   const [me, setMe] = useState("");
   const { dark, toggle } = useDarkMode();
 
@@ -105,10 +115,9 @@ export default function AppNav() {
       .catch((e) => console.error("unread badge", e));
   }, [pathname]);
 
-  // Both read localStorage, which is client-only — reading during render would
-  // mismatch the server-rendered HTML and hydrate wrong.
+  // localStorage is client-only — reading during render would mismatch the
+  // server-rendered HTML and hydrate wrong.
   useEffect(() => {
-    setAdmin(isAdmin());
     setMe(getUsername() || "");
   }, []);
 
@@ -293,11 +302,6 @@ function TabLink({ tab, n, m, active, block, unread = 0, onNavigate }) {
       }`}
     >
       {label}
-      {tab.admin ? (
-        <span className="rounded-full bg-emerald-500 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-950">
-          {n.admin}
-        </span>
-      ) : null}
       {unread > 0 ? <UnreadBadge count={unread} m={m} /> : null}
     </Link>
   );

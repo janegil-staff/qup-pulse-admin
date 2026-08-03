@@ -7,9 +7,33 @@
 // up/down run as background jobs: the POST returns a job id immediately and this
 // page polls for progress, so nothing depends on a request staying open long
 // enough to outlast a proxy timeout.
+//
+// ADMIN ONLY, and this page says so itself.
+//
+// The layout admits all staff — admins and moderators — because moderators
+// need Reports, Deleted and Removed. Seeding is not moderation: it writes and
+// deletes bulk data, and the server has always treated it as admin-only in two
+// places (router.use(requireAuth, requireAdmin) in seed.routes.js, plus a
+// second role check inside adminSeedController). Nothing here can be executed
+// by a moderator regardless of what this page renders.
+//
+// The gate below is therefore not a security boundary; it exists so that a
+// moderator who reaches this URL — bookmarked, shared, or typed — is told no
+// immediately instead of being shown a form full of destructive buttons that
+// 403 only after they fill it in and press one. Hiding the sidebar link is the
+// other half; this half is the one that survives someone having the URL.
+//
+// isAdmin() is read in an effect rather than during render because it reads
+// localStorage, which does not exist during prerender. `admin === null` is the
+// pre-check state and renders nothing, matching how the layout handles `ready`.
+//
+// NOT TRANSLATED, deliberately, consistent with the rest of this file: seed
+// tooling is internal and every string on this page is already hardcoded
+// English. If this page is ever translated, the two strings below go in with
+// all the others rather than being special-cased now.
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { seedApi, AuthError } from "../../../lib/api";
+import { seedApi, AuthError, isAdmin } from "../../../lib/api";
 
 const POLL_INTERVAL_MS = 1000;
 
@@ -66,6 +90,9 @@ const LABEL =
   "text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400";
 
 export default function SeedPage() {
+  // null = not checked yet. Set in an effect; see the header note.
+  const [admin, setAdmin] = useState(null);
+
   const [runningStep, setRunningStep] = useState(null);
   const [job, setJob] = useState(null);
   const [log, setLog] = useState([]);
@@ -82,6 +109,10 @@ export default function SeedPage() {
 
   const jobRunning = job?.status === "running";
   const busy = runningStep !== null || jobRunning;
+
+  useEffect(() => {
+    setAdmin(isAdmin());
+  }, []);
 
   function options() {
     return { lat: Number(lat), lng: Number(lng), posts: Number(posts) };
@@ -172,6 +203,32 @@ export default function SeedPage() {
     } catch (e) {
       setError(e.message || "Could not cancel.");
     }
+  }
+
+  // Every hook above runs unconditionally; the returns below are the only
+  // branch. Order is fixed on every render, which is what React requires.
+
+  if (admin === null) return null;
+
+  if (!admin) {
+    return (
+      <>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+          Seed data
+        </h1>
+        <div className={`mt-6 ${CARD}`}>
+          <p className="text-sm font-semibold text-slate-900 dark:text-white">
+            Administrators only
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+            Seed tooling creates and deletes demo accounts, posts and uploaded
+            assets in bulk, so it is restricted to administrators. Moderation
+            tools — reports, deleted messages and removed messages — are
+            unaffected and remain available in the sidebar.
+          </p>
+        </div>
+      </>
+    );
   }
 
   return (

@@ -1,29 +1,35 @@
 // qup-pulse-admin/src/lib/chatApi.js
 "use client";
 
-// Chat calls, mirroring server/src/routes/index.js:
-//   listConversations   GET  /chat/conversations           -> { conversations: [shapeConvo + unread] }
-//   listRequests        GET  /chat/requests                -> { requests: [shapeConvo] }
-//   openConversation    POST /chat/conversations/:userId   -> { conversationId, status }
-//   acceptConversation  POST /chat/conversations/:id/accept-> { ok, conversationId, status }
+// Chat calls, mirroring server/src/routes/chat.routes.js:
+//   listConversations   GET  /chat/conversations
+//   listRequests        GET  /chat/requests
+//   openConversation    POST /chat/conversations/:userId
+//   acceptConversation  POST /chat/conversations/:id/accept
 //   getMessages         GET  /chat/conversations/:id/messages?before=
-//                            -> { messages: [toClient()], otherUser, user, conversation }
-//   sendMessage         POST /chat/conversations/:id/messages -> { message: toClient() }
-//   chatUnreadCount     GET  /chat/unread-count            -> { count, requestCount }
-//   markRead            POST /chat/conversations/:id/read   -> { ok }
+//   sendMessage         POST /chat/conversations/:id/messages
+//   hideMessage         POST /chat/messages/:id/hide
+//   unhideMessage       POST /chat/messages/:id/unhide
+//   retractMessage      POST /chat/messages/:id/retract
+//   unretractMessage    POST /chat/messages/:id/unretract
+//   reportMessage       POST /chat/messages/:id/report
+//   chatUnreadCount     GET  /chat/unread-count
+//   markRead            POST /chat/conversations/:id/read
 //
-// Sending goes over REST (POST .../messages) — the server persists AND
-// broadcasts chat:message to both sides over the socket. It used to be a
-// Socket.IO emit (chat:send), but that ack path was unreliable and has been
-// removed server-side; awaiting an ack that never fired left the send button
-// stuck on "…". REST is the single source of truth.
+// Sending goes over REST — the server persists AND broadcasts chat:message to
+// both sides. It used to be a Socket.IO emit (chat:send), but that ack path
+// was removed server-side and awaiting an ack that never fired left the send
+// button stuck on "…". REST is the single source of truth.
 //
-// getMessages returns the WHOLE envelope, not just the array. It used to end
-// `return data.messages || []`, which discarded otherUser — and an OUTGOING
-// PENDING thread appears in neither listConversations() (accepted only) nor
+// getMessages returns the WHOLE envelope. It used to end `return
+// data.messages || []`, which discarded otherUser — and an OUTGOING PENDING
+// thread appears in neither listConversations() (accepted only) nor
 // listRequests() (incoming only), so the thread page had no other source for
-// the participant and rendered "Unknown user" in the header. Callers read
-// `.messages`.
+// the participant and rendered "Unknown user".
+//
+// `conversation` carries status, initiator, canSend and sendBlockedReason.
+// Those four are AUTHORITATIVE — the thread page used to derive all of them
+// and got the empty-thread case wrong three different ways.
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
 const TOKEN_KEY = "qup_pulse_admin_jwt";
@@ -32,7 +38,7 @@ async function parse(res) {
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     const err = new Error(data.error || `Request failed (${res.status})`);
-    err.status = res.status; // call sites can branch on 403/404 without string-matching
+    err.status = res.status; // call sites branch on 403/409 without string-matching
     throw err;
   }
   return data;
@@ -59,31 +65,25 @@ export async function listRequests() {
 export async function acceptConversation(id) {
   const res = await fetch(
     `${API_URL}/chat/conversations/${encodeURIComponent(id)}/accept`,
-    {
-      method: "POST",
-      headers: headers(),
-    },
+    { method: "POST", headers: headers() },
   );
   return parse(res);
 }
 
 // Returns { messages, otherUser, user, conversation }.
 //
-// otherUser is the participant on the other side, already through toPublic() —
-// which is why the avatar resolves from photos[0].url rather than a stored
-// avatarUrl field. conversation carries status and isInitiator.
+// otherUser is already through toPublic(), which is why the avatar resolves
+// from photos[0].url rather than a stored avatarUrl field.
 //
-// The nullish defaults matter: a server that has not shipped the participant
-// metadata yet returns only `messages`, and the thread page falls back to the
-// conversation lists rather than crashing on a missing property.
+// conversation: { id, status, initiator, canSend, sendBlockedReason }.
+// canSend is the server's own answer to "may this user send right now",
+// computed with the same count checkPendingRules uses — so the composer locks
+// BEFORE a doomed request rather than after a 403.
 export async function getMessages(id, { before } = {}) {
   const qs = before ? `?before=${encodeURIComponent(before)}` : "";
   const res = await fetch(
     `${API_URL}/chat/conversations/${encodeURIComponent(id)}/messages${qs}`,
-    {
-      headers: headers(),
-      cache: "no-store",
-    },
+    { headers: headers(), cache: "no-store" },
   );
   const data = await parse(res);
 
@@ -95,13 +95,8 @@ export async function getMessages(id, { before } = {}) {
   };
 }
 
-// Send a text or image message over REST. Pass { text } or { imageUrl }.
-// Returns { message: toClient() }. The server also broadcasts chat:message to
-// the conversation room (both participants), so the thread's socket listener
-// renders the bubble; dedup by id handles the echo of our own message.
-//
-// A 403 here is the one-opener gate, not a generic failure — parse() attaches
-// `status`, so the thread page branches on it without matching on the message.
+// Pass { text } or { imageUrl }. A 403 is the one-opener gate, not a generic
+// failure, and its body is a TRANSLATION KEY (chatPendingLimit).
 export async function sendMessage(id, body) {
   const res = await fetch(
     `${API_URL}/chat/conversations/${encodeURIComponent(id)}/messages`,
@@ -115,36 +110,92 @@ export async function sendMessage(id, body) {
   return parse(res);
 }
 
-// Mark every message in a conversation as read by me. The thread page follows
-// this with a `chat:read` window event so AppNav's badge refetches without
-// waiting for the next notify or navigation.
-export async function markRead(id) {
+// ── The two ways a message disappears, and their undos ────────────────
+//
+// Use hide on the OTHER party's messages and retract on your own. The two are
+// not interchangeable and the UI should not offer both on the same bubble.
+
+// HIDE — my view only. The other participant keeps their copy, which is what
+// keeps the message reportable by them and intact for moderation.
+export async function hideMessage(messageId) {
   const res = await fetch(
-    `${API_URL}/chat/conversations/${encodeURIComponent(id)}/read`,
+    `${API_URL}/chat/messages/${encodeURIComponent(messageId)}/hide`,
+    { method: "POST", headers: headers() },
+  );
+  return parse(res);
+}
+
+// UNHIDE — no time limit. Hiding never affected the other person, so putting
+// it back cannot surprise anyone.
+export async function unhideMessage(messageId) {
+  const res = await fetch(
+    `${API_URL}/chat/messages/${encodeURIComponent(messageId)}/unhide`,
+    { method: "POST", headers: headers() },
+  );
+  return parse(res);
+}
+
+// RETRACT — my own message, gone for BOTH parties, no tombstone, no time
+// limit. The document is never deleted, so admins retain the record.
+//
+// Returns 409 with `chatRetractReported` if the message has already been
+// reported: an open complaint must not have its subject erased underneath it.
+export async function retractMessage(messageId) {
+  const res = await fetch(
+    `${API_URL}/chat/messages/${encodeURIComponent(messageId)}/retract`,
+    { method: "POST", headers: headers() },
+  );
+  return parse(res);
+}
+
+// UNRETRACT — 30 SECONDS ONLY, then 409 with `chatUndoWindowClosed`. The
+// message goes back into the other person's thread at its original timestamp;
+// beyond half a minute it would reappear buried mid-conversation, unnoticed or
+// inexplicable. Drive this from the undo toast, not from a menu.
+export async function unretractMessage(messageId) {
+  const res = await fetch(
+    `${API_URL}/chat/messages/${encodeURIComponent(messageId)}/unretract`,
+    { method: "POST", headers: headers() },
+  );
+  return parse(res);
+}
+
+// Report to the moderation queue. `reason` must be one of REPORT_REASONS:
+// spam, harassment, inappropriate, misinformation, other.
+//
+// Returns { ok, reportId, duplicate }. Filing twice is a NO-OP returning
+// duplicate: true — a second press is a second press, not a failure, and the
+// caller shows the same confirmation either way. Reporting your own message
+// returns 400.
+export async function reportMessage(messageId, { reason, note } = {}) {
+  const res = await fetch(
+    `${API_URL}/chat/messages/${encodeURIComponent(messageId)}/report`,
     {
       method: "POST",
       headers: headers(),
+      body: JSON.stringify({ reason, note: note || "" }),
     },
   );
   return parse(res);
 }
 
-// COMBINED_UNREAD_CLIENT_V2 — the server returns `count` (unread messages in
-// ACCEPTED threads) and `requestCount` (pending threads awaiting my approval)
-// SEPARATELY, and deliberately: chatUnreadCount() in the API scopes `count` to
-// status 'accepted' precisely so the two cannot double-count, since an unread
-// message inside a pending thread would otherwise land in both. Adding them is
-// therefore the CLIENT's job.
+// The thread page follows this with a `chat:read` window event so AppNav's
+// badge refetches without waiting for the next notify or navigation.
+export async function markRead(id) {
+  const res = await fetch(
+    `${API_URL}/chat/conversations/${encodeURIComponent(id)}/read`,
+    { method: "POST", headers: headers() },
+  );
+  return parse(res);
+}
+
+// COMBINED_UNREAD_CLIENT_V2 — the server returns `count` (unread in ACCEPTED
+// threads) and `requestCount` (pending threads awaiting approval) SEPARATELY
+// and deliberately: chatUnreadCount() scopes `count` to accepted precisely so
+// the two cannot double-count. Adding them is the CLIENT's job.
 //
-// V1 of this comment asserted `count` was already the combined total. It never
-// was — the server's own comment says accepted-only — and AppNav rendered
-// `count`, so the ✉ badge silently ignored every incoming request. A request
-// with no messages yet (created the moment someone presses Message on a
-// profile) lives entirely in requestCount, which is why an empty request was
-// completely invisible.
-//
-// `total` is what the badge shows. The two parts stay exposed because the
-// Messages screen lists Inbox and Requests separately and wants them apart.
+// V1 of this comment claimed `count` was already combined. It never was, and
+// AppNav rendered `count`, so the ✉ badge silently ignored every request.
 export async function chatUnreadCount() {
   const res = await fetch(`${API_URL}/chat/unread-count`, {
     headers: headers(),

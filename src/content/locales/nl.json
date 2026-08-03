@@ -82,7 +82,10 @@
       "switchToLight": "Schakel naar lichte modus",
       "switchToDark": "Schakel naar donkere modus",
       "users": "Gebruikers",
-      "seed": "Testgegevens"
+      "seed": "Testgegevens",
+      "moderator": "Moderator",
+      "adminPanel": "Beheerpaneel",
+      "staffOnly": "Alleen voor moderators en beheerders"
     },
     "settings": {
       "title": "Persoonlijke instellingen",
@@ -362,8 +365,18 @@
       "confirmBan": "@{name} verbannen? Ze worden uitgelogd en geblokkeerd.",
       "err": {
         "load": "Kon gebruikers niet laden.",
-        "update": "Kon gebruiker niet bijwerken."
-      }
+        "update": "Kon gebruiker niet bijwerken.",
+        "role": "Kon de rol niet wijzigen.",
+        "roleSelf": "Je kunt je eigen rol niet wijzigen.",
+        "lastAdmin": "Kan de laatste beheerder niet verwijderen."
+      },
+      "role": "Rol",
+      "roleUser": "Gebruiker",
+      "roleModerator": "Moderator",
+      "roleAdmin": "Beheerder",
+      "changeRole": "Rol wijzigen",
+      "confirmRoleChange": "Rol van @{name} wijzigen naar {role}?",
+      "roleHistory": "Rolgeschiedenis"
     },
     "messages": {
       "title": "Berichten",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} ongelezen berichten",
       "photoPendingNote": "Je kunt foto's sturen zodra het gesprek is geaccepteerd.",
       "awaitingReplyTitle": "Wachten op antwoord",
-      "awaitingReplyBody": "Je hebt je eerste bericht verstuurd. Je kunt meer sturen zodra je antwoord krijgt."
+      "awaitingReplyBody": "Je hebt je eerste bericht verstuurd. Je kunt meer sturen zodra je antwoord krijgt.",
+      "hideForMe": "Verwijderen voor mij",
+      "hideForMeConfirm": "Dit bericht uit jouw weergave verbergen? Het blijft zichtbaar voor de ander en kan niet worden hersteld.",
+      "hideFailed": "Kon het bericht niet verbergen",
+      "retractTitle": "Voor iedereen verwijderen?",
+      "retractBothParties": "Het bericht wordt voor jullie beiden verborgen — ook voor de persoon aan wie je het hebt gestuurd.",
+      "retractNoUndoNote": "Dit kan niet ongedaan worden gemaakt.",
+      "retractModerationNote": "Het bericht wordt niet van de server gewist — moderators bewaren een kopie zodat meldingen behandeld kunnen worden.",
+      "retractConfirm": "Voor iedereen verwijderen",
+      "cancel": "Annuleren",
+      "retractCancel": "Annuleren",
+      "reportCancel": "Annuleren"
     },
     "discover": {
       "peopleNearby": "Mensen in de buurt",
@@ -441,7 +465,21 @@
       "filterDismissed": "Afgewezen",
       "resolve": "Oplossen",
       "dismiss": "Afwijzen",
-      "reportedBy": "Gerapporteerd door"
+      "reportedBy": "Gerapporteerd door",
+      "reportedMessage": "Gemeld bericht",
+      "reportedPost": "Gemelde post",
+      "reporterNote": "Notitie van de melder",
+      "hiddenByParticipant": "Verborgen voor de eigen weergave van een of meer deelnemers. Het bericht zelf is ongewijzigd.",
+      "viewThread": "Gesprek bekijken",
+      "conversationTitle": "Gesprek",
+      "backToReports": "Meldingen",
+      "hiddenBadge": "Verborgen",
+      "initiatorBadge": "Startte het gesprek",
+      "moderationPrivacyNotice": "Privégesprek, getoond voor het beoordelen van een specifieke melding. Bevat berichten die een deelnemer voor zichzelf heeft verborgen.",
+      "deletedMessages": "Verwijderde berichten",
+      "deletedMessagesNotice": "Berichten die een deelnemer voor zichzelf heeft verborgen. Het bericht zelf is ongewijzigd en nog steeds zichtbaar voor de ander. Verbergen is meestal gewoon opruimen, geen aanwijzing voor iets.",
+      "hiddenByLabel": "Verborgen door",
+      "deletedDescription": "Berichten die deelnemers voor zichzelf hebben verborgen."
     },
     "chat": {
       "pendingTitle": "Wachten op antwoord",
@@ -542,5 +580,9 @@
       "blockFailed": "Kon deze gebruiker niet blokkeren."
     },
     "locationName": "Locatie"
-  }
+  },
+  "retractTitle": "Voor iedereen verwijderen?",
+  "retractBothParties": "Het bericht wordt voor jullie beiden verborgen — ook voor de persoon aan wie je het hebt gestuurd.",
+  "retractUndoNote": "Je kunt het ongeveer 30 seconden lang terughalen.",
+  "retractModerationNote": "Het bericht wordt niet van de server gewist — moderators bewaren een kopie zodat meldingen behandeld kunnen worden."
 }

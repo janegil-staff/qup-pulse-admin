@@ -82,7 +82,10 @@
       "switchToLight": "Vaihda vaaleaan tilaan",
       "switchToDark": "Vaihda tummaan tilaan",
       "users": "Käyttäjät",
-      "seed": "Testidata"
+      "seed": "Testidata",
+      "moderator": "Moderaattori",
+      "adminPanel": "Hallintapaneeli",
+      "staffOnly": "Vain moderaattoreille ja ylläpitäjille"
     },
     "settings": {
       "title": "Henkilökohtaiset asetukset",
@@ -362,8 +365,18 @@
       "confirmBan": "Estetäänkö @{name}? Hänet kirjataan ulos ja estetään sovelluksesta.",
       "err": {
         "load": "Käyttäjiä ei voitu ladata.",
-        "update": "Käyttäjää ei voitu päivittää."
-      }
+        "update": "Käyttäjää ei voitu päivittää.",
+        "role": "Roolia ei voitu vaihtaa.",
+        "roleSelf": "Et voi vaihtaa omaa rooliasi.",
+        "lastAdmin": "Viimeistä ylläpitäjää ei voi poistaa."
+      },
+      "role": "Rooli",
+      "roleUser": "Käyttäjä",
+      "roleModerator": "Moderaattori",
+      "roleAdmin": "Ylläpitäjä",
+      "changeRole": "Vaihda rooli",
+      "confirmRoleChange": "Vaihdetaanko käyttäjän @{name} rooliksi {role}?",
+      "roleHistory": "Roolihistoria"
     },
     "messages": {
       "title": "Viestit",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} lukematonta viestiä",
       "photoPendingNote": "Voit lähettää kuvia, kun keskustelu on hyväksytty.",
       "awaitingReplyTitle": "Odotetaan vastausta",
-      "awaitingReplyBody": "Lähetit ensimmäisen viestisi. Voit lähettää lisää, kun saat vastauksen."
+      "awaitingReplyBody": "Lähetit ensimmäisen viestisi. Voit lähettää lisää, kun saat vastauksen.",
+      "hideForMe": "Poista minulta",
+      "hideForMeConfirm": "Piilotetaanko tämä viesti sinulta? Se näkyy edelleen toiselle henkilölle, eikä sitä voi palauttaa.",
+      "hideFailed": "Viestin piilottaminen epäonnistui",
+      "retractTitle": "Poistetaanko kaikilta?",
+      "retractBothParties": "Viesti piilotetaan teiltä molemmilta — myös henkilöltä, jolle lähetit sen.",
+      "retractNoUndoNote": "Tätä ei voi perua.",
+      "retractModerationNote": "Viestiä ei poisteta palvelimelta — moderaattoreilla säilyy kopio, jotta ilmoitukset voidaan käsitellä.",
+      "retractConfirm": "Poista kaikilta",
+      "cancel": "Peruuta",
+      "retractCancel": "Peruuta",
+      "reportCancel": "Peruuta"
     },
     "discover": {
       "peopleNearby": "Ihmisiä lähellä",
@@ -441,7 +465,21 @@
       "filterDismissed": "Hylätty",
       "resolve": "Ratkaise",
       "dismiss": "Hylkää",
-      "reportedBy": "Ilmoittanut"
+      "reportedBy": "Ilmoittanut",
+      "reportedMessage": "Ilmoitettu viesti",
+      "reportedPost": "Ilmoitettu julkaisu",
+      "reporterNote": "Ilmoittajan huomautus",
+      "hiddenByParticipant": "Piilotettu yhdeltä tai useammalta osallistujalta heidän omassa näkymässään. Itse viesti on muuttumaton.",
+      "viewThread": "Näytä keskustelu",
+      "conversationTitle": "Keskustelu",
+      "backToReports": "Ilmoitukset",
+      "hiddenBadge": "Piilotettu",
+      "initiatorBadge": "Aloitti keskustelun",
+      "moderationPrivacyNotice": "Yksityinen keskustelu, näytetään tietyn ilmoituksen käsittelyä varten. Sisältää viestejä, jotka osallistuja on piilottanut omasta näkymästään.",
+      "deletedMessages": "Poistetut viestit",
+      "deletedMessagesNotice": "Viestit, jotka osallistuja on piilottanut omasta näkymästään. Itse viesti on muuttumaton ja näkyy edelleen toiselle osapuolelle. Piilottaminen on yleensä tavallista siivoamista, ei merkki mistään.",
+      "hiddenByLabel": "Piilottaja",
+      "deletedDescription": "Viestit, jotka osallistujat ovat piilottaneet omasta näkymästään."
     },
     "chat": {
       "pendingTitle": "Odotetaan vastausta",
@@ -542,5 +580,9 @@
       "blockFailed": "Käyttäjää ei voitu estää."
     },
     "locationName": "Sijainti"
-  }
+  },
+  "retractTitle": "Poistetaanko kaikilta?",
+  "retractBothParties": "Viesti piilotetaan teiltä molemmilta — myös henkilöltä, jolle lähetit sen.",
+  "retractUndoNote": "Voit palauttaa sen noin 30 sekunnin ajan.",
+  "retractModerationNote": "Viestiä ei poisteta palvelimelta — moderaattoreilla säilyy kopio, jotta ilmoitukset voidaan käsitellä."
 }

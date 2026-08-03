@@ -1,26 +1,38 @@
 // qup-pulse-admin/src/app/admin/page.js
 "use client";
-
 // Landing page for /admin. The layout supplies the header, submenu and footer;
 // this is just the overview that sits inside it.
-
+//
+// The card list mirrors the submenu in layout.js. They are two separate arrays
+// in two files, so adding a surface to one and not the other leaves it
+// reachable from the sidebar but invisible here — which is what happened when
+// Deleted messages was added.
 import Link from "next/link";
 import { useLang } from "../../context/LandingLang";
-
 export default function AdminPage() {
   const { t } = useLang();
-
   // Fallbacks so the page renders before patchAdminTranslations.cjs has run.
   // Remove them once the keys are in all 12 locales.
   const nav = t.app.nav || {};
   const a = t.app.admin || {};
-
   const sections = [
     {
       href: "/admin/reports",
       icon: "🚩",
       label: nav.reports,
       description: a.reportsDescription,
+    },
+    {
+      href: "/admin/deleted",
+      icon: "🗑️",
+      label: a.deletedMessages || "Deleted messages",
+      description: a.deletedDescription,
+    },
+    {
+      href: "/admin/removed",
+      icon: "👥",
+      label: nav.removed || "Removed by moderators",
+      description: a.removedDescription,
     },
     {
       href: "/admin/users",
@@ -35,7 +47,6 @@ export default function AdminPage() {
       description: a.seedDescription,
     },
   ];
-
   return (
     <>
       <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -46,7 +57,6 @@ export default function AdminPage() {
           {a.subtitle}
         </p>
       ) : null}
-
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {sections.map((section) => (
           <Link

@@ -82,7 +82,10 @@
       "switchToLight": "Mudar para modo claro",
       "switchToDark": "Mudar para modo escuro",
       "users": "Utilizadores",
-      "seed": "Dados de teste"
+      "seed": "Dados de teste",
+      "moderator": "Moderador",
+      "adminPanel": "Painel de administração",
+      "staffOnly": "Apenas para moderadores e administradores"
     },
     "settings": {
       "title": "Definições pessoais",
@@ -362,8 +365,18 @@
       "confirmBan": "Banir @{name}? Será desconectado e bloqueado da app.",
       "err": {
         "load": "Não foi possível carregar os utilizadores.",
-        "update": "Não foi possível atualizar o utilizador."
-      }
+        "update": "Não foi possível atualizar o utilizador.",
+        "role": "Não foi possível alterar a função.",
+        "roleSelf": "Não podes alterar a tua própria função.",
+        "lastAdmin": "Não é possível remover o último administrador."
+      },
+      "role": "Função",
+      "roleUser": "Utilizador",
+      "roleModerator": "Moderador",
+      "roleAdmin": "Administrador",
+      "changeRole": "Alterar função",
+      "confirmRoleChange": "Alterar a função de @{name} para {role}?",
+      "roleHistory": "Histórico de funções"
     },
     "messages": {
       "title": "Mensagens",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} mensagens não lidas",
       "photoPendingNote": "Podes enviar fotos assim que a conversa for aceite.",
       "awaitingReplyTitle": "À espera de resposta",
-      "awaitingReplyBody": "Enviaste a tua primeira mensagem. Podes enviar mais assim que receberes resposta."
+      "awaitingReplyBody": "Enviaste a tua primeira mensagem. Podes enviar mais assim que receberes resposta.",
+      "hideForMe": "Eliminar para mim",
+      "hideForMeConfirm": "Ocultar esta mensagem da tua vista? Continuará visível para a outra pessoa e não poderá ser restaurada.",
+      "hideFailed": "Não foi possível ocultar a mensagem",
+      "retractTitle": "Eliminar para todos?",
+      "retractBothParties": "A mensagem fica oculta para ambos — incluindo para a pessoa a quem a enviaste.",
+      "retractNoUndoNote": "Esta ação não pode ser anulada.",
+      "retractModerationNote": "A mensagem não é apagada do servidor — os moderadores mantêm uma cópia para que as denúncias possam ser tratadas.",
+      "retractConfirm": "Eliminar para todos",
+      "cancel": "Cancelar",
+      "retractCancel": "Cancelar",
+      "reportCancel": "Cancelar"
     },
     "discover": {
       "peopleNearby": "Pessoas por perto",
@@ -441,7 +465,21 @@
       "filterDismissed": "Rejeitados",
       "resolve": "Resolver",
       "dismiss": "Rejeitar",
-      "reportedBy": "Denunciado por"
+      "reportedBy": "Denunciado por",
+      "reportedMessage": "Mensagem denunciada",
+      "reportedPost": "Publicação denunciada",
+      "reporterNote": "Nota de quem denunciou",
+      "hiddenByParticipant": "Ocultada da vista de um ou mais participantes. A mensagem em si não foi alterada.",
+      "viewThread": "Ver a conversa",
+      "conversationTitle": "Conversa",
+      "backToReports": "Denúncias",
+      "hiddenBadge": "Oculta",
+      "initiatorBadge": "Iniciou a conversa",
+      "moderationPrivacyNotice": "Conversa privada, mostrada para tratar de uma denúncia específica. Inclui mensagens que um participante ocultou da sua própria vista.",
+      "deletedMessages": "Mensagens eliminadas",
+      "deletedMessagesNotice": "Mensagens que um participante ocultou da sua própria vista. A mensagem em si não foi alterada e continua visível para a outra parte. Ocultar é normalmente simples arrumação, não indício de nada.",
+      "hiddenByLabel": "Ocultada por",
+      "deletedDescription": "Mensagens que os participantes ocultaram da sua própria vista."
     },
     "chat": {
       "pendingTitle": "À espera de resposta",
@@ -542,5 +580,9 @@
       "blockFailed": "Não foi possível bloquear este utilizador."
     },
     "locationName": "Localização"
-  }
+  },
+  "retractTitle": "Eliminar para todos?",
+  "retractBothParties": "A mensagem fica oculta para ambos — incluindo para a pessoa a quem a enviaste.",
+  "retractUndoNote": "Podes recuperá-la durante cerca de 30 segundos.",
+  "retractModerationNote": "A mensagem não é apagada do servidor — os moderadores mantêm uma cópia para que as denúncias possam ser tratadas."
 }

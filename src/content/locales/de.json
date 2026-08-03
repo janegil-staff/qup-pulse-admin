@@ -82,7 +82,10 @@
       "switchToLight": "Zum Hellmodus wechseln",
       "switchToDark": "Zum Dunkelmodus wechseln",
       "users": "Benutzer",
-      "seed": "Testdaten"
+      "seed": "Testdaten",
+      "moderator": "Moderator",
+      "adminPanel": "Adminbereich",
+      "staffOnly": "Nur für Moderatoren und Administratoren"
     },
     "settings": {
       "title": "Persönliche Einstellungen",
@@ -362,8 +365,18 @@
       "confirmBan": "@{name} sperren? Er wird abgemeldet und von der App ausgeschlossen.",
       "err": {
         "load": "Nutzer konnten nicht geladen werden.",
-        "update": "Nutzer konnte nicht aktualisiert werden."
-      }
+        "update": "Nutzer konnte nicht aktualisiert werden.",
+        "role": "Die Rolle konnte nicht geändert werden.",
+        "roleSelf": "Du kannst deine eigene Rolle nicht ändern.",
+        "lastAdmin": "Der letzte Administrator kann nicht entfernt werden."
+      },
+      "role": "Rolle",
+      "roleUser": "Benutzer",
+      "roleModerator": "Moderator",
+      "roleAdmin": "Administrator",
+      "changeRole": "Rolle ändern",
+      "confirmRoleChange": "Rolle von @{name} zu {role} ändern?",
+      "roleHistory": "Rollenverlauf"
     },
     "messages": {
       "title": "Nachrichten",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} ungelesene Nachrichten",
       "photoPendingNote": "Fotos kannst du senden, sobald die Unterhaltung angenommen wurde.",
       "awaitingReplyTitle": "Warten auf eine Antwort",
-      "awaitingReplyBody": "Du hast deine erste Nachricht gesendet. Sobald du eine Antwort erhältst, kannst du weitere senden."
+      "awaitingReplyBody": "Du hast deine erste Nachricht gesendet. Sobald du eine Antwort erhältst, kannst du weitere senden.",
+      "hideForMe": "Für mich löschen",
+      "hideForMeConfirm": "Diese Nachricht aus deiner Ansicht ausblenden? Sie bleibt für die andere Person sichtbar und kann nicht wiederhergestellt werden.",
+      "hideFailed": "Nachricht konnte nicht ausgeblendet werden",
+      "retractTitle": "Für alle löschen?",
+      "retractBothParties": "Die Nachricht wird für euch beide ausgeblendet — auch für die Person, der du sie gesendet hast.",
+      "retractNoUndoNote": "Das kann nicht rückgängig gemacht werden.",
+      "retractModerationNote": "Die Nachricht wird nicht vom Server gelöscht — Moderatoren behalten eine Kopie, damit Meldungen bearbeitet werden können.",
+      "retractConfirm": "Für alle löschen",
+      "cancel": "Abbrechen",
+      "retractCancel": "Abbrechen",
+      "reportCancel": "Abbrechen"
     },
     "discover": {
       "peopleNearby": "Leute in der Nähe",
@@ -441,7 +465,21 @@
       "filterDismissed": "Abgelehnt",
       "resolve": "Erledigen",
       "dismiss": "Ablehnen",
-      "reportedBy": "Gemeldet von"
+      "reportedBy": "Gemeldet von",
+      "reportedMessage": "Gemeldete Nachricht",
+      "reportedPost": "Gemeldeter Beitrag",
+      "reporterNote": "Notiz der meldenden Person",
+      "hiddenByParticipant": "Aus der eigenen Ansicht eines oder mehrerer Teilnehmer ausgeblendet. Die Nachricht selbst ist unverändert.",
+      "viewThread": "Unterhaltung ansehen",
+      "conversationTitle": "Unterhaltung",
+      "backToReports": "Meldungen",
+      "hiddenBadge": "Ausgeblendet",
+      "initiatorBadge": "Hat die Unterhaltung begonnen",
+      "moderationPrivacyNotice": "Private Unterhaltung, angezeigt zur Bearbeitung einer konkreten Meldung. Enthält Nachrichten, die ein Teilnehmer aus der eigenen Ansicht ausgeblendet hat.",
+      "deletedMessages": "Gelöschte Nachrichten",
+      "deletedMessagesNotice": "Nachrichten, die ein Teilnehmer aus der eigenen Ansicht ausgeblendet hat. Die Nachricht selbst ist unverändert und für die andere Person weiterhin sichtbar. Ausblenden ist meist gewöhnliches Aufräumen und kein Hinweis auf etwas.",
+      "hiddenByLabel": "Ausgeblendet von",
+      "deletedDescription": "Nachrichten, die Teilnehmer aus ihrer eigenen Ansicht ausgeblendet haben."
     },
     "chat": {
       "pendingTitle": "Warten auf eine Antwort",
@@ -542,5 +580,9 @@
       "blockFailed": "Nutzer konnte nicht blockiert werden."
     },
     "locationName": "Ort"
-  }
+  },
+  "retractTitle": "Für alle löschen?",
+  "retractBothParties": "Die Nachricht wird für euch beide ausgeblendet — auch für die Person, der du sie gesendet hast.",
+  "retractUndoNote": "Du kannst sie etwa 30 Sekunden lang zurückholen.",
+  "retractModerationNote": "Die Nachricht wird nicht vom Server gelöscht — Moderatoren behalten eine Kopie, damit Meldungen bearbeitet werden können."
 }

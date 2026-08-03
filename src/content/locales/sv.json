@@ -72,7 +72,7 @@
       "messages": "Meddelanden",
       "profile": "Profil",
       "settings": "Inställningar",
-      "reports": "Rapporter",
+      "reports": "Anmälningar",
       "logOut": "Logga ut",
       "soon": "Snart",
       "admin": "Admin",
@@ -82,7 +82,10 @@
       "switchToLight": "Byt till ljust läge",
       "switchToDark": "Byt till mörkt läge",
       "users": "Användare",
-      "seed": "Testdata"
+      "seed": "Testdata",
+      "moderator": "Moderator",
+      "adminPanel": "Adminpanel",
+      "staffOnly": "Endast för moderatorer och administratörer"
     },
     "settings": {
       "title": "Personliga inställningar",
@@ -362,8 +365,18 @@
       "confirmBan": "Stänga av @{name}? De loggas ut och blockeras från appen.",
       "err": {
         "load": "Kunde inte ladda användare.",
-        "update": "Kunde inte uppdatera användaren."
-      }
+        "update": "Kunde inte uppdatera användaren.",
+        "role": "Kunde inte ändra rollen.",
+        "roleSelf": "Du kan inte ändra din egen roll.",
+        "lastAdmin": "Det går inte att ta bort den sista administratören."
+      },
+      "role": "Roll",
+      "roleUser": "Användare",
+      "roleModerator": "Moderator",
+      "roleAdmin": "Administratör",
+      "changeRole": "Ändra roll",
+      "confirmRoleChange": "Ändra rollen för @{name} till {role}?",
+      "roleHistory": "Rollhistorik"
     },
     "messages": {
       "title": "Meddelanden",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} olästa meddelanden",
       "photoPendingNote": "Du kan skicka bilder när konversationen har accepterats.",
       "awaitingReplyTitle": "Väntar på svar",
-      "awaitingReplyBody": "Du har skickat ditt första meddelande. Du kan skicka fler när du får svar."
+      "awaitingReplyBody": "Du har skickat ditt första meddelande. Du kan skicka fler när du får svar.",
+      "hideForMe": "Ta bort för mig",
+      "hideForMeConfirm": "Dölj det här meddelandet för dig? Det syns fortfarande för den andra personen och kan inte återställas.",
+      "hideFailed": "Kunde inte dölja meddelandet",
+      "retractTitle": "Radera för alla?",
+      "retractBothParties": "Meddelandet döljs för er båda — även för personen du skickade det till.",
+      "retractNoUndoNote": "Det här går inte att ångra.",
+      "retractModerationNote": "Meddelandet raderas inte från servern — moderatorer behåller en kopia så att anmälningar kan hanteras.",
+      "retractConfirm": "Radera för alla",
+      "cancel": "Avbryt",
+      "retractCancel": "Avbryt",
+      "reportCancel": "Avbryt"
     },
     "discover": {
       "peopleNearby": "Personer i närheten",
@@ -441,7 +465,21 @@
       "filterDismissed": "Avvisad",
       "resolve": "Lös",
       "dismiss": "Avvisa",
-      "reportedBy": "Anmäld av"
+      "reportedBy": "Anmäld av",
+      "reportedMessage": "Rapporterat meddelande",
+      "reportedPost": "Rapporterat inlägg",
+      "reporterNote": "Anteckning från rapportören",
+      "hiddenByParticipant": "Dolt från en eller flera deltagares egen vy. Själva meddelandet är oförändrat.",
+      "viewThread": "Visa konversationen",
+      "conversationTitle": "Konversation",
+      "backToReports": "Rapporter",
+      "hiddenBadge": "Dolt",
+      "initiatorBadge": "Startade konversationen",
+      "moderationPrivacyNotice": "Privat konversation, visad för att hantera en specifik rapport. Innehåller meddelanden som en deltagare har dolt från sin egen vy.",
+      "deletedMessages": "Borttagna meddelanden",
+      "deletedMessagesNotice": "Meddelanden som en deltagare har dolt från sin egen vy. Själva meddelandet är oförändrat och syns fortfarande för den andra parten. Att dölja är oftast vanlig uppstädning, inte ett tecken på något.",
+      "hiddenByLabel": "Dolt av",
+      "deletedDescription": "Meddelanden som deltagare har dolt från sin egen vy."
     },
     "chat": {
       "pendingTitle": "Väntar på svar",
@@ -542,5 +580,9 @@
       "blockFailed": "Kunde inte blockera användaren."
     },
     "locationName": "Plats"
-  }
+  },
+  "retractTitle": "Radera för alla?",
+  "retractBothParties": "Meddelandet döljs för er båda — även för personen du skickade det till.",
+  "retractUndoNote": "Du kan hämta tillbaka det i ungefär 30 sekunder.",
+  "retractModerationNote": "Meddelandet raderas inte från servern — moderatorer behåller en kopia så att anmälningar kan hanteras."
 }

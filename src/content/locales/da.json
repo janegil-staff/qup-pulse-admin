@@ -82,7 +82,10 @@
       "switchToLight": "Skift til lys tilstand",
       "switchToDark": "Skift til mørk tilstand",
       "users": "Brugere",
-      "seed": "Testdata"
+      "seed": "Testdata",
+      "moderator": "Moderator",
+      "adminPanel": "Adminpanel",
+      "staffOnly": "Kun for moderatorer og administratorer"
     },
     "settings": {
       "title": "Personlige indstillinger",
@@ -362,8 +365,18 @@
       "confirmBan": "Udeluk @{name}? De bliver logget ud og blokeret fra appen.",
       "err": {
         "load": "Kunne ikke indlæse brugere.",
-        "update": "Kunne ikke opdatere brugeren."
-      }
+        "update": "Kunne ikke opdatere brugeren.",
+        "role": "Rollen kunne ikke ændres.",
+        "roleSelf": "Du kan ikke ændre din egen rolle.",
+        "lastAdmin": "Den sidste administrator kan ikke fjernes."
+      },
+      "role": "Rolle",
+      "roleUser": "Bruger",
+      "roleModerator": "Moderator",
+      "roleAdmin": "Administrator",
+      "changeRole": "Skift rolle",
+      "confirmRoleChange": "Skift rollen for @{name} til {role}?",
+      "roleHistory": "Rollehistorik"
     },
     "messages": {
       "title": "Beskeder",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} ulæste beskeder",
       "photoPendingNote": "Du kan sende billeder, når samtalen er accepteret.",
       "awaitingReplyTitle": "Venter på svar",
-      "awaitingReplyBody": "Du har sendt din første besked. Du kan sende flere, når du får svar."
+      "awaitingReplyBody": "Du har sendt din første besked. Du kan sende flere, når du får svar.",
+      "hideForMe": "Slet for mig",
+      "hideForMeConfirm": "Skjul denne besked for dig? Den er stadig synlig for den anden person og kan ikke gendannes.",
+      "hideFailed": "Kunne ikke skjule beskeden",
+      "retractTitle": "Slet for alle?",
+      "retractBothParties": "Beskeden skjules for jer begge — også for den, du sendte den til.",
+      "retractNoUndoNote": "Dette kan ikke fortrydes.",
+      "retractModerationNote": "Beskeden slettes ikke fra serveren — moderatorer beholder en kopi, så anmeldelser kan behandles.",
+      "retractConfirm": "Slet for alle",
+      "cancel": "Annuller",
+      "retractCancel": "Annuller",
+      "reportCancel": "Annuller"
     },
     "discover": {
       "peopleNearby": "Folk i nærheden",
@@ -441,7 +465,21 @@
       "filterDismissed": "Afvist",
       "resolve": "Løs",
       "dismiss": "Afvis",
-      "reportedBy": "Anmeldt af"
+      "reportedBy": "Anmeldt af",
+      "reportedMessage": "Rapporteret besked",
+      "reportedPost": "Rapporteret opslag",
+      "reporterNote": "Note fra anmelderen",
+      "hiddenByParticipant": "Skjult fra en eller flere deltageres egen visning. Selve beskeden er uændret.",
+      "viewThread": "Se samtalen",
+      "conversationTitle": "Samtale",
+      "backToReports": "Rapporter",
+      "hiddenBadge": "Skjult",
+      "initiatorBadge": "Startede samtalen",
+      "moderationPrivacyNotice": "Privat samtale, vist for at behandle en konkret rapport. Indeholder beskeder, som en deltager har skjult fra sin egen visning.",
+      "deletedMessages": "Slettede beskeder",
+      "deletedMessagesNotice": "Beskeder, som en deltager har skjult fra sin egen visning. Selve beskeden er uændret og stadig synlig for den anden part. At skjule er som regel almindelig oprydning, ikke et tegn på noget.",
+      "hiddenByLabel": "Skjult af",
+      "deletedDescription": "Beskeder, som deltagere har skjult fra deres egen visning."
     },
     "chat": {
       "pendingTitle": "Venter på svar",
@@ -542,5 +580,9 @@
       "blockFailed": "Kunne ikke blokere brugeren."
     },
     "locationName": "Sted"
-  }
+  },
+  "retractTitle": "Slet for alle?",
+  "retractBothParties": "Beskeden skjules for jer begge — også for den, du sendte den til.",
+  "retractUndoNote": "Du kan hente den tilbage i cirka 30 sekunder.",
+  "retractModerationNote": "Beskeden slettes ikke fra serveren — moderatorer beholder en kopi, så anmeldelser kan behandles."
 }

@@ -82,7 +82,10 @@
       "switchToLight": "Cambiar a modo claro",
       "switchToDark": "Cambiar a modo oscuro",
       "users": "Usuarios",
-      "seed": "Datos de prueba"
+      "seed": "Datos de prueba",
+      "moderator": "Moderador",
+      "adminPanel": "Panel de administración",
+      "staffOnly": "Solo para moderadores y administradores"
     },
     "settings": {
       "title": "Ajustes personales",
@@ -362,8 +365,18 @@
       "confirmBan": "¿Banear a @{name}? Se cerrará su sesión y quedará bloqueado.",
       "err": {
         "load": "No se pudieron cargar los usuarios.",
-        "update": "No se pudo actualizar el usuario."
-      }
+        "update": "No se pudo actualizar el usuario.",
+        "role": "No se pudo cambiar el rol.",
+        "roleSelf": "No puedes cambiar tu propio rol.",
+        "lastAdmin": "No se puede quitar al último administrador."
+      },
+      "role": "Rol",
+      "roleUser": "Usuario",
+      "roleModerator": "Moderador",
+      "roleAdmin": "Administrador",
+      "changeRole": "Cambiar rol",
+      "confirmRoleChange": "¿Cambiar el rol de @{name} a {role}?",
+      "roleHistory": "Historial de roles"
     },
     "messages": {
       "title": "Mensajes",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} mensajes sin leer",
       "photoPendingNote": "Podrás enviar fotos cuando se acepte la conversación.",
       "awaitingReplyTitle": "Esperando respuesta",
-      "awaitingReplyBody": "Has enviado tu primer mensaje. Podrás enviar más cuando recibas una respuesta."
+      "awaitingReplyBody": "Has enviado tu primer mensaje. Podrás enviar más cuando recibas una respuesta.",
+      "hideForMe": "Eliminar para mí",
+      "hideForMeConfirm": "¿Ocultar este mensaje de tu vista? Seguirá visible para la otra persona y no se podrá restaurar.",
+      "hideFailed": "No se pudo ocultar el mensaje",
+      "retractTitle": "¿Eliminar para todos?",
+      "retractBothParties": "El mensaje se oculta para los dos — también para la persona a la que se lo enviaste.",
+      "retractNoUndoNote": "Esta acción no se puede deshacer.",
+      "retractModerationNote": "El mensaje no se borra del servidor — los moderadores conservan una copia para poder gestionar los reportes.",
+      "retractConfirm": "Eliminar para todos",
+      "cancel": "Cancelar",
+      "retractCancel": "Cancelar",
+      "reportCancel": "Cancelar"
     },
     "discover": {
       "peopleNearby": "Personas cerca",
@@ -441,7 +465,21 @@
       "filterDismissed": "Descartados",
       "resolve": "Resolver",
       "dismiss": "Descartar",
-      "reportedBy": "Denunciado por"
+      "reportedBy": "Denunciado por",
+      "reportedMessage": "Mensaje denunciado",
+      "reportedPost": "Publicación denunciada",
+      "reporterNote": "Nota de quien denuncia",
+      "hiddenByParticipant": "Oculto de la vista de uno o más participantes. El mensaje en sí no ha cambiado.",
+      "viewThread": "Ver la conversación",
+      "conversationTitle": "Conversación",
+      "backToReports": "Denuncias",
+      "hiddenBadge": "Oculto",
+      "initiatorBadge": "Inició la conversación",
+      "moderationPrivacyNotice": "Conversación privada, mostrada para gestionar una denuncia concreta. Incluye mensajes que un participante ha ocultado de su propia vista.",
+      "deletedMessages": "Mensajes eliminados",
+      "deletedMessagesNotice": "Mensajes que un participante ha ocultado de su propia vista. El mensaje en sí no ha cambiado y sigue visible para la otra parte. Ocultar suele ser simple orden, no indicio de nada.",
+      "hiddenByLabel": "Ocultado por",
+      "deletedDescription": "Mensajes que los participantes han ocultado de su propia vista."
     },
     "chat": {
       "pendingTitle": "Esperando respuesta",
@@ -542,5 +580,9 @@
       "blockFailed": "No se pudo bloquear a este usuario."
     },
     "locationName": "Ubicación"
-  }
+  },
+  "retractTitle": "¿Eliminar para todos?",
+  "retractBothParties": "El mensaje se oculta para los dos — también para la persona a la que se lo enviaste.",
+  "retractUndoNote": "Puedes recuperarlo durante unos 30 segundos.",
+  "retractModerationNote": "El mensaje no se borra del servidor — los moderadores conservan una copia para poder gestionar los reportes."
 }

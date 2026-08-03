@@ -3,65 +3,49 @@
 
 // Thread view — history + send via REST, live receive via Socket.IO.
 //
-// REST:   GET  /chat/conversations/:id/messages?before= -> { messages: [toClient()] }
-//         POST /chat/conversations/:id/messages          -> { message: toClient() }
-//         POST /chat/conversations/:id/read              -> { ok }
-//         POST /chat/conversations/:id/accept            -> { ok, status }
-//         POST /upload (multipart, field "image")        -> { url, publicId }
+// REST:   GET  /chat/conversations/:id/messages?before=
+//         POST /chat/conversations/:id/messages | /read | /accept
+//         POST /chat/messages/:id/hide | /unhide | /retract | /unretract | /report
+//         POST /upload (multipart, field "image")
 //
-// getMessages returns { messages, otherUser, user, conversation } — NOT a bare
-// array. That metadata is load-bearing: an OUTGOING PENDING thread is in
-// neither listConversations() (accepted only) nor listRequests() (incoming
-// only), so the initiator's header fell back to "Unknown user" and every
-// convo-derived flag read undefined. This file accepts either response shape
-// and builds the conversation from the metadata when the lists come up empty.
+// Socket: chat:join {conversationId} -> ack { ok } | { error }   REQUIRED
+//         chat:typing / chat:leave
+//         chat:message            <- toClient(), every message in the room
+//         chat:typing             <- { userId }
+//         chat:accepted           <- { conversationId, status }
+//         chat:message:retracted  <- { conversationId, messageId }
+//         chat:message:unretracted<- { conversationId, messageId }
 //
-// Socket: chat:join {conversationId}  -> ack { ok } | { error }   REQUIRED
-//         chat:typing {conversationId}              (fire and forget)
-//         chat:leave {conversationId}
-//         chat:message  <- Message.toClient(), for EVERY message in the room
-//                          including our own echo
-//         chat:typing   <- { userId }
-//         chat:accepted <- { conversationId, status }
+// WHO AM I — there is no client-side answer here, deliberately. This page used
+// to decode the JWT for `sub`, but the token signs the id as `id`
+// (currentUserId() on the server reads `req.user.id || req.user.sub` for
+// exactly that reason). Reading `.sub` yielded the STRING "undefined", which
+// passed every `!= null` guard and then matched no sender — so every bubble
+// rendered as someone else's and the thread collapsed onto one side.
 //
-// Sending is over REST (sendMessage). It used to be a Socket.IO emit
-// (chat:send / chat:sendImage) awaiting an ack; that server handler was removed
-// and the ack never came back, leaving the send button stuck on "…". The server
-// now persists over REST and broadcasts chat:message to the room, so the bubble
-// still arrives live via the listener below (deduped by id).
+// The fix is not a better guess at the claim name. In a TWO-PERSON thread the
+// server already says who the other participant is, so a message is mine iff
+// its sender is not them. That answer arrives with the messages and cannot
+// drift from them. If group threads land, this becomes wrong and the server
+// should return `me` in the envelope instead.
 //
-// The one-opener SEND GATE is STILL ENFORCED server-side: POST .../messages
-// returns 403 on the initiator's second message while the thread is pending.
-// The composer is therefore locked once the initiator has sent one message, and
-// a 403 from any send that slips through (stale tab, second device, race with
-// an accept) is caught and shown as the same explanation rather than a raw
-// error.
+// THREE WAYS A MESSAGE DISAPPEARS, and the UI must not blur them:
 //
-// IMAGES are still gated on acceptance for both parties. That restriction is
-// explained INLINE above the composer rather than in a hover tooltip: hover
-// does not exist on touch, so on a phone the greyed-out button had no
-// explanation at all. A rule the user cannot discover reads as a broken button.
+//   hide      THEIR message, my view only. They keep their copy — which is
+//             what keeps it reportable and intact for moderation.
+//   retract   MY message, gone for both, no tombstone. CONFIRMED first,
+//             because it reaches into someone else's thread.
+//   removed   a moderator's decision. I see a tombstone if I sent it;
+//             otherwise the server never sends it to me at all.
 //
-// WHO OPENED THE THREAD is decided from the ENDPOINT the conversation came back
-// from, not from the messages. listRequests() is incoming-only, so presence
-// there means we are the recipient; presence in neither list means an outgoing
-// pending thread, which is ours by construction. This replaces a fallback that
-// read the sender of messages[0] and required messages.length > 0 — on an EMPTY
-// pending thread (created the moment you press Message on a profile) that
-// collapsed to false and showed the INITIATOR the recipient's "This person
-// wants to message you" banner, offering an Accept button the server would 400.
-// The server is untouched here on purpose: the mobile app runs on the same API.
+// Hide is NOT confirmed: it affects one view, is undoable without limit, and a
+// modal on every tidy-up would be pure friction. Retract is confirmed because
+// it is the one action whose effect lands on another person.
 //
-// TYPING INDICATOR sits at the BOTTOM of the thread, directly beneath the
-// message list, not under the name in the header. The eye is at the composer
-// while typing, and a two-line header that grows and shrinks nudged the whole
-// thread down on every keystroke. As a sibling BELOW the scroll container it
-// never scrolls out of view.
-//
-// The incoming chat:typing carries no stop event and no boolean — it is a bare
-// ping — so the indicator is expired locally on a 3s timer, and cleared early
-// when a message actually lands (otherwise the dots linger for up to three
-// seconds after the message they were announcing).
+// The confirm text says three true things — gone for both, undoable for a
+// short while, and a copy is retained for moderation. That last one matters:
+// "delete for everyone" otherwise implies the message has left the world, and
+// it has not.
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -73,31 +57,32 @@ import {
   getMessages,
   markRead,
   acceptConversation,
-  listConversations,
-  listRequests,
   sendMessage,
+  hideMessage,
+  unhideMessage,
+  retractMessage,
+  unretractMessage,
+  reportMessage,
 } from "../../../lib/chatApi";
 import { uploadImage } from "../../../lib/profileSettingsApi";
 import { getSocket } from "../../../lib/socket";
 
-// How long a single chat:typing ping keeps the indicator alive. The client
-// emits on every keystroke, so anything above ~2s reads as continuous.
 const TYPING_TTL_MS = 3000;
-// Outbound throttle. One emit per keystroke is a packet per character for no
-// gain — the receiver cannot tell the difference.
 const TYPING_EMIT_EVERY_MS = 1000;
+// Must not exceed RETRACT_UNDO_MS on the server, or the toast offers an undo
+// the API will refuse. Slightly under, to cover the round trip.
+const UNDO_TOAST_MS = 28 * 1000;
 
-// The JWT's `sub` is the user id. Module scope so it can seed useState lazily
-// on first render — meId is needed by the socket listeners, and reading it a
-// tick later meant the first typing ping arrived before we knew who we were.
-function myIdFromToken() {
-  try {
-    const tok = getToken();
-    return String(JSON.parse(atob(tok.split(".")[1])).sub);
-  } catch {
-    return null;
-  }
-}
+// Mirrors REPORT_REASONS in server/src/models/Report.js.
+const REPORT_REASONS = [
+  { value: "spam", key: "reasonSpam" },
+  { value: "harassment", key: "reasonHarassment" },
+  { value: "inappropriate", key: "reasonInappropriate" },
+  { value: "misinformation", key: "reasonMisinformation" },
+  { value: "other", key: "reasonOther" },
+];
+
+const byTime = (a, b) => new Date(a.createdAt) - new Date(b.createdAt);
 
 export default function ThreadPage() {
   const router = useRouter();
@@ -109,24 +94,52 @@ export default function ThreadPage() {
 
   const [ready, setReady] = useState(false);
   const [convo, setConvo] = useState(null);
-  const [meId] = useState(() => myIdFromToken());
+  const [otherUser, setOtherUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
   const [sending, setSending] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [theyreTyping, setTheyreTyping] = useState(false);
-  // Set when the API rejects a send with 403. Belt and braces: the composer is
-  // already locked by the derived check below, so this only fires if the local
-  // view of the thread is stale.
+  const [busyId, setBusyId] = useState(null);
+  const [reportFor, setReportFor] = useState(null);
+  // The message awaiting retract confirmation. Held whole, so the dialog can
+  // show what is about to go.
+  const [retractFor, setRetractFor] = useState(null);
+  // { kind: 'hide' | 'retract', message } — holds the removed message so undo
+  // can put it straight back without a refetch.
+  const [undo, setUndo] = useState(null);
   const [gateHit, setGateHit] = useState(false);
+
   const bottomRef = useRef(null);
   const typingTimer = useRef(null);
+  const undoTimer = useRef(null);
   const lastTypingEmit = useRef(0);
+
+  // The one identity fact this page needs. Everything else follows from it.
+  const otherId = otherUser ? String(otherUser.id ?? otherUser._id) : null;
+  const isMine = useCallback(
+    (msg) => {
+      const sid = String(msg?.sender?.id ?? msg?.sender ?? "");
+      // Before otherUser loads, claim nothing rather than claiming everything.
+      return otherId ? sid !== otherId : false;
+    },
+    [otherId],
+  );
 
   const scrollToBottom = useCallback(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
+
+  const load = useCallback(async () => {
+    const raw = await getMessages(id);
+    const list = Array.isArray(raw) ? raw : raw?.messages || [];
+    const meta = Array.isArray(raw) ? null : raw;
+    setMessages(list);
+    setOtherUser(meta?.otherUser || null);
+    setConvo(meta?.conversation || null);
+  }, [id]);
 
   useEffect(() => {
     if (!getToken()) {
@@ -137,42 +150,8 @@ export default function ThreadPage() {
 
     (async () => {
       try {
-        const [convos, reqs, raw] = await Promise.all([
-          listConversations(),
-          listRequests(),
-          getMessages(id),
-        ]);
+        await load();
         if (cancelled) return;
-
-        // Tolerate both shapes: a bare array from an older chatApi, or
-        // the full { messages, otherUser, conversation } envelope.
-        const list = Array.isArray(raw) ? raw : raw?.messages || [];
-        const meta = Array.isArray(raw) ? null : raw;
-
-        // Which endpoint returned it IS the answer to "who opened this".
-        // listRequests() is incoming-only, so a hit there means we are the
-        // recipient. Recorded on the conversation because the lists are not
-        // refetched later and this cannot be recomputed at render time.
-        const inRequests = reqs.some((x) => String(x.id) === id);
-        const fromLists =
-          [...convos, ...reqs].find((x) => String(x.id) === id) || null;
-
-        // Outgoing pending threads are in neither list. Rebuild enough of
-        // the conversation from the metadata to render the header and
-        // drive the send gate.
-        const fromMeta =
-          meta && (meta.conversation || meta.otherUser)
-            ? {
-                id,
-                ...(meta.conversation || {}),
-                otherUser:
-                  meta.otherUser || meta.conversation?.otherUser || null,
-              }
-            : null;
-
-        const base = fromLists || fromMeta;
-        setConvo(base ? { ...base, cameFromRequests: inRequests } : null);
-        setMessages(list);
         markRead(id)
           .then(() => window.dispatchEvent(new Event("chat:read")))
           .catch(() => {});
@@ -186,7 +165,7 @@ export default function ThreadPage() {
     return () => {
       cancelled = true;
     };
-  }, [id, router, m.loadFailed]);
+  }, [id, router, load, m.loadFailed]);
 
   useEffect(() => {
     const socket = getSocket();
@@ -198,31 +177,40 @@ export default function ThreadPage() {
       if (ack?.error) setError(ack.error || m.joinFailed);
     });
 
-    const clearTyping = () => {
-      clearTimeout(typingTimer.current);
-      setTheyreTyping(false);
-    };
-
-    // The server echoes our own sends into the room, so this covers both
-    // directions. Dedupe by id.
     const onMessage = (msg) => {
       if (String(msg.conversationId) !== id) return;
-      // Their message arrived — whatever they were typing, they have sent it.
-      if (meId != null && String(msg.sender?.id) !== meId) clearTyping();
+      const theirs = otherId && String(msg.sender?.id) === otherId;
+
+      if (theirs) {
+        clearTimeout(typingTimer.current);
+        setTheyreTyping(false);
+        // Their reply accepts the thread server-side, so the gate is gone.
+        setConvo((prev) =>
+          prev && prev.status === "pending"
+            ? {
+                ...prev,
+                status: "accepted",
+                canSend: true,
+                sendBlockedReason: null,
+              }
+            : prev,
+        );
+        setGateHit(false);
+      }
+
       setMessages((prev) =>
         prev.some((x) => String(x.id) === String(msg.id))
           ? prev
-          : [...prev, msg],
+          : [...prev, msg].sort(byTime),
       );
     };
 
-    // A bare ping: no boolean, no stop event, sometimes no conversationId.
-    // Guard on both fields when present and expire on a timer.
     const onTyping = (payload) => {
       const from = payload?.userId;
       const convoId = payload?.conversationId;
       if (convoId != null && String(convoId) !== id) return;
-      if (from != null && meId != null && String(from) === meId) return;
+      // Only the other participant's ping counts. Without otherId yet, ignore.
+      if (!otherId || (from != null && String(from) !== otherId)) return;
 
       setTheyreTyping(true);
       clearTimeout(typingTimer.current);
@@ -232,41 +220,71 @@ export default function ThreadPage() {
       );
     };
 
-    // The other party accepted. Flip local status so the header/labels update.
     const onAccepted = ({ conversationId, status }) => {
       if (String(conversationId) !== id) return;
       setConvo((prev) =>
-        prev ? { ...prev, status: status || "accepted" } : prev,
+        prev
+          ? {
+              ...prev,
+              status: status || "accepted",
+              canSend: true,
+              sendBlockedReason: null,
+            }
+          : prev,
       );
-      setGateHit(false); // the gate is gone; unlock without a reload
+      setGateHit(false);
+    };
+
+    // Someone retracted. Drop it — this reaches BOTH parties, including the
+    // sender's other tabs.
+    const onRetracted = ({ conversationId, messageId }) => {
+      if (String(conversationId) !== id) return;
+      setMessages((prev) =>
+        prev.filter((x) => String(x.id) !== String(messageId)),
+      );
+    };
+
+    // Undone. The recipient's client discarded the message and has no copy to
+    // restore, so refetch rather than trying to reconstruct it.
+    const onUnretracted = ({ conversationId }) => {
+      if (String(conversationId) !== id) return;
+      load().catch(() => {});
     };
 
     socket.on("chat:message", onMessage);
     socket.on("chat:typing", onTyping);
     socket.on("chat:accepted", onAccepted);
+    socket.on("chat:message:retracted", onRetracted);
+    socket.on("chat:message:unretracted", onUnretracted);
 
     return () => {
       socket.off("chat:message", onMessage);
       socket.off("chat:typing", onTyping);
       socket.off("chat:accepted", onAccepted);
+      socket.off("chat:message:retracted", onRetracted);
+      socket.off("chat:message:unretracted", onUnretracted);
       socket.emit("chat:leave", { conversationId: id });
       clearTimeout(typingTimer.current);
     };
-  }, [id, meId, m.joinFailed]);
+  }, [id, otherId, load, m.joinFailed]);
 
-  // Keep the newest bubble in view. The indicator mounting below the list
-  // shrinks the scroll box slightly, so re-run on it too.
   useEffect(() => {
     scrollToBottom();
   }, [messages, theyreTyping, scrollToBottom]);
 
-  // Throttled outbound ping. Silently no-ops when the socket is down; typing is
-  // the one thing that is fine to lose.
+  useEffect(() => () => clearTimeout(undoTimer.current), []);
+
   function pingTyping() {
     const now = Date.now();
     if (now - lastTypingEmit.current < TYPING_EMIT_EVERY_MS) return;
     lastTypingEmit.current = now;
     getSocket()?.emit("chat:typing", { conversationId: id });
+  }
+
+  function offerUndo(kind, message) {
+    clearTimeout(undoTimer.current);
+    setUndo({ kind, message });
+    undoTimer.current = setTimeout(() => setUndo(null), UNDO_TOAST_MS);
   }
 
   async function send() {
@@ -275,21 +293,28 @@ export default function ThreadPage() {
     setSending(true);
     setError("");
     try {
-      setText(""); // clear optimistically; the bubble arrives via chat:message
+      setText("");
       const { message } = await sendMessage(id, { text: body });
-      // Render immediately in case the socket echo is slow/absent (deduped).
       if (message) {
         setMessages((prev) =>
           prev.some((x) => String(x.id) === String(message.id))
             ? prev
-            : [...prev, message],
+            : [...prev, message].sort(byTime),
         );
       }
+      // The opener is used. The server would say the same on the next load;
+      // updating locally locks the composer immediately.
+      setConvo((prev) =>
+        prev &&
+        prev.status === "pending" &&
+        otherId &&
+        String(prev.initiator) !== otherId
+          ? { ...prev, canSend: false, sendBlockedReason: "chatPendingLimit" }
+          : prev,
+      );
     } catch (e) {
-      setText(body); // put it back so the typing isn't lost
-      // 403 here means the one-opener gate, not a generic failure. Show the
-      // explanation instead of the raw server message.
-      if (e?.status === 403 || /403/.test(String(e?.message))) {
+      setText(body);
+      if (e?.status === 403) {
         setGateHit(true);
         setError("");
       } else {
@@ -300,7 +325,6 @@ export default function ThreadPage() {
     }
   }
 
-  // Two steps: POST /upload for a Cloudinary URL, then sendMessage with it.
   async function sendImage(file) {
     setUploading(true);
     setError("");
@@ -311,7 +335,7 @@ export default function ThreadPage() {
         setMessages((prev) =>
           prev.some((x) => String(x.id) === String(message.id))
             ? prev
-            : [...prev, message],
+            : [...prev, message].sort(byTime),
         );
       }
     } catch (e) {
@@ -321,12 +345,100 @@ export default function ThreadPage() {
     }
   }
 
+  // THEIR message, my view only. No confirmation: one view, undoable without
+  // limit. Removed from local state only after the server confirms, so a
+  // failure leaves the thread as it was.
+  async function hide(msg) {
+    if (busyId) return;
+    setBusyId(msg.id);
+    setError("");
+    try {
+      await hideMessage(msg.id);
+      setMessages((prev) =>
+        prev.filter((x) => String(x.id) !== String(msg.id)),
+      );
+      offerUndo("hide", msg);
+    } catch (e) {
+      setError(e.message || m.hideFailed);
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  // MY message, gone for both. Reached only through the confirm dialog.
+  async function retract(msg) {
+    setRetractFor(null);
+    if (busyId) return;
+    setBusyId(msg.id);
+    setError("");
+    try {
+      await retractMessage(msg.id);
+      setMessages((prev) =>
+        prev.filter((x) => String(x.id) !== String(msg.id)),
+      );
+      offerUndo("retract", msg);
+    } catch (e) {
+      // 409 = already reported. The server sends a translation key, not a
+      // sentence, because "someone has reported this" is a thing the user
+      // needs told clearly rather than a raw failure.
+      setError(
+        e?.status === 409
+          ? m[e.message] || m.retractReported
+          : e.message || m.retractFailed,
+      );
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function doUndo() {
+    if (!undo) return;
+    const { kind, message } = undo;
+    clearTimeout(undoTimer.current);
+    setUndo(null);
+    setError("");
+    try {
+      if (kind === "hide") await unhideMessage(message.id);
+      else await unretractMessage(message.id);
+      setMessages((prev) =>
+        prev.some((x) => String(x.id) === String(message.id))
+          ? prev
+          : [...prev, message].sort(byTime),
+      );
+    } catch (e) {
+      // 409 = the window closed between the toast rendering and the click.
+      setError(
+        e?.status === 409
+          ? m[e.message] || m.undoWindowClosed
+          : e.message || m.undoFailed,
+      );
+    }
+  }
+
+  async function submitReport({ reason, note }) {
+    try {
+      await reportMessage(reportFor, { reason, note });
+      setReportFor(null);
+      setNotice(m.reportSent);
+    } catch (e) {
+      setError(e.message || m.reportFailed);
+      setReportFor(null);
+    }
+  }
+
   async function accept() {
     setError("");
     try {
       const r = await acceptConversation(id);
       setConvo((prev) =>
-        prev ? { ...prev, status: r.status || "accepted" } : prev,
+        prev
+          ? {
+              ...prev,
+              status: r.status || "accepted",
+              canSend: true,
+              sendBlockedReason: null,
+            }
+          : prev,
       );
     } catch (e) {
       setError(e.message || m.acceptFailed);
@@ -341,45 +453,19 @@ export default function ThreadPage() {
     );
   }
 
-  const u = convo?.otherUser;
+  const u = otherUser;
   const name = u?.displayName || u?.username || m.unknownUser;
   const avatar = u?.avatarUrl || u?.photos?.[0]?.url || "";
 
-  // Precedence: an explicit server flag, then the endpoint the thread came back
-  // from, then whoever sent the first message. The last fallback used to stand
-  // alone and required messages.length > 0, so an EMPTY pending thread read as
-  // "not the initiator" and showed us the recipient's banner.
+  // Derived from otherUser for the same reason as isMine: no token decoding.
   const isInitiator =
-    convo?.isInitiator ??
-    (convo?.cameFromRequests
-      ? false
-      : messages.length > 0
-        ? String(messages[0]?.sender?.id) === meId
-        : true);
+    convo != null && otherId != null && String(convo.initiator) !== otherId;
 
-  // Only the RECIPIENT can accept — the server 400s the initiator, so don't
-  // offer them a button that always fails. The messages.length guard is belt
-  // and braces: there is nothing to accept on an empty thread, so even if both
-  // checks above read wrong the banner cannot appear.
   const showAccept =
     convo?.status === "pending" && !isInitiator && messages.length > 0;
-
-  // Images still require an accepted conversation for BOTH parties — an
-  // unsolicited image in a location-based app is a known abuse vector.
   const canSendImage = convo?.status === "accepted";
-  // Only worth explaining once the thread exists and the composer is in use.
   const showPhotoNote = Boolean(convo) && !canSendImage;
-
-  // The one-opener gate: the initiator may send once, then waits. Derived
-  // locally so the composer locks BEFORE a doomed request rather than after a
-  // 403 — a message that types fine and then bounces loses the user's words
-  // and reads as a bug. Empty thread => iHaveSent is false => composer open,
-  // which is what we want: the first message must still be sendable.
-  const iHaveSent =
-    meId != null && messages.some((msg) => String(msg.sender?.id) === meId);
-  const awaitingReply =
-    convo?.status === "pending" && Boolean(isInitiator) && iHaveSent;
-  const composerLocked = awaitingReply || gateHit;
+  const composerLocked = convo?.canSend === false || gateHit;
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
@@ -413,8 +499,6 @@ export default function ThreadPage() {
             ) : null}
           </div>
           <div className="min-w-0">
-            {/* Name only. The typing line used to live here and reflowed the
-                whole thread on every keystroke — it is at the bottom now. */}
             {u?.username ? (
               <Link
                 href={`/profile/${encodeURIComponent(u.username)}`}
@@ -433,6 +517,12 @@ export default function ThreadPage() {
         {error ? (
           <p className="mb-3 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300">
             {error}
+          </p>
+        ) : null}
+
+        {notice ? (
+          <p className="mb-3 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:text-emerald-300">
+            {notice}
           </p>
         ) : null}
 
@@ -461,40 +551,34 @@ export default function ThreadPage() {
               <Bubble
                 key={msg.id}
                 msg={msg}
-                mine={meId != null && String(msg.sender?.id) === meId}
+                m={m}
+                mine={isMine(msg)}
+                busy={String(busyId) === String(msg.id)}
+                onHide={hide}
+                onRetract={setRetractFor}
+                onReport={setReportFor}
               />
             ))
           )}
           <div ref={bottomRef} />
         </div>
 
-        {/* Typing, at the foot of the thread. Outside the scroll container on
-            purpose: inside, it would drift off-screen the moment the user
-            scrolled up to reread something. */}
         <TypingDots visible={theyreTyping} label={m.typing} />
 
-        {/* The one-opener gate, explained where the user is about to type.
-            Slate rather than red: the send did not fail, the feature works
-            this way. */}
         {composerLocked ? (
           <div
             id="send-gate-note"
             className="mt-3 rounded-xl border border-slate-300 bg-white px-4 py-3 dark:border-slate-800 dark:bg-[#131c26]"
           >
             <p className="text-[15px] font-bold text-slate-900 dark:text-white">
-              {m.awaitingReplyTitle || "Waiting for a reply"}
+              {m.awaitingReplyTitle}
             </p>
             <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-              {m.awaitingReplyBody ||
-                "You have sent your first message. You can send more once you get a reply."}
+              {m[convo?.sendBlockedReason] || m.awaitingReplyBody}
             </p>
           </div>
         ) : null}
 
-        {/* Why the photo button is greyed out. Inline and always visible —
-            the hover tooltip this replaces showed nothing on touch devices,
-            where most of these conversations happen. Slate, not amber:
-            nothing is broken, this is how the feature works. */}
         {showPhotoNote && !composerLocked ? (
           <p
             id="photo-gate-note"
@@ -557,13 +641,130 @@ export default function ThreadPage() {
           </button>
         </div>
       </div>
+
+      {retractFor ? (
+        <RetractDialog
+          m={m}
+          message={retractFor}
+          onCancel={() => setRetractFor(null)}
+          onConfirm={() => retract(retractFor)}
+        />
+      ) : null}
+
+      {undo ? (
+        <UndoToast
+          m={m}
+          kind={undo.kind}
+          onUndo={doUndo}
+          onDismiss={() => {
+            clearTimeout(undoTimer.current);
+            setUndo(null);
+          }}
+        />
+      ) : null}
+
+      {reportFor ? (
+        <ReportDialog
+          m={m}
+          onCancel={() => setReportFor(null)}
+          onSubmit={submitReport}
+        />
+      ) : null}
     </div>
   );
 }
 
-// Three bouncing dots plus the existing m.typing string — no new locale keys.
-// aria-live="polite" so a screen reader announces it once without stealing
-// focus; the dots themselves are hidden from the tree as pure decoration.
+// Three true statements, in order of what the user most needs to know:
+// it goes for the other person too, it can be undone briefly, and a copy is
+// kept for moderation.
+//
+// That last line is not boilerplate. "Delete for everyone" implies the message
+// has left the world; it has not, and someone deciding whether to retract
+// something sensitive is entitled to know that before they act rather than
+// after.
+//
+// A preview of the message is shown so there is no doubt which one is going —
+// the × sits on a hover row and mis-clicks are easy.
+function RetractDialog({ m, message, onCancel, onConfirm }) {
+  const preview = message.text || (message.imageUrl ? m.imageMessage : "");
+
+  return (
+    <div
+      className="fixed inset-0 z-40 grid place-items-center bg-slate-900/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={m.retractTitle}
+    >
+      <div className="w-full max-w-sm rounded-2xl border border-slate-300 bg-white p-5 shadow-lg dark:border-slate-800 dark:bg-[#131c26]">
+        <p className="text-[15px] font-bold text-slate-900 dark:text-white">
+          {m.retractTitle}
+        </p>
+
+        {preview ? (
+          <p className="mt-3 max-h-24 overflow-hidden rounded-xl bg-slate-100 px-3 py-2 text-sm italic text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+            {preview}
+          </p>
+        ) : null}
+
+        <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          {m.retractBothParties}
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          {m.retractUndoNote}
+        </p>
+        <p className="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-500">
+          {m.retractModerationNote}
+        </p>
+
+        <div className="mt-4 flex justify-end gap-2">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            {m.reportCancel}
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            className="rounded-lg bg-red-500 px-3.5 py-2 text-sm font-semibold text-white transition hover:brightness-105"
+          >
+            {m.retractConfirm}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// The only affordance that will ever tell the user undo exists — nothing lists
+// hidden or retracted messages. Fixed to the bottom so it does not shift the
+// thread, and dismissible so it never sits in the way of the composer.
+function UndoToast({ m, kind, onUndo, onDismiss }) {
+  return (
+    <div className="pointer-events-none fixed inset-x-0 bottom-6 z-30 flex justify-center px-4">
+      <div className="pointer-events-auto flex items-center gap-4 rounded-xl bg-slate-900 px-4 py-3 text-sm text-white shadow-lg dark:bg-slate-800">
+        <span>{kind === "retract" ? m.messageDeleted : m.messageHidden}</span>
+        <button
+          type="button"
+          onClick={onUndo}
+          className="font-bold text-emerald-400 transition hover:text-emerald-300"
+        >
+          {m.undo}
+        </button>
+        <button
+          type="button"
+          onClick={onDismiss}
+          aria-label={m.dismiss}
+          className="text-slate-400 transition hover:text-white"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function TypingDots({ visible, label }) {
   if (!visible) return null;
 
@@ -588,10 +789,54 @@ function TypingDots({ visible, label }) {
   );
 }
 
-// imageUrl is omitted (not null) on text messages, so truthiness is enough.
-function Bubble({ msg, mine }) {
+// Actions differ by side, and the difference is not cosmetic:
+//
+//   mine   → retract (gone for both, via the confirm dialog)
+//   theirs → hide (my view only, immediate) + report
+//
+// Offering both on one bubble would invite someone to "delete" another
+// person's message and believe it gone for them too.
+//
+// A REMOVED message only ever reaches its sender — the server does not send it
+// to anyone else — and carries no text, so it renders as a tombstone with no
+// actions at all.
+function Bubble({ msg, mine, m, busy, onHide, onRetract, onReport }) {
+  if (msg.removed) {
+    return (
+      <div className={`flex ${mine ? "justify-end" : "justify-start"}`}>
+        <div className="max-w-[75%] rounded-2xl border border-dashed border-slate-300 px-4 py-2.5 dark:border-slate-700">
+          <p className="text-[13px] italic text-slate-400 dark:text-slate-500">
+            {m.removedByModerator}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const actions = (
+    <span className="flex shrink-0 items-center">
+      {!mine ? (
+        <IconButton
+          label={m.reportMessage}
+          glyph="⚑"
+          onClick={() => onReport(msg.id)}
+        />
+      ) : null}
+      <IconButton
+        label={mine ? m.retract : m.hideForMe}
+        glyph={busy ? "…" : "×"}
+        busy={busy}
+        onClick={() => (mine ? onRetract(msg) : onHide(msg))}
+      />
+    </span>
+  );
+
   return (
-    <div className={`flex ${mine ? "justify-end" : "justify-start"}`}>
+    <div
+      className={`group flex items-center gap-1 ${mine ? "justify-end" : "justify-start"}`}
+    >
+      {mine ? actions : null}
+
       <div
         className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${
           mine
@@ -617,6 +862,109 @@ function Bubble({ msg, mine }) {
             minute: "2-digit",
           })}
         </p>
+      </div>
+
+      {!mine ? actions : null}
+    </div>
+  );
+}
+
+// Faint but present on touch, revealed on hover on pointer devices. Hidden
+// until hover would make it undiscoverable on a phone, where most of these
+// conversations happen — the same mistake the photo-gate tooltip made.
+function IconButton({ label, glyph, busy, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={busy}
+      aria-label={label}
+      title={label}
+      className="grid h-7 w-7 shrink-0 place-items-center rounded-full text-sm text-slate-400 opacity-50 transition hover:bg-slate-100 hover:text-slate-600 focus:opacity-100 disabled:opacity-30 sm:opacity-0 sm:group-hover:opacity-100 dark:hover:bg-slate-800 dark:hover:text-slate-300"
+    >
+      {glyph}
+    </button>
+  );
+}
+
+// A reason is REQUIRED — the server rejects anything outside REPORT_REASONS,
+// and an unlabelled report is close to useless to a moderator. The note is
+// optional and capped server-side at 500.
+//
+// No <form>: submission is an explicit button, so a stray Enter in the
+// textarea cannot file a report by accident.
+function ReportDialog({ m, onCancel, onSubmit }) {
+  const [reason, setReason] = useState("");
+  const [note, setNote] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  async function submit() {
+    if (!reason || busy) return;
+    setBusy(true);
+    await onSubmit({ reason, note });
+    setBusy(false);
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-40 grid place-items-center bg-slate-900/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={m.reportTitle}
+    >
+      <div className="w-full max-w-sm rounded-2xl border border-slate-300 bg-white p-5 shadow-lg dark:border-slate-800 dark:bg-[#131c26]">
+        <p className="text-[15px] font-bold text-slate-900 dark:text-white">
+          {m.reportTitle}
+        </p>
+
+        <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          {m.reportReason}
+        </p>
+
+        <div className="mt-2 space-y-1">
+          {REPORT_REASONS.map((r) => (
+            <label
+              key={r.value}
+              className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2 py-1.5 text-sm text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+            >
+              <input
+                type="radio"
+                name="report-reason"
+                value={r.value}
+                checked={reason === r.value}
+                onChange={() => setReason(r.value)}
+                className="accent-emerald-500"
+              />
+              {m[r.key] || r.value}
+            </label>
+          ))}
+        </div>
+
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value.slice(0, 500))}
+          placeholder={m.reportNotePlaceholder}
+          rows={3}
+          className="mt-3 w-full resize-none rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-emerald-500 dark:border-slate-700 dark:bg-[#0b1016]"
+        />
+
+        <div className="mt-4 flex justify-end gap-2">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="rounded-lg border border-slate-300 px-3.5 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            {m.reportCancel}
+          </button>
+          <button
+            type="button"
+            onClick={submit}
+            disabled={!reason || busy}
+            className="rounded-lg bg-red-500 px-3.5 py-2 text-sm font-semibold text-white transition hover:brightness-105 disabled:opacity-50"
+          >
+            {busy ? "…" : m.reportSubmit}
+          </button>
+        </div>
       </div>
     </div>
   );

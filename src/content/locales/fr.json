@@ -82,7 +82,10 @@
       "switchToLight": "Passer en mode clair",
       "switchToDark": "Passer en mode sombre",
       "users": "Utilisateurs",
-      "seed": "Données de test"
+      "seed": "Données de test",
+      "moderator": "Modérateur",
+      "adminPanel": "Panneau d'administration",
+      "staffOnly": "Réservé aux modérateurs et administrateurs"
     },
     "settings": {
       "title": "Paramètres personnels",
@@ -362,8 +365,18 @@
       "confirmBan": "Bannir @{name} ? Il sera déconnecté et bloqué de l'application.",
       "err": {
         "load": "Impossible de charger les utilisateurs.",
-        "update": "Impossible de mettre à jour l'utilisateur."
-      }
+        "update": "Impossible de mettre à jour l'utilisateur.",
+        "role": "Impossible de changer le rôle.",
+        "roleSelf": "Vous ne pouvez pas changer votre propre rôle.",
+        "lastAdmin": "Impossible de retirer le dernier administrateur."
+      },
+      "role": "Rôle",
+      "roleUser": "Utilisateur",
+      "roleModerator": "Modérateur",
+      "roleAdmin": "Administrateur",
+      "changeRole": "Changer le rôle",
+      "confirmRoleChange": "Changer le rôle de @{name} en {role} ?",
+      "roleHistory": "Historique des rôles"
     },
     "messages": {
       "title": "Messages",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} messages non lus",
       "photoPendingNote": "Vous pourrez envoyer des photos une fois la conversation acceptée.",
       "awaitingReplyTitle": "En attente d'une réponse",
-      "awaitingReplyBody": "Vous avez envoyé votre premier message. Vous pourrez en envoyer d'autres dès que vous recevrez une réponse."
+      "awaitingReplyBody": "Vous avez envoyé votre premier message. Vous pourrez en envoyer d'autres dès que vous recevrez une réponse.",
+      "hideForMe": "Supprimer pour moi",
+      "hideForMeConfirm": "Masquer ce message de votre vue ? Il reste visible pour l'autre personne et ne peut pas être restauré.",
+      "hideFailed": "Impossible de masquer le message",
+      "retractTitle": "Supprimer pour tout le monde ?",
+      "retractBothParties": "Le message sera masqué pour vous deux — y compris pour la personne à qui vous l'avez envoyé.",
+      "retractNoUndoNote": "Cette action est irréversible.",
+      "retractModerationNote": "Le message n'est pas effacé du serveur — les modérateurs en conservent une copie afin de pouvoir traiter les signalements.",
+      "retractConfirm": "Supprimer pour tous",
+      "cancel": "Annuler",
+      "retractCancel": "Annuler",
+      "reportCancel": "Annuler"
     },
     "discover": {
       "peopleNearby": "Personnes à proximité",
@@ -441,7 +465,21 @@
       "filterDismissed": "Rejeté",
       "resolve": "Résoudre",
       "dismiss": "Rejeter",
-      "reportedBy": "Signalé par"
+      "reportedBy": "Signalé par",
+      "reportedMessage": "Message signalé",
+      "reportedPost": "Publication signalée",
+      "reporterNote": "Note de l'auteur du signalement",
+      "hiddenByParticipant": "Masqué dans la vue d'un ou plusieurs participants. Le message lui-même est inchangé.",
+      "viewThread": "Voir la conversation",
+      "conversationTitle": "Conversation",
+      "backToReports": "Signalements",
+      "hiddenBadge": "Masqué",
+      "initiatorBadge": "A ouvert la conversation",
+      "moderationPrivacyNotice": "Conversation privée, affichée pour traiter un signalement précis. Inclut les messages qu'un participant a masqués de sa propre vue.",
+      "deletedMessages": "Messages supprimés",
+      "deletedMessagesNotice": "Messages qu'un participant a masqués de sa propre vue. Le message lui-même est inchangé et reste visible pour l'autre personne. Masquer relève le plus souvent du simple rangement, pas d'un indice.",
+      "hiddenByLabel": "Masqué par",
+      "deletedDescription": "Messages que des participants ont masqués de leur propre vue."
     },
     "chat": {
       "pendingTitle": "En attente d'une réponse",
@@ -542,5 +580,9 @@
       "blockFailed": "Impossible de bloquer cet utilisateur."
     },
     "locationName": "Lieu"
-  }
+  },
+  "retractTitle": "Supprimer pour tout le monde ?",
+  "retractBothParties": "Le message sera masqué pour vous deux — y compris pour la personne à qui vous l'avez envoyé.",
+  "retractUndoNote": "Vous pouvez le récupérer pendant environ 30 secondes.",
+  "retractModerationNote": "Le message n'est pas effacé du serveur — les modérateurs en conservent une copie afin de pouvoir traiter les signalements."
 }

@@ -82,7 +82,10 @@
       "switchToLight": "Passa alla modalità chiara",
       "switchToDark": "Passa alla modalità scura",
       "users": "Utenti",
-      "seed": "Dati di test"
+      "seed": "Dati di test",
+      "moderator": "Moderatore",
+      "adminPanel": "Pannello di amministrazione",
+      "staffOnly": "Solo per moderatori e amministratori"
     },
     "settings": {
       "title": "Impostazioni personali",
@@ -362,8 +365,18 @@
       "confirmBan": "Bannare @{name}? Verrà disconnesso e bloccato dall'app.",
       "err": {
         "load": "Impossibile caricare gli utenti.",
-        "update": "Impossibile aggiornare l'utente."
-      }
+        "update": "Impossibile aggiornare l'utente.",
+        "role": "Impossibile cambiare il ruolo.",
+        "roleSelf": "Non puoi cambiare il tuo ruolo.",
+        "lastAdmin": "Impossibile rimuovere l'ultimo amministratore."
+      },
+      "role": "Ruolo",
+      "roleUser": "Utente",
+      "roleModerator": "Moderatore",
+      "roleAdmin": "Amministratore",
+      "changeRole": "Cambia ruolo",
+      "confirmRoleChange": "Cambiare il ruolo di @{name} in {role}?",
+      "roleHistory": "Cronologia dei ruoli"
     },
     "messages": {
       "title": "Messaggi",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} messaggi non letti",
       "photoPendingNote": "Potrai inviare foto quando la conversazione sarà accettata.",
       "awaitingReplyTitle": "In attesa di una risposta",
-      "awaitingReplyBody": "Hai inviato il tuo primo messaggio. Potrai inviarne altri quando riceverai una risposta."
+      "awaitingReplyBody": "Hai inviato il tuo primo messaggio. Potrai inviarne altri quando riceverai una risposta.",
+      "hideForMe": "Elimina per me",
+      "hideForMeConfirm": "Nascondere questo messaggio dalla tua vista? Resta visibile all'altra persona e non può essere ripristinato.",
+      "hideFailed": "Impossibile nascondere il messaggio",
+      "retractTitle": "Eliminare per tutti?",
+      "retractBothParties": "Il messaggio viene nascosto a entrambi — anche alla persona a cui l'hai inviato.",
+      "retractNoUndoNote": "L'operazione non può essere annullata.",
+      "retractModerationNote": "Il messaggio non viene cancellato dal server — i moderatori ne conservano una copia per poter gestire le segnalazioni.",
+      "retractConfirm": "Elimina per tutti",
+      "cancel": "Annulla",
+      "retractCancel": "Annulla",
+      "reportCancel": "Annulla"
     },
     "discover": {
       "peopleNearby": "Persone nelle vicinanze",
@@ -441,7 +465,21 @@
       "filterDismissed": "Respinto",
       "resolve": "Risolvi",
       "dismiss": "Respingi",
-      "reportedBy": "Segnalato da"
+      "reportedBy": "Segnalato da",
+      "reportedMessage": "Messaggio segnalato",
+      "reportedPost": "Post segnalato",
+      "reporterNote": "Nota di chi ha segnalato",
+      "hiddenByParticipant": "Nascosto dalla vista di uno o più partecipanti. Il messaggio in sé è invariato.",
+      "viewThread": "Vedi la conversazione",
+      "conversationTitle": "Conversazione",
+      "backToReports": "Segnalazioni",
+      "hiddenBadge": "Nascosto",
+      "initiatorBadge": "Ha aperto la conversazione",
+      "moderationPrivacyNotice": "Conversazione privata, mostrata per gestire una segnalazione specifica. Include messaggi che un partecipante ha nascosto dalla propria vista.",
+      "deletedMessages": "Messaggi eliminati",
+      "deletedMessagesNotice": "Messaggi che un partecipante ha nascosto dalla propria vista. Il messaggio in sé è invariato e resta visibile all'altra persona. Nascondere è di solito ordinaria pulizia, non indizio di qualcosa.",
+      "hiddenByLabel": "Nascosto da",
+      "deletedDescription": "Messaggi che i partecipanti hanno nascosto dalla propria vista."
     },
     "chat": {
       "pendingTitle": "In attesa di una risposta",
@@ -542,5 +580,9 @@
       "blockFailed": "Impossibile bloccare questo utente."
     },
     "locationName": "Località"
-  }
+  },
+  "retractTitle": "Eliminare per tutti?",
+  "retractBothParties": "Il messaggio viene nascosto a entrambi — anche alla persona a cui l'hai inviato.",
+  "retractUndoNote": "Puoi recuperarlo per circa 30 secondi.",
+  "retractModerationNote": "Il messaggio non viene cancellato dal server — i moderatori ne conservano una copia per poter gestire le segnalazioni."
 }

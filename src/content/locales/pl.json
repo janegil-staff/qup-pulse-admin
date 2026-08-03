@@ -82,7 +82,10 @@
       "switchToLight": "Przełącz na tryb jasny",
       "switchToDark": "Przełącz na tryb ciemny",
       "users": "Użytkownicy",
-      "seed": "Dane testowe"
+      "seed": "Dane testowe",
+      "moderator": "Moderator",
+      "adminPanel": "Panel administracyjny",
+      "staffOnly": "Tylko dla moderatorów i administratorów"
     },
     "settings": {
       "title": "Ustawienia osobiste",
@@ -362,8 +365,18 @@
       "confirmBan": "Zbanować @{name}? Zostanie wylogowany i zablokowany.",
       "err": {
         "load": "Nie udało się wczytać użytkowników.",
-        "update": "Nie udało się zaktualizować użytkownika."
-      }
+        "update": "Nie udało się zaktualizować użytkownika.",
+        "role": "Nie udało się zmienić roli.",
+        "roleSelf": "Nie możesz zmienić własnej roli.",
+        "lastAdmin": "Nie można usunąć ostatniego administratora."
+      },
+      "role": "Rola",
+      "roleUser": "Użytkownik",
+      "roleModerator": "Moderator",
+      "roleAdmin": "Administrator",
+      "changeRole": "Zmień rolę",
+      "confirmRoleChange": "Zmienić rolę @{name} na {role}?",
+      "roleHistory": "Historia ról"
     },
     "messages": {
       "title": "Wiadomości",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} nieprzeczytanych wiadomości",
       "photoPendingNote": "Zdjęcia możesz wysyłać po zaakceptowaniu rozmowy.",
       "awaitingReplyTitle": "Czekamy na odpowiedź",
-      "awaitingReplyBody": "Pierwsza wiadomość została wysłana. Kolejne możesz wysłać po otrzymaniu odpowiedzi."
+      "awaitingReplyBody": "Pierwsza wiadomość została wysłana. Kolejne możesz wysłać po otrzymaniu odpowiedzi.",
+      "hideForMe": "Usuń dla mnie",
+      "hideForMeConfirm": "Ukryć tę wiadomość w Twoim widoku? Pozostanie widoczna dla drugiej osoby i nie będzie można jej przywrócić.",
+      "hideFailed": "Nie udało się ukryć wiadomości",
+      "retractTitle": "Usunąć dla wszystkich?",
+      "retractBothParties": "Wiadomość zostanie ukryta u obu stron — także u osoby, do której ją wysłałeś.",
+      "retractNoUndoNote": "Tej operacji nie można cofnąć.",
+      "retractModerationNote": "Wiadomość nie jest usuwana z serwera — moderatorzy zachowują kopię, aby móc rozpatrywać zgłoszenia.",
+      "retractConfirm": "Usuń dla wszystkich",
+      "cancel": "Anuluj",
+      "retractCancel": "Anuluj",
+      "reportCancel": "Anuluj"
     },
     "discover": {
       "peopleNearby": "Osoby w pobliżu",
@@ -441,7 +465,21 @@
       "filterDismissed": "Odrzucone",
       "resolve": "Rozwiąż",
       "dismiss": "Odrzuć",
-      "reportedBy": "Zgłoszone przez"
+      "reportedBy": "Zgłoszone przez",
+      "reportedMessage": "Zgłoszona wiadomość",
+      "reportedPost": "Zgłoszony post",
+      "reporterNote": "Notatka od zgłaszającego",
+      "hiddenByParticipant": "Ukryte w widoku jednego lub więcej uczestników. Sama wiadomość pozostaje niezmieniona.",
+      "viewThread": "Zobacz rozmowę",
+      "conversationTitle": "Rozmowa",
+      "backToReports": "Zgłoszenia",
+      "hiddenBadge": "Ukryte",
+      "initiatorBadge": "Rozpoczął rozmowę",
+      "moderationPrivacyNotice": "Prywatna rozmowa, pokazana w celu rozpatrzenia konkretnego zgłoszenia. Zawiera wiadomości ukryte przez uczestnika w jego własnym widoku.",
+      "deletedMessages": "Usunięte wiadomości",
+      "deletedMessagesNotice": "Wiadomości ukryte przez uczestnika w jego własnym widoku. Sama wiadomość pozostaje niezmieniona i nadal jest widoczna dla drugiej strony. Ukrywanie to zwykle zwykłe porządki, a nie oznaka czegokolwiek.",
+      "hiddenByLabel": "Ukryte przez",
+      "deletedDescription": "Wiadomości ukryte przez uczestników w ich własnym widoku."
     },
     "chat": {
       "pendingTitle": "Czekamy na odpowiedź",
@@ -542,5 +580,9 @@
       "blockFailed": "Nie udało się zablokować użytkownika."
     },
     "locationName": "Lokalizacja"
-  }
+  },
+  "retractTitle": "Usunąć dla wszystkich?",
+  "retractBothParties": "Wiadomość zostanie ukryta u obu stron — także u osoby, do której ją wysłałeś.",
+  "retractUndoNote": "Możesz ją przywrócić przez około 30 sekund.",
+  "retractModerationNote": "Wiadomość nie jest usuwana z serwera — moderatorzy zachowują kopię, aby móc rozpatrywać zgłoszenia."
 }

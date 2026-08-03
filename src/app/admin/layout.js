@@ -8,11 +8,39 @@
 // reads localStorage, which the user controls — every /admin/* API route
 // re-checks role server-side via requireAdmin. Faking the flag here gets you an
 // empty dashboard and a row of 403s, nothing more.
+//
+// WHAT IS AND IS NOT IN THIS MENU, and why — the distinction is deliberate and
+// worth keeping:
+//
+//   /admin/reports       the queue. The anchor for everything else.
+//   /admin/deleted       messages PARTICIPANTS hid from their own view. A
+//                        standing operational view, so it is in the menu, but
+//                        it is a list of ordinary behaviour and the page says
+//                        so.
+//   /admin/removed       messages MODERATORS took down. In the menu because a
+//                        removal that cannot be found again cannot be undone,
+//                        and adminRestoreMessage is useless without a route to
+//                        it. Every row here is a decision this team already
+//                        made, which is a much better justification for a
+//                        standing list than /admin/deleted has.
+//   /admin/conversations NOT in this menu, and not by accident of omission.
+//                        The conversation viewer is reached from a report,
+//                        because a specific complaint is what justifies
+//                        reading a private thread. A menu entry would turn it
+//                        into a general-purpose DM browser.
+//
+// All three message surfaces carry a privacy notice on the page itself.
+//
+// LABEL NOTE: t.app.admin.deletedMessages is used both here and as the heading
+// on /admin/deleted, so the two cannot drift — but the fallback strings must
+// match or they will diverge the moment the key is missing. Both now read
+// "Hidden by users", because "Deleted" collided with three different meanings
+// once moderator removal landed. Change both together or neither.
 
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { getToken, isAdmin } from "../../lib/api";
+import { getToken, isAdmin, isStaff } from "../../lib/api";
 import { useLang } from "../../context/LandingLang";
 import AppNav from "../../components/AppNav";
 
@@ -27,7 +55,7 @@ export default function AdminLayout({ children }) {
   const [allowed, setAllowed] = useState(null);
 
   useEffect(() => {
-    if (!getToken() || !isAdmin()) {
+    if (!getToken() || !isStaff()) {
       router.replace("/");
       return;
     }
@@ -44,6 +72,19 @@ export default function AdminLayout({ children }) {
 
   const items = [
     { href: "/admin/reports", label: t.app.nav.reports, icon: "🚩" },
+    {
+      href: "/admin/deleted",
+      label: t.app.admin?.deletedMessages || "Hidden by users",
+      icon: "🗑️",
+    },
+    // Directly beneath the hidden list on purpose: the two are constantly
+    // confused, and sitting next to each other with different labels and
+    // different icons is what makes the difference legible at a glance.
+    {
+      href: "/admin/removed",
+      label: t.app.admin?.removedMessages || "Removed by moderators",
+      icon: "🛡️",
+    },
     { href: "/admin/users", label: t.app.nav.users, icon: "👥" },
     { href: "/admin/seed", label: t.app.nav.seed, icon: "🌱" },
   ];

@@ -68,6 +68,16 @@ export function isAdmin() {
   return getRole() === "admin";
 }
 
+export function isModerator() {
+  return getRole() === "moderator";
+}
+
+// Anyone with a staff role. The panel's nav uses this to decide what to show;
+// the server decides what they can actually do (requireModerator/requireAdmin).
+export function isStaff() {
+  return isAdmin() || isModerator();
+}
+
 // Stored at login purely to label the nav — same category as the role: a UI
 // convenience, never read for authorization. Saves a /me round-trip on every
 // page load, since login() already returns the user.
@@ -167,19 +177,27 @@ async function request(path, { method = "GET", body } = {}) {
     cache: "no-store",
   });
 
+  const data = await res.json().catch(() => ({}));
+
   if (res.status === 401) {
     throw new AuthError("Session expired. Please sign in again.", 401);
   }
-  if (res.status === 403) {
+
+  // A 403 carrying a `code` is a rule the endpoint enforces (e.g. you cannot
+  // change your own role), NOT a failed admin check. Only the codeless kind
+  // means "this account is not an admin" and should bounce to login.
+  if (res.status === 403 && !data.code) {
     throw new AuthError(
       "Admin access required — this account is not an admin.",
       403,
     );
   }
 
-  const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    throw new Error(data.error || `Request failed (${res.status})`);
+    const error = new Error(data.error || `Request failed (${res.status})`);
+    error.status = res.status;
+    error.code = data.code;
+    throw error;
   }
   return data;
 }
@@ -201,16 +219,18 @@ export async function login(email, pin) {
 // --- Admin endpoints (match adminController routes) ---
 export const adminApi = {
   login,
-
   stats: () => request("/admin/stats"),
-
-  listUsers: () => request("/admin/users"),
+  me: () => request("/me"),
+  listUsers: (q = "") =>
+    request(`/admin/users${q ? `?q=${encodeURIComponent(q)}` : ""}`),
   banUser: (id, banned) =>
     request(`/admin/users/${id}/ban`, { method: "PATCH", body: { banned } }),
-
+  setRole: (id, role) =>
+    request(`/admin/users/${id}/role`, { method: "PATCH", body: { role } }),
+  roleHistory: (id) => request(`/admin/users/${id}/role-history`),
+  listRoleChanges: () => request("/admin/role-changes"),
   listPosts: () => request("/admin/posts"),
   deletePost: (id) => request(`/admin/posts/${id}`, { method: "DELETE" }),
-
   listReports: (status = "") =>
     request(
       `/admin/reports${status ? `?status=${encodeURIComponent(status)}` : ""}`,
@@ -218,5 +238,4 @@ export const adminApi = {
   resolveReport: (id, status) =>
     request(`/admin/reports/${id}`, { method: "PATCH", body: { status } }),
 };
-
 adminApi.setBanned = adminApi.banUser;

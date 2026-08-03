@@ -82,7 +82,10 @@
       "switchToLight": "Switch to light mode",
       "switchToDark": "Switch to dark mode",
       "users": "Users",
-      "seed": "Seed data"
+      "seed": "Seed data",
+      "moderator": "Moderator",
+      "adminPanel": "Admin panel",
+      "staffOnly": "Moderators and administrators only"
     },
     "settings": {
       "title": "Personal settings",
@@ -362,8 +365,18 @@
       "confirmBan": "Ban @{name}? They will be signed out and blocked from the app.",
       "err": {
         "load": "Could not load users.",
-        "update": "Could not update user."
-      }
+        "update": "Could not update user.",
+        "role": "Could not change the role.",
+        "roleSelf": "You can't change your own role.",
+        "lastAdmin": "Can't remove the last administrator."
+      },
+      "role": "Role",
+      "roleUser": "User",
+      "roleModerator": "Moderator",
+      "roleAdmin": "Administrator",
+      "changeRole": "Change role",
+      "confirmRoleChange": "Change @{name}'s role to {role}?",
+      "roleHistory": "Role history"
     },
     "messages": {
       "title": "Messages",
@@ -390,7 +403,18 @@
       "unreadCount": "{count} unread messages",
       "photoPendingNote": "You can send photos once the conversation is accepted.",
       "awaitingReplyTitle": "Waiting for a reply",
-      "awaitingReplyBody": "You've sent your first message. You can send more once you get a reply."
+      "awaitingReplyBody": "You've sent your first message. You can send more once you get a reply.",
+      "hideForMe": "Delete for me",
+      "hideForMeConfirm": "Hide this message from your view? It stays visible to the other person, and cannot be restored.",
+      "hideFailed": "Could not hide the message",
+      "retractTitle": "Delete for everyone?",
+      "retractBothParties": "The message is hidden for both of you — including the person you sent it to.",
+      "retractNoUndoNote": "This can't be undone.",
+      "retractModerationNote": "The message isn't erased from the server — moderators keep a copy so reports can be handled.",
+      "retractConfirm": "Delete for everyone",
+      "cancel": "Cancel",
+      "retractCancel": "Cancel",
+      "reportCancel": "Cancel"
     },
     "discover": {
       "peopleNearby": "People nearby",
@@ -441,7 +465,21 @@
       "filterDismissed": "Dismissed",
       "resolve": "Resolve",
       "dismiss": "Dismiss",
-      "reportedBy": "Reported by"
+      "reportedBy": "Reported by",
+      "reportedMessage": "Reported message",
+      "reportedPost": "Reported post",
+      "reporterNote": "Note from the reporter",
+      "hiddenByParticipant": "Hidden from one or more participants' own view. The message itself is unchanged.",
+      "viewThread": "View conversation",
+      "conversationTitle": "Conversation",
+      "backToReports": "Reports",
+      "hiddenBadge": "Hidden",
+      "initiatorBadge": "Opened thread",
+      "moderationPrivacyNotice": "Private conversation, shown for moderating a specific report. Includes messages a participant has hidden from their own view.",
+      "deletedMessages": "Deleted messages",
+      "deletedMessagesNotice": "Messages a participant has hidden from their own view. The message itself is unchanged and is still visible to the other party. Hiding is usually ordinary housekeeping, not evidence of anything.",
+      "hiddenByLabel": "Hidden by",
+      "deletedDescription": "Messages participants have hidden from their own view."
     },
     "chat": {
       "pendingTitle": "Waiting for a reply",
@@ -542,5 +580,9 @@
       "blockFailed": "Could not block this user."
     },
     "locationName": "Location"
-  }
+  },
+  "retractTitle": "Delete for everyone?",
+  "retractBothParties": "The message is hidden for both of you — including the person you sent it to.",
+  "retractUndoNote": "You can bring it back for about 30 seconds.",
+  "retractModerationNote": "The message isn't erased from the server — moderators keep a copy so reports can be handled."
 }
