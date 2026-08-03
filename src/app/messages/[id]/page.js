@@ -41,6 +41,20 @@
 // explained INLINE above the composer rather than in a hover tooltip: hover
 // does not exist on touch, so on a phone the greyed-out button had no
 // explanation at all. A rule the user cannot discover reads as a broken button.
+//
+// TYPING INDICATOR sits at the BOTTOM of the thread, directly beneath the
+// message list, not under the name in the header. It was in the header because
+// that is where the other user's identity lives, but that is the wrong place to
+// look: the eye is at the composer while typing, and a two-line header that
+// grows and shrinks nudges the whole thread down every time the other party
+// touches a key. As a sibling BELOW the scroll container it never scrolls out
+// of view, and it reads as coming from the conversation rather than from the
+// chrome.
+//
+// The incoming chat:typing carries no stop event and no boolean — it is a bare
+// ping — so the indicator is expired locally on a 3s timer, and cleared early
+// when a message actually lands (otherwise the dots linger for up to three
+// seconds after the message they were announcing).
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -59,6 +73,25 @@ import {
 import { uploadImage } from "../../../lib/profileSettingsApi";
 import { getSocket } from "../../../lib/socket";
 
+// How long a single chat:typing ping keeps the indicator alive. The client
+// emits on every keystroke, so anything above ~2s reads as continuous.
+const TYPING_TTL_MS = 3000;
+// Outbound throttle. One emit per keystroke is a packet per character for no
+// gain — the receiver cannot tell the difference.
+const TYPING_EMIT_EVERY_MS = 1000;
+
+// The JWT's `sub` is the user id. Module scope so it can seed useState lazily
+// on first render — meId is needed by the socket listeners, and reading it a
+// tick later meant the first typing ping arrived before we knew who we were.
+function myIdFromToken() {
+  try {
+    const tok = getToken();
+    return String(JSON.parse(atob(tok.split(".")[1])).sub);
+  } catch {
+    return null;
+  }
+}
+
 export default function ThreadPage() {
   const router = useRouter();
   const params = useParams();
@@ -69,7 +102,7 @@ export default function ThreadPage() {
 
   const [ready, setReady] = useState(false);
   const [convo, setConvo] = useState(null);
-  const [meId, setMeId] = useState(null);
+  const [meId] = useState(() => myIdFromToken());
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
@@ -82,6 +115,7 @@ export default function ThreadPage() {
   const [gateHit, setGateHit] = useState(false);
   const bottomRef = useRef(null);
   const typingTimer = useRef(null);
+  const lastTypingEmit = useRef(0);
 
   const scrollToBottom = useCallback(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -92,7 +126,6 @@ export default function ThreadPage() {
       router.replace("/");
       return;
     }
-    setMeId(myIdFromToken());
     let cancelled = false;
 
     (async () => {
@@ -152,10 +185,17 @@ export default function ThreadPage() {
       if (ack?.error) setError(ack.error || m.joinFailed);
     });
 
+    const clearTyping = () => {
+      clearTimeout(typingTimer.current);
+      setTheyreTyping(false);
+    };
+
     // The server echoes our own sends into the room, so this covers both
     // directions. Dedupe by id.
     const onMessage = (msg) => {
       if (String(msg.conversationId) !== id) return;
+      // Their message arrived — whatever they were typing, they have sent it.
+      if (meId != null && String(msg.sender?.id) !== meId) clearTyping();
       setMessages((prev) =>
         prev.some((x) => String(x.id) === String(msg.id))
           ? prev
@@ -163,10 +203,20 @@ export default function ThreadPage() {
       );
     };
 
-    const onTyping = () => {
+    // A bare ping: no boolean, no stop event, sometimes no conversationId.
+    // Guard on both fields when present and expire on a timer.
+    const onTyping = (payload) => {
+      const from = payload?.userId;
+      const convoId = payload?.conversationId;
+      if (convoId != null && String(convoId) !== id) return;
+      if (from != null && meId != null && String(from) === meId) return;
+
       setTheyreTyping(true);
       clearTimeout(typingTimer.current);
-      typingTimer.current = setTimeout(() => setTheyreTyping(false), 3000);
+      typingTimer.current = setTimeout(
+        () => setTheyreTyping(false),
+        TYPING_TTL_MS,
+      );
     };
 
     // The other party accepted. Flip local status so the header/labels update.
@@ -189,20 +239,21 @@ export default function ThreadPage() {
       socket.emit("chat:leave", { conversationId: id });
       clearTimeout(typingTimer.current);
     };
-  }, [id, m.joinFailed]);
+  }, [id, meId, m.joinFailed]);
 
+  // Keep the newest bubble in view. The indicator mounting below the list
+  // shrinks the scroll box slightly, so re-run on it too.
   useEffect(() => {
     scrollToBottom();
-  }, [messages, scrollToBottom]);
+  }, [messages, theyreTyping, scrollToBottom]);
 
-  // The JWT's `sub` is the user id.
-  function myIdFromToken() {
-    try {
-      const tok = getToken();
-      return String(JSON.parse(atob(tok.split(".")[1])).sub);
-    } catch {
-      return null;
-    }
+  // Throttled outbound ping. Silently no-ops when the socket is down; typing is
+  // the one thing that is fine to lose.
+  function pingTyping() {
+    const now = Date.now();
+    if (now - lastTypingEmit.current < TYPING_EMIT_EVERY_MS) return;
+    lastTypingEmit.current = now;
+    getSocket()?.emit("chat:typing", { conversationId: id });
   }
 
   async function send() {
@@ -339,6 +390,8 @@ export default function ThreadPage() {
             ) : null}
           </div>
           <div className="min-w-0">
+            {/* Name only. The typing line used to live here and reflowed the
+                whole thread on every keystroke — it is at the bottom now. */}
             {u?.username ? (
               <Link
                 href={`/profile/${encodeURIComponent(u.username)}`}
@@ -351,11 +404,6 @@ export default function ThreadPage() {
                 {name}
               </span>
             )}
-            {theyreTyping ? (
-              <p className="text-xs text-emerald-600 dark:text-emerald-400">
-                {m.typing}
-              </p>
-            ) : null}
           </div>
         </div>
 
@@ -396,6 +444,11 @@ export default function ThreadPage() {
           )}
           <div ref={bottomRef} />
         </div>
+
+        {/* Typing, at the foot of the thread. Outside the scroll container on
+            purpose: inside, it would drift off-screen the moment the user
+            scrolled up to reread something. */}
+        <TypingDots visible={theyreTyping} label={m.typing} />
 
         {/* The one-opener gate, explained where the user is about to type.
             Slate rather than red: the send did not fail, the feature works
@@ -457,7 +510,7 @@ export default function ThreadPage() {
             value={text}
             onChange={(e) => {
               setText(e.target.value.slice(0, 2000)); // Message schema maxlength
-              getSocket()?.emit("chat:typing", { conversationId: id });
+              pingTyping();
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
@@ -481,6 +534,33 @@ export default function ThreadPage() {
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+// Three bouncing dots plus the existing m.typing string — no new locale keys.
+// aria-live="polite" so a screen reader announces it once without stealing
+// focus; the dots themselves are hidden from the tree as pure decoration.
+function TypingDots({ visible, label }) {
+  if (!visible) return null;
+
+  return (
+    <div className="mt-2 flex items-center gap-2 px-1" aria-live="polite">
+      <span
+        aria-hidden="true"
+        className="inline-flex items-center gap-1 rounded-2xl bg-slate-100 px-3 py-2 dark:bg-slate-800"
+      >
+        {[0, 150, 300].map((delay) => (
+          <span
+            key={delay}
+            className="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 dark:bg-slate-400"
+            style={{ animationDelay: `${delay}ms`, animationDuration: "900ms" }}
+          />
+        ))}
+      </span>
+      <span className="text-xs text-slate-500 dark:text-slate-400">
+        {label}
+      </span>
     </div>
   );
 }
