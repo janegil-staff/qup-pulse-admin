@@ -33,7 +33,26 @@
     "retentionTitle": "Tietojen säilyttäminen",
     "retentionBody": "Säilytämme henkilötietojasi niin kauan kuin tilisi on aktiivinen. Kun poistat tilisi, poistamme henkilötietosi, paitsi silloin kun meidän on säilytettävä tiettyjä tietoja lakisääteisten velvoitteiden noudattamiseksi.",
     "contactTitle": "Yhteystiedot",
-    "contactBody": "Jos sinulla on tietosuojaan liittyviä kysymyksiä tai haluat käyttää oikeuksiasi, ota yhteyttä osoitteeseen"
+    "contactBody": "Jos sinulla on tietosuojaan liittyviä kysymyksiä tai haluat käyttää oikeuksiasi, ota yhteyttä osoitteeseen",
+    "messagesTitle": "Viestisi",
+    "messagesIntro": "Yksityisviestit tallennetaan, jotta ne voidaan toimittaa ja lukea. Viestille voi tapahtua kolme eri asiaa, eivätkä ne ole sama asia:",
+    "messages": [
+      "Piilottaminen — poistat viestin omasta näkymästäsi. Toinen henkilö säilyttää kopionsa eikä saa siitä tietoa. Viestiä ei muuteta eikä poisteta.",
+      "Peruminen — perut oman viestisi ja se katoaa teiltä molemmilta. Tätä ei voi kumota. Tekstiä ei poisteta palvelimiltamme: säilytämme sen, jotta siihen liittyvät raportit voidaan yhä käsitellä.",
+      "Poisto meidän toimestamme — moderaattori poistaa viestin. Kumpikaan osapuoli ei näe sitä sen jälkeen. Voimme perua tämän."
+    ],
+    "messagesRetractNote": "Sanomme tämän suoraan, koska sovelluskin sanoo sen: viestin peruminen piilottaa sen kaikilta sovelluksessa, mutta ei poista sitä palvelimiltamme.",
+    "moderationTitle": "Moderointi ja henkilöstön pääsy",
+    "moderationIntro": "Palvelun turvallisuuden vuoksi meillä on moderointitiimi. Henkilöstötileillä on jompikumpi kahdesta roolista: moderaattorit, jotka käsittelevät sisältöä, ja ylläpitäjät, jotka hallinnoivat lisäksi tilejä. Molemmat voivat lukea yksityisviestejä alla kuvatuissa tilanteissa.",
+    "moderation": [
+      "Kun joku tekee raportin, moderaattorit voivat lukea raportoidun viestin ja sitä ympäröivän keskustelun. Yksittäinen rivi riittää harvoin valituksen oikeudenmukaiseen arviointiin.",
+      "Raportti tallentaa kopion viestin tekstistä sellaisena kuin se oli raportin tekohetkellä. Kopio säilytetään, vaikka viesti myöhemmin peruttaisiin tai poistettaisiin.",
+      "Moderaattorit voivat nähdä viestejä, jotka osallistujat ovat piilottaneet, lähettäjät peruneet tai tiimimme poistanut. Tämä ei rajoitu raportoituihin viesteihin.",
+      "Ylläpitäjät voivat lisäksi nähdä tilitiedot, mukaan lukien sähköpostiosoitteet, ja asettaa tilejä porttikieltoon."
+    ],
+    "moderationNote": "Henkilöstön pääsy yksityisviesteihin on todellinen puuttuminen, ja kohtelemme sitä sellaisena. Nämä työkalut ovat olemassa, jotta valituksiin voidaan vastata ja väärinkäytöksiin puuttua — ei selailua varten.",
+    "retentionMessages": "Viestit, jotka piilotat tai perut, sekä viestit, jotka moderaattorimme poistavat, säilytetään tietokannassamme sen sijaan että ne poistettaisiin, jotta niitä koskeviin raportteihin ja valituksiin voidaan yhä vastata. Raportit säilytetään käsittelyn jälkeen, jotta toistuva käytös voidaan tunnistaa.",
+    "retentionDeletion": "Jos poistat tilisi, pyydä meiltä, niin poistamme viestisi sen mukana, paitsi silloin kun meidän on säilytettävä jotain avoimen raportin tai lakisääteisen velvoitteen vuoksi."
   },
   "terms": {
     "title": "Käyttöehdot",

@@ -33,7 +33,26 @@
     "retentionTitle": "Lagring av data",
     "retentionBody": "Vi behåller dina personuppgifter så länge ditt konto är aktivt. När du raderar ditt konto raderar vi dina personuppgifter, utom där vi är skyldiga att behålla viss information för att uppfylla rättsliga skyldigheter.",
     "contactTitle": "Kontakt",
-    "contactBody": "För frågor om integritet eller för att utöva dina rättigheter, kontakta oss på"
+    "contactBody": "För frågor om integritet eller för att utöva dina rättigheter, kontakta oss på",
+    "messagesTitle": "Dina meddelanden",
+    "messagesIntro": "Privata meddelanden lagras så att de kan levereras och läsas. Tre olika saker kan hända med ett meddelande, och de är inte samma sak:",
+    "messages": [
+      "Dölja — du tar bort ett meddelande från din egen vy. Den andra personen behåller sin kopia och får inte veta det. Meddelandet ändras inte och raderas inte.",
+      "Dra tillbaka — du drar tillbaka ditt eget meddelande och det försvinner för er båda. Detta kan inte ångras. Texten raderas inte från våra servrar: vi behåller den så att anmälningar om den fortfarande kan hanteras.",
+      "Borttagning av oss — en moderator tar ned ett meddelande. Ingen av deltagarna ser det efteråt. Detta kan vi ångra."
+    ],
+    "messagesRetractNote": "Vi säger det rakt ut eftersom appen gör det också: att dra tillbaka ett meddelande döljer det för alla i appen, men raderar det inte från våra servrar.",
+    "moderationTitle": "Moderering och personalens åtkomst",
+    "moderationIntro": "För att hålla tjänsten trygg har vi ett modereringsteam. Personalkonton har en av två roller: moderatorer, som agerar på innehåll, och administratörer, som dessutom hanterar konton. Båda kan läsa privata meddelanden i situationerna nedan.",
+    "moderation": [
+      "När någon skickar in en anmälan kan moderatorer läsa det anmälda meddelandet och konversationen runt omkring. En enda rad räcker sällan för att bedöma ett ärende rättvist.",
+      "En anmälan sparar en kopia av meddelandetexten som den var när anmälan gjordes. Den kopian behålls även om meddelandet senare dras tillbaka eller tas bort.",
+      "Moderatorer kan se meddelanden som deltagare har dolt, som avsändare har dragit tillbaka eller som vårt team har tagit bort. Detta är inte begränsat till anmälda meddelanden.",
+      "Administratörer kan dessutom se kontouppgifter, inklusive e-postadresser, och stänga av konton."
+    ],
+    "moderationNote": "Personalens åtkomst till privata meddelanden är ett verkligt intrång och vi behandlar det som ett. Verktygen finns för att ärenden ska kunna besvaras och missbruk hanteras — inte för att bläddra.",
+    "retentionMessages": "Meddelanden du döljer eller drar tillbaka, och meddelanden våra moderatorer tar bort, behålls i vår databas i stället för att raderas, så att anmälningar och överklaganden om dem fortfarande kan besvaras. Anmälningar behålls efter att de behandlats så att upprepat beteende kan kännas igen.",
+    "retentionDeletion": "Om du raderar ditt konto, be oss så tar vi bort dina meddelanden tillsammans med det, förutom där vi måste behålla något för att hantera en öppen anmälan eller en rättslig skyldighet."
   },
   "terms": {
     "title": "Användarvillkor",

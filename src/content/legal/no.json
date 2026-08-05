@@ -33,7 +33,26 @@
     "retentionTitle": "Lagring av data",
     "retentionBody": "Vi oppbevarer personopplysningene dine så lenge kontoen din er aktiv. Når du sletter kontoen din, sletter vi personopplysningene dine, med mindre vi er pålagt å oppbevare visse opplysninger for å oppfylle rettslige forpliktelser.",
     "contactTitle": "Kontakt",
-    "contactBody": "For personvernspørsmål eller for å utøve rettighetene dine, kontakt oss på"
+    "contactBody": "For personvernspørsmål eller for å utøve rettighetene dine, kontakt oss på",
+    "messagesTitle": "Meldingene dine",
+    "messagesIntro": "Private meldinger lagres slik at de kan leveres og leses. Tre forskjellige ting kan skje med en melding, og de er ikke det samme:",
+    "messages": [
+      "Skjule — du fjerner en melding fra din egen visning. Den andre personen beholder sin kopi og får ikke beskjed. Meldingen endres ikke og slettes ikke.",
+      "Trekke tilbake — du trekker tilbake din egen melding, og den forsvinner for dere begge. Dette kan ikke angres. Teksten slettes ikke fra serverne våre: vi beholder den slik at rapporter om den fortsatt kan behandles.",
+      "Fjerning av oss — en moderator tar ned en melding. Ingen av partene ser den etterpå. Dette kan vi reversere."
+    ],
+    "messagesRetractNote": "Vi sier dette rett ut fordi appen gjør det samme: å trekke tilbake en melding skjuler den for alle i appen, men sletter den ikke fra serverne våre.",
+    "moderationTitle": "Moderering og ansattes tilgang",
+    "moderationIntro": "For å holde tjenesten trygg har vi et modereringsteam. Ansattkontoer har én av to roller: moderatorer, som kan handle på innhold, og administratorer, som i tillegg kan administrere kontoer. Begge kan lese private meldinger i situasjonene under.",
+    "moderation": [
+      "Når noen sender inn en rapport, kan moderatorer lese den rapporterte meldingen og samtalen rundt den. En enkelt linje er sjelden nok til å vurdere en klage rettferdig.",
+      "En rapport lagrer en kopi av meldingsteksten slik den var da rapporten ble sendt. Den kopien beholdes selv om meldingen senere trekkes tilbake eller fjernes.",
+      "Moderatorer kan se meldinger som deltakere har skjult, som avsendere har trukket tilbake, eller som teamet vårt har fjernet. Disse listene er ikke begrenset til innhold noen har rapportert.",
+      "Administratorer kan i tillegg se kontoopplysninger, inkludert e-postadresser, og kan utestenge kontoer."
+    ],
+    "moderationNote": "Ansattes tilgang til private meldinger er et reelt inngrep, og vi behandler det som det. Verktøyene finnes for at klager skal kunne besvares og misbruk håndteres — ikke for å bla.",
+    "retentionMessages": "Meldinger du skjuler eller trekker tilbake, og meldinger moderatorene våre fjerner, beholdes i databasen vår i stedet for å slettes, slik at rapporter og klager om dem fortsatt kan besvares. Rapporter beholdes etter at de er behandlet, slik at gjentatt atferd kan gjenkjennes.",
+    "retentionDeletion": "Hvis du sletter kontoen din, kan du be oss om å fjerne meldingene dine sammen med den, med unntak av det vi må beholde for å håndtere en åpen rapport eller en rettslig forpliktelse."
   },
   "terms": {
     "title": "Vilkår for bruk",

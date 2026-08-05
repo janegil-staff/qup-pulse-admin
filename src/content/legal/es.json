@@ -33,7 +33,26 @@
     "retentionTitle": "Conservación de datos",
     "retentionBody": "Conservamos tus datos personales mientras tu cuenta esté activa. Cuando eliminas tu cuenta, eliminamos tus datos personales, salvo cuando estemos obligados a conservar cierta información para cumplir obligaciones legales.",
     "contactTitle": "Contacto",
-    "contactBody": "Para cualquier consulta sobre privacidad o para ejercer tus derechos, contáctanos en"
+    "contactBody": "Para cualquier consulta sobre privacidad o para ejercer tus derechos, contáctanos en",
+    "messagesTitle": "Tus mensajes",
+    "messagesIntro": "Los mensajes privados se almacenan para que puedan entregarse y leerse. A un mensaje le pueden ocurrir tres cosas distintas, y no son lo mismo:",
+    "messages": [
+      "Ocultar — quitas un mensaje de tu propia vista. La otra persona conserva su copia y no se le informa. El mensaje no se modifica ni se elimina.",
+      "Retirar — retiras tu propio mensaje y desaparece para los dos. Esta acción no se puede deshacer. El texto no se borra de nuestros servidores: lo conservamos para que las denuncias al respecto puedan seguir tramitándose.",
+      "Eliminación por nuestra parte — un moderador retira un mensaje. Ninguno de los participantes lo ve después. Podemos revertirlo."
+    ],
+    "messagesRetractNote": "Lo decimos con claridad porque la aplicación también lo dice: retirar un mensaje lo oculta para todos en la aplicación, pero no lo borra de nuestros servidores.",
+    "moderationTitle": "Moderación y acceso del personal",
+    "moderationIntro": "Para mantener el servicio seguro contamos con un equipo de moderación. Las cuentas del personal tienen uno de dos roles: moderadores, que actúan sobre el contenido, y administradores, que además gestionan cuentas. Ambos pueden leer mensajes privados en las situaciones indicadas abajo.",
+    "moderation": [
+      "Cuando alguien presenta una denuncia, los moderadores pueden leer el mensaje denunciado y la conversación que lo rodea. Una sola línea rara vez basta para valorar una queja con justicia.",
+      "Una denuncia guarda una copia del texto del mensaje tal como estaba cuando se presentó. Esa copia se conserva aunque el mensaje se retire o se elimine después.",
+      "Los moderadores pueden ver mensajes que los participantes han ocultado, que los remitentes han retirado o que nuestro equipo ha eliminado. Esto no se limita a los mensajes denunciados.",
+      "Los administradores pueden además ver datos de la cuenta, incluidas las direcciones de correo, y suspender cuentas."
+    ],
+    "moderationNote": "El acceso del personal a mensajes privados es una intrusión real y lo tratamos como tal. Estas herramientas existen para que las quejas puedan responderse y los abusos atajarse, no para curiosear.",
+    "retentionMessages": "Los mensajes que ocultas o retiras, y los que nuestros moderadores eliminan, se conservan en nuestra base de datos en lugar de borrarse, para que las denuncias y apelaciones al respecto sigan pudiendo responderse. Las denuncias se conservan tras resolverse para poder reconocer conductas repetidas.",
+    "retentionDeletion": "Si eliminas tu cuenta, pídenoslo y retiraremos tus mensajes junto con ella, salvo cuando debamos conservar algo para atender una denuncia abierta o una obligación legal."
   },
   "terms": {
     "title": "Términos de servicio",

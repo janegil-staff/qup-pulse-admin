@@ -33,7 +33,26 @@
     "retentionTitle": "Data retention",
     "retentionBody": "We keep your personal data for as long as your account is active. When you delete your account, we delete your personal data, except where we are required to retain certain information to comply with legal obligations.",
     "contactTitle": "Contact",
-    "contactBody": "For any privacy questions or to exercise your rights, contact us at"
+    "contactBody": "For any privacy questions or to exercise your rights, contact us at",
+    "messagesTitle": "Your messages",
+    "messagesIntro": "Private messages are stored so they can be delivered and read. Three different things can happen to a message, and they are not the same:",
+    "messages": [
+      "Hide — you remove a message from your own view. The other person keeps their copy and is not told. The message is not changed or deleted.",
+      "Retract — you withdraw your own message and it disappears for both of you. This cannot be undone. The text is not erased from our servers: we keep it so that reports about it can still be handled.",
+      "Removal by us — a moderator takes a message down. Neither participant sees it afterwards. This can be reversed by us."
+    ],
+    "messagesRetractNote": "We say this plainly because the app says it too: retracting a message hides it from everyone in the app, but does not erase it from our servers.",
+    "moderationTitle": "Moderation and staff access",
+    "moderationIntro": "To keep the service safe we operate a moderation team. Staff accounts have one of two roles: moderators, who can act on content, and administrators, who can additionally manage accounts. Both can read private messages in the situations listed below.",
+    "moderation": [
+      "When someone files a report, moderators can read the reported message and the conversation around it. A single line is rarely enough to judge a complaint fairly.",
+      "A report stores a copy of the message text as it was when the report was made. That copy is kept even if the message is later retracted or removed.",
+      "Moderators can see messages that participants have hidden, that senders have retracted, or that our team has removed. Reading these is not limited to messages someone has reported.",
+      "Administrators can additionally see account details, including email addresses, and can suspend accounts."
+    ],
+    "moderationNote": "Staff access to private messages is a real intrusion and we treat it as one. These tools exist so that complaints can be answered and abuse can be acted on — not for browsing.",
+    "retentionMessages": "Messages you hide or retract, and messages our moderators remove, are kept in our database rather than erased, so that reports and appeals about them remain answerable. Reports are kept after they are resolved so that repeated behaviour can be recognised.",
+    "retentionDeletion": "If you delete your account, ask us and we will remove your messages along with it, except where we are required to keep something to deal with an open report or a legal obligation."
   },
   "terms": {
     "title": "Terms of Service",

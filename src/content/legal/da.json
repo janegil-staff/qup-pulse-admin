@@ -33,7 +33,26 @@
     "retentionTitle": "Opbevaring af data",
     "retentionBody": "Vi opbevarer dine personoplysninger, så længe din konto er aktiv. Når du sletter din konto, sletter vi dine personoplysninger, undtagen hvor vi er forpligtet til at opbevare visse oplysninger for at overholde retlige forpligtelser.",
     "contactTitle": "Kontakt",
-    "contactBody": "For spørgsmål om privatliv eller for at udøve dine rettigheder, kontakt os på"
+    "contactBody": "For spørgsmål om privatliv eller for at udøve dine rettigheder, kontakt os på",
+    "messagesTitle": "Dine beskeder",
+    "messagesIntro": "Private beskeder gemmes, så de kan leveres og læses. Tre forskellige ting kan ske med en besked, og de er ikke det samme:",
+    "messages": [
+      "Skjule — du fjerner en besked fra din egen visning. Den anden person beholder sin kopi og får ikke besked. Beskeden ændres ikke og slettes ikke.",
+      "Trække tilbage — du trækker din egen besked tilbage, og den forsvinder for jer begge. Dette kan ikke fortrydes. Teksten slettes ikke fra vores servere: vi beholder den, så anmeldelser om den stadig kan behandles.",
+      "Fjernelse af os — en moderator tager en besked ned. Ingen af deltagerne ser den bagefter. Dette kan vi omgøre."
+    ],
+    "messagesRetractNote": "Vi siger det lige ud, fordi appen gør det samme: at trække en besked tilbage skjuler den for alle i appen, men sletter den ikke fra vores servere.",
+    "moderationTitle": "Moderering og medarbejderes adgang",
+    "moderationIntro": "For at holde tjenesten tryg har vi et modereringsteam. Medarbejderkonti har en af to roller: moderatorer, der handler på indhold, og administratorer, der desuden administrerer konti. Begge kan læse private beskeder i situationerne nedenfor.",
+    "moderation": [
+      "Når nogen indsender en anmeldelse, kan moderatorer læse den anmeldte besked og samtalen omkring den. En enkelt linje er sjældent nok til at vurdere en klage retfærdigt.",
+      "En anmeldelse gemmer en kopi af beskedteksten, som den var, da anmeldelsen blev lavet. Den kopi bevares, også hvis beskeden senere trækkes tilbage eller fjernes.",
+      "Moderatorer kan se beskeder, som deltagere har skjult, som afsendere har trukket tilbage, eller som vores team har fjernet. Det er ikke begrænset til anmeldte beskeder.",
+      "Administratorer kan desuden se kontooplysninger, herunder e-mailadresser, og udelukke konti."
+    ],
+    "moderationNote": "Medarbejderes adgang til private beskeder er et reelt indgreb, og vi behandler det som sådan. Værktøjerne findes, for at klager kan besvares og misbrug håndteres — ikke for at bladre.",
+    "retentionMessages": "Beskeder du skjuler eller trækker tilbage, og beskeder vores moderatorer fjerner, bevares i vores database i stedet for at blive slettet, så anmeldelser og klager om dem stadig kan besvares. Anmeldelser bevares efter behandling, så gentagen adfærd kan genkendes.",
+    "retentionDeletion": "Hvis du sletter din konto, så bed os om det, og vi fjerner dine beskeder sammen med den, undtagen hvor vi skal beholde noget for at håndtere en åben anmeldelse eller en retlig forpligtelse."
   },
   "terms": {
     "title": "Vilkår for brug",

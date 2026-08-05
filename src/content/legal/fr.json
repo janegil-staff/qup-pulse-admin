@@ -33,7 +33,26 @@
     "retentionTitle": "Conservation des données",
     "retentionBody": "Nous conservons vos données personnelles tant que votre compte est actif. Lorsque vous supprimez votre compte, nous supprimons vos données personnelles, sauf lorsque nous sommes tenus de conserver certaines informations pour respecter des obligations légales.",
     "contactTitle": "Contact",
-    "contactBody": "Pour toute question relative à la confidentialité ou pour exercer vos droits, contactez-nous à"
+    "contactBody": "Pour toute question relative à la confidentialité ou pour exercer vos droits, contactez-nous à",
+    "messagesTitle": "Vos messages",
+    "messagesIntro": "Les messages privés sont conservés afin de pouvoir être remis et lus. Trois choses différentes peuvent arriver à un message, et elles ne sont pas équivalentes :",
+    "messages": [
+      "Masquer — vous retirez un message de votre propre vue. L'autre personne conserve sa copie et n'en est pas informée. Le message n'est ni modifié ni supprimé.",
+      "Retirer — vous retirez votre propre message et il disparaît pour vous deux. Cette action est irréversible. Le texte n'est pas effacé de nos serveurs : nous le conservons afin que les signalements le concernant puissent encore être traités.",
+      "Retrait par nous — un modérateur retire un message. Aucun des participants ne le voit ensuite. Nous pouvons revenir sur cette décision."
+    ],
+    "messagesRetractNote": "Nous le disons clairement parce que l'application le dit aussi : retirer un message le masque pour tout le monde dans l'application, mais ne l'efface pas de nos serveurs.",
+    "moderationTitle": "Modération et accès du personnel",
+    "moderationIntro": "Pour assurer la sécurité du service, nous disposons d'une équipe de modération. Les comptes du personnel ont l'un de deux rôles : modérateurs, qui agissent sur le contenu, et administrateurs, qui gèrent en outre les comptes. Les deux peuvent lire des messages privés dans les situations ci-dessous.",
+    "moderation": [
+      "Lorsqu'une personne dépose un signalement, les modérateurs peuvent lire le message signalé et la conversation qui l'entoure. Une seule ligne suffit rarement à juger une plainte équitablement.",
+      "Un signalement conserve une copie du texte du message tel qu'il était au moment du signalement. Cette copie est conservée même si le message est ensuite retiré ou supprimé.",
+      "Les modérateurs peuvent voir les messages que des participants ont masqués, que des expéditeurs ont retirés, ou que notre équipe a supprimés. Cela ne se limite pas aux messages ayant fait l'objet d'un signalement.",
+      "Les administrateurs peuvent en outre voir les informations de compte, y compris les adresses e-mail, et suspendre des comptes."
+    ],
+    "moderationNote": "L'accès du personnel aux messages privés est une véritable intrusion et nous le traitons comme telle. Ces outils existent pour que les plaintes puissent être traitées et les abus sanctionnés — pas pour naviguer.",
+    "retentionMessages": "Les messages que vous masquez ou retirez, et ceux que nos modérateurs suppriment, sont conservés dans notre base de données plutôt qu'effacés, afin que les signalements et les recours les concernant restent traitables. Les signalements sont conservés après leur traitement afin de pouvoir reconnaître des comportements répétés.",
+    "retentionDeletion": "Si vous supprimez votre compte, demandez-le-nous et nous supprimerons vos messages avec lui, sauf lorsque nous devons conserver un élément pour traiter un signalement en cours ou une obligation légale."
   },
   "terms": {
     "title": "Conditions d'utilisation",

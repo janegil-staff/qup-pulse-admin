@@ -33,7 +33,26 @@
     "retentionTitle": "Speicherdauer",
     "retentionBody": "Wir speichern Ihre personenbezogenen Daten, solange Ihr Konto aktiv ist. Wenn Sie Ihr Konto löschen, löschen wir Ihre personenbezogenen Daten, es sei denn, wir sind verpflichtet, bestimmte Informationen zur Erfüllung rechtlicher Pflichten aufzubewahren.",
     "contactTitle": "Kontakt",
-    "contactBody": "Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte kontaktieren Sie uns unter"
+    "contactBody": "Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte kontaktieren Sie uns unter",
+    "messagesTitle": "Deine Nachrichten",
+    "messagesIntro": "Private Nachrichten werden gespeichert, damit sie zugestellt und gelesen werden können. Mit einer Nachricht können drei verschiedene Dinge geschehen, und sie sind nicht dasselbe:",
+    "messages": [
+      "Ausblenden — du entfernst eine Nachricht aus deiner eigenen Ansicht. Die andere Person behält ihre Kopie und wird nicht informiert. Die Nachricht wird weder verändert noch gelöscht.",
+      "Zurückziehen — du ziehst deine eigene Nachricht zurück und sie verschwindet für euch beide. Das kann nicht rückgängig gemacht werden. Der Text wird nicht von unseren Servern gelöscht: wir behalten ihn, damit Meldungen dazu weiterhin bearbeitet werden können.",
+      "Entfernung durch uns — ein Moderator nimmt eine Nachricht herunter. Danach sieht sie keiner der Beteiligten mehr. Wir können das rückgängig machen."
+    ],
+    "messagesRetractNote": "Wir sagen das offen, weil die App es auch sagt: eine Nachricht zurückzuziehen blendet sie für alle in der App aus, löscht sie aber nicht von unseren Servern.",
+    "moderationTitle": "Moderation und Zugriff durch Mitarbeitende",
+    "moderationIntro": "Um den Dienst sicher zu halten, betreiben wir ein Moderationsteam. Mitarbeiterkonten haben eine von zwei Rollen: Moderatoren, die auf Inhalte einwirken, und Administratoren, die zusätzlich Konten verwalten. Beide können in den unten genannten Fällen private Nachrichten lesen.",
+    "moderation": [
+      "Wenn jemand eine Meldung einreicht, können Moderatoren die gemeldete Nachricht und die Unterhaltung darum herum lesen. Eine einzelne Zeile reicht selten aus, um eine Beschwerde fair zu beurteilen.",
+      "Eine Meldung speichert eine Kopie des Nachrichtentexts so, wie er zum Zeitpunkt der Meldung war. Diese Kopie bleibt erhalten, auch wenn die Nachricht später zurückgezogen oder entfernt wird.",
+      "Moderatoren können Nachrichten sehen, die Teilnehmer ausgeblendet, Absender zurückgezogen oder unser Team entfernt hat. Das ist nicht auf gemeldete Nachrichten beschränkt.",
+      "Administratoren können zusätzlich Kontodaten einschließlich E-Mail-Adressen sehen und Konten sperren."
+    ],
+    "moderationNote": "Der Zugriff von Mitarbeitenden auf private Nachrichten ist ein echter Eingriff, und wir behandeln ihn als solchen. Diese Werkzeuge existieren, damit Beschwerden beantwortet und Missbrauch geahndet werden kann — nicht zum Stöbern.",
+    "retentionMessages": "Nachrichten, die du ausblendest oder zurückziehst, und Nachrichten, die unsere Moderatoren entfernen, bleiben in unserer Datenbank erhalten statt gelöscht zu werden, damit Meldungen und Einsprüche dazu beantwortbar bleiben. Meldungen bleiben nach ihrer Bearbeitung erhalten, damit wiederholtes Verhalten erkannt werden kann.",
+    "retentionDeletion": "Wenn du dein Konto löschst, sag uns Bescheid und wir entfernen deine Nachrichten mit, außer wo wir etwas aufbewahren müssen, um eine offene Meldung oder eine rechtliche Pflicht zu erfüllen."
   },
   "terms": {
     "title": "Nutzungsbedingungen",

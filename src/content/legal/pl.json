@@ -33,7 +33,26 @@
     "retentionTitle": "Przechowywanie danych",
     "retentionBody": "Przechowujemy Twoje dane osobowe tak długo, jak długo Twoje konto jest aktywne. Gdy usuniesz swoje konto, usuwamy Twoje dane osobowe, z wyjątkiem sytuacji, gdy jesteśmy zobowiązani do zachowania określonych informacji w celu spełnienia obowiązków prawnych.",
     "contactTitle": "Kontakt",
-    "contactBody": "W przypadku pytań dotyczących prywatności lub w celu skorzystania z przysługujących Ci praw skontaktuj się z nami pod adresem"
+    "contactBody": "W przypadku pytań dotyczących prywatności lub w celu skorzystania z przysługujących Ci praw skontaktuj się z nami pod adresem",
+    "messagesTitle": "Twoje wiadomości",
+    "messagesIntro": "Wiadomości prywatne są przechowywane, aby mogły zostać dostarczone i przeczytane. Z wiadomością mogą stać się trzy różne rzeczy i nie są one tym samym:",
+    "messages": [
+      "Ukrycie — usuwasz wiadomość ze swojego widoku. Druga osoba zachowuje swoją kopię i nie jest o tym informowana. Wiadomość nie jest zmieniana ani usuwana.",
+      "Wycofanie — wycofujesz własną wiadomość i znika ona u obu stron. Tej operacji nie można cofnąć. Tekst nie jest kasowany z naszych serwerów: zachowujemy go, aby zgłoszenia na jego temat nadal mogły być rozpatrywane.",
+      "Usunięcie przez nas — moderator zdejmuje wiadomość. Żaden z uczestników jej potem nie widzi. Możemy to cofnąć."
+    ],
+    "messagesRetractNote": "Mówimy o tym wprost, bo aplikacja mówi to samo: wycofanie wiadomości ukrywa ją przed wszystkimi w aplikacji, ale nie kasuje jej z naszych serwerów.",
+    "moderationTitle": "Moderacja i dostęp personelu",
+    "moderationIntro": "Aby zapewnić bezpieczeństwo usługi, prowadzimy zespół moderacji. Konta personelu mają jedną z dwóch ról: moderatorzy, którzy działają na treści, oraz administratorzy, którzy dodatkowo zarządzają kontami. Obie role mogą czytać wiadomości prywatne w sytuacjach opisanych poniżej.",
+    "moderation": [
+      "Gdy ktoś złoży zgłoszenie, moderatorzy mogą przeczytać zgłoszoną wiadomość i rozmowę wokół niej. Pojedynczy wiersz rzadko wystarcza, by sprawiedliwie ocenić skargę.",
+      "Zgłoszenie zapisuje kopię treści wiadomości w brzmieniu z chwili zgłoszenia. Kopia ta jest zachowywana, nawet jeśli wiadomość zostanie później wycofana lub usunięta.",
+      "Moderatorzy mogą widzieć wiadomości ukryte przez uczestników, wycofane przez nadawców lub usunięte przez nasz zespół. Nie ogranicza się to do wiadomości zgłoszonych.",
+      "Administratorzy mogą dodatkowo widzieć dane konta, w tym adresy e-mail, i blokować konta."
+    ],
+    "moderationNote": "Dostęp personelu do prywatnych wiadomości to realna ingerencja i tak go traktujemy. Te narzędzia istnieją po to, by można było odpowiadać na skargi i reagować na nadużycia — nie do przeglądania.",
+    "retentionMessages": "Wiadomości, które ukrywasz lub wycofujesz, oraz wiadomości usunięte przez naszych moderatorów, pozostają w naszej bazie danych zamiast zostać skasowane, aby zgłoszenia i odwołania ich dotyczące pozostały możliwe do rozpatrzenia. Zgłoszenia są przechowywane po rozpatrzeniu, aby można było rozpoznać powtarzające się zachowania.",
+    "retentionDeletion": "Jeśli usuniesz konto, poproś nas, a usuniemy wraz z nim Twoje wiadomości, z wyjątkiem przypadków, gdy musimy coś zachować w związku z otwartym zgłoszeniem lub obowiązkiem prawnym."
   },
   "terms": {
     "title": "Warunki korzystania z usługi",

@@ -33,7 +33,26 @@
     "retentionTitle": "Conservazione dei dati",
     "retentionBody": "Conserviamo i tuoi dati personali finché il tuo account è attivo. Quando elimini il tuo account, cancelliamo i tuoi dati personali, salvo laddove siamo tenuti a conservare determinate informazioni per adempiere a obblighi di legge.",
     "contactTitle": "Contatti",
-    "contactBody": "Per qualsiasi domanda sulla privacy o per esercitare i tuoi diritti, contattaci all'indirizzo"
+    "contactBody": "Per qualsiasi domanda sulla privacy o per esercitare i tuoi diritti, contattaci all'indirizzo",
+    "messagesTitle": "I tuoi messaggi",
+    "messagesIntro": "I messaggi privati vengono conservati affinché possano essere consegnati e letti. A un messaggio possono accadere tre cose diverse, e non sono la stessa cosa:",
+    "messages": [
+      "Nascondere — rimuovi un messaggio dalla tua vista. L'altra persona mantiene la sua copia e non viene informata. Il messaggio non viene modificato né eliminato.",
+      "Ritirare — ritiri il tuo messaggio e scompare per entrambi. Questa azione è irreversibile. Il testo non viene cancellato dai nostri server: lo conserviamo affinché le segnalazioni al riguardo possano ancora essere gestite.",
+      "Rimozione da parte nostra — un moderatore rimuove un messaggio. Nessuno dei partecipanti lo vede più. Possiamo annullare questa decisione."
+    ],
+    "messagesRetractNote": "Lo diciamo apertamente perché lo dice anche l'app: ritirare un messaggio lo nasconde a tutti nell'app, ma non lo cancella dai nostri server.",
+    "moderationTitle": "Moderazione e accesso del personale",
+    "moderationIntro": "Per mantenere sicuro il servizio disponiamo di un team di moderazione. Gli account del personale hanno uno di due ruoli: moderatori, che agiscono sui contenuti, e amministratori, che gestiscono anche gli account. Entrambi possono leggere messaggi privati nelle situazioni indicate di seguito.",
+    "moderation": [
+      "Quando qualcuno invia una segnalazione, i moderatori possono leggere il messaggio segnalato e la conversazione circostante. Una sola riga raramente basta per valutare equamente un reclamo.",
+      "Una segnalazione conserva una copia del testo del messaggio così com'era al momento della segnalazione. Quella copia viene mantenuta anche se il messaggio viene poi ritirato o rimosso.",
+      "I moderatori possono vedere messaggi che i partecipanti hanno nascosto, che i mittenti hanno ritirato o che il nostro team ha rimosso. Non è limitato ai messaggi segnalati.",
+      "Gli amministratori possono inoltre vedere i dati dell'account, inclusi gli indirizzi email, e sospendere account."
+    ],
+    "moderationNote": "L'accesso del personale ai messaggi privati è un'intrusione reale e la trattiamo come tale. Questi strumenti esistono affinché i reclami possano ricevere risposta e gli abusi essere affrontati — non per curiosare.",
+    "retentionMessages": "I messaggi che nascondi o ritiri, e quelli che i nostri moderatori rimuovono, restano nel nostro database anziché essere cancellati, affinché segnalazioni e ricorsi al riguardo restino gestibili. Le segnalazioni vengono conservate dopo la risoluzione affinché comportamenti ripetuti possano essere riconosciuti.",
+    "retentionDeletion": "Se elimini il tuo account, chiedicelo e rimuoveremo i tuoi messaggi insieme ad esso, tranne dove dobbiamo conservare qualcosa per gestire una segnalazione aperta o un obbligo legale."
   },
   "terms": {
     "title": "Termini di servizio",

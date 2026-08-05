@@ -33,7 +33,26 @@
     "retentionTitle": "Bewaartermijn",
     "retentionBody": "We bewaren uw persoonsgegevens zolang uw account actief is. Wanneer u uw account verwijdert, verwijderen we uw persoonsgegevens, behalve waar we bepaalde informatie moeten bewaren om aan wettelijke verplichtingen te voldoen.",
     "contactTitle": "Contact",
-    "contactBody": "Voor vragen over privacy of om uw rechten uit te oefenen, neem contact met ons op via"
+    "contactBody": "Voor vragen over privacy of om uw rechten uit te oefenen, neem contact met ons op via",
+    "messagesTitle": "Je berichten",
+    "messagesIntro": "Privéberichten worden opgeslagen zodat ze bezorgd en gelezen kunnen worden. Er kunnen drie verschillende dingen met een bericht gebeuren, en die zijn niet hetzelfde:",
+    "messages": [
+      "Verbergen — je haalt een bericht uit je eigen weergave. De ander houdt zijn kopie en wordt niet ingelicht. Het bericht wordt niet gewijzigd of verwijderd.",
+      "Intrekken — je trekt je eigen bericht in en het verdwijnt voor jullie allebei. Dit kan niet ongedaan worden gemaakt. De tekst wordt niet van onze servers gewist: we bewaren die zodat rapporten erover nog behandeld kunnen worden.",
+      "Verwijdering door ons — een moderator haalt een bericht weg. Geen van beide deelnemers ziet het daarna nog. Dit kunnen wij terugdraaien."
+    ],
+    "messagesRetractNote": "We zeggen dit onomwonden omdat de app het ook zegt: een bericht intrekken verbergt het voor iedereen in de app, maar wist het niet van onze servers.",
+    "moderationTitle": "Moderatie en toegang door medewerkers",
+    "moderationIntro": "Om de dienst veilig te houden hebben we een moderatieteam. Medewerkersaccounts hebben een van twee rollen: moderators, die op inhoud kunnen handelen, en beheerders, die daarnaast accounts kunnen beheren. Beide kunnen privéberichten lezen in de hieronder genoemde situaties.",
+    "moderation": [
+      "Wanneer iemand een rapport indient, kunnen moderators het gerapporteerde bericht en het gesprek eromheen lezen. Eén regel is zelden genoeg om een klacht eerlijk te beoordelen.",
+      "Een rapport bewaart een kopie van de berichttekst zoals die was toen het rapport werd gemaakt. Die kopie blijft bewaard, ook als het bericht later wordt ingetrokken of verwijderd.",
+      "Moderators kunnen berichten zien die deelnemers hebben verborgen, die afzenders hebben ingetrokken, of die ons team heeft verwijderd. Dit is niet beperkt tot berichten waarover iemand een rapport heeft ingediend.",
+      "Beheerders kunnen daarnaast accountgegevens zien, waaronder e-mailadressen, en accounts blokkeren."
+    ],
+    "moderationNote": "Toegang van medewerkers tot privéberichten is een werkelijke inbreuk en we behandelen die als zodanig. Deze middelen bestaan zodat klachten beantwoord en misbruik aangepakt kan worden — niet om te grasduinen.",
+    "retentionMessages": "Berichten die je verbergt of intrekt, en berichten die onze moderators verwijderen, blijven in onze database bewaard in plaats van gewist te worden, zodat rapporten en bezwaren erover beantwoordbaar blijven. Rapporten blijven bewaard nadat ze zijn afgehandeld, zodat herhaald gedrag herkend kan worden.",
+    "retentionDeletion": "Als je je account verwijdert, vraag het ons en we verwijderen je berichten mee, behalve waar we iets moeten bewaren voor een lopend rapport of een wettelijke verplichting."
   },
   "terms": {
     "title": "Gebruiksvoorwaarden",
