@@ -172,3 +172,28 @@ export async function adminRestoreMessage(id) {
     alreadyRestored: Boolean(data.alreadyRestored),
   };
 }
+
+// Every message a sender has retracted, newest first. Capped server-side.
+//
+//   adminListRetractedMessages  GET /admin/messages/retracted
+//     -> { messages: [toAdmin() + sender, conversationId, retractedAt,
+//                     hiddenCount, isReported] }
+//
+// There is no retract/unretract counterpart here on purpose. Retraction is
+// irreversible by decision, so this surface is READ ONLY — adding a write
+// would contradict copy the sender was already shown.
+//
+// isReported means a Report exists for a message that was ALREADY retracted.
+// retractMessage refuses once a report exists, so that ordering can only mean
+// the report came second: the recipient is complaining about something they
+// can no longer show anyone. Those rows matter most.
+export async function adminListRetractedMessages({ limit } = {}) {
+  const qs = limit ? `?limit=${encodeURIComponent(limit)}` : "";
+  const res = await fetch(`${API_URL}/admin/messages/retracted${qs}`, {
+    headers: headers(),
+    cache: "no-store",
+  });
+  const data = await parse(res);
+
+  return { messages: data.messages || [] };
+}

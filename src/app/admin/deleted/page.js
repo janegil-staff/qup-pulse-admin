@@ -103,7 +103,14 @@ export default function AdminDeletedMessagesPage() {
             return (
               <li
                 key={msg.id}
-                className="rounded-2xl border border-slate-300 bg-white p-5 dark:border-slate-800 dark:bg-[#131c26]"
+                // Dimmed when this team has already removed it. Readable, not
+                // hidden: the text is the reason a moderator opens this page, and
+                // it is never blanked in the database precisely so it stays
+                // readable after removal.
+                className={
+                  "rounded-2xl border border-slate-300 bg-white p-5 dark:border-slate-800 dark:bg-[#131c26] transition " +
+                  (isRemoved ? "opacity-60" : "")
+                }
               >
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-sm font-bold text-slate-900 dark:text-white">

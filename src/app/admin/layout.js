@@ -54,11 +54,17 @@ export default function AdminLayout({ children }) {
   // render would mismatch the server-rendered HTML and hydrate wrong.
   const [allowed, setAllowed] = useState(null);
 
+  // Admins see Users and Seed; moderators do not. Read in the effect
+  // below rather than during render — isAdmin() reads localStorage,
+  // which does not exist during prerender.
+  const [admin, setAdmin] = useState(false);
+
   useEffect(() => {
     if (!getToken() || !isStaff()) {
       router.replace("/");
       return;
     }
+    setAdmin(isAdmin());
     setAllowed(true);
   }, [router]);
 
@@ -77,6 +83,16 @@ export default function AdminLayout({ children }) {
       label: t.app.admin?.deletedMessages || "Hidden by users",
       icon: "🗑️",
     },
+
+    // The third message surface, and the one the MODERATED PARTY controls:
+    // a sender withdrew this. Grouped with the other two because the three
+    // are constantly confused, and separated by label and icon for the
+    // same reason. Read-only — retraction cannot be undone.
+    {
+      href: "/admin/retracted",
+      label: t.app.admin?.retractedMessages || "Retracted",
+      icon: "↩️",
+    },
     // Directly beneath the hidden list on purpose: the two are constantly
     // confused, and sitting next to each other with different labels and
     // different icons is what makes the difference legible at a glance.
@@ -85,9 +101,22 @@ export default function AdminLayout({ children }) {
       label: t.app.admin?.removedMessages || "Removed by moderators",
       icon: "🛡️",
     },
-    { href: "/admin/users", label: t.app.nav.users, icon: "👥" },
-    { href: "/admin/seed", label: t.app.nav.seed, icon: "🌱" },
-  ];
+    // adminOnly: the server returns 403 on both for a moderator, so
+    // showing them would be an invitation to a dead end rather than a
+    // capability. Not a security boundary — requireAdmin is.
+    {
+      href: "/admin/users",
+      label: t.app.nav.users,
+      icon: "👥",
+      adminOnly: true,
+    },
+    {
+      href: "/admin/seed",
+      label: t.app.nav.seed,
+      icon: "🌱",
+      adminOnly: true,
+    },
+  ].filter((item) => admin || !item.adminOnly);
 
   // Exact match, or a nested route beneath it (/admin/users/123).
   const isActive = (href) =>

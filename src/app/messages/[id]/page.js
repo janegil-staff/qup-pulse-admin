@@ -61,7 +61,6 @@ import {
   hideMessage,
   unhideMessage,
   retractMessage,
-  unretractMessage,
   reportMessage,
 } from "../../../lib/chatApi";
 import { uploadImage } from "../../../lib/profileSettingsApi";
@@ -376,7 +375,9 @@ export default function ThreadPage() {
       setMessages((prev) =>
         prev.filter((x) => String(x.id) !== String(msg.id)),
       );
-      offerUndo("retract", msg);
+      // No undo toast. Retraction is irreversible by decision and the
+      // server has no unretract endpoint — this used to offer a button
+      // that 404'd, contradicting the confirm dialog the user just read.
     } catch (e) {
       // 409 = already reported. The server sends a translation key, not a
       // sentence, because "someone has reported this" is a thing the user
@@ -398,8 +399,9 @@ export default function ThreadPage() {
     setUndo(null);
     setError("");
     try {
-      if (kind === "hide") await unhideMessage(message.id);
-      else await unretractMessage(message.id);
+      // Hide is the only undoable action. undo() is never reached
+      // with kind 'retract' now that the toast is not offered.
+      await unhideMessage(message.id);
       setMessages((prev) =>
         prev.some((x) => String(x.id) === String(message.id))
           ? prev
@@ -791,11 +793,18 @@ function TypingDots({ visible, label }) {
 
 // Actions differ by side, and the difference is not cosmetic:
 //
-//   mine   → retract (gone for both, via the confirm dialog)
+//   mine   → hide (my view only, undoable) + retract (both parties,
+//            permanent, via the confirm dialog)
 //   theirs → hide (my view only, immediate) + report
 //
-// Offering both on one bubble would invite someone to "delete" another
-// person's message and believe it gone for them too.
+// Retract is offered on YOUR OWN messages only. Putting it on theirs
+// would invite someone to "delete" another person's message and
+// believe it gone for them too. Hide belongs on both sides: it is a
+// change to your own view and says nothing to anyone else.
+//
+// Hide writes hiddenFor and appears in the admin Deleted-messages
+// list; retract writes retractedAt and appears under Retracted. One
+// button doing both is why own-message deletions reached neither.
 //
 // A REMOVED message only ever reaches its sender — the server does not send it
 // to anyone else — and carries no text, so it renders as a tombstone with no
@@ -822,12 +831,24 @@ function Bubble({ msg, mine, m, busy, onHide, onRetract, onReport }) {
           onClick={() => onReport(msg.id)}
         />
       ) : null}
+      {/* HIDE_AND_RETRACT_SPLIT — hide is offered on BOTH sides; retract only
+          on your own. Hide removes the message from your view alone and the
+          other person keeps their copy; retract removes it for both and cannot
+          be undone. Recoverable action first. */}
       <IconButton
-        label={mine ? m.retract : m.hideForMe}
+        label={m.hideForMe}
         glyph={busy ? "…" : "×"}
         busy={busy}
-        onClick={() => (mine ? onRetract(msg) : onHide(msg))}
+        onClick={() => onHide(msg)}
       />
+      {mine ? (
+        <IconButton
+          label={m.retract}
+          glyph={busy ? "…" : "⤺"}
+          busy={busy}
+          onClick={() => onRetract(msg)}
+        />
+      ) : null}
     </span>
   );
 

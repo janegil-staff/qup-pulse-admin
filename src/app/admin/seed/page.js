@@ -8,35 +8,32 @@
 // page polls for progress, so nothing depends on a request staying open long
 // enough to outlast a proxy timeout.
 //
-// ADMIN ONLY, and this page says so itself.
+// ADMIN ONLY, and this page says so itself. The layout admits all staff, but
+// seeding writes and deletes bulk data and the server has always treated it as
+// admin-only in two places. The gate below is not a security boundary; it
+// exists so a moderator reaching this URL is told no immediately rather than
+// being shown a form full of destructive buttons that 403 after they press one.
 //
-// The layout admits all staff — admins and moderators — because moderators
-// need Reports, Deleted and Removed. Seeding is not moderation: it writes and
-// deletes bulk data, and the server has always treated it as admin-only in two
-// places (router.use(requireAuth, requireAdmin) in seed.routes.js, plus a
-// second role check inside adminSeedController). Nothing here can be executed
-// by a moderator regardless of what this page renders.
+// TRANSLATED via t.app.admin, like the rest of the panel. Every label keeps an
+// English fallback: a key resolving to undefined renders a zero-width control,
+// which is far harder to notice than a wrong word — and on this page the
+// controls delete data.
 //
-// The gate below is therefore not a security boundary; it exists so that a
-// moderator who reaches this URL — bookmarked, shared, or typed — is told no
-// immediately instead of being shown a form full of destructive buttons that
-// 403 only after they fill it in and press one. Hiding the sidebar link is the
-// other half; this half is the one that survives someone having the URL.
-//
-// isAdmin() is read in an effect rather than during render because it reads
-// localStorage, which does not exist during prerender. `admin === null` is the
-// pre-check state and renders nothing, matching how the layout handles `ready`.
-//
-// NOT TRANSLATED, deliberately, consistent with the rest of this file: seed
-// tooling is internal and every string on this page is already hardcoded
-// English. If this page is ever translated, the two strings below go in with
-// all the others rather than being special-cased now.
+// STEP LABELS AND JOB STATUS are looked up by derived key —
+// a["seedStep_" + step.id] and a["seedStatus_" + job.status] — so the STEPS
+// array stays a plain module constant and a status the server invents later
+// still renders its raw value instead of a blank pill. Same pattern as the
+// report reasons on mobile.
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { seedApi, AuthError, isAdmin } from "../../../lib/api";
+import { useLang } from "../../../context/LandingLang";
 
 const POLL_INTERVAL_MS = 1000;
 
+// `label` is the English fallback. The translated label comes from
+// a["seedStep_" + id]; keeping the English here means a step added later
+// renders readably before anyone writes its copy.
 const STEPS = [
   {
     id: "insert-assets",
@@ -90,7 +87,11 @@ const LABEL =
   "text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400";
 
 export default function SeedPage() {
-  // null = not checked yet. Set in an effect; see the header note.
+  const { t } = useLang();
+  const a = t.app.admin || {};
+
+  // null = not checked yet. isAdmin() reads localStorage, which does not exist
+  // during prerender, so it is read in an effect rather than during render.
   const [admin, setAdmin] = useState(null);
 
   const [runningStep, setRunningStep] = useState(null);
@@ -113,6 +114,16 @@ export default function SeedPage() {
   useEffect(() => {
     setAdmin(isAdmin());
   }, []);
+
+  function stepLabel(step) {
+    return a["seedStep_" + step.id] || step.label;
+  }
+
+  // Falls back to the raw status rather than blank: a status the server adds
+  // later should still be readable in the pill.
+  function statusLabel(status) {
+    return a["seedStatus_" + status] || status;
+  }
 
   function options() {
     return { lat: Number(lat), lng: Number(lng), posts: Number(posts) };
@@ -137,7 +148,7 @@ export default function SeedPage() {
       setLog(lines || []);
       setSummary(rest);
     } catch (e) {
-      setError(e.message || "Request failed.");
+      setError(e.message || a.seedRequestFailed || "Request failed.");
       if (Array.isArray(e?.log)) setLog(e.log);
       if (e instanceof AuthError && e.status === 401) {
         console.warn("Seed request rejected: session expired.");
@@ -156,32 +167,37 @@ export default function SeedPage() {
       setJob({ id: jobId, status: "running", step: null });
     } catch (e) {
       // 409 means a job is already running.
-      setError(e.message || "Could not start job.");
+      setError(e.message || a.seedCouldNotStart || "Could not start job.");
     }
   }
 
-  const poll = useCallback(async (jobId) => {
-    try {
-      const { job: next } = await seedApi.getJob(jobId, logCursorRef.current);
+  const poll = useCallback(
+    async (jobId) => {
+      try {
+        const { job: next } = await seedApi.getJob(jobId, logCursorRef.current);
 
-      if (next.log.length > 0) {
-        setLog((previous) => [...previous, ...next.log]);
-        logCursorRef.current = next.logLength;
+        if (next.log.length > 0) {
+          setLog((previous) => [...previous, ...next.log]);
+          logCursorRef.current = next.logLength;
+        }
+
+        setJob(next);
+
+        if (next.status !== "running") {
+          if (next.result) setSummary(next.result);
+          if (next.error) setError(next.error);
+        }
+      } catch (e) {
+        setError(
+          e.message || a.seedLostContact || "Lost contact with the job.",
+        );
+        setJob((previous) =>
+          previous ? { ...previous, status: "failed" } : null,
+        );
       }
-
-      setJob(next);
-
-      if (next.status !== "running") {
-        if (next.result) setSummary(next.result);
-        if (next.error) setError(next.error);
-      }
-    } catch (e) {
-      setError(e.message || "Lost contact with the job.");
-      setJob((previous) =>
-        previous ? { ...previous, status: "failed" } : null,
-      );
-    }
-  }, []);
+    },
+    [a.seedLostContact],
+  );
 
   useEffect(() => {
     if (!job?.id || job.status !== "running") return undefined;
@@ -201,12 +217,12 @@ export default function SeedPage() {
         previous ? { ...previous, cancelRequested: true } : null,
       );
     } catch (e) {
-      setError(e.message || "Could not cancel.");
+      setError(e.message || a.seedCouldNotCancel || "Could not cancel.");
     }
   }
 
   // Every hook above runs unconditionally; the returns below are the only
-  // branch. Order is fixed on every render, which is what React requires.
+  // branch, which is what React requires.
 
   if (admin === null) return null;
 
@@ -214,17 +230,15 @@ export default function SeedPage() {
     return (
       <>
         <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Seed data
+          {a.seedTitle || "Seed data"}
         </h1>
         <div className={`mt-6 ${CARD}`}>
           <p className="text-sm font-semibold text-slate-900 dark:text-white">
-            Administrators only
+            {a.seedAdminsOnly || "Administrators only"}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-            Seed tooling creates and deletes demo accounts, posts and uploaded
-            assets in bulk, so it is restricted to administrators. Moderation
-            tools — reports, deleted messages and removed messages — are
-            unaffected and remain available in the sidebar.
+            {a.seedAdminsOnlyBody ||
+              "Seed tooling creates and deletes demo accounts, posts and uploaded assets in bulk, so it is restricted to administrators. Moderation tools are unaffected and remain available in the sidebar."}
           </p>
         </div>
       </>
@@ -234,21 +248,21 @@ export default function SeedPage() {
   return (
     <>
       <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-        Seed data
+        {a.seedTitle || "Seed data"}
       </h1>
       <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-        Development tooling. Creates and removes demo users, posts, comments and
-        Cloudinary assets.
+        {a.seedIntro ||
+          "Development tooling. Creates and removes demo users, posts, comments and uploaded assets."}
       </p>
 
       {/* ── Seed options ─────────────────────────────────────────────── */}
       <section className={`mt-6 ${CARD}`}>
         <h2 className="text-sm font-bold text-slate-900 dark:text-white">
-          Seed options
+          {a.seedOptions || "Seed options"}
         </h2>
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
           <label className={LABEL}>
-            Center latitude
+            {a.seedCenterLat || "Center latitude"}
             <input
               type="number"
               step="0.0001"
@@ -258,7 +272,7 @@ export default function SeedPage() {
             />
           </label>
           <label className={LABEL}>
-            Center longitude
+            {a.seedCenterLng || "Center longitude"}
             <input
               type="number"
               step="0.0001"
@@ -268,7 +282,7 @@ export default function SeedPage() {
             />
           </label>
           <label className={LABEL}>
-            Number of posts
+            {a.seedPostCount || "Number of posts"}
             <input
               type="number"
               min="0"
@@ -283,11 +297,11 @@ export default function SeedPage() {
       {/* ── Full run ─────────────────────────────────────────────────── */}
       <section className={`mt-4 ${CARD}`}>
         <h2 className="text-sm font-bold text-slate-900 dark:text-white">
-          Full run
+          {a.seedFullRun || "Full run"}
         </h2>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          Runs in the background. Progress streams below and survives a page
-          refresh as long as the API stays up.
+          {a.seedFullRunIntro ||
+            "Runs in the background. Progress streams below and survives a page refresh as long as the API stays up."}
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
           <button
@@ -296,7 +310,7 @@ export default function SeedPage() {
             onClick={() => startJob(() => seedApi.up(options()))}
             className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-emerald-950 transition hover:brightness-105 disabled:opacity-50"
           >
-            Seed everything (up)
+            {a.seedEverything || "Seed everything (up)"}
           </button>
           <button
             type="button"
@@ -305,8 +319,8 @@ export default function SeedPage() {
             className="rounded-lg border border-red-300 px-4 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-50 disabled:opacity-50 dark:border-red-500/40 dark:text-red-400 dark:hover:bg-red-500/10"
           >
             {confirm
-              ? "Delete everything (down)"
-              : "Preview deletion (dry run)"}
+              ? a.seedDeleteEverything || "Delete everything (down)"
+              : a.seedPreviewDeletion || "Preview deletion (dry run)"}
           </button>
         </div>
       </section>
@@ -315,7 +329,7 @@ export default function SeedPage() {
       <section className={`mt-4 ${CARD}`}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-sm font-bold text-slate-900 dark:text-white">
-            Individual steps
+            {a.seedIndividualSteps || "Individual steps"}
           </h2>
           <label className="flex items-center gap-2 text-xs font-semibold text-red-700 dark:text-red-400">
             <input
@@ -324,7 +338,7 @@ export default function SeedPage() {
               onChange={(e) => setConfirm(e.target.checked)}
               className="accent-red-500"
             />
-            Confirm destructive operations
+            {a.seedConfirmDestructive || "Confirm destructive operations"}
           </label>
         </div>
 
@@ -345,10 +359,12 @@ export default function SeedPage() {
                     : "border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800")
                 }
               >
-                {runningStep === step.id ? "Running…" : step.label}
+                {runningStep === step.id
+                  ? a.seedRunning || "Running…"
+                  : stepLabel(step)}
                 {step.dryRunnable && !confirm ? (
                   <span className="block text-xs font-normal text-slate-400 dark:text-slate-500">
-                    dry run
+                    {a.seedDryRun || "dry run"}
                   </span>
                 ) : null}
               </button>
@@ -367,10 +383,13 @@ export default function SeedPage() {
                 "bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-400")
             }
           >
-            {job.status}
+            {statusLabel(job.status)}
           </span>
           <span className="text-sm text-slate-600 dark:text-slate-300">
-            {job.step || (job.status === "running" ? "Starting…" : "Finished")}
+            {job.step ||
+              (job.status === "running"
+                ? a.seedStarting || "Starting…"
+                : a.seedFinished || "Finished")}
           </span>
           {typeof job.durationMs === "number" ? (
             <span className="text-xs text-slate-400 dark:text-slate-600">
@@ -385,7 +404,9 @@ export default function SeedPage() {
               disabled={job.cancelRequested}
               className="ml-auto rounded-lg border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 disabled:opacity-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
-              {job.cancelRequested ? "Cancelling…" : "Cancel"}
+              {job.cancelRequested
+                ? a.seedCancelling || "Cancelling…"
+                : a.cancel || "Cancel"}
             </button>
           ) : null}
         </section>
@@ -405,6 +426,9 @@ export default function SeedPage() {
       ) : null}
 
       {log.length > 0 ? (
+        // The log itself is server output and is never translated — it is a
+        // machine record, and translating half of it would make it unusable
+        // for matching against the API's own logs.
         <pre className="mt-4 max-h-96 overflow-auto rounded-2xl border border-slate-800 bg-slate-900 p-4 text-xs leading-relaxed text-slate-100">
           {log.join("\n")}
           <span ref={logEndRef} />

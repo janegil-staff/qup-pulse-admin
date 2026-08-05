@@ -1,5 +1,5 @@
 // qup-pulse-admin/src/app/discover/page.js
-'use client';
+"use client";
 
 // Web Discover — a grid of people nearby, mirroring the app's DiscoveryScreen.
 // LOGGED-IN ONLY: redirects to / if there's no token. Live data from /discovery.
@@ -13,179 +13,317 @@
 //
 // Localized via useLang() (t.app.discover.*). `browsingFrom` is a place name
 // from the server and stays as-is — it's data, not copy.
+//
+// ── FILTERING, and why it is a filter rather than a search ────────────
+//
+// One box, matching name OR interest. The results ALREADY RETURNED by
+// /discovery are narrowed; They do not query the server. That means someone outside this
+// page of results cannot be found by typing their name, and the copy says
+// "filter" rather than "search" so the UI does not promise otherwise.
+//
+// This is a deliberate first version, not an oversight. Server-side search
+// would need a `q` parameter on /discovery, added as a $match stage inside the
+// existing $geoNear pipeline — NOT a second endpoint. A separate search route
+// is how two query paths drift apart and one of them forgets a privacy gate:
+// the age and distance preferences, the showDistance flag, and the block list
+// in both directions all live in that pipeline and would have to be
+// reimplemented identically.
+//
+// BIO IS DELIBERATELY NOT MATCHED. People write bios expecting them to be
+// read on a profile, not indexed. "Recently divorced", "in recovery", "new
+// here and don't know anyone" are all ordinary bio text and all become
+// targeting queries the moment they are searchable. Interests are the opposite
+// — a closed enum the user picked precisely so others could find them, which
+// is why they are matched and bio is not.
+//
+// Interests are matched by SUBSTRING, same as names. The enum values are
+// single words, so a partial match is usually what someone typing means. The
+// cost is that a short query can match an interest by accident — "art" hits
+// "martial arts" — which is a fair trade for not making the user guess the
+// exact enum spelling.
+//
+// Filters apply on top of the user's own age and distance preferences, which
+// are enforced server-side. Someone excluded by those will not appear here no
+// matter what is typed, which is the intended behaviour: one door into the
+// user base, not two.
 
-import { useEffect, useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { getToken } from '../../lib/api';
-import { useLang } from '../../context/LandingLang';
-import AppNav from '../../components/AppNav';
+import { useEffect, useState, useCallback, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { getToken } from "../../lib/api";
+import { useLang } from "../../context/LandingLang";
+import AppNav from "../../components/AppNav";
 import {
-    getDiscovery, updateLocation, clearBrowseLocation, extractPeople, avatarUrl,
-} from '../../lib/discoverApi';
+  getDiscovery,
+  updateLocation,
+  clearBrowseLocation,
+  extractPeople,
+  avatarUrl,
+} from "../../lib/discoverApi";
 
 export default function DiscoverPage() {
-    const router = useRouter();
-    const { t } = useLang();
-    const d = t.app.discover;
+  const router = useRouter();
+  const { t } = useLang();
+  const d = t.app.discover;
 
-    const [ready, setReady] = useState(false);
-    const [people, setPeople] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [refreshing, setRefreshing] = useState(false);
-    const [error, setError] = useState('');
-    const [browsingFrom, setBrowsingFrom] = useState(null);
-    const [browsingElsewhere, setBrowsingElsewhere] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [people, setPeople] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState("");
+  const [browsingFrom, setBrowsingFrom] = useState(null);
+  const [browsingElsewhere, setBrowsingElsewhere] = useState(false);
 
-    const load = useCallback(async () => {
-        setError('');
-        try {
-            // Push a fresh location so results are geo-accurate, then fetch.
-            // Best-effort: geolocation may be denied or unsupported — proceed anyway.
-            await new Promise((resolve) => {
-                if (!('geolocation' in navigator)) return resolve();
-                navigator.geolocation.getCurrentPosition(
-                    async (pos) => {
-                        try { await updateLocation(pos.coords.longitude, pos.coords.latitude); } catch { /* ignore */ }
-                        resolve();
-                    },
-                    () => resolve(),
-                    { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 },
-                );
-            });
+  // One query, matched against names and interests alike.
+  const [query, setQuery] = useState("");
 
-            const data = await getDiscovery();
-            setPeople(extractPeople(data));
-            setBrowsingFrom(data.browsingFrom ?? null);
-            setBrowsingElsewhere(Boolean(data.browsingElsewhere));
-        } catch (e) {
-            // The server's error strings are untranslated, so prefer our own copy
-            // and keep theirs only as a last resort.
-            setError(d.loadFailed || e?.message);
-        } finally {
-            setLoading(false);
-            setRefreshing(false);
-        }
-    }, [d.loadFailed]);
-
-    // Auth gate + initial load.
-    useEffect(() => {
-        if (!getToken()) { router.replace('/'); return; }
-        setReady(true);
-        load();
-    }, [router, load]);
-
-    function onRefresh() { setRefreshing(true); load(); }
-
-    async function browseNearMeAgain() {
-        setLoading(true);
-        try { await clearBrowseLocation(); } catch { /* reload anyway */ }
-        load();
-    }
-
-    if (!ready) {
-        return (
-            <div className="grid min-h-screen place-items-center bg-slate-50 text-slate-500 dark:bg-[#0b1016] dark:text-slate-400">
-                {d.loading}
-            </div>
+  const load = useCallback(async () => {
+    setError("");
+    try {
+      // Push a fresh location so results are geo-accurate, then fetch.
+      // Best-effort: geolocation may be denied or unsupported — proceed anyway.
+      await new Promise((resolve) => {
+        if (!("geolocation" in navigator)) return resolve();
+        navigator.geolocation.getCurrentPosition(
+          async (pos) => {
+            try {
+              await updateLocation(pos.coords.longitude, pos.coords.latitude);
+            } catch {
+              /* ignore */
+            }
+            resolve();
+          },
+          () => resolve(),
+          { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 },
         );
+      });
+
+      const data = await getDiscovery();
+      setPeople(extractPeople(data));
+      setBrowsingFrom(data.browsingFrom ?? null);
+      setBrowsingElsewhere(Boolean(data.browsingElsewhere));
+    } catch (e) {
+      // The server's error strings are untranslated, so prefer our own copy
+      // and keep theirs only as a last resort.
+      setError(d.loadFailed || e?.message);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
     }
+  }, [d.loadFailed]);
 
+  // Auth gate + initial load.
+  useEffect(() => {
+    if (!getToken()) {
+      router.replace("/");
+      return;
+    }
+    setReady(true);
+    load();
+  }, [router, load]);
+
+  function onRefresh() {
+    setRefreshing(true);
+    load();
+  }
+
+  async function browseNearMeAgain() {
+    setLoading(true);
+    try {
+      await clearBrowseLocation();
+    } catch {
+      /* reload anyway */
+    }
+    load();
+  }
+
+  // Matched against display name, username and interests. A hit on any of
+  // the three keeps the person — someone typing "climbing" and someone
+  // typing a username both expect to find who they are looking for, and
+  // making them pick which kind of thing they are typing first is friction
+  // for no gain.
+  const filtered = useMemo(() => {
+    const needle = query.trim().toLowerCase();
+    if (!needle) return people;
+
+    return people.filter((p) => {
+      const haystack = [p.displayName, p.username, ...(p.interests || [])]
+        .filter(Boolean)
+        .map((v) => String(v).toLowerCase());
+
+      return haystack.some((v) => v.includes(needle));
+    });
+  }, [people, query]);
+
+  const filtering = query.trim().length > 0;
+
+  function clearFilters() {
+    setQuery("");
+  }
+
+  if (!ready) {
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
-            <AppNav />
-            <div className="border-b border-slate-200 dark:border-slate-800">
-                <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
-                    {/* browsingFrom is a place name from the geocoder — data, not copy,
-              so it isn't localized. The fallback is. */}
-                    <div className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                        {browsingFrom || d.peopleNearby}
-                    </div>
-                    <button
-                        onClick={onRefresh}
-                        disabled={refreshing || loading}
-                        className="rounded-lg border border-slate-300 px-3.5 py-1.5 text-sm transition hover:bg-slate-100 disabled:opacity-50 dark:border-slate-700 dark:hover:bg-slate-800"
-                    >
-                        {refreshing ? d.refreshing : d.refresh}
-                    </button>
-                </div>
-                {browsingElsewhere ? (
-                    <button
-                        onClick={browseNearMeAgain}
-                        className="w-full border-t border-slate-200 bg-slate-100 py-2.5 text-sm font-semibold text-emerald-600 transition hover:bg-slate-200 dark:border-slate-800 dark:bg-slate-800/50 dark:text-emerald-400 dark:hover:bg-slate-800"
-                    >
-                        {d.browseNearMeAgain}
-                    </button>
-                ) : null}
-            </div>
-
-            <main className="mx-auto max-w-4xl px-4 py-4">
-                {loading ? (
-                    <div className="grid place-items-center py-24 text-slate-500 dark:text-slate-400">{d.loading}</div>
-                ) : people.length === 0 ? (
-                    <p className="mx-auto max-w-sm py-24 text-center text-slate-500 dark:text-slate-400">
-                        {error || d.empty}
-                    </p>
-                ) : (
-                    <div className="grid grid-cols-3 gap-2">
-                        {people.map((p) => (
-                            <PersonCard key={String(p.id ?? p._id ?? p.username)} person={p} d={d} />
-                        ))}
-                    </div>
-                )}
-            </main>
-        </div>
+      <div className="grid min-h-screen place-items-center bg-slate-50 text-slate-500 dark:bg-[#0b1016] dark:text-slate-400">
+        {d.loading}
+      </div>
     );
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0b1016] dark:text-slate-100">
+      <AppNav />
+      <div className="border-b border-slate-200 dark:border-slate-800">
+        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
+          {/* browsingFrom is a place name from the geocoder — data, not copy,
+              so it isn't localized. The fallback is. */}
+          <div className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+            {browsingFrom || d.peopleNearby}
+          </div>
+          <button
+            onClick={onRefresh}
+            disabled={refreshing || loading}
+            className="rounded-lg border border-slate-300 px-3.5 py-1.5 text-sm transition hover:bg-slate-100 disabled:opacity-50 dark:border-slate-700 dark:hover:bg-slate-800"
+          >
+            {refreshing ? d.refreshing : d.refresh}
+          </button>
+        </div>
+        {browsingElsewhere ? (
+          <button
+            onClick={browseNearMeAgain}
+            className="w-full border-t border-slate-200 bg-slate-100 py-2.5 text-sm font-semibold text-emerald-600 transition hover:bg-slate-200 dark:border-slate-800 dark:bg-slate-800/50 dark:text-emerald-400 dark:hover:bg-slate-800"
+          >
+            {d.browseNearMeAgain}
+          </button>
+        ) : null}
+      </div>
+
+      {/* Hidden while loading and when there is nobody nearby — a search
+                box above an empty grid reads as "no results for your search"
+                when the truth is that the area is empty. */}
+      {!loading && people.length > 0 ? (
+        <div className="border-b border-slate-200 dark:border-slate-800">
+          <div className="mx-auto max-w-4xl px-4 py-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={d.filterPlaceholder || "Name or interest"}
+                aria-label={d.filterPlaceholder || "Name or interest"}
+                className="w-full max-w-xs flex-1 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm outline-none transition focus:border-emerald-500 dark:border-slate-700 dark:bg-[#0b1016] sm:w-64 sm:flex-none"
+              />
+
+              {filtering ? (
+                <button
+                  onClick={clearFilters}
+                  className="rounded-lg px-3 py-1.5 text-sm font-semibold text-emerald-600 transition hover:bg-emerald-500/10 dark:text-emerald-400"
+                >
+                  {d.clearFilters || "Clear"}
+                </button>
+              ) : null}
+
+              <span className="ml-auto text-xs text-slate-400 dark:text-slate-600">
+                {filtering ? `${filtered.length} / ${people.length}` : null}
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      <main className="mx-auto max-w-4xl px-4 py-4">
+        {loading ? (
+          <div className="grid place-items-center py-24 text-slate-500 dark:text-slate-400">
+            {d.loading}
+          </div>
+        ) : people.length === 0 ? (
+          <p className="mx-auto max-w-sm py-24 text-center text-slate-500 dark:text-slate-400">
+            {error || d.empty}
+          </p>
+        ) : filtered.length === 0 ? (
+          // Distinct from the empty state above, deliberately. "Nobody
+          // nearby" and "nobody matching what you typed" are different
+          // facts, and showing the same sentence for both makes the
+          // filter look broken.
+          <div className="mx-auto max-w-sm py-24 text-center">
+            <p className="text-slate-500 dark:text-slate-400">
+              {d.noMatches || "Nobody nearby matches those filters."}
+            </p>
+            <button
+              onClick={clearFilters}
+              className="mt-3 rounded-lg px-3 py-1.5 text-sm font-semibold text-emerald-600 transition hover:bg-emerald-500/10 dark:text-emerald-400"
+            >
+              {d.clearFilters || "Clear"}
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-3 gap-2">
+            {filtered.map((p) => (
+              <PersonCard
+                key={String(p.id ?? p._id ?? p.username)}
+                person={p}
+                d={d}
+              />
+            ))}
+          </div>
+        )}
+      </main>
+    </div>
+  );
 }
 
 function PersonCard({ person, d }) {
-    const name = person.displayName || person.username || d.someone;
-    const src = avatarUrl(person);
+  const name = person.displayName || person.username || d.someone;
+  const src = avatarUrl(person);
 
-    const card = (
-        <div className="relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-slate-100 transition dark:border-slate-800 dark:bg-slate-800">
-            {src ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={src} alt="" className="h-full w-full object-cover" />
-            ) : (
-                <div className="grid h-full w-full place-items-center text-2xl font-extrabold text-slate-400">
-                    {name.slice(0, 1).toUpperCase()}
-                </div>
-            )}
-
-            {person.emailVerified ? (
-                <span className="absolute left-1.5 top-1.5 flex max-w-[calc(100%-1rem)] items-center gap-1 rounded-full bg-black/55 px-1.5 py-[3px] text-[9px] font-bold text-white">
-                    <span className="grid h-2.5 w-2.5 place-items-center rounded-full bg-emerald-400 text-[7px] text-emerald-950">✓</span>
-                    <span className="truncate">{d.emailConfirmed}</span>
-                </span>
-            ) : null}
-
-            {person.online ? (
-                <span className="absolute right-1.5 top-1.5 h-4 w-4 rounded-full border-2 border-white bg-[#3BD16F]" />
-            ) : null}
-
-            <div className="absolute inset-x-0 bottom-0 bg-black/65 px-1.5 py-1.5">
-                <p className="truncate text-xs font-bold text-white">
-                    {name}{person.age ? `, ${person.age}` : ''}
-                </p>
-                {person.distanceKm != null ? (
-                    <p className="truncate text-[10px] text-white/85">~{person.distanceKm} km</p>
-                ) : null}
-            </div>
+  const card = (
+    <div className="relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-slate-100 transition dark:border-slate-800 dark:bg-slate-800">
+      {src ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={src} alt="" className="h-full w-full object-cover" />
+      ) : (
+        <div className="grid h-full w-full place-items-center text-2xl font-extrabold text-slate-400">
+          {name.slice(0, 1).toUpperCase()}
         </div>
-    );
+      )}
 
-    // No username means no profile route to point at — render the card unlinked
-    // rather than sending the user to /profile/undefined.
-    if (!person.username) return card;
+      {person.emailVerified ? (
+        <span className="absolute left-1.5 top-1.5 flex max-w-[calc(100%-1rem)] items-center gap-1 rounded-full bg-black/55 px-1.5 py-[3px] text-[9px] font-bold text-white">
+          <span className="grid h-2.5 w-2.5 place-items-center rounded-full bg-emerald-400 text-[7px] text-emerald-950">
+            ✓
+          </span>
+          <span className="truncate">{d.emailConfirmed}</span>
+        </span>
+      ) : null}
 
-    return (
-        <Link
-            href={`/profile/${encodeURIComponent(person.username)}`}
-            aria-label={name}
-            className="block no-underline transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 rounded-xl dark:focus-visible:ring-offset-[#0b1016]"
-        >
-            {card}
-        </Link>
-    );
+      {person.online ? (
+        <span className="absolute right-1.5 top-1.5 h-4 w-4 rounded-full border-2 border-white bg-[#3BD16F]" />
+      ) : null}
+
+      <div className="absolute inset-x-0 bottom-0 bg-black/65 px-1.5 py-1.5">
+        <p className="truncate text-xs font-bold text-white">
+          {name}
+          {person.age ? `, ${person.age}` : ""}
+        </p>
+        {person.distanceKm != null ? (
+          <p className="truncate text-[10px] text-white/85">
+            ~{person.distanceKm} km
+          </p>
+        ) : null}
+      </div>
+    </div>
+  );
+
+  // No username means no profile route to point at — render the card unlinked
+  // rather than sending the user to /profile/undefined.
+  if (!person.username) return card;
+
+  return (
+    <Link
+      href={`/profile/${encodeURIComponent(person.username)}`}
+      aria-label={name}
+      className="block no-underline transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 rounded-xl dark:focus-visible:ring-offset-[#0b1016]"
+    >
+      {card}
+    </Link>
+  );
 }
