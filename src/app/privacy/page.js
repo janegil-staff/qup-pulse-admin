@@ -18,9 +18,37 @@
 //   4. A report stores a snapshot of the message text that survives both
 //      retraction and removal.
 //
+// LOCATION SECTION added, and the collect/use lists moved to new keys, because
+// the app's location model changed and the old wording is now false. It said
+// location was used "to show you nearby posts" and that "you can control this
+// through your device settings". Both are wrong today:
+//
+//   - Location is also used to show the user TO other members, which the old
+//     text never mentioned at all. That is the disclosure App Store guideline
+//     5.1.2(i) is about, and its absence is what the app's rejection turned on.
+//   - Control no longer lives in device settings. There is a separate in-app
+//     agreement, and visibility additionally requires a manual check-in that
+//     expires on its own and cannot be automated.
+//
+// Why NEW KEYS (collectV2, useV2) rather than editing `collect` and `use`:
+// eleven translations already carry the old strings. Editing only the English
+// would leave those eleven silently asserting a claim that is no longer true,
+// in the exact place a regulator or a reviewer would look. A new key falls
+// back to correct English everywhere until each translation lands, which is
+// the right failure mode. Delete the old keys once the translations exist.
+//
 // Every string has an English fallback so the page renders correctly before
 // the locale files carry these keys. The fallbacks are the authoritative
 // wording: English governs, per the note at the foot of the page.
+//
+// KEYS THE LOCALE FILES STILL NEED (English falls back until they land):
+//   collectV2, useV2, locationTitle, locationIntro, locationSeeing,
+//   locationBeingSeen, locationCheckIn, locationRounding, locationWithdraw,
+//   locationNote, visibilityTitle, visibilityProfile, visibilityDistance,
+//   visibilityBlocking, visibilitySharing
+//
+// BUMP `L.updated` when this deploys. A policy whose date predates the change
+// it describes invites the reader to assume the change is not described.
 //
 // RETENTION is the part that needs a decision rather than wording. Nothing
 // currently deletes retracted messages or resolved reports, so the honest
@@ -58,10 +86,93 @@ export default function PrivacyPage() {
         <P>{t.ageNote}</P>
 
         <H2>{t.collectTitle}</H2>
-        <Ul items={t.collect} />
+        <Ul
+          items={
+            t.collectV2 || [
+              "Account information: your email address and PIN.",
+              "Profile information: your username, display name, and profile photo.",
+              "Content you create: posts, comments, messages, and images you share.",
+              "Approximate location. How we use it, and what you control, is described under Location below.",
+            ]
+          }
+        />
 
         <H2>{t.useTitle}</H2>
-        <Ul items={t.use} />
+        <Ul
+          items={
+            t.useV2 || [
+              "To provide and operate the app, including your feed, messages, and profile.",
+              "To show you relevant nearby content.",
+              "To show you to other members, but only with your agreement and only while you are checked in. See Location below.",
+              "To keep the service safe, including handling reports and moderation.",
+              "To send you service-related emails, such as verification and password reset.",
+            ]
+          }
+        />
+
+        {/* ── Location ──────────────────────────────────────────────────
+            Placed immediately after the two lists that refer to it, and
+            before messages/moderation, because this is the section a reader
+            arriving from the app's consent dialog came to find.
+
+            Seeing and being seen are separate paragraphs rather than one
+            because they are governed by separate controls. A reader who
+            takes them as a single thing will misunderstand what they
+            agreed to, which is the misunderstanding this whole section
+            exists to prevent. */}
+        <H2>{t.locationTitle || "Location"}</H2>
+        <P>
+          {t.locationIntro ||
+            "We use your approximate location for two separate things, and you control them separately."}
+        </P>
+        <P>
+          {t.locationSeeing ||
+            "To show you nearby posts and people. This uses your position on your device, and needs the location permission your phone asks for. You can refuse it, or withdraw it later in your device settings; the app still works, and your feed is simply not ranked by distance."}
+        </P>
+        <P>
+          {t.locationBeingSeen ||
+            "To show you to other members. This needs something more than the phone permission: it needs your agreement inside the app, which we ask you for directly and which you can decline."}
+        </P>
+        <P>
+          {t.locationCheckIn ||
+            "Agreeing does not by itself make you visible to anyone. You become visible only when you check in, which is a deliberate action you take each time. A check-in lasts for a limited period and then lapses on its own. Check-ins cannot be made automatic — there is no setting for it anywhere in the app — and we never record your position in the background, or while you are not using the app."}
+        </P>
+        <P>
+          {t.locationRounding ||
+            "Your coordinates are rounded before they are stored, so we hold an approximate position rather than an exact one. Other members are never shown your position on a map, a pin, or an address. They see only a rounded distance, such as “~4 km”."}
+        </P>
+        <P>
+          {t.locationWithdraw ||
+            "You can check out at any time, which removes you from other members’ results immediately. You can also withdraw your agreement entirely under Settings, Privacy and safety: that ends any active check-in and deletes the position we hold for you. Declining, checking out, or withdrawing does not stop you browsing, posting, messaging, or calling."}
+        </P>
+        <P>
+          {t.locationNote ||
+            "We say this plainly because the app works this way too: being able to see people near you and being seen by them are different things, and you are asked about them separately."}
+        </P>
+
+        {/* ── Visibility ────────────────────────────────────────────────
+            The previous version never stated that the profile is visible to
+            other members at all — an odd gap in a social app's document, and
+            not something a reader should have to infer. Blocking sits here
+            rather than under moderation because it is a control the reader
+            has, not an action we take. */}
+        <H2>{t.visibilityTitle || "What other members can see"}</H2>
+        <P>
+          {t.visibilityProfile ||
+            "Your profile — your username, display name, photo, and what you post — is visible to other members of the app."}
+        </P>
+        <P>
+          {t.visibilityDistance ||
+            "Your approximate distance is shown to other members only while you are checked in, as described above. When you are not checked in, you do not appear in other members’ results at all."}
+        </P>
+        <P>
+          {t.visibilityBlocking ||
+            "You can block any member from their profile, which removes them from your results and prevents them contacting you. Members you have blocked are listed under Settings, Privacy and safety, where you can unblock them."}
+        </P>
+        <P>
+          {t.visibilitySharing ||
+            "We share data with service providers, such as image hosting, only as needed to operate the service. We do not sell your personal data."}
+        </P>
 
         {/* ── Messages ──────────────────────────────────────────────────
             Placed before moderation because it explains the mechanics the
