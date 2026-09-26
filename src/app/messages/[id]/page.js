@@ -65,6 +65,7 @@ import {
 } from "../../../lib/chatApi";
 import { uploadImage } from "../../../lib/profileSettingsApi";
 import { getSocket } from "../../../lib/socket";
+import { useCall, CALL_PHASE } from "../../../lib/calls/CallContext";
 
 const TYPING_TTL_MS = 3000;
 const TYPING_EMIT_EVERY_MS = 1000;
@@ -90,6 +91,7 @@ export default function ThreadPage() {
   const { t } = useLang();
   const m = t.app.messages;
   const s = t.app.settings;
+  const call = useCall();
 
   const [ready, setReady] = useState(false);
   const [convo, setConvo] = useState(null);
@@ -514,6 +516,32 @@ export default function ThreadPage() {
               </span>
             )}
           </div>
+
+          {/* Video call. Only in accepted 1:1 threads — the server enforces the
+              same rule (and blocks) on call:invite. */}
+          {convo?.status === "accepted" && otherId ? (
+            <button
+              type="button"
+              onClick={() =>
+                call.startCall({
+                  conversationId: id,
+                  peer: {
+                    id: otherId,
+                    displayName: name,
+                    username: u?.username,
+                    avatarUrl: avatar,
+                  },
+                  media: "video",
+                })
+              }
+              disabled={!call.canCall || call.phase !== CALL_PHASE.IDLE}
+              title={t.app.calls?.videoCall || "Video call"}
+              aria-label={t.app.calls?.videoCall || "Video call"}
+              className="ml-auto grid h-9 w-9 shrink-0 place-items-center rounded-full border border-slate-300 bg-white text-lg transition hover:bg-slate-100 disabled:opacity-40 dark:border-slate-700 dark:bg-[#131c26] dark:hover:bg-slate-800"
+            >
+              🎥
+            </button>
+          ) : null}
         </div>
 
         {error ? (

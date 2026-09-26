@@ -41,7 +41,19 @@
 // the locale files carry these keys. The fallbacks are the authoritative
 // wording: English governs, per the note at the foot of the page.
 //
+// SEPT 2026 CORRECTION: the location paragraphs described a server-side
+// check-in model (check-ins expiring, "check out", "~4 km" distances, position
+// deleted on withdrawal) that was never built. The app shipped a client-only
+// model instead: location is sent only on a manual check-in, consent lives in
+// the app, other members never see your distance, and the last check-in stays
+// stored. The fallbacks below now describe THAT. VIDEO CALLS section added.
+// The keys were renamed (…V2) for the same reason as collectV2/useV2 above: a
+// translation of the old, false wording must not keep rendering.
+//
 // KEYS THE LOCALE FILES STILL NEED (English falls back until they land):
+//   locationCheckInV2, locationRoundingV2, locationWithdrawV2,
+//   visibilityDistanceV2, callsTitle, callsIntro, callsMedia, callsRecord,
+//   callsSafety
 //   collectV2, useV2, locationTitle, locationIntro, locationSeeing,
 //   locationBeingSeen, locationCheckIn, locationRounding, locationWithdraw,
 //   locationNote, visibilityTitle, visibilityProfile, visibilityDistance,
@@ -93,6 +105,7 @@ export default function PrivacyPage() {
               "Profile information: your username, display name, and profile photo.",
               "Content you create: posts, comments, messages, and images you share.",
               "Approximate location. How we use it, and what you control, is described under Location below.",
+              "Call records: who called whom, when, how long the call lasted and whether it connected. We never record the audio or video of a call — see Video calls below.",
             ]
           }
         />
@@ -103,7 +116,7 @@ export default function PrivacyPage() {
             t.useV2 || [
               "To provide and operate the app, including your feed, messages, and profile.",
               "To show you relevant nearby content.",
-              "To show you to other members, but only with your agreement and only while you are checked in. See Location below.",
+              "To show you to other members, but only with your agreement and only from a position you chose to share by checking in. See Location below.",
               "To keep the service safe, including handling reports and moderation.",
               "To send you service-related emails, such as verification and password reset.",
             ]
@@ -134,16 +147,16 @@ export default function PrivacyPage() {
             "To show you to other members. This needs something more than the phone permission: it needs your agreement inside the app, which we ask you for directly and which you can decline."}
         </P>
         <P>
-          {t.locationCheckIn ||
-            "Agreeing does not by itself make you visible to anyone. You become visible only when you check in, which is a deliberate action you take each time. A check-in lasts for a limited period and then lapses on its own. Check-ins cannot be made automatic — there is no setting for it anywhere in the app — and we never record your position in the background, or while you are not using the app."}
+          {t.locationCheckInV2 ||
+            "Agreeing does not by itself send your location anywhere. Your location is sent to us only when you check in or pick a place yourself — a deliberate action you take each time. Check-ins cannot be made automatic — there is no setting for it anywhere in the app — and we never read or send your position in the background, or while you are not using the app."}
         </P>
         <P>
-          {t.locationRounding ||
-            "Your coordinates are rounded before they are stored, so we hold an approximate position rather than an exact one. Other members are never shown your position on a map, a pin, or an address. They see only a rounded distance, such as “~4 km”."}
+          {t.locationRoundingV2 ||
+            "Your coordinates are rounded before they are stored, so we hold an approximate position rather than an exact one. We use the position from your last check-in to show your profile to members near it, ordered by distance. Other members are never shown your position, your distance, or where you checked in — not on a map, a pin, an address, or as a number of kilometres."}
         </P>
         <P>
-          {t.locationWithdraw ||
-            "You can check out at any time, which removes you from other members’ results immediately. You can also withdraw your agreement entirely under Settings, Privacy and safety: that ends any active check-in and deletes the position we hold for you. Declining, checking out, or withdrawing does not stop you browsing, posting, messaging, or calling."}
+          {t.locationWithdrawV2 ||
+            "You can withdraw your agreement at any time in the app under Settings, “Show me to people nearby”. From then on the app does not send your location. The position from your last check-in stays stored, and your profile can still appear to members near it, until you check in somewhere else or delete your account; if you want it removed sooner, contact us. Declining or withdrawing does not stop you browsing, posting, messaging, or calling."}
         </P>
         <P>
           {t.locationNote ||
@@ -162,8 +175,8 @@ export default function PrivacyPage() {
             "Your profile — your username, display name, photo, and what you post — is visible to other members of the app."}
         </P>
         <P>
-          {t.visibilityDistance ||
-            "Your approximate distance is shown to other members only while you are checked in, as described above. When you are not checked in, you do not appear in other members’ results at all."}
+          {t.visibilityDistanceV2 ||
+            "Other members are never shown your distance or location. If you have never checked in, you do not appear in other members’ nearby results."}
         </P>
         <P>
           {t.visibilityBlocking ||
@@ -196,6 +209,28 @@ export default function PrivacyPage() {
         <P>
           {t.messagesRetractNote ||
             "We say this plainly because the app says it too: retracting a message hides it from everyone in the app, but does not erase it from our servers."}
+        </P>
+
+        {/* ── Video calls ───────────────────────────────────────────────
+            Explains the camera/microphone permissions (App Review checks
+            that the policy covers them) and draws the line a reader cares
+            about: the call record is stored, the call itself never is. */}
+        <H2>{t.callsTitle || "Video calls"}</H2>
+        <P>
+          {t.callsIntro ||
+            "You can start a video call with another member in a one-to-one conversation. Your camera and microphone are used only during a call you have started or answered, and only after you allow access in your browser or on your phone."}
+        </P>
+        <P>
+          {t.callsMedia ||
+            "Audio and video travel directly between the two devices, or through a relay server when a direct connection is not possible, and are encrypted in transit. We never record or store what is said or shown in a call."}
+        </P>
+        <P>
+          {t.callsRecord ||
+            "We keep a record of each call — who called whom, when, how long it lasted, and whether it connected — so that your call history works and reports can be handled. Call records are kept while your account is active."}
+        </P>
+        <P>
+          {t.callsSafety ||
+            "You can report the other person during a call. The report goes to our moderation team with a reference to that call; moderators see the call record and your report, never a recording, because none exists. Members you have blocked cannot call you."}
         </P>
 
         {/* ── Moderation ────────────────────────────────────────────── */}

@@ -2,6 +2,7 @@
 import './globals.css';
 import { LandingLangProvider } from '../context/LandingLang';
 import Footer from '../components/Footer';
+import CallRoot from '../components/calls/CallRoot';
 
 export const metadata = { title: 'Qup Pulse', description: 'Qup Pulse — a location-based social app for discovering what\'s happening around you.' };
 
@@ -39,10 +40,12 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <LandingLangProvider>
-          <div className="flex min-h-screen flex-col">
-            <div className="flex-1">{children}</div>
-            <Footer />
-          </div>
+          <CallRoot>
+            <div className="flex min-h-screen flex-col">
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </div>
+          </CallRoot>
         </LandingLangProvider>
       </body>
     </html>
