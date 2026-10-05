@@ -29,12 +29,12 @@
     }
   },
   "download": {
-    "title": "Nyt saatavilla App Storessa ja Google Playssa",
-    "body": "Qup Pulse on julkaistu molemmissa kaupoissa. Lataa sovellus ja löydä ihmisiä ja julkaisuja läheltäsi.",
+    "title": "Julkaistaan pian molemmissa kaupoissa",
+    "body": "Qup Pulse on nyt arvioitavana. Liity jonotuslistalle, niin lähetämme linkin julkaisupäivänä.",
     "soon": "Pian",
-    "appStoreSmall": "Lataa kaupasta",
+    "appStoreSmall": "Tulossa kauppaan",
     "appStoreBig": "App Store",
-    "playSmall": "Lataa kaupasta",
+    "playSmall": "Tulossa kauppaan",
     "playBig": "Google Play"
   },
   "footer": {

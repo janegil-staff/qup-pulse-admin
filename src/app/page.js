@@ -26,6 +26,17 @@ import { LANGUAGES, SUPPORTED_LANGS } from "../content/landingContent";
 import { setToken, setRole, setUsername, login } from "../lib/api";
 import { useDarkMode } from "../lib/useDarkMode";
 
+// Store listing URLs for the two download buttons.
+// A button with a URL is a clickable link. A button with an empty string stays
+// a non-clickable "Soon" badge, so nothing ever links to a page that isn't live.
+//
+// App Store: paste the Apple ID from App Store Connect > App Information,
+//   e.g. "https://apps.apple.com/app/id1234567890"
+// Google Play: built from the Android package name (android.package in app.json).
+const APP_STORE_URL = "https://apps.apple.com/us/app/qup-pulse/id6790453535";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.qup.pulse";
+
 export default function LandingPage() {
   const { t, lang, setLang } = useLang();
   const router = useRouter();
@@ -250,12 +261,14 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-3.5">
               <StoreBadge
+                href={APP_STORE_URL}
                 soon={t.download.soon}
                 small={t.download.appStoreSmall}
                 big={t.download.appStoreBig}
                 glyph=""
               />
               <StoreBadge
+                href={PLAY_STORE_URL}
                 soon={t.download.soon}
                 small={t.download.playSmall}
                 big={t.download.playBig}
@@ -284,12 +297,12 @@ function Feature({ icon, title, body }) {
   );
 }
 
-function StoreBadge({ soon, small, big, glyph }) {
-  return (
-    <span className="relative inline-flex min-w-[190px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-3 text-left opacity-75 dark:border-slate-800 dark:bg-[#121a23]">
-      <span className="absolute -top-2 right-2.5 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-950">
-        {soon}
-      </span>
+function StoreBadge({ href, soon, small, big, glyph }) {
+  const base =
+    "relative inline-flex min-w-[190px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-3 text-left dark:border-slate-800 dark:bg-[#121a23]";
+
+  const content = (
+    <>
       <span className="text-2xl leading-none" aria-hidden="true">
         {glyph}
       </span>
@@ -299,6 +312,30 @@ function StoreBadge({ soon, small, big, glyph }) {
         </span>
         <span className="text-base font-semibold">{big}</span>
       </span>
+    </>
+  );
+
+  // Live: a real link to the store listing, no "Soon" pill.
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${base} transition hover:-translate-y-0.5 hover:border-emerald-400/60`}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  // Not live yet: the original dimmed, non-clickable badge.
+  return (
+    <span className={`${base} opacity-75`}>
+      <span className="absolute -top-2 right-2.5 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-950">
+        {soon}
+      </span>
+      {content}
     </span>
   );
 }

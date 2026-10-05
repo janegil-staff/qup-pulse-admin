@@ -29,12 +29,12 @@
     }
   },
   "download": {
-    "title": "Disponible dès maintenant sur l’App Store et Google Play",
-    "body": "Qup Pulse est en ligne sur les deux stores. Téléchargez l’application et découvrez les personnes et les publications près de chez vous.",
+    "title": "Bientôt sur les deux stores",
+    "body": "Qup Pulse est en cours d’examen. Rejoignez la liste d’attente et nous vous enverrons le lien dès sa mise en ligne.",
     "soon": "Bientôt",
-    "appStoreSmall": "Télécharger dans l’",
+    "appStoreSmall": "Bientôt sur l’",
     "appStoreBig": "App Store",
-    "playSmall": "Disponible sur",
+    "playSmall": "Bientôt sur",
     "playBig": "Google Play"
   },
   "footer": {

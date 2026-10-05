@@ -29,12 +29,12 @@
     }
   },
   "download": {
-    "title": "Finns nu i App Store och på Google Play",
-    "body": "Qup Pulse finns i båda butikerna. Ladda ner appen och upptäck personer och inlägg nära dig.",
+    "title": "Lanseras snart i båda butikerna",
+    "body": "Qup Pulse granskas just nu. Gå med i väntelistan så skickar vi länken den dag den är live.",
     "soon": "Snart",
-    "appStoreSmall": "Hämta i",
+    "appStoreSmall": "Kommer till",
     "appStoreBig": "App Store",
-    "playSmall": "Ladda ned på",
+    "playSmall": "Kommer till",
     "playBig": "Google Play"
   },
   "footer": {

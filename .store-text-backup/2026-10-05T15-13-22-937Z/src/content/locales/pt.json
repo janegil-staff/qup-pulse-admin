@@ -29,12 +29,12 @@
     }
   },
   "download": {
-    "title": "Já disponível na App Store e no Google Play",
-    "body": "O Qup Pulse já está nas duas lojas. Descarrega a app e descobre pessoas e publicações perto de ti.",
+    "title": "Em breve nas duas lojas",
+    "body": "O Qup Pulse está em análise. Entra na lista de espera e enviamos-te o link no dia do lançamento.",
     "soon": "Em breve",
-    "appStoreSmall": "Descarregar na",
+    "appStoreSmall": "Em breve na",
     "appStoreBig": "App Store",
-    "playSmall": "Disponível no",
+    "playSmall": "Em breve no",
     "playBig": "Google Play"
   },
   "footer": {

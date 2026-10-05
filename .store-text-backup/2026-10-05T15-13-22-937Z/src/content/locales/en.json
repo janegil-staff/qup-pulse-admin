@@ -29,12 +29,12 @@
     }
   },
   "download": {
-    "title": "Available now on the App Store and Google Play",
-    "body": "Qup Pulse is live on both stores. Download the app and start discovering people and posts near you.",
+    "title": "Launching soon on both stores",
+    "body": "Qup Pulse is in review now. Join the waitlist and we'll send you the link the day it's live.",
     "soon": "Soon",
-    "appStoreSmall": "Download on the",
+    "appStoreSmall": "Coming to the",
     "appStoreBig": "App Store",
-    "playSmall": "Get it on",
+    "playSmall": "Coming to",
     "playBig": "Google Play"
   },
   "footer": {
