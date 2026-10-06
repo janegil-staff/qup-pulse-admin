@@ -203,6 +203,8 @@
       "saveFailed": "Nie udało się zapisać profilu.",
       "uploadFailed": "Przesyłanie zdjęcia nie powiodło się.",
       "followFailed": "Nie udało się zaktualizować obserwowania.",
+      "noFollowers": "Brak obserwujących.",
+      "noFollowing": "Nikogo jeszcze nie obserwuje.",
       "age": "Wiek",
       "location": "Lokalizacja",
       "moreActions": "Więcej akcji",

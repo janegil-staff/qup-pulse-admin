@@ -41,6 +41,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { getToken } from '../../../lib/api';
 import { useLang } from '../../../context/LandingLang';
 import AppNav from '../../../components/AppNav';
@@ -201,10 +202,20 @@ export default function PublicProfilePage() {
                             <h1 className="truncate text-xl font-bold text-slate-900 dark:text-white">{name}</h1>
                             <p className="truncate text-sm text-slate-500 dark:text-slate-400">@{profile.username}</p>
                             <div className="mt-2 flex gap-4 text-sm">
-                                <span><span className="font-semibold">{profile.followerCount ?? 0}</span>{' '}
-                                    <span className="text-slate-500 dark:text-slate-400">{p.followers}</span></span>
-                                <span><span className="font-semibold">{profile.followingCount ?? 0}</span>{' '}
-                                    <span className="text-slate-500 dark:text-slate-400">{p.following}</span></span>
+                                <Link
+                                    href={`/profile/${encodeURIComponent(profile.username)}/followers`}
+                                    className="text-inherit no-underline hover:underline"
+                                >
+                                    <span className="font-semibold">{profile.followerCount ?? 0}</span>{' '}
+                                    <span className="text-slate-500 dark:text-slate-400">{p.followers}</span>
+                                </Link>
+                                <Link
+                                    href={`/profile/${encodeURIComponent(profile.username)}/following`}
+                                    className="text-inherit no-underline hover:underline"
+                                >
+                                    <span className="font-semibold">{profile.followingCount ?? 0}</span>{' '}
+                                    <span className="text-slate-500 dark:text-slate-400">{p.following}</span>
+                                </Link>
                             </div>
                         </div>
                         <button

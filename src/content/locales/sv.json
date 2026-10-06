@@ -203,6 +203,8 @@
       "saveFailed": "Kunde inte spara din profil.",
       "uploadFailed": "Bilduppladdning misslyckades.",
       "followFailed": "Kunde inte uppdatera följning.",
+      "noFollowers": "Inga följare ännu.",
+      "noFollowing": "Följer ingen ännu.",
       "age": "Ålder",
       "location": "Plats",
       "moreActions": "Fler åtgärder",

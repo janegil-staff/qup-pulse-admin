@@ -203,6 +203,8 @@
       "saveFailed": "Profiiliasi ei voitu tallentaa.",
       "uploadFailed": "Kuvan lataus epäonnistui.",
       "followFailed": "Seuraamista ei voitu päivittää.",
+      "noFollowers": "Ei vielä seuraajia.",
+      "noFollowing": "Ei seuraa vielä ketään.",
       "age": "Ikä",
       "location": "Sijainti",
       "moreActions": "Lisää toimintoja",

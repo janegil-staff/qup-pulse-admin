@@ -203,6 +203,8 @@
       "saveFailed": "Kunne ikke gemme din profil.",
       "uploadFailed": "Billedupload mislykkedes.",
       "followFailed": "Kunne ikke opdatere følgning.",
+      "noFollowers": "Ingen følgere endnu.",
+      "noFollowing": "Følger ingen endnu.",
       "age": "Alder",
       "location": "Sted",
       "moreActions": "Flere handlinger",

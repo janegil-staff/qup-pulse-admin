@@ -192,3 +192,27 @@ export async function deleteAccount() {
   });
   return parse(res);
 }
+
+// Follower / following lists — GET /users/:id/followers | /users/:id/following
+// Cursor-paginated: pass { before } with the previous page's nextBefore.
+//   -> { users: [publicUser + followedByMe + isSelf], nextBefore }
+// Same endpoints the app uses (client.js: getFollowers / getFollowing).
+async function followList(userId, kind, { before } = {}) {
+  const query = before ? `?before=${encodeURIComponent(before)}` : '';
+  const res = await fetch(
+    `${API_URL}/users/${encodeURIComponent(userId)}/${kind}${query}`,
+    { headers: headers(), cache: 'no-store' },
+  );
+  const data = await parse(res);
+  // Tolerate a bare array or a list keyed by its own name.
+  const users = Array.isArray(data) ? data : data.users ?? data[kind] ?? [];
+  return { users, nextBefore: data.nextBefore ?? null };
+}
+
+export function getFollowers(userId, opts) {
+  return followList(userId, 'followers', opts);
+}
+
+export function getFollowing(userId, opts) {
+  return followList(userId, 'following', opts);
+}

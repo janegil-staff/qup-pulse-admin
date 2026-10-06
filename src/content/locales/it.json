@@ -203,6 +203,8 @@
       "saveFailed": "Impossibile salvare il tuo profilo.",
       "uploadFailed": "Caricamento immagine non riuscito.",
       "followFailed": "Impossibile aggiornare il seguito.",
+      "noFollowers": "Ancora nessun follower.",
+      "noFollowing": "Non segue ancora nessuno.",
       "age": "Età",
       "location": "Luogo",
       "moreActions": "Altre azioni",

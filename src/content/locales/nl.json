@@ -203,6 +203,8 @@
       "saveFailed": "Kon je profiel niet opslaan.",
       "uploadFailed": "Uploaden van afbeelding mislukt.",
       "followFailed": "Kon volgen niet bijwerken.",
+      "noFollowers": "Nog geen volgers.",
+      "noFollowing": "Volgt nog niemand.",
       "age": "Leeftijd",
       "location": "Locatie",
       "moreActions": "Meer acties",

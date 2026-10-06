@@ -203,6 +203,8 @@
       "saveFailed": "Could not save your profile.",
       "uploadFailed": "Image upload failed.",
       "followFailed": "Could not update follow.",
+      "noFollowers": "No followers yet.",
+      "noFollowing": "Not following anyone yet.",
       "age": "Age",
       "location": "Location",
       "moreActions": "More actions",

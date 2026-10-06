@@ -203,6 +203,8 @@
       "saveFailed": "Impossible d'enregistrer votre profil.",
       "uploadFailed": "Échec du téléversement de l'image.",
       "followFailed": "Impossible de mettre à jour l'abonnement.",
+      "noFollowers": "Pas encore d’abonnés.",
+      "noFollowing": "Ne suit encore personne.",
       "age": "Âge",
       "location": "Lieu",
       "moreActions": "Plus d’actions",

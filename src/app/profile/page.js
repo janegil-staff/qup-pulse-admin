@@ -42,6 +42,7 @@ const NAME_MAX = 40;
 // mobile client; trim this to the real one once confirmed. Listening to a name
 // nothing emits costs nothing.
 const FOLLOW_EVENTS = [
+  "profile:followers",
   "follow:counts",
   "follow:changed",
   "user:follow",
@@ -97,7 +98,12 @@ export default function ProfilePage() {
   // otherwise the length of the populated array.
   useEffect(() => {
     if (!profile) return;
-    setFollowerCount(profile.followersCount ?? profile.followers?.length ?? 0);
+    setFollowerCount(
+      profile.followerCount ??
+        profile.followersCount ??
+        profile.followers?.length ??
+        0,
+    );
     setFollowingCount(profile.followingCount ?? profile.following?.length ?? 0);
   }, [profile]);
 
@@ -110,8 +116,11 @@ export default function ProfilePage() {
 
     function onFollowEvent(payload = {}) {
       // Preferred: the server sends the new counts and nothing else is needed.
-      if (typeof payload.followersCount === "number") {
-        setFollowerCount(payload.followersCount);
+      // The server's key is followerCount (singular) — the same one the app
+      // reads off "profile:followers".
+      const followers = payload.followerCount ?? payload.followersCount;
+      if (typeof followers === "number") {
+        setFollowerCount(followers);
       }
       if (typeof payload.followingCount === "number") {
         setFollowingCount(payload.followingCount);
@@ -120,7 +129,7 @@ export default function ProfilePage() {
       // Fallback for a bare notification with no counts attached. Refetching is
       // heavier, but a stale number is worse than an extra request.
       if (
-        typeof payload.followersCount !== "number" &&
+        typeof followers !== "number" &&
         typeof payload.followingCount !== "number"
       ) {
         reload().catch(() => {});

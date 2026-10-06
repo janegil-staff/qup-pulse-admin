@@ -203,6 +203,8 @@
       "saveFailed": "Dein Profil konnte nicht gespeichert werden.",
       "uploadFailed": "Bild-Upload fehlgeschlagen.",
       "followFailed": "Folgen konnte nicht aktualisiert werden.",
+      "noFollowers": "Noch keine Follower.",
+      "noFollowing": "Folgt noch niemandem.",
       "age": "Alter",
       "location": "Ort",
       "moreActions": "Weitere Aktionen",
