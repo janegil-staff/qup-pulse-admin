@@ -46,6 +46,7 @@ import { getToken } from '../../../lib/api';
 import { useLang } from '../../../context/LandingLang';
 import AppNav from '../../../components/AppNav';
 import PhotoGallery from '../../../components/PhotoGallery';
+import AiBadge from '../../../components/AiBadge';
 import {
     getPublicProfile, followUser, unfollowUser, getMyProfile,
     reportUser, blockUser, openConversation,
@@ -199,7 +200,10 @@ export default function PublicProfilePage() {
                         </div>
 
                         <div className="min-w-0 flex-1">
-                            <h1 className="truncate text-xl font-bold text-slate-900 dark:text-white">{name}</h1>
+                            <h1 className="flex min-w-0 items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+                                <span className="truncate">{name}</span>
+                                {profile.isBot ? <AiBadge size="md" /> : null}
+                            </h1>
                             <p className="truncate text-sm text-slate-500 dark:text-slate-400">@{profile.username}</p>
                             <div className="mt-2 flex gap-4 text-sm">
                                 <Link

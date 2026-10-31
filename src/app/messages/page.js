@@ -28,6 +28,7 @@ import Link from 'next/link';
 import { getToken } from '../../lib/api';
 import { useLang } from '../../context/LandingLang';
 import AppNav from '../../components/AppNav';
+import AiBadge from '../../components/AiBadge';
 import { listConversations, listRequests, acceptConversation } from '../../lib/chatApi';
 
 export default function MessagesPage() {
@@ -167,7 +168,10 @@ function Row({ convo, last, isRequest, busy, onAccept, m }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[15px] font-semibold text-slate-900 dark:text-white">{name}</p>
+        <p className="flex min-w-0 items-center gap-1.5 text-[15px] font-semibold text-slate-900 dark:text-white">
+          <span className="truncate">{name}</span>
+          {u?.isBot ? <AiBadge /> : null}
+        </p>
         <p className="truncate text-sm text-slate-500 dark:text-slate-400">
           {/* '📷' is a marker, not a preview — the server sends it untranslated
               so the client picks the language. Render the localized word. */}

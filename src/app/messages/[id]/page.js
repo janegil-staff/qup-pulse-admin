@@ -53,6 +53,7 @@ import Link from "next/link";
 import { getToken } from "../../../lib/api";
 import { useLang } from "../../../context/LandingLang";
 import AppNav from "../../../components/AppNav";
+import AiBadge from "../../../components/AiBadge";
 import {
   getMessages,
   markRead,
@@ -502,7 +503,7 @@ export default function ThreadPage() {
               <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-400 dark:border-[#0b1016]" />
             ) : null}
           </div>
-          <div className="min-w-0">
+          <div className="flex min-w-0 items-center gap-1.5">
             {u?.username ? (
               <Link
                 href={`/profile/${encodeURIComponent(u.username)}`}
@@ -515,11 +516,12 @@ export default function ThreadPage() {
                 {name}
               </span>
             )}
+            {u?.isBot ? <AiBadge /> : null}
           </div>
 
           {/* Video call. Only in accepted 1:1 threads — the server enforces the
               same rule (and blocks) on call:invite. */}
-          {convo?.status === "accepted" && otherId ? (
+          {convo?.status === "accepted" && otherId && !u?.isBot ? (
             <button
               type="button"
               onClick={() =>

@@ -53,6 +53,7 @@ import Link from "next/link";
 import { getToken } from "../../lib/api";
 import { useLang } from "../../context/LandingLang";
 import AppNav from "../../components/AppNav";
+import AiBadge from "../../components/AiBadge";
 import {
   getDiscovery,
   updateLocation,
@@ -303,6 +304,7 @@ function PersonCard({ person, d }) {
         <p className="truncate text-xs font-bold text-white">
           {name}
           {person.age ? `, ${person.age}` : ""}
+          {person.isBot ? <AiBadge className="ml-1" /> : null}
         </p>
         {person.distanceKm != null ? (
           <p className="truncate text-[10px] text-white/85">
