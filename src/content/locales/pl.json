@@ -715,5 +715,16 @@
   "retractTitle": "Usunąć dla wszystkich?",
   "retractBothParties": "Wiadomość zostanie ukryta u obu stron — także u osoby, do której ją wysłałeś.",
   "retractUndoNote": "Możesz ją przywrócić przez około 30 sekund.",
-  "retractModerationNote": "Wiadomość nie jest usuwana z serwera — moderatorzy zachowują kopię, aby móc rozpatrywać zgłoszenia."
+  "retractModerationNote": "Wiadomość nie jest usuwana z serwera — moderatorzy zachowują kopię, aby móc rozpatrywać zgłoszenia.",
+  "verify": {
+    "checking": "Potwierdzanie adresu e-mail…",
+    "successTitle": "E-mail potwierdzony",
+    "successBody": "Dziękujemy! Twój adres e-mail został potwierdzony. Możesz zamknąć tę stronę lub wrócić do aplikacji.",
+    "expiredTitle": "Link wygasł",
+    "expiredBody": "Ten link potwierdzający jest nieprawidłowy lub wygasł. Zaloguj się i wyślij nowy ze swojego profilu.",
+    "errorTitle": "Coś poszło nie tak",
+    "errorBody": "Nie udało się połączyć z serwerem. Spróbuj ponownie otworzyć link za chwilę.",
+    "openApp": "Otwórz Qup Pulse",
+    "goProfile": "Przejdź do profilu"
+  }
 }

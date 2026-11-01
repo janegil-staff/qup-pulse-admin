@@ -715,5 +715,16 @@
   "retractTitle": "Eliminar para todos?",
   "retractBothParties": "A mensagem fica oculta para ambos — incluindo para a pessoa a quem a enviaste.",
   "retractUndoNote": "Podes recuperá-la durante cerca de 30 segundos.",
-  "retractModerationNote": "A mensagem não é apagada do servidor — os moderadores mantêm uma cópia para que as denúncias possam ser tratadas."
+  "retractModerationNote": "A mensagem não é apagada do servidor — os moderadores mantêm uma cópia para que as denúncias possam ser tratadas.",
+  "verify": {
+    "checking": "A confirmar o teu e-mail…",
+    "successTitle": "E-mail confirmado",
+    "successBody": "Obrigado! O teu endereço de e-mail está confirmado. Podes fechar esta página ou voltar à app.",
+    "expiredTitle": "Ligação expirada",
+    "expiredBody": "Esta ligação de confirmação é inválida ou expirou. Inicia sessão e envia uma nova a partir do teu perfil.",
+    "errorTitle": "Algo correu mal",
+    "errorBody": "Não foi possível contactar o servidor. Tenta abrir a ligação novamente daqui a pouco.",
+    "openApp": "Abrir Qup Pulse",
+    "goProfile": "Ir para o perfil"
+  }
 }

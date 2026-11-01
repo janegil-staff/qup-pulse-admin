@@ -715,5 +715,16 @@
   "retractTitle": "Poistetaanko kaikilta?",
   "retractBothParties": "Viesti piilotetaan teiltä molemmilta — myös henkilöltä, jolle lähetit sen.",
   "retractUndoNote": "Voit palauttaa sen noin 30 sekunnin ajan.",
-  "retractModerationNote": "Viestiä ei poisteta palvelimelta — moderaattoreilla säilyy kopio, jotta ilmoitukset voidaan käsitellä."
+  "retractModerationNote": "Viestiä ei poisteta palvelimelta — moderaattoreilla säilyy kopio, jotta ilmoitukset voidaan käsitellä.",
+  "verify": {
+    "checking": "Vahvistetaan sähköpostia…",
+    "successTitle": "Sähköposti vahvistettu",
+    "successBody": "Kiitos! Sähköpostiosoitteesi on vahvistettu. Voit sulkea sivun tai palata sovellukseen.",
+    "expiredTitle": "Linkki on vanhentunut",
+    "expiredBody": "Tämä vahvistuslinkki on virheellinen tai vanhentunut. Kirjaudu sisään ja lähetä uusi profiilistasi.",
+    "errorTitle": "Jokin meni pieleen",
+    "errorBody": "Palvelimeen ei saatu yhteyttä. Yritä avata linkki uudelleen hetken kuluttua.",
+    "openApp": "Avaa Qup Pulse",
+    "goProfile": "Siirry profiiliin"
+  }
 }

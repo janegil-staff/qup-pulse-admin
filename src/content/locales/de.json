@@ -715,5 +715,16 @@
   "retractTitle": "Für alle löschen?",
   "retractBothParties": "Die Nachricht wird für euch beide ausgeblendet — auch für die Person, der du sie gesendet hast.",
   "retractUndoNote": "Du kannst sie etwa 30 Sekunden lang zurückholen.",
-  "retractModerationNote": "Die Nachricht wird nicht vom Server gelöscht — Moderatoren behalten eine Kopie, damit Meldungen bearbeitet werden können."
+  "retractModerationNote": "Die Nachricht wird nicht vom Server gelöscht — Moderatoren behalten eine Kopie, damit Meldungen bearbeitet werden können.",
+  "verify": {
+    "checking": "E-Mail wird bestätigt…",
+    "successTitle": "E-Mail bestätigt",
+    "successBody": "Danke! Deine E-Mail-Adresse ist bestätigt. Du kannst diese Seite schließen oder zur App zurückkehren.",
+    "expiredTitle": "Link abgelaufen",
+    "expiredBody": "Dieser Bestätigungslink ist ungültig oder abgelaufen. Melde dich an und sende einen neuen über dein Profil.",
+    "errorTitle": "Etwas ist schiefgelaufen",
+    "errorBody": "Der Server war nicht erreichbar. Öffne den Link gleich noch einmal.",
+    "openApp": "Qup Pulse öffnen",
+    "goProfile": "Zum Profil"
+  }
 }

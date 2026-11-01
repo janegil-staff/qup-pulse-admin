@@ -715,5 +715,16 @@
   "retractTitle": "Slet for alle?",
   "retractBothParties": "Beskeden skjules for jer begge — også for den, du sendte den til.",
   "retractUndoNote": "Du kan hente den tilbage i cirka 30 sekunder.",
-  "retractModerationNote": "Beskeden slettes ikke fra serveren — moderatorer beholder en kopi, så anmeldelser kan behandles."
+  "retractModerationNote": "Beskeden slettes ikke fra serveren — moderatorer beholder en kopi, så anmeldelser kan behandles.",
+  "verify": {
+    "checking": "Bekræfter din e-mail…",
+    "successTitle": "E-mail bekræftet",
+    "successBody": "Tak! Din e-mailadresse er bekræftet. Du kan lukke siden eller gå tilbage til appen.",
+    "expiredTitle": "Linket er udløbet",
+    "expiredBody": "Dette bekræftelseslink er ugyldigt eller udløbet. Log ind og send et nyt fra din profil.",
+    "errorTitle": "Noget gik galt",
+    "errorBody": "Vi kunne ikke få forbindelse til serveren. Prøv at åbne linket igen om lidt.",
+    "openApp": "Åbn Qup Pulse",
+    "goProfile": "Gå til profil"
+  }
 }

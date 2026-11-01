@@ -715,5 +715,16 @@
   "retractTitle": "Slette for alle?",
   "retractBothParties": "Meldingen skjules for begge – også for den du sendte den til.",
   "retractUndoNote": "Du kan hente den tilbake i omtrent 30 sekunder.",
-  "retractModerationNote": "Meldingen slettes ikke fra serveren – moderatorer beholder en kopi slik at rapporter kan behandles."
+  "retractModerationNote": "Meldingen slettes ikke fra serveren – moderatorer beholder en kopi slik at rapporter kan behandles.",
+  "verify": {
+    "checking": "Bekrefter e-postadressen…",
+    "successTitle": "E-post bekreftet",
+    "successBody": "Takk! E-postadressen din er bekreftet. Du kan lukke denne siden eller gå tilbake til appen.",
+    "expiredTitle": "Lenken har utløpt",
+    "expiredBody": "Denne bekreftelseslenken er ugyldig eller har utløpt. Logg inn og send en ny fra profilen din.",
+    "errorTitle": "Noe gikk galt",
+    "errorBody": "Vi fikk ikke kontakt med serveren. Prøv å åpne lenken igjen om litt.",
+    "openApp": "Åpne Qup Pulse",
+    "goProfile": "Gå til profil"
+  }
 }

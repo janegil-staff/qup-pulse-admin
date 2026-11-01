@@ -715,5 +715,16 @@
   "retractTitle": "Eliminare per tutti?",
   "retractBothParties": "Il messaggio viene nascosto a entrambi — anche alla persona a cui l'hai inviato.",
   "retractUndoNote": "Puoi recuperarlo per circa 30 secondi.",
-  "retractModerationNote": "Il messaggio non viene cancellato dal server — i moderatori ne conservano una copia per poter gestire le segnalazioni."
+  "retractModerationNote": "Il messaggio non viene cancellato dal server — i moderatori ne conservano una copia per poter gestire le segnalazioni.",
+  "verify": {
+    "checking": "Conferma dell’e-mail in corso…",
+    "successTitle": "E-mail confermata",
+    "successBody": "Grazie! Il tuo indirizzo e-mail è confermato. Puoi chiudere questa pagina o tornare all’app.",
+    "expiredTitle": "Link scaduto",
+    "expiredBody": "Questo link di conferma non è valido o è scaduto. Accedi e inviane uno nuovo dal tuo profilo.",
+    "errorTitle": "Qualcosa è andato storto",
+    "errorBody": "Impossibile raggiungere il server. Riprova ad aprire il link tra poco.",
+    "openApp": "Apri Qup Pulse",
+    "goProfile": "Vai al profilo"
+  }
 }

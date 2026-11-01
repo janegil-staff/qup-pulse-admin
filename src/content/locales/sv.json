@@ -715,5 +715,16 @@
   "retractTitle": "Radera för alla?",
   "retractBothParties": "Meddelandet döljs för er båda — även för personen du skickade det till.",
   "retractUndoNote": "Du kan hämta tillbaka det i ungefär 30 sekunder.",
-  "retractModerationNote": "Meddelandet raderas inte från servern — moderatorer behåller en kopia så att anmälningar kan hanteras."
+  "retractModerationNote": "Meddelandet raderas inte från servern — moderatorer behåller en kopia så att anmälningar kan hanteras.",
+  "verify": {
+    "checking": "Bekräftar din e-post…",
+    "successTitle": "E-post bekräftad",
+    "successBody": "Tack! Din e-postadress är bekräftad. Du kan stänga sidan eller gå tillbaka till appen.",
+    "expiredTitle": "Länken har gått ut",
+    "expiredBody": "Den här bekräftelselänken är ogiltig eller har gått ut. Logga in och skicka en ny från din profil.",
+    "errorTitle": "Något gick fel",
+    "errorBody": "Vi kunde inte nå servern. Försök öppna länken igen om en stund.",
+    "openApp": "Öppna Qup Pulse",
+    "goProfile": "Gå till profil"
+  }
 }

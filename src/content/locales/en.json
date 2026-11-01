@@ -715,5 +715,16 @@
   "retractTitle": "Delete for everyone?",
   "retractBothParties": "The message is hidden for both of you — including the person you sent it to.",
   "retractUndoNote": "You can bring it back for about 30 seconds.",
-  "retractModerationNote": "The message isn't erased from the server — moderators keep a copy so reports can be handled."
+  "retractModerationNote": "The message isn't erased from the server — moderators keep a copy so reports can be handled.",
+  "verify": {
+    "checking": "Confirming your email…",
+    "successTitle": "Email confirmed",
+    "successBody": "Thanks! Your email address is confirmed. You can close this page or go back to the app.",
+    "expiredTitle": "Link expired",
+    "expiredBody": "This confirmation link is invalid or has expired. Sign in and send a new one from your profile.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "We couldn't reach the server. Try opening the link again in a moment.",
+    "openApp": "Open Qup Pulse",
+    "goProfile": "Go to profile"
+  }
 }

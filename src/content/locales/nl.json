@@ -715,5 +715,16 @@
   "retractTitle": "Voor iedereen verwijderen?",
   "retractBothParties": "Het bericht wordt voor jullie beiden verborgen — ook voor de persoon aan wie je het hebt gestuurd.",
   "retractUndoNote": "Je kunt het ongeveer 30 seconden lang terughalen.",
-  "retractModerationNote": "Het bericht wordt niet van de server gewist — moderators bewaren een kopie zodat meldingen behandeld kunnen worden."
+  "retractModerationNote": "Het bericht wordt niet van de server gewist — moderators bewaren een kopie zodat meldingen behandeld kunnen worden.",
+  "verify": {
+    "checking": "E-mail bevestigen…",
+    "successTitle": "E-mail bevestigd",
+    "successBody": "Bedankt! Je e-mailadres is bevestigd. Je kunt deze pagina sluiten of teruggaan naar de app.",
+    "expiredTitle": "Link verlopen",
+    "expiredBody": "Deze bevestigingslink is ongeldig of verlopen. Log in en stuur een nieuwe vanuit je profiel.",
+    "errorTitle": "Er ging iets mis",
+    "errorBody": "We konden de server niet bereiken. Probeer de link zo opnieuw te openen.",
+    "openApp": "Open Qup Pulse",
+    "goProfile": "Naar profiel"
+  }
 }
